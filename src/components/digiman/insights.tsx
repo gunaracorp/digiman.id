@@ -1,7 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { SectionHeading } from "@/components/digiman/section-heading";
 import { Reveal } from "@/components/digiman/motion/reveal";
-import { VENTURES } from "@/content/holding";
 
 export type InsightItem = {
   slug: string;
@@ -96,14 +95,14 @@ export function Insights({ insights }: InsightsProps) {
             >
               Hubungi kami
             </a>{" "}
-            — atau jelajahi{" "}
+            — atau lihat langsung{" "}
             <a
-              href="#ventura"
+              href="#layanan"
               className="text-gold underline-offset-4 hover:underline"
             >
-              tesis investasi
+              layanan &amp; harga
             </a>{" "}
-            {VENTURES.eyebrow.toLowerCase()} kami.
+            kami.
           </p>
         </Reveal>
       </div>

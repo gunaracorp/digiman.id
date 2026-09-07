@@ -6,6 +6,7 @@ import { CONTACT } from "@/content/holding";
  * and the API route (authoritative validation). Single source of truth.
  */
 const TOPIC_VALUES = [...CONTACT.topics] as [string, ...string[]];
+const BUDGET_VALUES = [...CONTACT.budgets] as string[];
 
 export const contactSchema = z.object({
   name: z
@@ -20,10 +21,25 @@ export const contactSchema = z.object({
     .max(120, "Nama perusahaan terlalu panjang.")
     .optional()
     .default(""),
+  phone: z
+    .string()
+    .trim()
+    .max(32, "Nomor WhatsApp terlalu panjang.")
+    .optional()
+    .default(""),
   topic: z
     .string()
     .min(1, "Pilih topik.")
     .refine((v) => (TOPIC_VALUES as string[]).includes(v), "Topik tidak valid."),
+  budget: z
+    .string()
+    .trim()
+    .optional()
+    .default("")
+    .refine(
+      (v) => v === "" || BUDGET_VALUES.includes(v),
+      "Pilihan anggaran tidak valid."
+    ),
   message: z
     .string()
     .trim()

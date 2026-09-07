@@ -2,18 +2,19 @@
 
 **Premium digital holding website — a one-page holding experience.**
 
-DIGIMAN.ID is the web presence of a digital holding company that operates and builds across four business units. The genesis release (v0.1.0) ships as a single, section-anchored one-page experience: the deployment sandbox exposes only the `/` route, so the complete information architecture is delivered as anchored sections on one page. Every section is a modular component that can be promoted to a dedicated route later (see [ARCHITECTURE.md](./ARCHITECTURE.md)).
+DIGIMAN.ID is the web presence of a digital holding company built as a real, service-driven business — research first ("kaji dulu"), then build the business, then install the management system. The site ships as a single, section-anchored one-page experience: the deployment sandbox exposes only the `/` route, so the complete information architecture is delivered as anchored sections on one page. Every section is a modular component that can be promoted to a dedicated route later (see [ARCHITECTURE.md](./ARCHITECTURE.md)).
 
 ## Business Units
 
-| Unit | Stage |
-| --- | --- |
-| DIGIMAN Digital | Operating |
-| DIGIMAN Intelligence | Building |
-| DIGIMAN Capital | Operating |
-| DIGIMAN Academy | Genesis |
+| Unit | Focus | Stage |
+| --- | --- | --- |
+| DIGIMAN Kaji | Riset pasar, audit digital, studi kelayakan | Operating |
+| DIGIMAN Digital | Website, aplikasi, AI & otomasi | Operating |
+| DIGIMAN Bisnis | Legalitas, business plan, venture building | Building |
+| DIGIMAN Manajemen | SOP, dashboard/ERP, virtual C-level | Building |
+| DIGIMAN Akademi | Kelas eksekutif, in-house training, bootcamp | Genesis |
 
-The holding is designed so each unit can mature into a separate entity over time; the site's ecosystem/portfolio structure mirrors that intent from day one.
+The catalog section (`#layanan`) exposes 16 priced services across these units with transparent, indicative IDR pricing — final scope is always confirmed through a Kaji session.
 
 ## Tech Stack
 

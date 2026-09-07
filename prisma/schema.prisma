@@ -50,7 +50,9 @@ model ContactInquiry {
   name      String
   email     String
   company   String?
+  phone     String?
   topic     String
+  budget    String?
   message   String
   status    String   @default("new") // new | triaged | closed
   createdAt DateTime @default(now())

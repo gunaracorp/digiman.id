@@ -50,13 +50,15 @@ export async function POST(request: Request) {
       );
     }
 
-    const { name, email, company, topic, message } = parsed.data;
+    const { name, email, company, phone, topic, budget, message } = parsed.data;
     await db.contactInquiry.create({
       data: {
         name,
         email,
         company: company ? company : null,
+        phone: phone ? phone : null,
         topic,
+        budget: budget ? budget : null,
         message,
       },
     });

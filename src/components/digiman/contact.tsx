@@ -25,7 +25,9 @@ const EMPTY: ContactInput = {
   name: "",
   email: "",
   company: "",
+  phone: "",
   topic: "",
+  budget: "",
   message: "",
 };
 
@@ -167,6 +169,22 @@ export function Contact() {
               </div>
 
               <div>
+                <Label htmlFor="contact-phone">
+                  WhatsApp <span className="text-muted-foreground">(opsional)</span>
+                </Label>
+                <Input
+                  id="contact-phone"
+                  type="tel"
+                  className="mt-2 h-11"
+                  placeholder="+62 8xx xxxx xxxx"
+                  autoComplete="tel"
+                  aria-invalid={!!errors.phone}
+                  {...register("phone")}
+                />
+                <FieldError message={errors.phone?.message} />
+              </div>
+
+              <div>
                 <Label htmlFor="contact-topic">Topik</Label>
                 <Controller
                   control={control}
@@ -191,6 +209,35 @@ export function Contact() {
                   )}
                 />
                 <FieldError message={errors.topic?.message} />
+              </div>
+
+              <div>
+                <Label htmlFor="contact-budget">
+                  Perkiraan anggaran <span className="text-muted-foreground">(opsional)</span>
+                </Label>
+                <Controller
+                  control={control}
+                  name="budget"
+                  render={({ field }) => (
+                    <Select value={field.value} onValueChange={field.onChange}>
+                      <SelectTrigger
+                        id="contact-budget"
+                        className="mt-2 h-11 w-full"
+                        aria-invalid={!!errors.budget}
+                      >
+                        <SelectValue placeholder="Pilih rentang anggaran" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {CONTACT.budgets.map((budget) => (
+                          <SelectItem key={budget} value={budget}>
+                            {budget}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  )}
+                />
+                <FieldError message={errors.budget?.message} />
               </div>
 
               <div className="sm:col-span-2">

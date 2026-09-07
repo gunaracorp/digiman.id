@@ -29,7 +29,7 @@ export function BusinessPortfolio({ units }: BusinessPortfolioProps) {
           id="bisnis-title"
           eyebrow="Bisnis"
           title="Portofolio holding."
-          description="Empat unit yang saling terhubung — masing-masing dengan mandat, sektor, dan tahap perkembangan yang jelas."
+          description="Lima unit yang saling terhubung — masing-masing dengan mandat, sektor, dan tahap perkembangan yang jelas."
         />
 
         {units.length === 0 ? (

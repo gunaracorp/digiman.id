@@ -67,3 +67,25 @@ Stage Summary:
 - Verified evidence: HTTP 200 + DB queries in dev.log, DB row for test inquiry (Budi Santoso), 429 rate limit, 400 validation, screenshots desktop+mobile, lint clean, console clean.
 - Known ROADMAP (documented, not built): multi-route extraction, Redis-backed rate limit, CI workflows, auth/command center, PostgreSQL migration.
 
+---
+Task ID: 7 (v0.2.0 pivot)
+Agent: orchestrator (Chief Architect / Master Polymath mode)
+Task: Founder pivot — "bukan ini bayanganku": reposition from abstract holding architecture to a REAL business (unit Kaji → Bisnis → Manajemen, detailed services with prices), jargon-first hero, 7-layer sky, 100-year vision, 46 expert councils.
+
+Work Log:
+- Read full worklog + re-inspected existing components before touching anything (hero, services, header, ecosystem, portfolio, technology, governance, insights, careers, contact, footer, API, validation, schema, seed).
+- Rewrote src/content/holding.ts as v0.2.0 single source of truth: 5 real units (kaji/digital/bisnis/manajemen/akademi), 16-item priced SERVICE_CATALOG (deliverables + duration + indicative IDR per service), METODE (Kaji→Rancang→Bangun→Kelola→Skala), VISION 2025→2125, DEWAN (46 disciplines), jargon hero ("Masuk bersama kami, Anda selamat. Tidak berdigital, Anda tertinggal."), new contact topics incl. "Konsultasi Kaji (Gratis)" + budget ranges, updated manifesto/careers/footer/insights seeds.
+- hero.tsx: two-line jargon headline (line2 dimmed, gold italic emphases), metrics 5/16/46/100.
+- services.tsx fully rebuilt as client Tabs catalog: 5 unit tabs, priced cards (deliverables checklist, gold price in display serif, duration, "Paling Diminati" badge, per-service CTA), "16 jasa · harga indikatif" strip + transparency note.
+- New server components: metode.tsx (#metode 5-step grid), visi-2125.tsx (#visi giant 2125 numeral + milestone timeline + closing quote), dewan.tsx (#dewan 46 numbered chips).
+- Deleted ventures.tsx; insights.tsx re-pointed to #layanan; ecosystem.tsx → 5-column grid + 10% connector; business-portfolio copy "Empat→Lima unit"; footer bottom line → "Kaji Dulu · Baru Bangun · Bertahan 100 Tahun".
+- Contact form + zod schema + API + Prisma: added optional phone (WhatsApp) and budget fields; ContactInquiry gains phone/budget columns (additive db push); seed deactivates legacy intelligence/capital/academy keys (caught "academy" EN vs "akademi" ID key collision during browser verification).
+- Docs: CHANGELOG 0.2.0 entry; README units table + description updated to 5 real units + priced catalog note.
+- Verification loop (agent-browser): desktop 1440 + mobile 390 screenshots (hero/layanan/visi/dewan/menu); H1 jargon confirmed; 5 tabs × cards verified (Digital=4 with Rp prices); exactly 5 DB units render after re-seed; contact golden path E2E: filled incl. new WhatsApp+Anggaran (Radix Select needs click→option clicks, not native select), toast "Pesan terkirim", full row persisted in SQLite; anchor nav #layanan lands at 88px; footer sticks bottom + pushes naturally (pageHeight 24111); console clean after fresh reload (transient hydration badge traced to pre-restart 500, not reproducible).
+- Incident fixed during verification: POST /api/contact 500 right after schema push — running dev server held stale Prisma Client; server restart resolved; also fixed missing "academy" in legacy deactivation list.
+
+Stage Summary:
+- v0.2.0 "Bisnis Real" delivered and browser-verified: real 5-unit holding + 16 priced services + method + 100-year vision + 46 councils, jargon as hero.
+- Evidence: lint zero errors, HTTP 200, SQLite row for Siti Rahmawati inquiry (phone+budget captured), screenshots desktop+mobile, console clean.
+- BELUM TERVERIFIKASI: hello@digiman.id / careers@digiman.id deliverability, WhatsApp business number, and all price points (founder must confirm final price list before launch); ARCHITECTURE.md/docs full revision to v0.2.0 positioning (only README+CHANGELOG updated this round).
+

@@ -55,12 +55,12 @@ export function Ecosystem({ units }: EcosystemProps) {
             className="mx-auto hidden h-10 w-px bg-border md:block"
           />
           <div aria-hidden="true" className="relative hidden md:block">
-            <div className="absolute inset-x-[12.5%] top-0 h-px bg-border" />
+            <div className="absolute inset-x-[10%] top-0 h-px bg-border" />
             <div className="h-px" />
           </div>
 
           {/* Units */}
-          <ul className="mt-0 grid gap-4 md:grid-cols-4">
+          <ul className="mt-0 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
             {units.map((unit, i) => (
               <li key={unit.key} className="flex flex-col">
                 <div

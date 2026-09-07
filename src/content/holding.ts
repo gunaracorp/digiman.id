@@ -2,6 +2,9 @@
  * DIGIMAN.ID — Content source of truth.
  * Single typed module that seeds the database and provides a static
  * fallback if the database is unavailable. Pure data — no React imports.
+ *
+ * v0.2.0 — "Bisnis Real": lima unit nyata, katalog jasa berharga,
+ * metode kerja lima langkah, visi 100 tahun, 46 dewan pakar.
  */
 
 export type BusinessUnit = {
@@ -15,17 +18,31 @@ export type BusinessUnit = {
   attributes: { label: string; value: string }[];
 };
 
-export type VentureThesis = {
+export type PricedService = {
   key: string;
-  title: string;
-  thesis: string;
-  backing: string;
-  stage: string;
+  name: string;
+  description: string;
+  deliverables: string[];
+  price: string;
+  duration: string;
+  popular?: boolean;
 };
 
-export type ServiceCapability = {
-  key: string;
-  icon: "layers" | "brain" | "cloud" | "pen-tool" | "compass" | "shield-check";
+export type ServiceLine = {
+  unitKey: string;
+  unitName: string;
+  intro: string;
+  services: PricedService[];
+};
+
+export type MetodeStep = {
+  index: string;
+  title: string;
+  description: string;
+};
+
+export type VisionMilestone = {
+  year: string;
   title: string;
   description: string;
 };
@@ -64,247 +81,594 @@ export const ORG = {
   name: "DIGIMAN.ID",
   legalName: "DIGIMAN.ID",
   url: "https://digiman.id",
-  tagline: "Digital Holding Architecture",
+  tagline: "Holding Digital — Kaji Dulu, Baru Bangun",
   description:
-    "Digital holding yang menaungi, membangun, dan mengorkestrasi bisnis, teknologi, serta modal intelektual dalam satu ekosistem terpadu.",
+    "Holding digital Indonesia yang mengurus bisnis secara detail — kaji, bangun, sistem, kelola — dengan lingkup dan harga yang terang. Dibangun untuk 100 tahun ke depan.",
   founded: "2025",
   email: "hello@digiman.id",
   careersEmail: "careers@digiman.id",
   location: "Indonesia",
 } as const;
 
+/**
+ * JARGON — kalimat perang perusahaan. Tidak boleh dilunakkan.
+ * "Yang masuk ke kita bakal selamat, yang tidak masuk digital akan tertinggal."
+ */
 export const NAV_ITEMS = [
   { href: "#tentang", label: "Tentang" },
-  { href: "#ekosistem", label: "Ekosistem" },
-  { href: "#bisnis", label: "Bisnis" },
-  { href: "#layanan", label: "Layanan" },
+  { href: "#ekosistem", label: "Unit Bisnis" },
+  { href: "#layanan", label: "Layanan & Harga" },
+  { href: "#metode", label: "Metode" },
   { href: "#teknologi", label: "Teknologi" },
-  { href: "#insights", label: "Insights" },
+  { href: "#visi", label: "Visi 2125" },
 ] as const;
 
 export const HERO = {
-  eyebrow: "Digital Holding — Indonesia · Est. 2025",
-  headlineA: "Arsitektur untuk",
-  headlineB: "ekosistem",
-  headlineC: "yang bertumbuh.",
+  eyebrow: "Holding Digital Indonesia — Est. 2025 · Horizon 2125",
+  line1A: "Masuk bersama kami,",
+  line1B: "Anda selamat.",
+  line2A: "Tidak berdigital,",
+  line2B: "Anda tertinggal.",
   statement:
-    "DIGIMAN.ID menaungi, membangun, dan mengorkestrasi bisnis, teknologi, serta modal intelektual dalam satu ekosistem terpadu — dari fondasi teknis hingga tata kelola yang dapat diaudit.",
-  primaryCta: { href: "#ekosistem", label: "Jelajahi Ekosistem" },
-  secondaryCta: { href: "#kontak", label: "Hubungi Kami" },
+    "DIGIMAN.ID mengurus bisnis Anda secara detail: kaji dulu, bangun bisnisnya, pasang sistem manajemennya, lalu kelola bersama. Lingkup jelas, harga terang — dibangun untuk seratus tahun ke depan.",
+  primaryCta: { href: "#layanan", label: "Lihat Layanan & Harga" },
+  secondaryCta: { href: "#kontak", label: "Konsultasi Kaji — Gratis" },
   scrollCue: "Gulir untuk menjelajah",
 } as const;
 
 export const HERO_METRICS = [
-  { value: 4, label: "Unit bisnis" },
-  { value: 7, label: "Lapis arsitektur" },
-  { value: 6, label: "Kapabilitas inti" },
-  { value: 1, label: "Ekosistem terpadu" },
+  { value: 5, label: "Unit bisnis nyata" },
+  { value: 16, label: "Jasa dengan harga terang" },
+  { value: 46, label: "Dewan pakar lintas ilmu" },
+  { value: 100, label: "Tahun horizon visi" },
 ] as const;
 
 export const MARQUEE_ITEMS = [
+  "DIGIMAN Kaji",
   "DIGIMAN Digital",
-  "DIGIMAN Intelligence",
-  "DIGIMAN Capital",
-  "DIGIMAN Academy",
-  "Holding",
-  "Technology",
-  "Capital",
-  "Governance",
+  "DIGIMAN Bisnis",
+  "DIGIMAN Manajemen",
+  "DIGIMAN Akademi",
+  "Kaji Dulu",
+  "Sistem Nyata",
+  "Harga Terang",
 ] as const;
 
 export const MANIFESTO = {
   eyebrow: "Tentang Kami",
   title:
-    "Kami tidak membangun sekadar perusahaan. Kami membangun sistem yang saling menguatkan.",
-  body: "DIGIMAN.ID adalah digital holding architecture — sebuah ekosistem tempat bisnis, teknologi, dan modal intelektual dirancang sebagai satu kesatuan. Setiap unit menguatkan unit lain; setiap keputusan diukur dampaknya terhadap keseluruhan sistem.",
+    "Kami bukan agensi yang menjual janji. Kami holding yang ikut mengurus.",
+  body: "DIGIMAN.ID lahir dari satu keyakinan sederhana: bisnis yang tidak berdigital akan tertinggal. Karena itu kami hadir sebagai kekuatan lengkap — unit Kaji untuk memahami, unit Digital untuk membangun, unit Bisnis untuk menumbuhkan, unit Manajemen untuk mengatur, unit Akademi untuk membekali manusianya. Anda fokus menjalankan bisnis; kami memastikan sistemnya berdiri kokoh.",
   principles: [
     {
       index: "01",
-      title: "Kejelasan melebihi kepintaran",
+      title: "Kaji dulu, bangun kemudian",
       description:
-        "Sistem terbaik adalah yang dapat dipahami, dijelaskan, dan dipelihara oleh manusia yang membangunnya.",
+        "Tidak ada satu rupiah dieksekusi sebelum masalahnya dipahami. Riset adalah investasi termurah yang menghemat segalanya.",
     },
     {
       index: "02",
-      title: "Kepercayaan adalah arsitektur",
+      title: "Bisnis nyata, sistem nyata",
       description:
-        "Trust tidak diklaim — ia direkayasa melalui transparansi, konsistensi, dan tata kelola yang dapat diaudit.",
+        "Kami bekerja pada yang terukur: legalitas, proses, data, penjualan. Tidak ada slide kosong yang dijual sebagai strategi.",
     },
     {
       index: "03",
-      title: "Setiap unit menguatkan unit lain",
+      title: "Harga terang, lingkup jelas",
       description:
-        "Nilai holding lahir dari konektivitas: teknologi melayani bisnis, bisnis menghasilkan data, data mempertajam keputusan.",
+        "Setiap jasa punya lingkup, durasi, dan harga yang tertulis di depan. Kejutan biaya adalah kegagalan profesionalisme.",
     },
     {
       index: "04",
-      title: "Dibangun untuk diwariskan",
+      title: "Dibangun untuk 100 tahun",
       description:
-        "Kami merancang untuk jangka panjang: dokumentasi, portabilitas, dan evolusi berkelanjutan di atas trik jangka pendek.",
+        "Keputusan hari ini dievaluasi terhadap generasi berikutnya — bukan terhadap tren kuartal ini.",
     },
   ],
 } as const;
 
 export const ECOSYSTEM = {
-  eyebrow: "Ekosistem",
-  title: "Satu holding. Empat pilar. Banyak entitas masa depan.",
+  eyebrow: "Struktur Holding",
+  title: "Satu holding. Lima kekuatan. Satu tujuan: bisnis Anda selamat.",
   description:
-    "Setiap unit dirancang agar dapat berkembang menjadi entitas yang berdiri sendiri — sambil tetap mengambil kekuatan dari jaringan yang sama.",
-  holdingLabel: "DIGIMAN Holding",
+    "Setiap unit mengerjakan satu lapis persoalan — dan saling menguatkan. Semuanya dimulai dari Kaji; sisanya mengikuti bukti.",
+  holdingLabel: "Digital Holding — Indonesia",
 } as const;
 
 export const BUSINESS_UNITS: BusinessUnit[] = [
   {
+    key: "kaji",
+    name: "DIGIMAN Kaji",
+    tagline: "Riset dan kecerdasan sebelum eksekusi.",
+    sector: "Riset & Intelijen Bisnis",
+    stage: "Operating",
+    description:
+      "Gerbang masuk setiap kerja sama. Kami mengkaji bisnis Anda secara utuh — pasar, proses, data, teknologi, tim — sehingga setiap keputusan berikutnya berdiri di atas bukti, bukan asumsi.",
+    focus: ["Audit Digital", "Riset Pasar", "Studi Kelayakan", "Data & Insight"],
+    attributes: [
+      { label: "Model", value: "Kaji dulu, baru bangun" },
+      { label: "Peran", value: "Gerbang masuk klien" },
+    ],
+  },
+  {
     key: "digital",
     name: "DIGIMAN Digital",
-    tagline: "Rekayasa produk & platform digital.",
-    sector: "Software & Product Engineering",
+    tagline: "Membangun aset digital yang bekerja untuk Anda.",
+    sector: "Teknologi & Produk",
     stage: "Operating",
     description:
-      "Unit pengembangan inti: merancang, membangun, dan mengoperasikan produk serta platform digital untuk kebutuhan internal ekosistem dan klien terpilih.",
-    focus: ["Product Design", "Web Platform", "Mobile Apps", "Design Systems"],
+      "Unit teknologi holding: website korporat, aplikasi, e-commerce, AI agent, dan otomasi — dibangun dengan standar produksi, bukan demo yang mengkilap lalu mati.",
+    focus: [
+      "Website Korporat",
+      "Aplikasi Web & Mobile",
+      "AI & Otomasi",
+      "E-commerce",
+    ],
     attributes: [
       { label: "Model", value: "Build — Operate — Transfer" },
-      { label: "Fokus pasar", value: "B2B & Enterprise" },
+      { label: "Standar", value: "Production-grade, selalu" },
     ],
   },
   {
-    key: "intelligence",
-    name: "DIGIMAN Intelligence",
-    tagline: "Data, AI, dan otomasi keputusan.",
-    sector: "AI & Data",
+    key: "bisnis",
+    name: "DIGIMAN Bisnis",
+    tagline: "Membangun dan menumbuhkan lini bisnis.",
+    sector: "Pengembangan Bisnis",
     stage: "Building",
     description:
-      "Membangun lapisan kecerdasan ekosistem: platform data, sistem AI, dan otomasi yang mengubah informasi menjadi keputusan yang dapat dipertanggungjawabkan.",
-    focus: ["Data Platform", "Machine Learning", "LLM Systems", "Automation"],
+      "Bisnis berarti ada bisnisnya: dari pendirian badan usaha, business plan, hingga venture building — kami membangun lini bisnis baru bersama Anda, dari nol legalitas sampai siap ekspansi.",
+    focus: ["Legalitas Usaha", "Business Plan", "Venture Building", "Akses Pendanaan"],
     attributes: [
-      { label: "Pendekatan", value: "AI-ready by architecture" },
-      { label: "Prinsip", value: "Manusia tetap memegang kendali" },
+      { label: "Model", value: "Fee atau kemitraan" },
+      { label: "Horizon", value: "Jangka panjang" },
     ],
   },
   {
-    key: "capital",
-    name: "DIGIMAN Capital",
-    tagline: "Modal untuk fondasi digital jangka panjang.",
-    sector: "Venture & Investment",
-    stage: "Operating",
+    key: "manajemen",
+    name: "DIGIMAN Manajemen",
+    tagline: "Sistem yang mengurus detail, setiap hari.",
+    sector: "Manajemen & Sistem",
+    stage: "Building",
     description:
-      "Lengan investasi holding: menyediakan modal dan pendampingan strategis bagi perusahaan yang memperkuat tema jangka panjang ekosistem.",
-    focus: ["Early-stage", "B2B SaaS", "Digital Infrastructure", "Fintech"],
+      "Manajemen berarti ada sistemnya: SOP, struktur organisasi, KPI, dashboard, dan tata kelola — sehingga bisnis Anda berjalan tanpa bergantung pada satu orang pun.",
+    focus: ["SOP & Playbook", "Dashboard & ERP", "Keuangan & KPI", "Tata Kelola"],
     attributes: [
-      { label: "Peran", value: "Investor & mitra strategis" },
-      { label: "Horizon", value: "Jangka panjang, bukan spekulatif" },
+      { label: "Model", value: "Sistem dulu, baru skala" },
+      { label: "Prinsip", value: "Terukur, dapat diaudit" },
     ],
   },
   {
-    key: "academy",
-    name: "DIGIMAN Academy",
-    tagline: "Modal intelektual & talenta digital.",
-    sector: "Knowledge & Talent",
+    key: "akademi",
+    name: "DIGIMAN Akademi",
+    tagline: "Manusia yang menjalankan sistem.",
+    sector: "Talenta & Literasi Digital",
     stage: "Genesis",
     description:
-      "Mengelola dan menumbuhkan pengetahuan ekosistem: kurikulum, riset, sertifikasi, dan komunitas praktisi digital Indonesia.",
-    focus: ["Curriculum", "Research", "Certification", "Community"],
+      "Sistem sebaik apa pun gagal tanpa manusia yang menguasainya. Akademi membekali direksi hingga tim muda dengan literasi digital yang aplikatif — bukan teori pamer.",
+    focus: ["Kelas Eksekutif", "In-house Training", "Bootcamp", "Sertifikasi"],
     attributes: [
       { label: "Status", value: "Tahap perancangan" },
-      { label: "Misi", value: "Teknologi melayani manusia" },
+      { label: "Misi", value: "Digital untuk semua lini usaha" },
     ],
   },
 ];
 
-export const VENTURES = {
-  eyebrow: "Ventures",
-  title: "Kami menanamkan modal pada tema yang kami pahami.",
-  description:
-    "DIGIMAN Capital berinvestasi pada perusahaan yang memperkuat tesis jangka panjang ekosistem — bukan tren musiman.",
-  theses: [
-    {
-      key: "ai-native",
-      title: "AI-Native Applications",
-      thesis:
-        "Perangkat lunak yang memang dibangun di atas AI sejak hari pertama — bukan fitur tambal sulam — akan mendefinisikan ulang setiap industri.",
-      backing:
-        "Kami mendukung tim kecil dengan kedalaman teknis dan distribusi yang jelas.",
-      stage: "Pre-seed — Series A",
-    },
-    {
-      key: "digital-infra",
-      title: "Digital Infrastructure",
-      thesis:
-        "Fondasi yang membuat ekonomi digital berjalan: data, konektivitas, keamanan, dan tooling untuk pengembang.",
-      backing:
-        "Aset yang tumbuh perlahan tetapi menguasai posisi strategis dalam rantai nilai.",
-      stage: "Seed — Series B",
-    },
-    {
-      key: "work-commerce",
-      title: "Future of Work & Commerce",
-      thesis:
-        "Cara orang bekerja dan bertransaksi berubah secara struktural di Indonesia — dan membutuhkan infrastruktur baru.",
-      backing:
-        "Kami mencari model yang bekerja untuk pasar berkembang, bukan sekadar replika model global.",
-      stage: "Pre-seed — Series A",
-    },
-  ] satisfies VentureThesis[],
-} as const;
+/* ------------------------------------------------------------------ */
+/* KATALOG JASA & HARGA — inti dari model bisnis nyata DIGIMAN.ID.     */
+/* 16 jasa, tiap jasa: lingkup (deliverables), durasi, harga indikatif. */
+/* ------------------------------------------------------------------ */
 
 export const SERVICES = {
-  eyebrow: "Layanan",
-  title: "Kapabilitas ekosistem, dibuka untuk mitra terpilih.",
+  eyebrow: "Layanan & Harga",
+  title: "Jasa yang jelas isinya, terang harganya.",
   description:
-    "Kemampuan yang kami bangun untuk kebutuhan internal holding — dengan standar kelas institusi — juga kami buka untuk klien yang sejalan.",
-  items: [
+    "Lima unit, enam belas jasa. Pilih titik masuk sesuai kebutuhan — atau mulai dari Kaji dan biarkan kajian yang menentukan.",
+  note: "Harga bersifat indikatif dan transparan sebagai titik awal sebelum sesi Kaji. Lingkup final ditetapkan bersama dalam proposal tertulis — tidak ada biaya tersembunyi, tidak ada kejutan di akhir.",
+} as const;
+
+export const SERVICE_CATALOG: ServiceLine[] = [
+  {
+    unitKey: "kaji",
+    unitName: "Kaji",
+    intro:
+      "Tidak ada keputusan tanpa kajian. Semua kerja sama dimulai di sini — riset adalah fondasi, bukan formalitas.",
+    services: [
+      {
+        key: "kaji-express",
+        name: "Kaji Express",
+        description:
+          "Diagnosis cepat lima hari: di mana bisnis Anda kuat, rapuh, dan paling siap untuk berdigital.",
+        deliverables: [
+          "Peta aset digital dan celahnya",
+          "Benchmark 3 kompetitor terdekat",
+          "Rekomendasi prioritas 90 hari",
+        ],
+        price: "Rp 7.500.000",
+        duration: "5 hari kerja",
+        popular: true,
+      },
+      {
+        key: "kaji-deep",
+        name: "Kaji Mendalam",
+        description:
+          "Kajian menyeluruh atas bisnis, proses, data, teknologi, dan tim — dasar dari program transformasi berikutnya.",
+        deliverables: [
+          "Audit 6 dimensi bisnis",
+          "Wawancara pemangku kepentingan",
+          "Peta Jalan 12 bulan + estimasi anggaran",
+        ],
+        price: "Rp 25.000.000",
+        duration: "2–3 minggu",
+      },
+      {
+        key: "kaji-feasibility",
+        name: "Studi Kelayakan Bisnis Baru",
+        description:
+          "Validasi ide sebelum modal mengalir: ukuran pasar, kompetitor, unit ekonomi, dan risiko yang jujur.",
+        deliverables: [
+          "Ukuran pasar dan segmentasi",
+          "Proyeksi unit ekonomi 24 bulan",
+          "Rekomendasi go / no-go",
+        ],
+        price: "Mulai Rp 18.000.000",
+        duration: "3–4 minggu",
+      },
+    ],
+  },
+  {
+    unitKey: "digital",
+    unitName: "Digital",
+    intro:
+      "Aset digital dibangun sekali dengan standar produksi — lalu bekerja untuk Anda bertahun-tahun.",
+    services: [
+      {
+        key: "web-premium",
+        name: "Website Korporat Premium",
+        description:
+          "Situs kelas institusi: cepat, aman, siap-SEO, dan mudah dikelola tim internal Anda sendiri.",
+        deliverables: [
+          "Desain kustom + design system",
+          "CMS + pelatihan pengelolaan",
+          "SEO teknis + analitik terpasang",
+        ],
+        price: "Mulai Rp 45.000.000",
+        duration: "4–6 minggu",
+        popular: true,
+      },
+      {
+        key: "app",
+        name: "Aplikasi Web / Mobile",
+        description:
+          "Dari MVP untuk validasi cepat sampai aplikasi produksi dengan pengguna nyata dan pemeliharaan.",
+        deliverables: [
+          "Discovery dan spesifikasi tertulis",
+          "Desain + pengembangan iteratif",
+          "Rilis app store / domain produksi",
+        ],
+        price: "Mulai Rp 120.000.000",
+        duration: "8–12 minggu",
+      },
+      {
+        key: "ai-automation",
+        name: "AI Agent & Otomasi",
+        description:
+          "Chatbot layanan pelanggan, otomasi dokumen, integrasi antar sistem — pekerjaan berulang diserahkan ke mesin.",
+        deliverables: [
+          "Peta proses dan peluang otomasi",
+          "AI agent terlatih dari data Anda",
+          "Dashboard monitoring dan evaluasi",
+        ],
+        price: "Mulai Rp 25.000.000",
+        duration: "2–4 minggu",
+      },
+      {
+        key: "digital-care",
+        name: "Digital Care",
+        description:
+          "Pemeliharaan berkelanjutan: keamanan, backup, pembaruan, dan iterasi kecil setiap bulan.",
+        deliverables: [
+          "Monitoring dan patch keamanan",
+          "Backup teruji dan terjadwal",
+          "Laporan kesehatan bulanan",
+        ],
+        price: "Rp 3.500.000/bulan",
+        duration: "Kontrak bulanan",
+      },
+    ],
+  },
+  {
+    unitKey: "bisnis",
+    unitName: "Bisnis",
+    intro:
+      "Bisnis berarti ada bisnisnya — kami bangun dari legalitas hingga lini usaha siap ekspansi.",
+    services: [
+      {
+        key: "legal",
+        name: "Pendirian & Legalitas Usaha",
+        description:
+          "PT, CV, NIB, izin dasar — urusan birokrasi diselesaikan rapi tanpa Anda bolak-balik memusingkannya.",
+        deliverables: [
+          "Pendampingan akta dan SK Kemenkumham",
+          "NIB, NPWP, izin usaha",
+          "Checklist kewajiban bulanan",
+        ],
+        price: "Mulai Rp 6.000.000",
+        duration: "2–3 minggu",
+      },
+      {
+        key: "bizplan",
+        name: "Business Plan & Pitch Deck",
+        description:
+          "Dokumen yang membuat bank dan investor paham — dan membuat Anda sendiri lebih percaya pada bisnis Anda.",
+        deliverables: [
+          "Model bisnis dan unit ekonomi",
+          "Proyeksi keuangan 3 tahun",
+          "Pitch deck 12–15 halaman",
+        ],
+        price: "Mulai Rp 12.000.000",
+        duration: "2 minggu",
+      },
+      {
+        key: "venture",
+        name: "Venture Building",
+        description:
+          "Bangun lini bisnis baru bersama: tim gabungan, sistem, teknologi, dan jalur pendanaan — dengan target terukur.",
+        deliverables: [
+          "Tim gabungan dedikasi penuh",
+          "Sistem & teknologi dari DIGIMAN Digital",
+          "KPI dan milestone bersama",
+        ],
+        price: "Custom — fee atau equity",
+        duration: "Mulai 6 bulan",
+        popular: true,
+      },
+    ],
+  },
+  {
+    unitKey: "manajemen",
+    unitName: "Manajemen",
+    intro:
+      "Manajemen berarti ada sistemnya — supaya bisnis berjalan tanpa bergantung pada satu orang.",
+    services: [
+      {
+        key: "sop",
+        name: "Sistem Manajemen & SOP",
+        description:
+          "Struktur, proses baku, KPI, playbook — sistem operasi bisnis Anda tertulis, terpakai, dan diaudit.",
+        deliverables: [
+          "Struktur organisasi dan RACI",
+          "SOP proses inti: sales, operasional, keuangan",
+          "Playbook + pelatihan implementasi",
+        ],
+        price: "Mulai Rp 35.000.000",
+        duration: "4–6 minggu",
+        popular: true,
+      },
+      {
+        key: "erp",
+        name: "Dashboard & ERP Ringan",
+        description:
+          "Data penjualan, stok, dan keuangan terkumpul di satu tempat; laporan otomatis, keputusan lebih cepat.",
+        deliverables: [
+          "Sistem data terpusat",
+          "Dashboard realtime",
+          "Laporan otomatis mingguan/bulanan",
+        ],
+        price: "Mulai Rp 30.000.000",
+        duration: "4–8 minggu",
+      },
+      {
+        key: "vcoo",
+        name: "Virtual COO / CDO",
+        description:
+          "Direktur operasional atau digital sewa bulanan — pengalaman C-level tanpa biaya C-level penuh.",
+        deliverables: [
+          "Pimpinan eksekusi bulanan",
+          "Rapat komite dan laporan tertulis",
+          "Penjamin mutu kerja semua unit",
+        ],
+        price: "Rp 12.500.000/bulan",
+        duration: "Min. 3 bulan",
+      },
+    ],
+  },
+  {
+    unitKey: "akademi",
+    unitName: "Akademi",
+    intro:
+      "Sistem gagal tanpa manusia. Kami bekali manusia Anda sampai sistemnya hidup.",
+    services: [
+      {
+        key: "exec",
+        name: "Kelas Eksekutif: Digital Strategy",
+        description:
+          "Dua hari intensif untuk direksi dan manajemen puncak — peta digital yang relevan dengan bisnis Anda.",
+        deliverables: [
+          "Workshop 2 hari (maks. 20 orang)",
+          "Materi dan template kerja",
+          "Sesi tindak lanjut 30 hari kemudian",
+        ],
+        price: "Rp 8.500.000/orang",
+        duration: "2 hari",
+      },
+      {
+        key: "inhouse",
+        name: "In-house Training",
+        description:
+          "Kurikulum kustom atas masalah nyata tim Anda, disampaikan langsung di kantor Anda.",
+        deliverables: [
+          "Analisis kebutuhan tim",
+          "Materi kustom + praktik langsung",
+          "Evaluasi pasca-training",
+        ],
+        price: "Mulai Rp 20.000.000/batch",
+        duration: "1–3 hari",
+        popular: true,
+      },
+      {
+        key: "bootcamp",
+        name: "Digital Bootcamp",
+        description:
+          "Enam minggu praktik: data, AI, dan otomasi untuk tim muda Anda — dengan proyek dari bisnis Anda sendiri.",
+        deliverables: [
+          "6 minggu, 12 sesi praktik",
+          "Proyek nyata dari bisnis Anda",
+          "Sertifikat dan portofolio",
+        ],
+        price: "Rp 15.000.000/orang",
+        duration: "6 minggu",
+      },
+    ],
+  },
+];
+
+export const METODE = {
+  eyebrow: "Metode Kerja",
+  title: "Satu alur. Lima langkah. Nol asumsi.",
+  description:
+    "Alur yang sama kami terapkan pada klien dan pada unit internal holding — karena sistem yang baik tidak mengenal dobel standar.",
+  steps: [
     {
-      key: "product",
-      icon: "layers",
-      title: "Product Engineering",
+      index: "01",
+      title: "Kaji",
       description:
-        "Perancangan dan pengembangan produk digital end-to-end: dari discovery, arsitektur, hingga operasi.",
+        "Riset menyeluruh: bisnis, pasar, data, sistem. Tidak ada keputusan sebelum masalah dipahami.",
     },
     {
-      key: "ai",
-      icon: "brain",
-      title: "AI & Data Integration",
+      index: "02",
+      title: "Rancang",
       description:
-        "Integrasi AI dan pipeline data yang siap diaudit — dengan manusia tetap memegang kendali keputusan.",
+        "Arsitektur solusi — strategi, sistem, desain — lengkap dengan lingkup kerja dan anggaran terbuka.",
     },
     {
-      key: "cloud",
-      icon: "cloud",
-      title: "Cloud & Infrastructure",
+      index: "03",
+      title: "Bangun",
       description:
-        "Infrastruktur yang aman, portabel, dan efisien biaya — dirancang untuk bertumbuh dari 1 hingga jutaan pengguna.",
+        "Eksekusi standar produksi: tonggak jelas, laporan berkala, tanpa kabur dari tanggung jawab.",
     },
     {
-      key: "design",
-      icon: "pen-tool",
-      title: "Design Systems",
+      index: "04",
+      title: "Kelola",
       description:
-        "Sistem desain yang konsisten dan dapat diskalakan, sehingga setiap produk terasa dari satu keluarga yang sama.",
+        "Operasi, keamanan, pemeliharaan. Sistem dirawat terus; Anda fokus menjual dan melayani.",
     },
     {
-      key: "strategy",
-      icon: "compass",
-      title: "Digital Strategy & Governance",
+      index: "05",
+      title: "Skala",
       description:
-        "Peta jalan transformasi digital dengan model tata kelola yang jelas: ownership, peran, dan mekanisme audit.",
+        "Ukur, belajar, evolusi. Yang berhasil kami gandakan; yang gagal kami perbaiki atau buang.",
+    },
+  ] satisfies MetodeStep[],
+} as const;
+
+export const VISION = {
+  eyebrow: "Visi",
+  title: "Dibangun untuk seratus tahun ke depan.",
+  description:
+    "Keputusan besar hari ini kami uji dengan satu pertanyaan: apakah ini membuat DIGIMAN dan mitranya lebih kokoh di 2125?",
+  milestones: [
+    {
+      year: "2025",
+      title: "Fondasi",
+      description:
+        "Lima unit beroperasi. Metodologi Kaji terstandar. Klien pertama masuk — dan selamat dari keterpurukan digital.",
     },
     {
-      key: "operations",
-      icon: "shield-check",
-      title: "Managed Operations",
+      year: "2030",
+      title: "Regional",
       description:
-        "Operasi berkelanjutan dengan SLA yang transparan — monitoring, pemeliharaan, dan evolusi sistem.",
+        "Layanan menjangkau Asia Tenggara. Sistem terbukti dapat diulang lintas pasar dan lintas tim.",
     },
-  ] satisfies ServiceCapability[],
+    {
+      year: "2040",
+      title: "Business OS",
+      description:
+        "DIGIMAN OS menjadi sistem operasi ribuan usaha menengah: satu papan kendali untuk bisnis, sistem, dan pertumbuhan.",
+    },
+    {
+      year: "2060",
+      title: "Orkestra Otonom",
+      description:
+        "AI mengorkestrasi operasi harian. Manusia memimpin visi, nilai, dan relasi.",
+    },
+    {
+      year: "2100",
+      title: "Institusi",
+      description:
+        "Pengetahuan mewariskan dirinya sendiri. Tata kelola abadi lintas generasi pemimpin.",
+    },
+    {
+      year: "2125",
+      title: "Seratus Tahun",
+      description:
+        "Generasi ketiga memimpin. Ekosistem hidup melampaui pendirinya — bukti bahwa yang berdigital, bertahan.",
+    },
+  ] satisfies VisionMilestone[],
+  closing:
+    "Kami tidak membangun untuk tren. Kami membangun untuk seratus tahun.",
+} as const;
+
+export const DEWAN = {
+  eyebrow: "Modal Intelektual",
+  title: "46 Dewan Pakar. Dari hulu ke hilir.",
+  description:
+    "Setiap persoalan diturunkan kepada dewan yang tepat — dari strategi dan teknologi sampai hukum, keuangan, dan filosofi peradaban. Satu holding, empat puluh enam disiplin.",
+  disciplines: [
+    "Strategi Bisnis",
+    "Transformasi Digital",
+    "Arsitektur Perangkat Lunak",
+    "Kecerdasan Buatan",
+    "Data & Analitik",
+    "Keamanan Siber",
+    "Keuangan Korporat",
+    "Akuntansi",
+    "Perpajakan",
+    "Hukum Bisnis",
+    "Kepatuhan",
+    "Tata Kelola",
+    "Manajemen Risiko",
+    "Rantai Pasok",
+    "Operasi & Proses",
+    "SDM & Talenta",
+    "Desain UX",
+    "Desain Visual",
+    "Copywriting",
+    "Pemasaran Digital",
+    "SEO",
+    "Growth",
+    "Penjualan",
+    "Layanan Pelanggan",
+    "Riset Pasar",
+    "Perilaku Konsumen",
+    "Pendidikan",
+    "Psikologi Organisasi",
+    "Kepemimpinan",
+    "Inovasi",
+    "Kewirausahaan",
+    "Investasi",
+    "Properti",
+    "Energi",
+    "Logistik",
+    "Kesehatan Digital",
+    "Fintech",
+    "E-commerce",
+    "Agrikultur Digital",
+    "Pariwisata",
+    "Manufaktur",
+    "Media & Publikasi",
+    "Komunikasi Publik",
+    "Diplomasi Bisnis",
+    "Filosofi",
+    "Sejarah Peradaban",
+  ],
 } as const;
 
 export const TECHNOLOGY = {
   eyebrow: "Teknologi",
-  title: "Tujuh lapis arsitektur digital.",
+  title: "Menembus tujuh lapis langit digital.",
   description:
-    "Setiap keputusan teknis DIGIMAN dievaluasi terhadap tujuh lapis ini — dari fondasi teknis hingga evolusi berkelanjutan.",
-  stackLabel: "7-Layer Digital Architecture",
+    "Setiap keputusan teknis DIGIMAN dievaluasi terhadap tujuh lapis ini — dari fondasi teknis di dasar sampai evolusi di puncak. Tidak ada lapis yang boleh dilompati.",
+  stackLabel: "7-Layer Digital Architecture — hulu ke hilir",
   layers: [
     {
       index: "L1",
@@ -316,7 +680,7 @@ export const TECHNOLOGY = {
       index: "L2",
       title: "Information Architecture",
       description:
-        "Struktur informasi yang mengikuti model bisnis, bukan sekadar kebiasaan website.",
+        "Struktur informasi yang mengikuti model bisnis Anda, bukan sekadar kebiasaan website.",
     },
     {
       index: "L3",
@@ -359,9 +723,9 @@ export const TECHNOLOGY = {
 
 export const GOVERNANCE = {
   eyebrow: "Tata Kelola",
-  title: "Tata kelola yang dapat diaudit, sejak hari pertama.",
+  title: "Sistem yang mengurus detail — termasuk pertanggungjawabannya.",
   description:
-    "Holding yang sehat dibangun di atas kejelasan kepemilikan, peran, dan pertanggungjawaban — bukan simpul jaringan informal.",
+    "Manajemen tanpa tata kelola adalah kekacauan yang tertata rapi di atas kertas. Kami mengikat setiap entitas pada kejelasan kepemilikan, peran, dan mekanisme persetujuan.",
   entityLifecycle: [
     "Holding",
     "Subsidiaries",
@@ -412,34 +776,41 @@ export const GOVERNANCE = {
 
 export const CAREERS = {
   eyebrow: "Karier",
-  title: "Bangun sistem yang bertahan lebih lama dari kita semua.",
+  title: "Bangun bisnis nyata, bukan slide nyata.",
   description:
-    "Kami mencari orang yang menghargai kejelasan, bertanggung jawab atas hasil, dan ingin membangun sesuatu yang dapat diwariskan.",
+    "Kami mencari praktisi yang suka mengurus detail: yang senang meriset, membangun sistem, dan melihat klien bertahan karena hasil kerjanya.",
   culture: [
+    "Kaji dulu — pendapat tanpa data adalah opini, bukan kerja.",
     "Tulis dan dokumentasikan — memori institusi lebih penting dari hero individu.",
-    "Keputusan disertai alasan; alasan disertai bukti.",
-    "Teknologi melayani manusia — tidak ada dark patterns, tidak ada klaim palsu.",
+    "Harga terang ke klien, laporan jujur ke tim.",
   ],
   roles: [
     {
-      key: "spe",
-      title: "Senior Product Engineer",
+      key: "analis",
+      title: "Analis Riset Bisnis",
+      unit: "DIGIMAN Kaji",
+      type: "Full-time",
+      location: "Hybrid — Indonesia",
+    },
+    {
+      key: "fseng",
+      title: "Full-Stack Engineer",
       unit: "DIGIMAN Digital",
       type: "Full-time",
       location: "Remote — Indonesia",
     },
     {
-      key: "ml",
-      title: "AI/ML Engineer",
-      unit: "DIGIMAN Intelligence",
+      key: "builder",
+      title: "Business Builder",
+      unit: "DIGIMAN Bisnis",
       type: "Full-time",
-      location: "Remote — Indonesia",
+      location: "Jakarta — Indonesia",
     },
     {
-      key: "va",
-      title: "Venture Analyst",
-      unit: "DIGIMAN Capital",
-      type: "Full-time",
+      key: "mgr",
+      title: "Konsultan Manajemen",
+      unit: "DIGIMAN Manajemen",
+      type: "Kontrak",
       location: "Hybrid — Indonesia",
     },
   ] satisfies CareerRole[],
@@ -447,19 +818,27 @@ export const CAREERS = {
 
 export const CONTACT = {
   eyebrow: "Kontak",
-  title: "Mari bicara tentang sistem yang ingin Anda bangun.",
+  title: "Mulai dari Kaji. Percakapan pertama gratis.",
   description:
-    "Ceritakan kebutuhan Anda — kemitraan, layanan, investasi, atau karier. Tim yang tepat akan merespons.",
+    "Ceritakan bisnis Anda — kami dengarkan dulu, baru sarankan unit dan jasa yang tepat. Tanpa kewajiban apa pun.",
   topics: [
+    "Konsultasi Kaji (Gratis)",
+    "Layanan & Harga",
+    "Venture Building",
     "Kemitraan",
-    "Layanan & Proyek",
-    "Investasi & Ventura",
     "Karier",
     "Lainnya",
   ],
+  budgets: [
+    "< Rp 10 juta",
+    "Rp 10 – 50 juta",
+    "Rp 50 – 150 juta",
+    "> Rp 150 juta",
+    "Belum tahu",
+  ],
   info: [
     { label: "Email", value: ORG.email },
-    { label: "Lokasi", value: "Indonesia" },
+    { label: "Konsultasi awal", value: "Gratis — 30 menit" },
     { label: "Waktu respons", value: "1–2 hari kerja" },
   ],
 } as const;
@@ -476,8 +855,18 @@ export const INSIGHTS: InsightSeed[] = [
     featured: true,
   },
   {
+    slug: "kaji-dulu-ekonomi-kehati-hatian",
+    title: "Kaji dulu: ekonomi kehati-hatian di era digital",
+    excerpt:
+      "Biaya riset terlihat mahal sampai Anda menghitung biaya salah bangun. Data dari lapangan mengapa kaji dulu selalu lebih murah.",
+    category: "Metode",
+    readMinutes: 5,
+    daysAgo: 16,
+    featured: false,
+  },
+  {
     slug: "tujuh-lapis-arsitektur-digital",
-    title: "Tujuh lapis arsitektur digital: dari fondasi teknis hingga evolusi",
+    title: "Tujuh lapis langit digital: dari fondasi teknis hingga evolusi",
     excerpt:
       "Kerangka yang kami gunakan untuk mengevaluasi setiap keputusan teknis — dan mengapa urutannya tidak boleh dibalik.",
     category: "Framework",
@@ -486,55 +875,47 @@ export const INSIGHTS: InsightSeed[] = [
     featured: false,
   },
   {
-    slug: "ai-ready-adalah-konsekuensi-ia-yang-baik",
-    title: "AI readiness adalah konsekuensi dari information architecture yang baik",
+    slug: "sistem-atau-mati",
+    title: "Bisnis tanpa sistem: skenario pelan-pelan tenggelam",
     excerpt:
-      "Sistem yang mudah dipahami AI adalah sistem yang mudah dipahami manusia. Kecerdasan artifisial hanya memperbesar kualitas struktur yang sudah ada.",
-    category: "AI",
-    readMinutes: 5,
-    daysAgo: 34,
-    featured: false,
-  },
-  {
-    slug: "tata-kelola-data-perusahaan-bertumbuh",
-    title: "Tata kelola data untuk perusahaan yang sedang bertumbuh",
-    excerpt:
-      "Tata kelola bukan birokrasi — ia adalah cara memastikan keputusan tetap baik ketika organisasi tumbuh sepuluh kali lipat.",
-    category: "Tata Kelola",
+      "Yang tidak berdigital akan tertinggal — tapi yang berdigital tanpa sistem hanya tertinggal lebih lambat. Inilah jalan tengahnya.",
+    category: "Manajemen",
     readMinutes: 7,
-    daysAgo: 47,
+    daysAgo: 34,
     featured: false,
   },
 ];
 
 export const FOOTER = {
   blurb:
-    "Digital holding architecture yang menaungi, membangun, dan mengorkestrasi bisnis, teknologi, serta modal intelektual dalam satu ekosistem.",
+    "Holding digital yang mengurus bisnis secara detail: kaji dulu, bangun bisnisnya, pasang sistemnya. Yang masuk bersama kami akan selamat — yang tidak berdigital akan tertinggal.",
   columns: [
     {
       title: "Navigasi",
       links: [
         { href: "#tentang", label: "Tentang" },
-        { href: "#ekosistem", label: "Ekosistem" },
-        { href: "#bisnis", label: "Bisnis" },
-        { href: "#ventura", label: "Ventures" },
+        { href: "#ekosistem", label: "Unit Bisnis" },
+        { href: "#layanan", label: "Layanan & Harga" },
+        { href: "#metode", label: "Metode Kerja" },
       ],
     },
     {
-      title: "Kapabilitas",
+      title: "Unit Holding",
       links: [
-        { href: "#layanan", label: "Layanan" },
-        { href: "#teknologi", label: "Teknologi" },
-        { href: "#tata-kelola", label: "Tata Kelola" },
+        { href: "#ekosistem", label: "DIGIMAN Kaji" },
+        { href: "#ekosistem", label: "DIGIMAN Digital" },
+        { href: "#ekosistem", label: "DIGIMAN Bisnis" },
+        { href: "#ekosistem", label: "DIGIMAN Manajemen" },
+        { href: "#ekosistem", label: "DIGIMAN Akademi" },
+      ],
+    },
+    {
+      title: "Lebih Lanjut",
+      links: [
+        { href: "#visi", label: "Visi 2125" },
+        { href: "#dewan", label: "46 Dewan Pakar" },
         { href: "#insights", label: "Insights" },
-      ],
-    },
-    {
-      title: "Hubungi",
-      links: [
         { href: "#kontak", label: "Kontak" },
-        { href: "#karier", label: "Karier" },
-        { href: `mailto:${ORG.email}`, label: ORG.email },
       ],
     },
   ],

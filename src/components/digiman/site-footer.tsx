@@ -54,7 +54,7 @@ export function SiteFooter() {
             © {year} {ORG.name}. Seluruh hak cipta.
           </p>
           <p className="font-mono uppercase tracking-[0.18em]">
-            7-Layer Digital Architecture
+            Kaji Dulu · Baru Bangun · Bertahan 100 Tahun
           </p>
         </div>
       </div>

@@ -49,11 +49,14 @@ export function Hero() {
 
           <motion.h1
             variants={item}
-            className="mt-7 font-display text-[clamp(3.1rem,9vw,6.75rem)] leading-[0.98] tracking-[-0.02em] text-balance"
+            className="mt-7 font-display text-[clamp(2.7rem,7.4vw,5.9rem)] leading-[1.04] tracking-[-0.02em]"
           >
-            {HERO.headlineA}{" "}
-            <em className="italic text-gold">{HERO.headlineB}</em>{" "}
-            {HERO.headlineC}
+            <span className="block">
+              {HERO.line1A} <em className="italic text-gold">{HERO.line1B}</em>
+            </span>
+            <span className="block text-foreground/60">
+              {HERO.line2A} <em className="italic text-gold">{HERO.line2B}</em>
+            </span>
           </motion.h1>
 
           <motion.p

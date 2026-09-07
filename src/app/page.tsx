@@ -5,10 +5,12 @@ import { TrustMarquee } from "@/components/digiman/trust-marquee";
 import { Manifesto } from "@/components/digiman/manifesto";
 import { Ecosystem } from "@/components/digiman/ecosystem";
 import { BusinessPortfolio } from "@/components/digiman/business-portfolio";
-import { Ventures } from "@/components/digiman/ventures";
 import { Services } from "@/components/digiman/services";
+import { Metode } from "@/components/digiman/metode";
 import { Technology } from "@/components/digiman/technology";
 import { Governance } from "@/components/digiman/governance";
+import { Dewan } from "@/components/digiman/dewan";
+import { Vision2125 } from "@/components/digiman/visi-2125";
 import { Insights, type InsightItem } from "@/components/digiman/insights";
 import { Careers } from "@/components/digiman/careers";
 import { Contact } from "@/components/digiman/contact";
@@ -94,10 +96,11 @@ function JsonLd() {
       foundingDate: ORG.founded,
       email: ORG.email,
       knowsAbout: [
-        "Digital holding",
-        "Product engineering",
-        "Artificial intelligence",
-        "Venture capital",
+        "Digital transformation",
+        "Business research",
+        "Management systems",
+        "AI & automation",
+        "Venture building",
         "Digital governance",
       ],
     },
@@ -114,7 +117,7 @@ function JsonLd() {
       "@type": "WebPage",
       "@id": `${ORG.url}/#webpage`,
       url: ORG.url,
-      name: "DIGIMAN.ID — Digital Holding Architecture",
+      name: "DIGIMAN.ID — Holding Digital Indonesia",
       isPartOf: { "@id": `${ORG.url}/#website` },
       about: { "@id": `${ORG.url}/#organization` },
       inLanguage: "id-ID",
@@ -149,10 +152,12 @@ export default async function HomePage() {
         <Manifesto />
         <Ecosystem units={units} />
         <BusinessPortfolio units={units} />
-        <Ventures />
         <Services />
+        <Metode />
         <Technology />
         <Governance />
+        <Dewan />
+        <Vision2125 />
         <Insights insights={insights} />
         <Careers />
         <Contact />

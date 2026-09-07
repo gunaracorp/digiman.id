@@ -30,6 +30,14 @@ async function main() {
     });
   }
 
+  // Deactivate legacy v0.1.0 units so only the five real units render.
+  // NOTE: legacy "academy" (EN) is distinct from new "akademi" (ID) key.
+  const LEGACY_UNIT_KEYS = ["intelligence", "capital", "academy"];
+  await db.businessUnit.updateMany({
+    where: { key: { in: LEGACY_UNIT_KEYS } },
+    data: { active: false },
+  });
+
   for (const seed of INSIGHTS) {
     const publishedAt = new Date(Date.now() - seed.daysAgo * DAY_MS);
     const data = {
