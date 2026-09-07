@@ -1,0 +1,59 @@
+// DIGIMAN.ID — Prisma schema (SQLite in sandbox, PostgreSQL-ready in production)
+// Entity model is designed to grow into a full holding platform.
+// See docs/DATA-MODEL.md for the ER description.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+/// A business entity under the holding: unit, subsidiary, brand, or product line.
+model BusinessUnit {
+  id          String   @id @default(cuid())
+  key         String   @unique // stable identifier, e.g. "digital"
+  name        String
+  tagline     String
+  sector      String
+  stage       String // Operating | Building | Genesis
+  description String
+  focus       String // comma-separated focus tags (SQLite has no list type)
+  attributes  String   @default("") // JSON string [{label, value}]
+  order       Int      @default(0)
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([order])
+}
+
+/// Editorial insight published by the holding.
+model Insight {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  excerpt     String
+  category    String
+  readMinutes Int      @default(4)
+  publishedAt DateTime @default(now())
+  featured    Boolean  @default(false)
+
+  @@index([publishedAt])
+}
+
+/// Inbound inquiry submitted through the contact form.
+model ContactInquiry {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  company   String?
+  topic     String
+  message   String
+  status    String   @default("new") // new | triaged | closed
+  createdAt DateTime @default(now())
+
+  @@index([status, createdAt])
+}
