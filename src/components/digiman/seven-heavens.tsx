@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useRef, useState, useEffect } from "react";
-import { motion, useScroll, useSpring, useInView, AnimatePresence } from "framer-motion";
+import { m, useScroll, useSpring, useInView, AnimatePresence } from "framer-motion";
 import {
   Building2,
   FileCheck2,
@@ -54,7 +54,7 @@ function LayerCard({
 
   return (
     <div ref={ref} className="relative py-6 lg:py-8">
-      <motion.div
+      <m.div
         animate={{
           scale: inView ? 1 : 0.94,
           opacity: inView ? 1 : 0.35,
@@ -96,7 +96,7 @@ function LayerCard({
         <p className="relative mt-5 max-w-2xl leading-relaxed text-emerald-50/70">{layer.desc}</p>
         <div className="relative mt-6 flex flex-wrap gap-2">
           {layer.items.map((item, i) => (
-            <motion.span
+            <m.span
               key={item}
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -109,14 +109,14 @@ function LayerCard({
               }`}
             >
               {item}
-            </motion.span>
+            </m.span>
           ))}
         </div>
         <div className="relative mt-7 flex items-center gap-2 text-xs text-emerald-50/40">
           <span>{index + 1} / 7</span>
           <ArrowUp className="h-3.5 w-3.5 text-gold/70" aria-hidden />
         </div>
-      </motion.div>
+      </m.div>
     </div>
   );
 }
@@ -146,7 +146,7 @@ export default function SevenHeavens() {
       <div className="absolute inset-0 starfield opacity-40" aria-hidden />
       <div className="section-padding mx-auto max-w-7xl">
         {/* Header */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -163,13 +163,13 @@ export default function SevenHeavens() {
           <p className="mt-5 leading-relaxed text-emerald-50/60 sm:text-lg">
             {dict.seven.sub}
           </p>
-        </motion.div>
+        </m.div>
 
         <div className="relative lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-14">
           {/* Sticky visual (desktop) */}
           <div className="sticky top-24 hidden h-[70vh] self-start lg:block">
             <AnimatePresence mode="wait">
-              <motion.div
+              <m.div
                 key={active}
                 initial={{ opacity: 0, y: 40, scale: 0.96 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -213,14 +213,14 @@ export default function SevenHeavens() {
                     />
                   ))}
                 </div>
-              </motion.div>
+              </m.div>
             </AnimatePresence>
           </div>
 
           {/* Cards + progress line */}
           <div className="relative">
             <div className="absolute bottom-0 left-4 top-0 hidden w-px bg-emerald-400/12 sm:block lg:left-0" aria-hidden>
-              <motion.div
+              <m.div
                 className="w-px origin-top bg-gradient-to-b from-emerald-400 via-yellow-300 to-gold"
                 style={{ height: "100%", scaleY: lineScale }}
               />

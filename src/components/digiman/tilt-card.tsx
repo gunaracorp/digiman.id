@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { m, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 export default function TiltCard({
   children,
@@ -32,19 +32,19 @@ export default function TiltCard({
   };
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
       style={{ rotateX: rx, rotateY: ry, transformStyle: "preserve-3d", perspective: 900 }}
       className={`relative ${className}`}
     >
-      <motion.div
+      <m.div
         aria-hidden
         className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
         style={{ background: glow as unknown as string }}
       />
       {children}
-    </motion.div>
+    </m.div>
   );
 }

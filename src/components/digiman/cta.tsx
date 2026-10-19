@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ArrowRight, MessageCircle, Mail, MapPin, Phone } from "lucide-react";
 import { useI18n } from "@/components/i18n/locale-provider";
 
@@ -20,7 +20,7 @@ export default function CtaSection({
   const { dict } = useI18n();
   return (
     <section id="kontak" className="section-padding relative pb-24 pt-8 sm:pb-32">
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 40, scale: 0.97 }}
         whileInView={{ opacity: 1, y: 0, scale: 1 }}
         viewport={{ once: true, margin: "-80px" }}
@@ -39,11 +39,13 @@ export default function CtaSection({
           src="/logo-watermark.png"
           alt=""
           aria-hidden
+          loading="lazy"
+          decoding="async"
           className="animate-floaty-slow pointer-events-none absolute -right-10 -top-8 w-64 opacity-[0.07] sm:w-80 lg:w-96"
         />
 
         <div className="relative">
-          <motion.span
+          <m.span
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -51,7 +53,7 @@ export default function CtaSection({
             className="mb-6 inline-flex items-center gap-2 rounded-full border border-gold/35 bg-yellow-300/8 px-5 py-2 text-xs font-bold uppercase tracking-[0.3em] text-gold-light"
           >
             {dict.cta.kicker}
-          </motion.span>
+          </m.span>
 
           <h2 className="mx-auto max-w-3xl text-3xl font-extrabold leading-tight text-white sm:text-5xl">
             {dict.cta.headingA}{" "}
@@ -93,7 +95,7 @@ export default function CtaSection({
             </span>
           </div>
         </div>
-      </motion.div>
+      </m.div>
     </section>
   );
 }

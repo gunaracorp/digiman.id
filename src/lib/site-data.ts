@@ -47,6 +47,8 @@ export interface ServiceItem {
   icon: string;
   category: string;
   featured: boolean;
+  /** ISO timestamp — dipakai untuk dateModified JSON-LD (sinyal freshness Google) */
+  updatedAt?: string | null;
 }
 
 export interface TestimonialItem {
@@ -109,8 +111,9 @@ export const DEFAULT_SECTIONS: SectionRow[] = [
   { key: "process", label: "Proses Kerja", enabled: true, order: 9 },
   { key: "testimonials", label: "Testimoni", enabled: true, order: 10 },
   { key: "faq", label: "FAQ", enabled: true, order: 11 },
-  { key: "cta", label: "Ajakan Konsultasi", enabled: true, order: 12 },
-  { key: "contact-form", label: "Formulir Konsultasi", enabled: true, order: 13 },
+  { key: "artikel", label: "Artikel Terbaru (Blog)", enabled: true, order: 12 },
+  { key: "cta", label: "Ajakan Konsultasi", enabled: true, order: 13 },
+  { key: "contact-form", label: "Formulir Konsultasi", enabled: true, order: 14 },
 ];
 
 /** Baca konfigurasi urutan/visibilitas section (fallback: urutan default bila DB kosong) */
@@ -292,6 +295,7 @@ export async function getSiteData(): Promise<SiteData> {
         icon: s.icon,
         category: s.category,
         featured: s.featured,
+        updatedAt: s.updatedAt ? s.updatedAt.toISOString() : null,
       };
     });
 

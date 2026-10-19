@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { m, useInView } from "framer-motion";
 import { Building2, Users, Layers, HeartHandshake } from "lucide-react";
 import { useI18n } from "@/components/i18n/locale-provider";
 
@@ -61,7 +61,7 @@ export default function Stats({
     <section className="section-padding relative py-20 sm:py-24">
       <div className="mx-auto grid max-w-7xl grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
         {stats.map((s, i) => (
-          <motion.div
+          <m.div
             key={s.label}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -77,7 +77,7 @@ export default function Stats({
             </div>
             <div className="mt-2 text-sm font-semibold text-emerald-100/90">{s.label}</div>
             <div className="mt-1 text-xs text-emerald-50/45">{s.note}</div>
-          </motion.div>
+          </m.div>
         ))}
       </div>
     </section>

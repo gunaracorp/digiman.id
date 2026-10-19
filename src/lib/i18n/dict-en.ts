@@ -25,6 +25,8 @@ const en: Dictionary = {
     trustSpeed: "Done in 3–7 business days",
     scroll: "Explore",
     waGreeting: "Hello DIGIMAN.ID, I would like a business legality consultation",
+    liveLabel: "Businesses guided by DIGIMAN.ID:",
+    liveValue: "2,517+ and growing",
     words: ["Company (PT) Setup", "CV Partnership Setup", "Foreign PT PMA", "NIB & OSS Licenses", "Trademark Registration", "Halal Certification", "Digital Transformation"],
   },
   stats: {

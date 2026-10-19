@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { UserRoundCheck, Timer, ShieldCheck, Handshake, Scale, BrainCircuit } from "lucide-react";
 import { useI18n } from "@/components/i18n/locale-provider";
 
@@ -13,7 +13,7 @@ export default function WhyUs() {
       <div className="mx-auto max-w-7xl">
         <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
           {/* Left — 46 expert orbit card */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -34,7 +34,7 @@ export default function WhyUs() {
             {/* Expert chips */}
             <div className="mt-8 flex max-h-64 flex-wrap gap-2 overflow-y-auto pr-1 [scrollbar-width:thin]">
               {dict.why.chips.map((e, i) => (
-                <motion.span
+                <m.span
                   key={e}
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
@@ -43,17 +43,17 @@ export default function WhyUs() {
                   className="cursor-default rounded-full border border-emerald-400/25 bg-emerald-400/5 px-3.5 py-1.5 text-xs font-medium text-emerald-100/80 transition-all hover:border-gold/50 hover:bg-yellow-300/10 hover:text-gold-light"
                 >
                   {e}
-                </motion.span>
+                </m.span>
               ))}
               <span className="rounded-full bg-gradient-to-r from-emerald-400/20 to-yellow-300/20 px-3.5 py-1.5 text-xs font-bold text-white">
                 {dict.why.expertMore}
               </span>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Right — reasons */}
           <div>
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -67,13 +67,13 @@ export default function WhyUs() {
                 {dict.why.headingA}
                 <span className="gradient-text-gold"> {dict.why.headingB}</span>
               </h2>
-            </motion.div>
+            </m.div>
 
             <div className="grid gap-5 sm:grid-cols-2">
               {dict.why.reasons.map((f, i) => {
                 const Icon = REASON_ICONS[i % REASON_ICONS.length];
                 return (
-                  <motion.div
+                  <m.div
                     key={f.title}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -84,7 +84,7 @@ export default function WhyUs() {
                     <Icon className="mb-4 h-7 w-7 text-emerald-300 transition-transform duration-500 group-hover:scale-110 group-hover:text-gold" />
                     <h3 className="font-bold text-white">{f.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-emerald-50/60">{f.desc}</p>
-                  </motion.div>
+                  </m.div>
                 );
               })}
             </div>

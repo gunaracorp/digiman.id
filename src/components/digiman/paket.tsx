@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import {
   Building2, Users, Globe2, FileBadge, HeartHandshake, Store, Handshake,
   Lightbulb, HeartPulse, FlaskConical, Award, MapPin, Receipt, ShieldCheck,
@@ -139,7 +139,7 @@ export default function Paket({ waNumber }: { waNumber?: string }) {
       />
       <div className="mx-auto max-w-7xl">
         {/* ---------- Header ---------- */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -154,14 +154,14 @@ export default function Paket({ waNumber }: { waNumber?: string }) {
             <span className="gradient-text-gold">{p.headingB}</span>
           </h2>
           <p className="mt-5 leading-relaxed text-emerald-50/60 sm:text-lg">{p.sub}</p>
-        </motion.div>
+        </m.div>
 
         {/* ---------- Paket Berjenjang ---------- */}
         <div className="grid items-stretch gap-6 md:grid-cols-2 xl:grid-cols-4">
           {p.tiers.map((t, i) => {
             const featured = i === 1;
             return (
-              <motion.div
+              <m.div
                 key={t.name}
                 initial={{ opacity: 0, y: 44 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -213,7 +213,7 @@ export default function Paket({ waNumber }: { waNumber?: string }) {
                   {i === 3 ? p.ctaTierCustom : p.ctaTier}
                   <ArrowUpRight className="h-4 w-4" />
                 </a>
-              </motion.div>
+              </m.div>
             );
           })}
         </div>
@@ -222,7 +222,7 @@ export default function Paket({ waNumber }: { waNumber?: string }) {
         </p>
 
         {/* ---------- Add-on ---------- */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -237,12 +237,12 @@ export default function Paket({ waNumber }: { waNumber?: string }) {
             <span className="gradient-text-emerald">{p.addons.headingB}</span>
           </h3>
           <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-emerald-50/60">{p.addons.sub}</p>
-        </motion.div>
+        </m.div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {addonItems.map((a, i) => {
             const Ikon = ADDON_ICONS[a.icon] ?? Sparkles;
             return (
-              <motion.div
+              <m.div
                 key={a.id}
                 initial={{ opacity: 0, y: 26 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -257,14 +257,14 @@ export default function Paket({ waNumber }: { waNumber?: string }) {
                   <span className="block truncate text-sm font-semibold text-white">{a.name}</span>
                   <span className="text-xs font-bold text-gold-light">{a.price}</span>
                 </span>
-              </motion.div>
+              </m.div>
             );
           })}
         </div>
 
         {/* ---------- Kalkulator Legalitas ---------- */}
         <div className="mt-28">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -279,7 +279,7 @@ export default function Paket({ waNumber }: { waNumber?: string }) {
               <span className="gradient-text-gold">{p.calc.headingB}</span>
             </h3>
             <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-emerald-50/60">{p.calc.sub}</p>
-          </motion.div>
+          </m.div>
 
           <div className="grid items-start gap-6 lg:grid-cols-5">
             {/* Langkah-langkah */}
@@ -375,7 +375,7 @@ export default function Paket({ waNumber }: { waNumber?: string }) {
 
                 <AnimatePresence mode="wait">
                   {!totals ? (
-                    <motion.div
+                    <m.div
                       key="empty"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
@@ -384,9 +384,9 @@ export default function Paket({ waNumber }: { waNumber?: string }) {
                     >
                       <Compass className="h-10 w-10 text-emerald-400/40" />
                       <p className="max-w-[240px] text-sm leading-relaxed text-emerald-50/45">{p.calc.resultEmpty}</p>
-                    </motion.div>
+                    </m.div>
                   ) : (
-                    <motion.div
+                    <m.div
                       key={`${entity}-${addons.join(",")}`}
                       initial={{ opacity: 0, y: 14 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -441,7 +441,7 @@ export default function Paket({ waNumber }: { waNumber?: string }) {
                           ))}
                         </ul>
                       </div>
-                    </motion.div>
+                    </m.div>
                   )}
                 </AnimatePresence>
 
@@ -488,7 +488,7 @@ function StepCard({
   step: number; title: string; hint: string; children: React.ReactNode;
 }) {
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -505,7 +505,7 @@ function StepCard({
         </div>
       </div>
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 

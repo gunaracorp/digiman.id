@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { Crown, Network, UserRound } from "lucide-react";
 import { useI18n } from "@/components/i18n/locale-provider";
 
@@ -60,7 +60,7 @@ export default function TeamStructure({ members }: { members: TeamMemberItem[] }
       />
       <div className="mx-auto max-w-6xl">
         {/* Header */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -77,7 +77,7 @@ export default function TeamStructure({ members }: { members: TeamMemberItem[] }
           <p className="mx-auto mt-5 max-w-2xl leading-relaxed text-emerald-50/60 sm:text-lg">
             {dict.team.sub}
           </p>
-        </motion.div>
+        </m.div>
 
         {!head ? (
           <p className="mx-auto max-w-md rounded-3xl border border-dashed border-emerald-400/25 bg-emerald-400/[0.03] px-8 py-10 text-center text-sm text-emerald-50/50">
@@ -87,7 +87,7 @@ export default function TeamStructure({ members }: { members: TeamMemberItem[] }
           <div className="relative">
             {/* Kepala organisasi */}
             <AnimatePresence mode="wait">
-              <motion.div
+              <m.div
                 key={head.id}
                 initial={{ opacity: 0, y: 36, scale: 0.96 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -115,7 +115,7 @@ export default function TeamStructure({ members }: { members: TeamMemberItem[] }
                     )}
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             </AnimatePresence>
 
             {/* Konektor */}
@@ -130,7 +130,7 @@ export default function TeamStructure({ members }: { members: TeamMemberItem[] }
             {rest.length > 0 && (
               <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {rest.map((m, i) => (
-                  <motion.div
+                  <m.div
                     key={m.id}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -146,7 +146,7 @@ export default function TeamStructure({ members }: { members: TeamMemberItem[] }
                       {m.role}
                     </span>
                     {m.division && <p className="mt-1.5 text-xs text-emerald-50/45">{m.division}</p>}
-                  </motion.div>
+                  </m.div>
                 ))}
               </div>
             )}

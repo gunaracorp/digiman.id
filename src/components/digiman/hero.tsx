@@ -1,18 +1,18 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, useMotionValue, useSpring, useTransform, useScroll } from "framer-motion";
+import { Fragment, useEffect, useState } from "react";
+import { m, useMotionValue, useSpring, useTransform, useScroll } from "framer-motion";
 import { ArrowRight, MessageCircle, ShieldCheck, ChevronDown, Sparkles, Star } from "lucide-react";
 import ParticleField from "./particle-field";
 import { useI18n } from "@/components/i18n/locale-provider";
 
 const badges = [
-  { label: "PT", x: "8%", y: "22%", delay: 0 },
+  { label: "PT", x: "8%", y: "20%", delay: 0 },
   { label: "CV", x: "86%", y: "18%", delay: 0.8 },
-  { label: "NIB", x: "12%", y: "62%", delay: 1.6 },
-  { label: "NPWP", x: "88%", y: "58%", delay: 2.4 },
-  { label: "MEREK™", x: "78%", y: "80%", delay: 3.2 },
-  { label: "HALAL", x: "20%", y: "84%", delay: 4 },
+  { label: "NIB", x: "10%", y: "56%", delay: 1.6 },
+  { label: "NPWP", x: "88%", y: "54%", delay: 2.4 },
+  { label: "MEREK™", x: "80%", y: "74%", delay: 3.2 },
+  { label: "HALAL", x: "14%", y: "76%", delay: 4 },
 ];
 
 
@@ -53,7 +53,7 @@ export default function Hero({
   const heroRise = useTransform(scrollYProgress, [0, 0.08], [0, -120]);
 
   useEffect(() => {
-    const t = setTimeout(() => setMounted(true), 2300);
+    const t = setTimeout(() => setMounted(true), 400);
     const iv = setInterval(() => setWordIndex((i) => (i + 1) % rotating.length), 2400);
     return () => {
       clearTimeout(t);
@@ -75,12 +75,12 @@ export default function Hero({
       {/* Backdrops */}
       <div className="absolute inset-0 starfield opacity-70" aria-hidden />
       <div className="absolute inset-0 grid-lines" aria-hidden />
-      <motion.div
+      <m.div
         aria-hidden
         style={{ x: orbX, y: orbY }}
         className="animate-aurora absolute -top-32 left-[8%] h-[480px] w-[480px] rounded-full bg-emerald-500/20 blur-[130px]"
       />
-      <motion.div
+      <m.div
         aria-hidden
         style={{ x: orbX2, y: orbY2 }}
         className="animate-aurora-rev absolute bottom-[-10%] right-[5%] h-[520px] w-[520px] rounded-full bg-yellow-500/14 blur-[140px]"
@@ -89,13 +89,13 @@ export default function Hero({
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#050d0a] to-transparent" aria-hidden />
 
       {/* Floating document badges */}
-      <motion.div aria-hidden style={{ x: badgeX, y: badgeY }} className="pointer-events-none absolute inset-0 hidden md:block">
+      <m.div aria-hidden style={{ x: badgeX, y: badgeY }} className="pointer-events-none absolute inset-0 hidden md:block">
         {badges.map((b, i) => (
-          <motion.div
+          <m.div
             key={b.label}
             initial={{ opacity: 0, scale: 0 }}
             animate={mounted ? { opacity: 1, scale: 1 } : {}}
-            transition={{ delay: 2.6 + i * 0.15, type: "spring", stiffness: 160, damping: 14 }}
+            transition={{ delay: 0.6 + i * 0.1, type: "spring", stiffness: 160, damping: 14 }}
             className="absolute"
             style={{ left: b.x, top: b.y }}
           >
@@ -106,13 +106,30 @@ export default function Hero({
               <Sparkles className="h-3.5 w-3.5 text-gold" />
               <span className="font-display text-sm font-semibold tracking-wide text-emerald-50">{b.label}</span>
             </div>
-          </motion.div>
+          </m.div>
         ))}
-      </motion.div>
+      </m.div>
 
       {/* Content */}
-      <motion.div style={{ opacity: heroFade, y: heroRise }} className="section-padding relative z-10 mx-auto w-full max-w-7xl pt-28 pb-24">
-        <motion.div
+      <m.div style={{ opacity: heroFade, y: heroRise }} className="section-padding relative z-10 mx-auto w-full max-w-7xl pt-28 pb-24">
+        {/* Metrik live ala situs terbaik dunia — angka berdenyut, bukan klaim statis */}
+        <m.div
+          initial={{ opacity: 0 }}
+          animate={mounted ? { opacity: 1 } : {}}
+          transition={{ duration: 0.6 }}
+          className="mx-auto mb-5 flex w-fit items-center gap-2 text-xs text-emerald-100/50 sm:text-sm"
+        >
+          <span>{dict.hero.liveLabel}</span>
+          <m.span
+            className="font-display font-bold tabular-nums text-gold-light"
+            animate={{ opacity: [0.55, 1, 0.55] }}
+            transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+          >
+            {dict.hero.liveValue}
+          </m.span>
+        </m.div>
+
+        <m.div
           initial={{ opacity: 0, y: 24 }}
           animate={mounted ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
@@ -125,39 +142,42 @@ export default function Hero({
           <span className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-100/90">
             PT Digital Bisnis Manajemen
           </span>
-        </motion.div>
+        </m.div>
 
         <h1 className="mx-auto max-w-5xl text-center text-[2.6rem] font-extrabold leading-[1.06] tracking-tight text-white sm:text-6xl lg:text-7xl">
           {headlineWords.map((w, i) => {
             const hasDigit = /\d/.test(w);
             const isLast = i === headlineWords.length - 1 && /\.$/.test(w);
             return (
-              <motion.span
-                key={i}
-                initial={{ opacity: 0, y: 44, rotateX: -60 }}
-                animate={mounted ? { opacity: 1, y: 0, rotateX: 0 } : {}}
-                transition={{ delay: 2.4 + i * 0.09, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className={`mr-[0.28em] inline-block ${
-                  hasDigit ? "gradient-text-gold font-display" : ""
-                } ${isLast ? "gradient-text-emerald" : ""}`}
-              >
-                {w}
-              </motion.span>
+              <Fragment key={i}>
+                <m.span
+                  initial={{ opacity: 0, y: 44, rotateX: -60 }}
+                  animate={mounted ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+                  transition={{ delay: 0.5 + i * 0.035, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                  className={`inline-block ${
+                    hasDigit ? "gradient-text-gold font-display" : ""
+                  } ${isLast ? "gradient-text-emerald" : ""}`}
+                >
+                  {w}
+                </m.span>
+                {/* Spasi asli antar kata — teks H1 terbaca utuh oleh mesin pencari */}
+                {i < headlineWords.length - 1 ? " " : null}
+              </Fragment>
             );
           })}
         </h1>
 
         {/* Rotating service word */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           animate={mounted ? { opacity: 1 } : {}}
-          transition={{ delay: 3.3 }}
-          className="mx-auto mt-6 flex h-9 items-center justify-center gap-2 text-center"
+          transition={{ delay: 0.9 }}
+          className="mx-auto mt-6 flex h-9 max-w-full flex-wrap items-center justify-center gap-x-2 gap-y-1 px-4 text-center"
         >
-          <span className="text-lg text-emerald-100/70 sm:text-xl">{dict.hero.startFrom}</span>
-          <span className="relative inline-flex h-9 min-w-[220px] items-center justify-center overflow-hidden sm:min-w-[280px]">
+          <span className="text-base text-emerald-100/70 sm:text-xl">{dict.hero.startFrom}</span>
+          <span className="relative inline-flex h-9 min-w-[190px] items-center justify-center overflow-hidden sm:min-w-[280px]">
             {rotating.map((r, i) => (
-              <motion.span
+              <m.span
                 key={r}
                 className="absolute font-display text-lg font-bold text-gold-light sm:text-xl"
                 initial={false}
@@ -169,25 +189,25 @@ export default function Hero({
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               >
                 {r}
-              </motion.span>
+              </m.span>
             ))}
           </span>
-        </motion.div>
+        </m.div>
 
-        <motion.p
+        <m.p
           initial={{ opacity: 0, y: 20 }}
           animate={mounted ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 3.45, duration: 0.7 }}
+          transition={{ delay: 1.0, duration: 0.6 }}
           className="mx-auto mt-6 max-w-2xl text-center text-base leading-relaxed text-emerald-50/65 sm:text-lg"
         >
           {subText}
-        </motion.p>
+        </m.p>
 
         {/* CTAs */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           animate={mounted ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 3.6, duration: 0.7 }}
+          transition={{ delay: 1.1, duration: 0.6 }}
           className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
         >
           <a
@@ -206,13 +226,13 @@ export default function Hero({
             <MessageCircle className="h-5 w-5 text-gold" />
             {dict.hero.ctaSecondary}
           </a>
-        </motion.div>
+        </m.div>
 
         {/* Mini trust row */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           animate={mounted ? { opacity: 1 } : {}}
-          transition={{ delay: 3.85 }}
+          transition={{ delay: 1.2 }}
           className="mx-auto mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-emerald-50/55"
         >
           <span className="flex items-center gap-2">
@@ -224,11 +244,11 @@ export default function Hero({
           <span className="flex items-center gap-2">
             <Sparkles className="h-4 w-4 text-gold" /> {dict.hero.trustSpeed}
           </span>
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
 
       {/* Scroll indicator */}
-      <motion.a
+      <m.a
         href="#tujuh-langit"
         aria-label="Gulir ke bawah"
         initial={{ opacity: 0 }}
@@ -240,7 +260,7 @@ export default function Hero({
           <span className="text-[10px] font-semibold uppercase tracking-[0.35em]">{dict.hero.scroll}</span>
           <ChevronDown className="animate-bounce-soft h-5 w-5" />
         </div>
-      </motion.a>
+      </m.a>
     </section>
   );
 }

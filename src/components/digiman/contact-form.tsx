@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Send, CheckCircle2, Loader2, ShieldCheck, MessageSquareText } from "lucide-react";
 import { useI18n } from "@/components/i18n/locale-provider";
 
@@ -54,7 +54,7 @@ export default function ContactForm({ services }: { services: string[] }) {
       </div>
 
       <div className="relative mx-auto max-w-3xl px-4 sm:px-6">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
@@ -70,7 +70,7 @@ export default function ContactForm({ services }: { services: string[] }) {
           </div>
 
           {status === "done" ? (
-            <motion.div
+            <m.div
               initial={{ opacity: 0, scale: 0.94 }}
               animate={{ opacity: 1, scale: 1 }}
               className="flex flex-col items-center gap-3 rounded-2xl border border-emerald-400/25 bg-emerald-400/10 px-6 py-10 text-center"
@@ -84,7 +84,7 @@ export default function ContactForm({ services }: { services: string[] }) {
               >
                 {t.again}
               </button>
-            </motion.div>
+            </m.div>
           ) : (
             <form onSubmit={submit} className="grid gap-4 sm:grid-cols-2" noValidate>
               <div className="sm:col-span-1">
@@ -125,7 +125,7 @@ export default function ContactForm({ services }: { services: string[] }) {
               )}
 
               <div className="sm:col-span-2 flex flex-col items-center gap-3">
-                <motion.button
+                <m.button
                   type="submit"
                   disabled={status === "sending"}
                   whileHover={{ scale: 1.03 }}
@@ -137,14 +137,14 @@ export default function ContactForm({ services }: { services: string[] }) {
                   ) : (
                     <><Send className="h-4 w-4" /> {t.send}</>
                   )}
-                </motion.button>
+                </m.button>
                 <p className="flex items-center gap-1.5 text-xs text-emerald-50/45">
                   <ShieldCheck className="h-3.5 w-3.5 text-emerald-300/70" /> {t.privacy}
                 </p>
               </div>
             </form>
           )}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Star, Quote } from "lucide-react";
 import { useI18n } from "@/components/i18n/locale-provider";
 import { testiC } from "@/lib/i18n";
@@ -62,7 +62,7 @@ export default function Testimonials({ items }: { items?: TestimonialItem[] }) {
   return (
     <section id="testimoni" className="relative overflow-hidden py-24 sm:py-32">
       <div className="section-padding mx-auto mb-14 max-w-3xl text-center">
-        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
+        <m.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
           <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/5 px-5 py-2 text-xs font-bold uppercase tracking-[0.3em] text-emerald-300">
             {dict.testi.kicker}
           </span>
@@ -73,7 +73,7 @@ export default function Testimonials({ items }: { items?: TestimonialItem[] }) {
           <p className="mt-5 leading-relaxed text-emerald-50/60 sm:text-lg">
             {dict.testi.sub}
           </p>
-        </motion.div>
+        </m.div>
       </div>
 
       <div className="marquee-paused space-y-6 [mask-image:linear-gradient(90deg,transparent,black_8%,black_92%,transparent)]">

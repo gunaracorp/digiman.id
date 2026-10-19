@@ -15,6 +15,7 @@ import TeamStructure from "@/components/digiman/team-structure";
 import Process from "@/components/digiman/process";
 import Testimonials from "@/components/digiman/testimonials";
 import Faq from "@/components/digiman/faq";
+import BlogTeaser from "@/components/digiman/blog-teaser";
 import CtaSection from "@/components/digiman/cta";
 import Offices from "@/components/digiman/offices";
 import Footer from "@/components/digiman/footer";
@@ -23,9 +24,11 @@ import ContactForm from "@/components/digiman/contact-form";
 import PageViewTracker from "@/components/digiman/pageview-tracker";
 import { LocaleProvider } from "@/components/i18n/locale-provider";
 import MotionProvider from "@/components/digiman/motion-provider";
+import { getAllVisiblePosts } from "@/lib/blog-data";
 
 // Konten dikelola via Panel Admin — selalu ambil data terbaru
-export const dynamic = "force-dynamic";
+// ISR: halaman di-cache 60 detik — cepat utk pengunjung, konten admin tetap segar
+export const revalidate = 60;
 
 // SEO dinamis: meta title & description dikelola dari Panel Admin > Pengaturan
 export async function generateMetadata(): Promise<Metadata> {
@@ -40,6 +43,7 @@ export async function generateMetadata(): Promise<Metadata> {
     ...(settings.googleSiteVerification
       ? { verification: { google: settings.googleSiteVerification } }
       : {}),
+    alternates: { canonical: "https://digiman.id" },
     openGraph: {
       title: settings.metaTitle,
       description: settings.metaDescription,
@@ -57,7 +61,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Home() {
-  const data = await getSiteData();
+  const [data, blogPosts] = await Promise.all([getSiteData(), getAllVisiblePosts()]);
   const s = data.settings;
 
   // Urutan & visibilitas section dikendalikan dari Panel Admin > Tampilan
@@ -81,6 +85,7 @@ export default async function Home() {
     process: <Process />,
     testimonials: <Testimonials items={data.testimonials} />,
     faq: <Faq faqs={data.faqs} />,
+    artikel: <BlogTeaser posts={blogPosts.slice(0, 3)} />,
     cta: <CtaSection waNumber={s.waNumber} waDisplay={s.waDisplay} email={s.email} address={s.addressShort} />,
     "contact-form": s.contactFormEnabled ? (
       <ContactForm services={data.services.map((sv) => sv.title)} />

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Building, MapPin, Clock, Phone } from "lucide-react";
 import { useI18n } from "@/components/i18n/locale-provider";
 import type { OfficeItem } from "@/lib/site-data";
@@ -36,7 +36,7 @@ export default function Offices({
         className="absolute right-0 top-1/4 h-[380px] w-[380px] rounded-full bg-emerald-400/6 blur-[120px]"
       />
       <div className="mx-auto max-w-7xl">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -50,7 +50,7 @@ export default function Offices({
             {dict.offices.heading}
           </h2>
           <p className="mt-5 leading-relaxed text-emerald-50/60 sm:text-lg">{dict.offices.sub}</p>
-        </motion.div>
+        </m.div>
 
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {cards.map(({ o, num }, i) => {
@@ -58,7 +58,7 @@ export default function Offices({
             const isRep = o.type === "REP";
             const isPremium = isHq || isRep;
             return (
-              <motion.div
+              <m.div
                 key={o.label}
                 initial={{ opacity: 0, y: 36 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -111,7 +111,7 @@ export default function Offices({
                     <Phone className="h-3.5 w-3.5 shrink-0 text-emerald-400" /> {waDisplay}
                   </a>
                 </div>
-              </motion.div>
+              </m.div>
             );
           })}
         </div>

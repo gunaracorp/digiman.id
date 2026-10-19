@@ -15,7 +15,7 @@
  */
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { useI18n } from "@/components/i18n/locale-provider";
 import { faqC } from "@/lib/i18n";
@@ -53,7 +53,7 @@ export default function Faq({ faqs: propFaqs }: { faqs?: FaqItem[] }) {
         />
       )}
       <div className="mx-auto max-w-3xl">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -70,9 +70,9 @@ export default function Faq({ faqs: propFaqs }: { faqs?: FaqItem[] }) {
           <p className="mt-5 leading-relaxed text-emerald-50/60">
             {dict.faq.sub}
           </p>
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -130,7 +130,7 @@ export default function Faq({ faqs: propFaqs }: { faqs?: FaqItem[] }) {
               );
             })}
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

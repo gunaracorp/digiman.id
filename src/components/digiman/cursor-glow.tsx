@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { m, useMotionValue, useSpring } from "framer-motion";
 
 export default function CursorGlow() {
   const x = useMotionValue(-600);
@@ -21,7 +21,7 @@ export default function CursorGlow() {
   }, [x, y]);
 
   return (
-    <motion.div
+    <m.div
       aria-hidden
       className="pointer-events-none fixed z-[1] hidden h-[500px] w-[500px] rounded-full opacity-60 mix-blend-screen [@media(pointer:fine)]:block"
       style={{

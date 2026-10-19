@@ -25,6 +25,8 @@ const id: Dictionary = {
     trustSpeed: "Selesai 3–7 hari kerja",
     scroll: "Menjelajah",
     waGreeting: "Halo DIGIMAN.ID, saya ingin konsultasi legalitas bisnis",
+    liveLabel: "Bisnis didampingi DIGIMAN.ID:",
+    liveValue: "2.517+ dan terus bertambah",
     words: ["Pendirian PT", "Pendirian CV", "PT PMA", "NIB & OSS", "Pendaftaran Merek", "Sertifikasi Halal", "Digitalisasi Bisnis"],
   },
   stats: {

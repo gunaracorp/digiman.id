@@ -1,19 +1,15 @@
 /**
- * Runtime i18n: menggabungkan semua kamus dengan fallback berlapis.
- * Locale apa pun di-merge DI ATAS kamus Indonesia, sehingga kunci yang
- * hilang/ gagal diterjemahkan otomatis memakai Bahasa Indonesia — UI tak
- * pernah rusak walau satu bahasa belum lengkap.
+ * Runtime i18n dengan lazy-loading kamus.
+ *
+ * Hemat bundle: hanya kamus Indonesia (+ Inggris, kandidat bahasa kedua
+ * paling mungkin) yang di-bundle statis. 8 kamus lainnya (zh, es, hi, ar,
+ * fr, pt, ru, ja — masing-masing berisi terjemahan penuh 29 layanan, FAQ,
+ * dan UI) hanya diunduh saat pengguna benar-benar memakai bahasa itu.
+ * Locale apa pun di-merge DI ATAS kamus Indonesia sebagai fallback, sehingga
+ * kunci yang hilang otomatis memakai Bahasa Indonesia — UI tak pernah rusak.
  */
 import idDict from "./dict-id";
 import enDict from "./dict-en";
-import zhJson from "./locales/zh.json";
-import esJson from "./locales/es.json";
-import hiJson from "./locales/hi.json";
-import arJson from "./locales/ar.json";
-import frJson from "./locales/fr.json";
-import ptJson from "./locales/pt.json";
-import ruJson from "./locales/ru.json";
-import jaJson from "./locales/ja.json";
 import type { Dictionary, Locale } from "./types";
 import { LOCALES } from "./types";
 
@@ -31,22 +27,39 @@ function deepMerge(base: unknown, over: unknown): Record<string, unknown> {
   return (over ?? base) as Record<string, unknown>;
 }
 
-const RAW: Record<Locale, unknown> = {
-  id: idDict,
-  en: enDict,
-  zh: zhJson,
-  es: esJson,
-  hi: hiJson,
-  ar: arJson,
-  fr: frJson,
-  pt: ptJson,
-  ru: ruJson,
-  ja: jaJson,
+// Kamus yang diunduh on-demand (chunk terpisah, tidak masuk bundle utama)
+const LAZY: Record<string, () => Promise<{ default: unknown }>> = {
+  zh: () => import("./locales/zh.json"),
+  es: () => import("./locales/es.json"),
+  hi: () => import("./locales/hi.json"),
+  ar: () => import("./locales/ar.json"),
+  fr: () => import("./locales/fr.json"),
+  pt: () => import("./locales/pt.json"),
+  ru: () => import("./locales/ru.json"),
+  ja: () => import("./locales/ja.json"),
 };
 
-export const DICTIONARIES = Object.fromEntries(
-  LOCALES.map((l) => [l, deepMerge(idDict, RAW[l]) as unknown as Dictionary])
-) as Record<Locale, Dictionary>;
+const cache = new Map<Locale, Dictionary>();
+
+/** Kamus Indonesia — selalu tersedia sinkron (bahasa default & fallback). */
+export const DICT_ID = idDict as unknown as Dictionary;
+
+/** Kamus Inggris — dimuat statis karena paling sering dipakai kedua. */
+export const DICT_EN = deepMerge(idDict, enDict) as unknown as Dictionary;
+
+/** Muat kamus untuk locale tertentu (dinamis + cache). */
+export async function loadDictionary(l: Locale): Promise<Dictionary> {
+  if (l === "id") return DICT_ID;
+  if (l === "en") return DICT_EN;
+  const hit = cache.get(l);
+  if (hit) return hit;
+  const loader = LAZY[l];
+  if (!loader) return DICT_ID;
+  const mod = await loader();
+  const merged = deepMerge(idDict, mod.default) as unknown as Dictionary;
+  cache.set(l, merged);
+  return merged;
+}
 
 export function isLocale(v: string): v is Locale {
   return (LOCALES as readonly string[]).includes(v);

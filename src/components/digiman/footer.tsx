@@ -1,6 +1,7 @@
 "use client";
 
 import { MapPin, Phone, Mail, FileBadge, Landmark, Receipt, Lock, Clock, Instagram, Linkedin, Building } from "lucide-react";
+import Link from "next/link";
 import { useI18n } from "@/components/i18n/locale-provider";
 import type { OfficeItem } from "@/lib/site-data";
 
@@ -57,10 +58,13 @@ export default function Footer({
   const companyLinks = [
     { label: dict.nav.seven, href: "#tujuh-langit" },
     { label: dict.nav.services, href: "#layanan" },
-    { label: dict.nav.process, href: "#proses" },
-    { label: dict.nav.testimonials, href: "#testimoni" },
-    { label: dict.nav.faq, href: "#faq" },
-    { label: dict.footer.contactTitle, href: "#kontak" },
+    { label: "Semua Layanan", href: "/layanan" },
+    { label: "Paket & Harga", href: "/paket-harga" },
+    { label: "Blog & Panduan", href: "/blog" },
+    { label: "Tentang Kami", href: "/tentang-kami" },
+    { label: dict.footer.contactTitle, href: "/kontak" },
+    { label: "Syarat & Ketentuan", href: "/syarat-ketentuan" },
+    { label: "Kebijakan Privasi", href: "/kebijakan-privasi" },
   ];
 
   const officeList =
@@ -131,9 +135,9 @@ export default function Footer({
             <ul className="space-y-3">
               {companyLinks.map((l) => (
                 <li key={l.href}>
-                  <a href={l.href} className="text-sm text-emerald-50/55 transition-colors hover:text-emerald-200">
+                  <Link href={l.href} className="text-sm text-emerald-50/55 transition-colors hover:text-emerald-200">
                     {l.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

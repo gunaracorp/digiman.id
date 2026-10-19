@@ -70,7 +70,7 @@ const WRITE_CAPS: Record<Role, string[]> = {
   SUPERADMIN: ["*"],
   EDITOR: [
     "hero", "team", "services", "testimonials", "faqs", "offices",
-    "media", "messages",
+    "media", "messages", "posts",
   ],
   VIEWER: [],
 };

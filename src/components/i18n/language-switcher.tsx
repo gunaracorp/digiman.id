@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { Globe, Check } from "lucide-react";
 import { LOCALES, LOCALE_META, type Locale } from "@/lib/i18n";
 import { useI18n } from "./locale-provider";
@@ -35,7 +35,7 @@ export default function LanguageSwitcher({ compact = false }: { compact?: boolea
 
       <AnimatePresence>
         {open && (
-          <motion.ul
+          <m.ul
             initial={{ opacity: 0, y: -8, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.96 }}
@@ -72,7 +72,7 @@ export default function LanguageSwitcher({ compact = false }: { compact?: boolea
                 </li>
               );
             })}
-          </motion.ul>
+          </m.ul>
         )}
       </AnimatePresence>
     </div>

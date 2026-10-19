@@ -20,12 +20,20 @@ export default function ParticleField() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    // Ringan: lewati animasi di layar kecil, perangkat hemat daya, atau reduced-motion
+    const small = window.matchMedia("(max-width: 768px)").matches;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (small || reduced) return;
+
     let w = 0;
     let h = 0;
     let raf = 0;
+    let running = true;
+    let lastFrame = 0;
     let particles: Particle[] = [];
     const mouse = { x: -9999, y: -9999 };
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    const FRAME_MIN_MS = 1000 / 30; // batas 30fps — hemat CPU tanpa terlihat patah
 
     const colors = ["rgba(52,211,153,", "rgba(242,193,78,", "rgba(167,243,208,"];
 
@@ -57,7 +65,12 @@ export default function ParticleField() {
       mouse.y = -9999;
     };
 
-    const draw = () => {
+    const draw = (t: number) => {
+      if (!running) return;
+      raf = requestAnimationFrame(draw);
+      if (t - lastFrame < FRAME_MIN_MS) return;
+      lastFrame = t;
+
       ctx.clearRect(0, 0, w, h);
 
       for (const p of particles) {
@@ -100,19 +113,32 @@ export default function ParticleField() {
           ctx.stroke();
         }
       }
-      raf = requestAnimationFrame(draw);
+    };
+
+    // Pause penuh saat tab tidak terlihat — nol CPU di background
+    const onVisibility = () => {
+      running = document.visibilityState === "visible";
+      if (running) {
+        lastFrame = 0;
+        raf = requestAnimationFrame(draw);
+      } else {
+        cancelAnimationFrame(raf);
+      }
     };
 
     resize();
-    draw();
+    raf = requestAnimationFrame(draw);
     window.addEventListener("resize", resize);
     window.addEventListener("mousemove", onMove, { passive: true });
     window.addEventListener("mouseout", onLeave);
+    document.addEventListener("visibilitychange", onVisibility);
     return () => {
+      running = false;
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mouseout", onLeave);
+      document.removeEventListener("visibilitychange", onVisibility);
     };
   }, []);
 

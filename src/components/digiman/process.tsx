@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useSpring } from "framer-motion";
+import { m, useScroll, useSpring } from "framer-motion";
 import { MessagesSquare, FolderCheck, FileSignature, PartyPopper } from "lucide-react";
 import { useI18n } from "@/components/i18n/locale-provider";
 
@@ -21,7 +21,7 @@ export default function Process() {
         className="absolute right-0 top-1/3 h-[420px] w-[420px] rounded-full bg-yellow-400/6 blur-[130px]"
       />
       <div className="mx-auto max-w-5xl">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -38,12 +38,12 @@ export default function Process() {
           <p className="mt-5 leading-relaxed text-emerald-50/60 sm:text-lg">
             {dict.process.sub}
           </p>
-        </motion.div>
+        </m.div>
 
         <div ref={ref} className="relative">
           {/* Vertical line */}
           <div className="absolute bottom-8 left-[26px] top-2 w-px bg-emerald-400/12 sm:left-1/2" aria-hidden>
-            <motion.div
+            <m.div
               className="h-full w-px origin-top bg-gradient-to-b from-emerald-400 via-yellow-300 to-gold"
               style={{ scaleY: lineScale }}
             />
@@ -53,7 +53,7 @@ export default function Process() {
             {steps.map((s, i) => {
               const left = i % 2 === 0;
               return (
-                <motion.div
+                <m.div
                   key={s.no}
                   initial={{ opacity: 0, y: 40, x: 0 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -82,7 +82,7 @@ export default function Process() {
                     <h3 className="font-display text-xl font-bold text-white">{s.title}</h3>
                     <p className="mt-2.5 text-sm leading-relaxed text-emerald-50/60">{s.desc}</p>
                   </div>
-                </motion.div>
+                </m.div>
               );
             })}
           </div>

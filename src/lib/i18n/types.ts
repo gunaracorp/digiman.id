@@ -51,6 +51,8 @@ export interface Dictionary {
     trustSpeed: string;
     scroll: string;
     waGreeting: string;
+    liveLabel: string;
+    liveValue: string;
     words: string[];
   };
   stats: {

@@ -6,13 +6,15 @@ import { Toaster } from "@/components/ui/toaster";
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+  // Ringan: hanya weight yang benar-benar terpakai di situs (hemat ~1 file font)
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 const grotesk = Space_Grotesk({
   variable: "--font-grotesk",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  // Ringan: display font hanya dipakai bold/semibold — 2 file, bukan 4
+  weight: ["600", "700"],
 });
 
 /**
@@ -152,6 +154,69 @@ const ENTITY_JSON_LD = {
       "alternateName": "DIGIMAN — PT Digital Bisnis Manajemen",
       "publisher": { "@id": "https://digiman.id/#organisasi" },
       "inLanguage": "id-ID",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://digiman.id/layanan?q={search_term_string}",
+        },
+        "query-input": "required name=search_term_string",
+      },
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://digiman.id/#layanan-bisnis",
+      "name": "DIGIMAN.ID — Jasa Legalitas & Digitalisasi Bisnis",
+      "parentOrganization": { "@id": "https://digiman.id/#organisasi" },
+      "url": "https://digiman.id/",
+      "image": "https://digiman.id/logo-digiman.png",
+      "priceRange": "Rp 350.000 - Rp 15.000.000",
+      "currenciesAccepted": "IDR",
+      "paymentAccepted": "Bank Transfer, QRIS, E-Wallet",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "17:00",
+      },
+      "areaServed": [
+        { "@type": "Country", "name": "Indonesia" },
+        "Jakarta", "Bandung", "Tasikmalaya", "Jawa Barat",
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Andalusia Garden Cluster Granada No.11, Mangkubumi",
+        "addressLocality": "Tasikmalaya",
+        "addressRegion": "Jawa Barat",
+        "postalCode": "46181",
+        "addressCountry": "ID",
+      },
+      "telephone": "+62-813-1651-6524",
+      "email": "halo@digiman.id",
+      "department": [
+        {
+          "@type": "Place",
+          "name": "Representative Office Jakarta SCBD",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Gedung Bursa Efek Indonesia, SCBD Lot 8, Jl. Jend. Sudirman Kav. 52-53",
+            "addressLocality": "Jakarta Selatan",
+            "addressRegion": "DKI Jakarta",
+            "postalCode": "12190",
+            "addressCountry": "ID",
+          },
+        },
+        {
+          "@type": "Place",
+          "name": "Branch Office Bandung",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Bandung",
+            "addressRegion": "Jawa Barat",
+            "addressCountry": "ID",
+          },
+        },
+      ],
     },
   ],
 };
@@ -178,6 +243,13 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://digiman.id"),
   icons: {
     icon: "/favicon-digiman.png",
+  },
+  alternates: {
+    types: {
+      "application/rss+xml": [
+        { url: "/feed.xml", title: "Blog DIGIMAN.ID — Panduan Legalitas Bisnis" },
+      ],
+    },
   },
   openGraph: {
     title: "DIGIMAN.ID — 7 Lapis Langit Legalitas Bisnis Indonesia",

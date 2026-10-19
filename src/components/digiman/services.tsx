@@ -1,7 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import {
   Building2, Users, Globe2, Stamp, Lightbulb, Rocket, FileCheck2, ScrollText,
   BadgeCheck, Landmark, Briefcase, ShieldCheck, Scale, HeartHandshake, Cpu,
@@ -75,7 +76,7 @@ export default function Services({
         className="absolute left-1/2 top-0 h-[400px] w-[700px] -translate-x-1/2 rounded-full bg-emerald-500/8 blur-[140px]"
       />
       <div className="mx-auto max-w-7xl">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -92,7 +93,7 @@ export default function Services({
           <p className="mt-5 leading-relaxed text-emerald-50/60 sm:text-lg">
             {dict.services.sub}
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Tab kategori */}
         <div className="mb-10 flex flex-wrap items-center justify-center gap-2">
@@ -114,15 +115,14 @@ export default function Services({
         </div>
 
         {/* Grid kartu layanan */}
-        <motion.div layout className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <AnimatePresence mode="popLayout">
+        <m.div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <AnimatePresence initial={false}>
             {filtered.map((s, i) => {
               const c = svc(s, dict, locale);
               const Ikon = ICONS[s.icon] ?? Building2;
               return (
-                <motion.div
+                <m.div
                   key={s.slug ?? s.title}
-                  layout
                   initial={{ opacity: 0, y: 44, scale: 0.96 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.94 }}
@@ -160,28 +160,39 @@ export default function Services({
                           </li>
                         ))}
                       </ul>
-                      <div className="mt-6 flex items-center justify-between border-t border-emerald-400/10 pt-5">
-                        <span className={`font-display text-sm font-bold ${s.featured ? "text-gold-light" : "text-emerald-300"}`}>
+                      <div className="mt-6 flex flex-wrap items-center justify-between gap-x-3 gap-y-2 border-t border-emerald-400/10 pt-5">
+                        <span className={`font-display whitespace-nowrap text-sm font-bold ${s.featured ? "text-gold-light" : "text-emerald-300"}`}>
                           {c.price}
                         </span>
-                        <a
-                          href={`https://wa.me/${waBase}?text=${encodeURIComponent(`Halo DIGIMAN.ID, saya tertarik dengan layanan ${c.title}`)}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-1 text-sm font-semibold text-emerald-100/70 transition-colors group-hover:text-gold"
-                          aria-label={`${dict.services.consult}: ${c.title}`}
-                        >
-                          {dict.services.consult}
-                          <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                        </a>
+                        <span className="flex items-center gap-4">
+                          {s.slug && (
+                            <Link
+                              href={`/layanan/${s.slug}`}
+                              className="text-sm font-semibold text-emerald-100/70 transition-colors hover:text-white"
+                              aria-label={`Detail layanan ${c.title}`}
+                            >
+                              Detail
+                            </Link>
+                          )}
+                          <a
+                            href={`https://wa.me/${waBase}?text=${encodeURIComponent(`Halo DIGIMAN.ID, saya tertarik dengan layanan ${c.title}`)}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-1 whitespace-nowrap text-sm font-semibold text-emerald-100/70 transition-colors group-hover:text-gold"
+                            aria-label={`${dict.services.consult}: ${c.title}`}
+                          >
+                            {dict.services.consult}
+                            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                          </a>
+                        </span>
                       </div>
                     </div>
                   </TiltCard>
-                </motion.div>
+                </m.div>
               );
             })}
           </AnimatePresence>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

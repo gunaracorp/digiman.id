@@ -7,7 +7,7 @@ import {
   LayoutDashboard, Settings, Network, Briefcase, MessageSquareQuote, CircleHelp,
   UserRound, ExternalLink, LogOut, Menu, X, ShieldCheck, Type, MapPin,
   ImageIcon, Inbox, LayoutTemplate, Search, Users, History, DatabaseBackup,
-  Command, ChevronRight,
+  Command, ChevronRight, Newspaper,
 } from "lucide-react";
 
 /** Definisi nav bergrup — tampil sesuai peran */
@@ -33,6 +33,7 @@ const NAV_GROUPS: { group: string; items: NavItem[] }[] = [
       { href: "/admin/kantor", label: "Kantor & Cabang", icon: MapPin, roles: ["SUPERADMIN", "EDITOR"] },
       { href: "/admin/testimoni", label: "Testimoni", icon: MessageSquareQuote, roles: ["SUPERADMIN", "EDITOR"] },
       { href: "/admin/faq", label: "FAQ", icon: CircleHelp, roles: ["SUPERADMIN", "EDITOR"] },
+      { href: "/admin/blog", label: "Blog", icon: Newspaper, roles: ["SUPERADMIN", "EDITOR"] },
     ],
   },
   {

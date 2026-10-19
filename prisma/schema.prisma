@@ -21,14 +21,21 @@ model User {
   updatedAt DateTime @updatedAt
 }
 
+// Artikel blog — Panel Admin > Blog. Artikel bertanggal masa depan =
+// TERJADWAL: otomatis tayang di hari & jam yang ditentukan (ritme mingguan).
 model Post {
-  id        String   @id @default(cuid())
-  title     String
-  content   String?
-  published Boolean  @default(false)
-  authorId  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  excerpt     String   @default("")
+  content     String   @default("") // JSON sections (format sama dengan artikel statis) atau teks polos
+  tags        String   @default("") // kata kunci SEO, dipisah koma
+  readMinutes Int      @default(6)
+  author      String   @default("Dewan Pakar DIGIMAN.ID")
+  published   Boolean  @default(false) // saklar editorial (draf vs lolos tayang)
+  date        DateTime @default(now()) // tanggal terbit — masa depan = terjadwal
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 // Struktur organisasi PT Digital Bisnis Manajemen

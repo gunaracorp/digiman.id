@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
-import { DICTIONARIES, isLocale, LOCALE_META, type Dictionary, type Locale } from "@/lib/i18n";
+import { DICT_ID, isLocale, LOCALE_META, loadDictionary, type Dictionary, type Locale } from "@/lib/i18n";
 
 interface I18nCtx {
   locale: Locale;
@@ -11,21 +11,22 @@ interface I18nCtx {
 
 const Ctx = createContext<I18nCtx>({
   locale: "id",
-  dict: DICTIONARIES.id,
+  dict: DICT_ID,
   setLocale: () => {},
 });
 
 const STORAGE_KEY = "digiman-locale";
 
 export function LocaleProvider({ children }: { children: React.ReactNode }) {
+  // Hydration aman: render pertama selalu "id" (kamus statis, nol fetch),
+  // lalu preferensi tersimpan dimuat & kamus lazily diunduh bila perlu.
   const [locale, setLocaleState] = useState<Locale>("id");
+  const [dict, setDict] = useState<Dictionary>(DICT_ID);
 
-  // Muat preferensi tersimpan / bahasa browser setelah mount (aman hydration:
-  // render pertama selalu "id", lalu disinkronkan via callback asinkron)
+  // Muat preferensi tersimpan / bahasa browser setelah mount
   useEffect(() => {
     let cancelled = false;
-    Promise.resolve().then(() => {
-      if (cancelled) return;
+    (async () => {
       let next: Locale = "id";
       try {
         const saved = localStorage.getItem(STORAGE_KEY);
@@ -38,8 +39,12 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
       } catch {
         /* abaikan */
       }
-      if (next !== "id") setLocaleState(next);
-    });
+      if (next === "id") return;
+      const d = await loadDictionary(next);
+      if (cancelled) return;
+      setDict(d);
+      setLocaleState(next);
+    })();
     return () => {
       cancelled = true;
     };
@@ -52,15 +57,25 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
   }, [locale]);
 
   const setLocale = useCallback((l: Locale) => {
-    setLocaleState(l);
     try {
       localStorage.setItem(STORAGE_KEY, l);
     } catch {
       /* abaikan */
     }
+    if (l === "id") {
+      // Bahasa default: sinkron, tanpa unduhan
+      setDict(DICT_ID);
+      setLocaleState("id");
+      return;
+    }
+    // Unduh kamus dulu, lalu tukar sekaligus — hindari UI campuran
+    loadDictionary(l).then((d) => {
+      setDict(d);
+      setLocaleState(l);
+    });
   }, []);
 
-  const value = useMemo<I18nCtx>(() => ({ locale, dict: DICTIONARIES[locale], setLocale }), [locale, setLocale]);
+  const value = useMemo<I18nCtx>(() => ({ locale, dict, setLocale }), [locale, dict, setLocale]);
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }
