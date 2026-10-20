@@ -67,12 +67,15 @@ server.log
 /mini-services/
 # catatan: public/download/digiman-id-source-lengkap.zip SENGAJA di-track
 # (snapshot untuk tombol unduh di footer). Regenerate: bun run zip:source
+# kerangka sandbox (demo websocket & shell runtime) — bukan bagian aplikasi
+/examples/
+/tests/
 
-# Local runtime and database files
+# Local runtime and database
 .zscripts/dev.pid
 db/custom.db
 
-# Private legal and identity documents - keep local
+# Private legal and identity documents
 **/AKTA PENDIRIAN  PERTAMA  PT DIGITAL BISNIS MANAJEMEN.pdf
 **/KEMENKUMHAM  PT DIGITAL BISNIS MANAJEMEN ke - 1.pdf
 **/KEMENKUMHAM ke - 1.pdf
@@ -80,3 +83,7 @@ db/custom.db
 **/NIB BERBASIS RESIKO PT DIGITAL BISNIS MANAJEMEN ke - 1.pdf
 **/NPWP PT DIGITAL BISNIS MANAJEMEN 622397297423000.jpg
 **/Pasted Content_1789176941505.txt
+
+# Local scaffolding
+examples/
+tests/
