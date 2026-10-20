@@ -27,8 +27,11 @@ Di luar lingkup: spam, social engineering, DoS volume, penyalahgunaan layanan pi
 ## Langkah keamanan yang sudah diterapkan
 
 - Tanpa secret di source code — semua lewat environment variables (`.env` di-gitignore).
-- Security headers: `X-Content-Type-Options`, `X-Frame-Options: SAMEORIGIN`,
+- Security headers: `X-Content-Type-Options: nosniff`,
   `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy` minimal.
+  `X-Frame-Options` sengaja tidak dipasang karena panel preview/embed platform
+  memuat situs dalam iframe lintas-domain; pengerasan framing di produksi
+  memakai CSP `frame-ancestors` dengan daftar origin yang diketahui.
 - Panel admin: kredensial bukan hard-code (tersimpan di database, wajib diganti saat go-live).
 - Validasi input formulir + honeypot anti-bot.
 - Dependabot aktif untuk pemantauan dependensi.

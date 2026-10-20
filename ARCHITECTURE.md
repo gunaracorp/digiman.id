@@ -165,7 +165,8 @@ digiman.id/
 | Lapisan | Status |
 |---|---|
 | Secrets | `.env` di-gitignore, `.env.example` tersedia, tanpa secret di source ✅ |
-| Security headers | `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy` (next.config.ts) ✅ |
+| Security headers | `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy` (next.config.ts) ✅ |
+| Framing | `X-Frame-Options` **sengaja tidak dipasang** — panel preview platform memuat situs via iframe lintas-domain; pengerasan di produksi memakai CSP `frame-ancestors` dengan origin yang diketahui ⏳ Stage 4 |
 | Input validation | Form kontak: validasi manual + honeypot; API chat/contact sanitasi ✅ |
 | Admin auth | Password cookie `gunara_admin` (default dari DB, wajib diganti saat go-live) ✅ |
 | Rate limiting | ⏳ Stage 3 (middleware) |
