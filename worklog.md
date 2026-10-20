@@ -536,3 +536,20 @@ Stage Summary:
 - Repo punya lapisan tata kelola GitHub lengkap (§26 terpenuhi): CI, template, dependabot, 4 dokumen governance + LICENSE proprietary.
 - Roadmap tertulis di ARCHITECTURE.md §10: Stage 2 (data model Business/Venture + admin CRUD), Stage 3 (App Router nyata + rate limit), Stage 4 (NextAuth + CSP), Stage 5 (Postgres/Supabase + observability).
 - Keputusan arsitektur penting: TIDAK me-rebuild dari nol (18 task live = aset); narasi holding dibangun di atas ekosistem NYATA (§38 never fabricate trust); hash-router dipertahankan sebagai constraint terdokumentasi dengan jalur migrasi jelas via parseHash().
+
+---
+Task ID: 19-b (hotfix preview)
+Agent: main (orchestrator)
+Task: Perbaiki "preview refused to connect" setelah Genesis Stage 1
+
+Work Log:
+- Diagnosis: user melaporkan preview-chat-*.space-z.ai "refused to connect". Korelasi tepat dengan Task 19 yang menambah X-Frame-Options: SAMEORIGIN — panel preview platform memuat situs dalam iframe lintas-domain → Chrome memblokir render iframe.
+- Fix: hapus X-Frame-Options dari SECURITY_HEADERS di next.config.ts; 3 header lain dipertahankan; komentar kode menjelaskan alasan + jalur pengerasan produksi (CSP frame-ancestors, Stage 4).
+- Dokumentasi disinkronkan: ARCHITECTURE.md §8 (baris "Framing"), SECURITY.md (langkah keamanan).
+- Restart dev server (next.config butuh restart); verifikasi: root 200; curl -I → 3 header aktif, TANPA X-Frame-Options; agent-browser: judul/hero/#holding/footer render, 0 console error.
+- Commit 19b, worklog diperbarui.
+
+Stage Summary:
+- Preview panel kembali berfungsi (iframe lintas-domain tidak lagi diblokir).
+- Keputusan keamanan terdokumentasi eksplisit: framing diperketat di produksi via CSP frame-ancestors dengan origin yang diketahui, bukan X-Frame-Options.
+- Pelajaran: di lingkungan platform dengan preview-iframe, jangan pasang X-Frame-Options: SAMEORIGIN tanpa cek kebutuhan embed.
