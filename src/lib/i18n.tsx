@@ -138,6 +138,7 @@ export const DICTIONARY: Record<string, DictEntry> = {
   },
   "stats.klien": { id: "Klien Dilayani", en: "Clients Served" },
   "stats.pakar": { id: "Dewan Pakar", en: "Expert Council" },
+  "stats.tahun": { id: "Tahun Pengalaman", en: "Years of Experience" },
   "stats.lapis": { id: "Lapis Langit", en: "Heaven Layers" },
   "stats.sukses": { id: "Tingkat Sukses", en: "Success Rate" },
 
@@ -683,6 +684,46 @@ export const DICTIONARY: Record<string, DictEntry> = {
   "dash.palette.hint": {
     id: "Ctrl+K untuk perintah lebih cepat",
     en: "Ctrl+K for faster commands",
+  },
+
+  // ─── TASK 17: Legacy — narasi pengalaman 17 tahun (hero + timeline) ───
+  "hero.badgeSejak": { id: "Pengalaman sejak 2009", en: "Experience since 2009" },
+  "legacy.ariaLabel": { id: "Perjalanan pengalaman perusahaan", en: "Company experience journey" },
+  "legacy.kicker": { id: "Jejak Pengalaman", en: "Our Track Record" },
+  "legacy.title1": { id: "Legalitas Kami Muda.", en: "Our Legal Entity Is Young." },
+  "legacy.title2": { id: "Keahlian Kami 17 Tahun.", en: "Our Expertise Is 17 Years Deep." },
+  "legacy.desc": {
+    id: "Sebelum badan hukum ini berdiri, keahliannya sudah diuji lebih dari satu dekade — dari meja konsultansi global McKinsey & Company hingga praktik independen lintas industri. Legalitas adalah jangkar, bukan awal cerita kami.",
+    en: "Long before this legal entity was formed, the expertise was already battle-tested for over a decade — from the global consulting table of McKinsey & Company to independent practice across industries. Legality is our anchor, not the start of our story.",
+  },
+  "legacy.badge": { id: "17+ Tahun Pengalaman", en: "17+ Years of Experience" },
+  "legacy.m1Year": { id: "2009", en: "2009" },
+  "legacy.m1Title": { id: "Fondasi Global — McKinsey & Company", en: "Global Foundation — McKinsey & Company" },
+  "legacy.m1Desc": {
+    id: "Karier pendiri dimulai di meja konsultansi global — standar analisis dan disiplin eksekusi McKinsey menjadi DNA setiap solusi yang kami serahkan.",
+    en: "Our founder's career began at the global consulting table — McKinsey-grade analysis and execution discipline are the DNA of every solution we deliver.",
+  },
+  "legacy.m2Year": { id: "2013", en: "2013" },
+  "legacy.m2Title": { id: "Praktik Independen", en: "Independent Practice" },
+  "legacy.m2Desc": {
+    id: "Menemani bisnis lintas industri bertumbuh selama 13 tahun — pengalaman lapangan panjang sebelum badan hukum ini berdiri.",
+    en: "Guiding businesses across industries for 13 years — long field experience before this legal entity was ever formed.",
+  },
+  "legacy.m3Year": { id: "2022", en: "2022" },
+  "legacy.m3Title": { id: "PT Digital Bisnis Manajemen", en: "PT Digital Bisnis Manajemen" },
+  "legacy.m3Desc": {
+    id: "Praktik diformalisasi berbadan hukum — SK AHU-059566.AH.01.30.Tahun 2022, NIB resmi. Legalitas menjadi jangkar pertumbuhan, bukan awal cerita.",
+    en: "The practice was formalized as a legal entity — SK AHU-059566.AH.01.30.Tahun 2022, official NIB. Legality became the growth anchor, not the start of the story.",
+  },
+  "legacy.m4Year": { id: "2026", en: "2026" },
+  "legacy.m4Title": { id: "Era digiman.id & Gunara OS", en: "The digiman.id & Gunara OS Era" },
+  "legacy.m4Desc": {
+    id: "165 dokumen arsitektur super organisasi, platform 7 lapis langit, dan portal klien futuristik — warisan 17 tahun keahlian yang terus bertumbuh.",
+    en: "165 super-organization architecture documents, the 7-heavenly-layers platform, and a futuristic client portal — a living legacy of 17 years of expertise.",
+  },
+  "legacy.footer": {
+    id: "Pengalaman sejak 2009 · Praktik mandiri sejak 2013 · Berbadan hukum 2022",
+    en: "Experience since 2009 · Independent practice since 2013 · Legal entity since 2022",
   },
 };
 

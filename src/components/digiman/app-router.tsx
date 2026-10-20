@@ -39,6 +39,7 @@ import SevenHeavens from "@/components/digiman/seven-heavens";
 import Services from "@/components/digiman/services";
 import Paket from "@/components/digiman/paket";
 import WhyUs from "@/components/digiman/why-us";
+import Legacy from "@/components/digiman/legacy";
 import Process from "@/components/digiman/process";
 import Testimonials from "@/components/digiman/testimonials";
 import Faq from "@/components/digiman/faq";
@@ -184,6 +185,7 @@ function LandingView({
           docCount={docCount}
         />
         <WhyUs />
+        <Legacy />
         <Process />
         <Testimonials testimonials={testimonials} />
         <BlogTeaser posts={blogPosts} />

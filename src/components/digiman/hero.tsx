@@ -66,6 +66,10 @@ export default function Hero({ settings }: { settings: SiteSettings }) {
             </span>
             <span className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-medium text-emerald-50/90">
               <BadgeCheck className="h-4 w-4 text-emerald-bright" aria-hidden="true" />
+              {t("hero.badgeSejak")}
+            </span>
+            <span className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-medium text-emerald-50/90">
+              <BadgeCheck className="h-4 w-4 text-emerald-bright" aria-hidden="true" />
               {t("hero.badgeBerdiri")} {settings.established}
             </span>
           </motion.div>

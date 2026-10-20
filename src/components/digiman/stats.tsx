@@ -4,11 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import { useInView } from "framer-motion";
 import {
   Award,
+  History,
   Mountain,
   TrendingUp,
   Users,
   type LucideIcon,
 } from "lucide-react";
+import { LEGACY } from "@/lib/brand";
 import { useI18n } from "@/lib/i18n";
 
 /** Hitung naik halus dengan requestAnimationFrame, easing ease-out ~1,6 detik. */
@@ -99,6 +101,7 @@ export default function Stats({ clients, experts, layers, success }: StatsProps)
   const inView = useInView(gridRef, { once: true, margin: "-60px 0px -60px 0px" });
 
   const stats: Stat[] = [
+    { icon: History, label: t("stats.tahun"), target: Number(LEGACY.yearsLabel.replace("+", "")), suffix: "+" },
     { icon: Users, label: t("stats.klien"), target: clients, suffix: "+" },
     { icon: Award, label: t("stats.pakar"), target: experts, suffix: "" },
     { icon: Mountain, label: t("stats.lapis"), target: layers, suffix: "" },
@@ -112,7 +115,7 @@ export default function Stats({ clients, experts, layers, success }: StatsProps)
     >
       <div
         ref={gridRef}
-        className="grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4"
+        className="grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-5"
       >
         {stats.map((stat, i) => (
           <StatCard key={`stat-${i}`} stat={stat} started={inView} index={i} />

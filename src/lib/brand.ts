@@ -91,6 +91,23 @@ export const BRAND = {
 /** Daftar URL profil sosial — untuk schema.org `sameAs`. */
 export const SOCIAL_HREFS: string[] = BRAND.socials.map((s) => s.href);
 
+/**
+ * LEGACY — sumber tunggal narasi pengalaman (kredibilitas perusahaan).
+ *
+ * Fakta: pendiri memulai karier konsultansi di McKinsey & Company (2009),
+ * praktik independen sejak 2013, lalu diformalisasi sebagai
+ * PT Digital Bisnis Manajemen pada 2022 (SK AHU-059566.AH.01.30.Tahun 2022).
+ * `yearsLabel` diperbarui manual tiap pergantian tahun — sengaja statis agar
+ * bebas hydration mismatch dan deterministik untuk SEO.
+ */
+export const LEGACY = {
+  mckinseySince: 2009,
+  independentSince: 2013,
+  establishedYear: 2022,
+  yearsLabel: "17+",
+  skNumber: "AHU-059566.AH.01.30.Tahun 2022",
+} as const;
+
 /** Kredit ringkas berisi semua nama — dipakai footer & OG description. */
 export const CREDIT_LINE =
   "by Gugun Gunara · Muhammad Lutfi Azmi (prabudanling) · Santri Angon · PT Top Konsultan Internasional (topkonsultan.web.id) · digiman.id — PT Digital Bisnis Manajemen";

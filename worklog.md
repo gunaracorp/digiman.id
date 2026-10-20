@@ -470,3 +470,25 @@ Work Log:
 Stage Summary:
 - Jawaban atas ketakutan user: KODE = git+zip 100% lengkap; DATA = kini terlindungi db/backup.json (di-commit + di-zip, teks ramah-GitHub). Reset sandbox tidak lagi mematikan: bun run db:restore → pulih total.
 - Hilang permanen akibat reset: 4 proposal demo & 1 pesan kontak (data uji) — tidak ter-seed; ke depan tercakup oleh backup.json.
+
+---
+Task ID: 17
+Agent: Z.ai Code (main)
+Task: Narasi kredibilitas "Legacy 17 Tahun" — pengalaman sejak 2009 (McKinsey), mandiri 2013, PT 2022 — tanpa memalsukan tahun badan hukum
+
+Work Log:
+- Prinsip (Sage): tidak memalsukan foundingDate (berisiko legal & mudah terbongkar); memajukan fakta sebenarnya — pola narrasi firma konsultan kelas dunia.
+- brand.ts: const LEGACY { mckinseySince:2009, independentSince:2013, establishedYear:2022, yearsLabel:"17+", skNumber } — sumber tunggal, statis (bebas hydration).
+- i18n.tsx: blok TASK 17 — hero.badgeSejak + legacy.* (17 keys ID/EN) + stats.tahun.
+- Komponen BARU src/components/digiman/legacy.tsx: section #perjalanan — timeline zig-zag 4 milestone (2009 McKinsey & Company / 2013 Praktik Independen / 2022 PT DBM SK AHU-059566 / 2026 Era digiman.id & Gunara OS), garis emas, glass card, framer-motion whileInView, aria-label.
+- app-router.tsx: <Legacy/> disisipkan antara WhyUs dan Process.
+- hero.tsx: 3 badge — SK Kemenkumham + "Pengalaman sejak 2009" + "Berdiri 26 Desember 2022".
+- stats.tsx: +stat pertama "17+ Tahun Pengalaman" (History icon), grid lg:grid-cols-5.
+- layout.tsx JSON-LD: Organization +foundingDate "2022-12-26" +foundingLocation +slogan; Person Gugun Gunara +description narasi karier.
+- api/chat/route.ts: system prompt DigiAI + jejak pengalaman (bangga namun elegan).
+- Verifikasi: tsc 0, lint 0, browser: 3 badge hero ✓, section legacy ✓ (McKinsey/2013/PT/2026), stat Tahun Pengalaman ✓, JSON-LD foundingDate/slogan/description ✓, 0 console error, screenshot /tmp/legacy.png.
+- README changelog 16 & 17.
+
+Stage Summary:
+- Perusahaan kini TAMPIL senior & profesional secara JUJUR: keahlian 17 tahun (2009) sementara legalitas tetap transparan (2022) — kombinasi paling meyakinkan untuk klien enterprise.
+- Semua angka/narasi dari satu sumber (LEGACY di brand.ts) — mudah diperbarui tiap tahun (ubah yearsLabel saja).

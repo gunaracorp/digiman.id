@@ -272,6 +272,8 @@ flowchart LR
 | 13 | Tombol "Unduh Kode Sumber" di footer + snapshot zip | ✅ |
 | 14 | 🧹 **Repo Hygiene siap-GitHub** — untrack `.env`/db binary/sampah sandbox, `.gitignore` diperkuat, `.env.example`, `db:seed` & `zip:source`, dokumen master PGA-165 → `docs/`, zip snapshot di-rebuild | ✅ |
 | 15 | 🚀 **DASHBOARD ERA** — **Portal Klien futuristik `#/dashboard` (30 fitur premium)**: command palette ⌘K, jam WIB live, progress ring 165 dok, health score, milestone timeline, invoice + grafik pembayaran, chat tim, achievements, OKR tracker, print/PDF, dark/light, ID/EN — **+ Admin Analytics "Mission Control"**: KPI pendapatan real-time, 3 grafik recharts, feed aktivitas klien. Skema baru `ClientProject`/`Invoice`/`ActivityEvent`/`Meeting` + seed + API | ✅ |
+| 16 | 🛟 **Sistem Backup/Restore Database** — `db:backup`/`db:restore`, `db/backup.json` di-commit & di-zip (auto-refresh), pemulihan bencana anti-reset-sandbox | ✅ |
+| 17 | 🏛 **LEGACY 17 TAHUN** — timeline "Legalitas Kami Muda. Keahlian Kami 17 Tahun.": McKinsey & Company 2009 → praktik independen 2013 → PT 2022 → era digiman.id; badge hero, stat 17+ tahun, JSON-LD foundingDate + bio pendiri, DigiAI cerdas sejarah | ✅ |
 
 ---
 

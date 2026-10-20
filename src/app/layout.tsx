@@ -36,6 +36,12 @@ const ENTITY_JSON_LD = {
       logo: "https://digiman.id/logo-digiman.png",
       email: "halo@digiman.id",
       telephone: "+62-813-3339-7223",
+      foundingDate: "2022-12-26",
+      foundingLocation: {
+        "@type": "Place",
+        name: "Tasikmalaya, Jawa Barat, Indonesia",
+      },
+      slogan: "Pengalaman sejak 2009 — legalitas sejak 2022",
       address: {
         "@type": "PostalAddress",
         addressLocality: "Tasikmalaya",
@@ -125,6 +131,8 @@ const ENTITY_JSON_LD = {
       name: "Gugun Gunara",
       alternateName: ["Gugun", "Founder Gunara OS"],
       jobTitle: "Pendiri & Direktur Utama",
+      description:
+        "Pengalaman konsultansi 17+ tahun: memulai karier di McKinsey & Company (2009), praktik konsultan independen sejak 2013, mendirikan PT Digital Bisnis Manajemen (2022) sebagai jangkar legal.",
       worksFor: { "@id": "https://digiman.id/#organisasi" },
       url: "https://digiman.id/",
       image: "https://digiman.id/logo-emblem.png",
