@@ -21,7 +21,7 @@ mkdir -p "$DEST"
 # Selalu segarkan backup database sebelum zip — snapshot dalam zip ikut termutakhir.
 bun run db:backup >/dev/null 2>&1 || echo "⚠ db:backup gagal (dilewati)"
 
-rsync -a \
+rsync -aR \
   --exclude 'node_modules/' \
   --exclude '.next/' \
   --exclude '.git/' \
