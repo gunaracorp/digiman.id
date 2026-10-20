@@ -725,6 +725,58 @@ export const DICTIONARY: Record<string, DictEntry> = {
     id: "Pengalaman sejak 2009 · Praktik mandiri sejak 2013 · Berbadan hukum 2022",
     en: "Experience since 2009 · Independent practice since 2013 · Legal entity since 2022",
   },
+
+  /* ── Genesis Stage 1 — Arsitektur Holding (#holding) ── */
+  "holding.ariaLabel": {
+    id: "Arsitektur holding dan ekosistem grup",
+    en: "Holding architecture and group ecosystem",
+  },
+  "holding.kicker": { id: "Arsitektur Holding", en: "Holding Architecture" },
+  "holding.title1": { id: "Satu Ekosistem.", en: "One Ecosystem." },
+  "holding.title2": { id: "Empat Pilar Kekuatan.", en: "Four Pillars of Strength." },
+  "holding.desc": {
+    id: "DIGIMAN.ID bukan sekadar jasa — ia adalah arsitektur holding yang menaungi badan hukum, modal intelektual, komunitas, dan platform teknologi dalam satu tata kelola.",
+    en: "DIGIMAN.ID is more than a service — it is a holding architecture encompassing legal entities, intellectual capital, community, and technology platform under one governance.",
+  },
+  "holding.rootRole": { id: "Digital Holding", en: "Digital Holding" },
+  "holding.rootDesc": {
+    id: "Induk ekosistem yang mengorkestrasi bisnis, teknologi, layanan, dan modal intelektual — dengan tata kelola berbadan hukum yang terverifikasi.",
+    en: "The ecosystem parent orchestrating businesses, technology, services, and intellectual capital — with verifiable legal governance.",
+  },
+  "holding.chipFounded": { id: "Berdiri {year}", en: "Established {year}" },
+  "holding.chipHolding": { id: "Induk Ekosistem", en: "Ecosystem Parent" },
+  "holding.p1Role": { id: "Badan Hukum Legal & Konsultan", en: "Legal & Consulting Entity" },
+  "holding.p1Name": { id: "PT Top Konsultan Internasional", en: "PT Top Konsultan Internasional" },
+  "holding.p1Desc": {
+    id: "Lengan legalitas & kepatuhan bisnis — pendampingan PT, perizinan, merek, dan sertifikasi.",
+    en: "The business legality & compliance arm — PT incorporation, licensing, trademarks, and certifications.",
+  },
+  "holding.p2Role": { id: "Modal Intelektual", en: "Intellectual Capital" },
+  "holding.p2Name": { id: "Gunara OS", en: "Gunara OS" },
+  "holding.p2Desc": {
+    id: "Sistem operasi super organisasi — 165 dokumen arsitektur standar dalam 4 tingkat akses.",
+    en: "The super-organization operating system — 165 standard architecture documents across 4 access tiers.",
+  },
+  "holding.p3Role": { id: "Komunitas", en: "Community" },
+  "holding.p3Name": { id: "Santri Angon", en: "Santri Angon" },
+  "holding.p3Desc": {
+    id: "Komunitas pendukung yang menumbuhkan ekosistem, jaringan, dan distribusi nilai.",
+    en: "The supporting community growing the ecosystem, network, and value distribution.",
+  },
+  "holding.p4Role": { id: "Teknologi & Platform", en: "Technology & Platform" },
+  "holding.p4Name": { id: "Platform digiman.id", en: "digiman.id Platform" },
+  "holding.p4Desc": {
+    id: "Portal klien 30 fitur, Admin Command Center, dan asisten DigiAI — otak digital grup.",
+    en: "30-feature client portal, Admin Command Center, and DigiAI assistant — the group's digital brain.",
+  },
+  "holding.kunjungi": { id: "Kunjungi situs", en: "Visit site" },
+  "holding.jelajahi": { id: "Jelajahi", en: "Explore" },
+  "holding.leaderRole": { id: "Pendiri & Direktur Utama", en: "Founder & President Director" },
+  "holding.leaderBio": {
+    id: "{years} tahun keahlian — McKinsey & Company (2009) · Praktik independen (2013)",
+    en: "{years} years of expertise — McKinsey & Company (2009) · Independent practice (2013)",
+  },
+  "footer.holding": { id: "Arsitektur Holding", en: "Holding Architecture" },
 };
 
 /* ────────────────────────── util ────────────────────────── */

@@ -40,6 +40,7 @@ import Services from "@/components/digiman/services";
 import Paket from "@/components/digiman/paket";
 import WhyUs from "@/components/digiman/why-us";
 import Legacy from "@/components/digiman/legacy";
+import Holding from "@/components/digiman/holding";
 import Process from "@/components/digiman/process";
 import Testimonials from "@/components/digiman/testimonials";
 import Faq from "@/components/digiman/faq";
@@ -186,6 +187,7 @@ function LandingView({
         />
         <WhyUs />
         <Legacy />
+        <Holding />
         <Process />
         <Testimonials testimonials={testimonials} />
         <BlogTeaser posts={blogPosts} />

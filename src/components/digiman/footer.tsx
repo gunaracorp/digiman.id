@@ -42,6 +42,7 @@ export default function Footer({ settings }: { settings: SiteSettings }) {
   // Label kolom perusahaan diterjemahkan via i18n (href tetap sama).
   const companyLinks = [
     { label: t("footer.tentang"), href: "#mengapa-kami" },
+    { label: t("footer.holding"), href: "#holding" },
     { label: t("footer.prosesKerja"), href: "#proses" },
     { label: t("footer.paketHarga"), href: "#paket" },
     { label: t("footer.faq"), href: "#faq" },

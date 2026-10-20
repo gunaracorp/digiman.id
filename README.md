@@ -202,11 +202,17 @@ Bila environment baru ter-reset: `bun install && bun run db:push && bun run db:r
 
 ```
 digiman.id/
+├── 📂 .github/                  # CI (lint·typecheck·build), template PR & issue, dependabot
 ├── 📂 prisma/                    # Skema database (SQLite)
 ├── 📂 db/                        # File database (regenerasi: db:push + db:seed)
 ├── 📂 scripts/                   # Seed 165 dokumen + seed dashboard + parser PGA
 ├── 📂 docs/                      # Banner README + arsitektur master PGA-165
 ├── 📂 public/                    # Logo, artwork, robots.txt
+├── 📄 ARCHITECTURE.md            # 🏛 Master architecture, sitemap, design system, roadmap
+├── 📄 SECURITY.md                # Kebijakan keamanan & pelaporan kerentanan
+├── 📄 CONTRIBUTING.md            # Alur kerja & quality gate kontributor
+├── 📄 CHANGELOG.md               # Riwayat rilis (Keep a Changelog)
+├── 📄 LICENSE                    # Lisensi proprietary PT Digital Bisnis Manajemen
 ├── 📄 .env.example               # Template environment variables
 └── 📂 src/
     ├── 📂 app/
@@ -271,6 +277,7 @@ flowchart LR
 | 16 | 🛟 **Sistem Backup/Restore Database** — `db:backup`/`db:restore`, `db/backup.json` di-commit, pemulihan bencana anti-reset-sandbox | ✅ |
 | 17 | 🏛 **LEGACY 17 TAHUN** — timeline "Legalitas Kami Muda. Keahlian Kami 17 Tahun.": McKinsey & Company 2009 → praktik independen 2013 → PT 2022 → era digiman.id; badge hero, stat 17+ tahun, JSON-LD foundingDate + bio pendiri, DigiAI cerdas sejarah | ✅ |
 | 18 | 🗑️ **Siap-GitHub Murni** — tombol unduh kode sumber dihapus dari footer (diganti badge resmi → repo GitHub), snapshot zip & script `zip:source` dihapus dari repo | ✅ |
+| 19 | 🏛 **GENESIS STAGE 1 — HOLDING MODE** — section **Arsitektur Holding** `#holding` (kartu induk + 4 pilar ekosistem + tata kelola, ID/EN), security headers, `ARCHITECTURE.md` · `SECURITY.md` · `CONTRIBUTING.md` · `CHANGELOG.md` · `LICENSE`, GitHub Actions CI (lint·typecheck·build), template PR & issue, Dependabot | ✅ |
 
 ---
 
