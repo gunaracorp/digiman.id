@@ -492,3 +492,25 @@ Work Log:
 Stage Summary:
 - Perusahaan kini TAMPIL senior & profesional secara JUJUR: keahlian 17 tahun (2009) sementara legalitas tetap transparan (2022) — kombinasi paling meyakinkan untuk klien enterprise.
 - Semua angka/narasi dari satu sumber (LEGACY di brand.ts) — mudah diperbarui tiap tahun (ubah yearsLabel saja).
+
+---
+Task ID: 18
+Agent: main (orchestrator)
+Task: Hapus fitur "Unduh Kode Sumber" — repo murni siap upload GitHub (request user: kode akan diupload sendiri ke GitHub)
+
+Work Log:
+- Audit menyeluruh (grep seluruh repo, exclude node_modules/.next/.git): ditemukan 5 titik — footer.tsx (tombol + ikon Download), i18n.tsx (footer.unduhKode), public/download/digiman-id-source-lengkap.zip (1.3MB, tracked git), scripts/make-source-zip.sh + package.json "zip:source", README.md (7 penyebutan), .gitignore (komentar usang).
+- footer.tsx: tombol zip diganti badge emas resmi "Kode Sumber di GitHub" (ikon Github lucide, href https://github.com/prabudanling/digiman.id, target _blank + noopener).
+- i18n.tsx: key footer.unduhKode → footer.github (ID: "Kode Sumber di GitHub" / EN: "Source Code on GitHub").
+- Hapus public/download/ (zip 1.3MB) + scripts/make-source-zip.sh + entri "zip:source" dari package.json.
+- .gitignore: hapus komentar "zip SENGAJA di-track".
+- README: hapus blokquote regenerasi zip, kalimat "dimasukkan ke zip", entri struktur (scripts/public), row 13 ditandai "↩️ dihapus kembali di #18", row 16 tanpa "di-zip", tambah row 18 "Siap-GitHub Murni".
+- Dashboard F17 File Center (ikon Download demo invoice/pdf) TIDAK disentuh — itu fitur demo klien, bukan unduhan kode sumber.
+- Verifikasi: tsc --noEmit 0 error (src), lint exit 0; dev server restart (sempat mati) → root 200, /download/*.zip → 404; agent-browser: badge GitHub tampil (ID + EN setelah toggle BAHASA), 0 link .zip di DOM, footer render normal, 0 console error; screenshot /tmp/footer-final.png.
+- Commit db48448 "feat(18): hapus fitur unduh kode sumber — siap upload GitHub murni", working tree bersih.
+
+Stage Summary:
+- Situs tidak lagi menyediakan unduhan zip kode sumber; footer kini mengarahkan ke repo GitHub resmi (prabudanling/digiman.id) — lebih profesional & aman.
+- Repo bersih dari binary zip; user tinggal `git push` ke GitHub.
+- Catatan: riwayat git masih memuat zip lama di commit historis (ukuran kecil, tidak masalah); bila ingin riwayat 100% bersih bisa squash saat push pertama.
+- Catatan verifikasi tambahan: Task 17 (LEGACY 17 TAHUN) terkonfirmasi SUDAH selesai sebelumnya (worklog #475, brand.ts LEGACY, legacy.tsx live) — tidak dikerjakan ulang.
