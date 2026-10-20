@@ -177,7 +177,8 @@ bun run lint      # ESLint — harus exit 0
 | `#/os` | Penjelajah Gunara OS — 20 domain × 165 dokumen |
 | `#/blog` · `#/blog/{slug}` | Indeks & pembaca artikel dwibahasa |
 | `#/proposal` | Studio penawaran + ekspor PDF |
-| `#/admin` | Panel admin |
+| `#/admin` | Panel admin + Analytics Mission Control |
+| `#/dashboard` | ⭐ **Portal Klien** — dashboard futuristik 30 fitur premium |
 
 <details>
 <summary>🔐 <b>Akses Panel Admin</b> (klik untuk membuka)</summary>
@@ -196,7 +197,7 @@ bun run lint      # ESLint — harus exit 0
 digiman.id/
 ├── 📂 prisma/                    # Skema database (SQLite)
 ├── 📂 db/                        # File database (regenerasi: db:push + db:seed)
-├── 📂 scripts/                   # Seed 165 dokumen + parser PGA + zip generator
+├── 📂 scripts/                   # Seed 165 dokumen + seed dashboard + parser PGA + zip generator
 ├── 📂 docs/                      # Banner README + arsitektur master PGA-165
 ├── 📂 public/                    # Logo, artwork, robots.txt, snapshot zip unduhan
 ├── 📄 .env.example               # Template environment variables
@@ -219,6 +220,7 @@ digiman.id/
         ├── 📂 digiman/           # Landing: hero, marquee, stats, services,
         │                         # paket, os-teaser, testimonials, blog-teaser,
         │                         # faq, seo-hub ⭐, cta, contact, footer, dst.
+        ├── 📂 dashboard/         # ⭐ Portal Klien (30 fitur premium)
         ├── 📂 gunara/            # OS explorer + teaser
         ├── 📂 blog/              # Index + reader
         ├── 📂 proposal/          # Studio wizard + preview print-perfect
@@ -258,6 +260,7 @@ flowchart LR
 | 12 | 🔥 **SEO GOD MODE TIER MAX** — korpus 1.000 kata kunci + 1.000 tagar, SEO Hub dirender, FAQPage + Review + ItemList JSON-LD, OG image dinamis, sitemap freshness, README mahakarya ini | ✅ |
 | 13 | Tombol "Unduh Kode Sumber" di footer + snapshot zip | ✅ |
 | 14 | 🧹 **Repo Hygiene siap-GitHub** — untrack `.env`/db binary/sampah sandbox, `.gitignore` diperkuat, `.env.example`, `db:seed` & `zip:source`, dokumen master PGA-165 → `docs/`, zip snapshot di-rebuild | ✅ |
+| 15 | 🚀 **DASHBOARD ERA** — **Portal Klien futuristik `#/dashboard` (30 fitur premium)**: command palette ⌘K, jam WIB live, progress ring 165 dok, health score, milestone timeline, invoice + grafik pembayaran, chat tim, achievements, OKR tracker, print/PDF, dark/light, ID/EN — **+ Admin Analytics "Mission Control"**: KPI pendapatan real-time, 3 grafik recharts, feed aktivitas klien. Skema baru `ClientProject`/`Invoice`/`ActivityEvent`/`Meeting` + seed + API | ✅ |
 
 ---
 

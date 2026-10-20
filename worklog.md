@@ -379,3 +379,76 @@ Stage Summary:
 - Snapshot zip terbaru: public/download/digiman-id-source-lengkap.zip (1.2MB, 193 file) — siap diunduh via footer situs atau /download/ di preview panel.
 - Regenerasi zip kapan pun: bun run zip:source. Regenerasi DB: bun run db:push && bun run db:seed.
 - Cara upload GitHub: unduh zip → ekstrak → drag-drop semua isi ke repo prabudanling/digiman.id (GitHub web), atau push via git dari mesin lokal.
+
+---
+Task ID: 15-a
+Agent: Z.ai Code (main)
+Task: Fondasi data Client Dashboard — skema Prisma baru + seed + API /api/dashboard
+
+Work Log:
+- prisma/schema.prisma: +4 model (ClientProject, Invoice, ActivityEvent, Meeting) — extras String JSON (SQLite tak dukung Json).
+- bun run db:push OK (in sync), bun run db:generate (Prisma Client v6.19.2).
+- scripts/seed-dashboard.ts idempotent: PRJ-2026-001 PT Maju Bersama Sejahtera, PGA-72 Rp 72jt, doc 97/165 (59%), health 87, 5 invoice (2 PAID), 8 activity, 4 meeting, extras: legalitas 5, digitalisasi 4, goals 5, team 4, files 6, achievements 8, notifications 5, messages 6. Jam WIB via setUTCHours(hour-7).
+- src/app/api/dashboard/route.ts: GET force-dynamic — agregat deterministik byTier/byDomain (urut nomor dokumen: <=done DONE, <=done+review IN_REVIEW, sisanya PENDING), 6 milestone bobot dari startedAt→targetDoneAt, payment progress dari invoice.
+- Restart dev server (kill PID 1269/1270/1283 + nohup bun run dev) — server proses lama memegang Prisma client lama (module cache), generate saja tidak cukup.
+- Verifikasi curl: progress 97/165=59%, byTier P0:24 P1:25 P2:28 P3:20 done, invoices 5, activities 8, meetings 4, team 4, achievements 8, legalitas 5, files 6, messages 6, notifications 5, goals 5, milestones 6, digitalisasi 4, payment 50% dari Rp 72.000.000.
+- package.json: + db:seed:dashboard akan ditambah saat integrasi.
+
+Stage Summary:
+- API /api/dashboard 200 lengkap — siap dikonsumsi Client Dashboard (Task 15-b) dan Admin Analytics (15-c).
+- Data demo realistis terkunci deterministik (tanpa Math.random) → bebas hydration mismatch.
+---
+Task ID: 15-c
+Agent: full-stack-developer
+Task: Admin Analytics Dashboard — upgrade ringkasan admin dengan KPI + grafik recharts
+Work Log:
+- src/app/api/admin/stats/route.ts: Promise.all diperluas +10 query baru (semua field lama dipertahankan utuh) — clientProjects (count), clientProjectsActive (status != DONE), contractValue (sum ClientProject.price), revenuePaid (sum Invoice.amount PAID), revenueOutstanding (sum != PAID), invoiceCount, invoices (order asc: number/label/amount/status untuk grafik bar), docsByTier (pgaDocument.groupBy tier), recentActivities (8 ActivityEvent terakhir include project.code/company, createdAt desc).
+- src/components/admin/admin-overview.tsx: rewrite total 240 baris stat-card sederhana → "Mission Control" analytics dashboard (~640 baris), signature props {onNavigate, onUnauthorized} tetap identik → admin-app.tsx TIDAK perlu diubah.
+- KPI hero row 6 kartu dengan animated counter (hook useCountUp rAF ease-out-cubic, hanya jalan client post-mount; reduced-motion → nilai instan): Pendapatan Terbayar (gold, format ringkas fmtRpCompact "Rp 36 jt" + sub full id-ID & % kontrak), Nilai Kontrak Aktif, Klien Aktif, Proposal Masuk (+chip per status dari PROPOSAL_STATUSES), Pesan Belum Ditangani (tone merah + badge "Perlu Aksi" bila >0), Dokumen PGA (chips mini breakdown P0-P3).
+- 3 grafik recharts (grid 2 kolom; bar full-width + 2 donut): (a) BarChart "Pendapatan per Invoice" x=nomor pendek (01-05), Cell fill per status PAID gold #f2c14e / PENDING orange #fb923c / SCHEDULED muted #3f6b5b, tooltip Rp full + label invoice; (b) donut "Proposal per Status" dengan center total; (c) donut "Dokumen per Tier" (P0 gold/P1 emerald/P2 teal/P3 rose) center 165. Legend chips custom di bawah tiap chart, tooltip & axis bergaya night-emerald.
+- Feed "Aktivitas Terbaru" 8 item: ikon per type (DOC_APPROVED/DOC_REVIEW/PAYMENT/MEETING/MILESTONE/SYSTEM), nama perusahaan klien, waktu relatif Asia/Jakarta (Intl id-ID, refresh tiap 60 dtk, fallback tanggal WIB) — max-h-96 overflow-y-auto custom-scroll.
+- Quick actions row (Tangani Pesan / Buat Penawaran / Tulis Artikel) memanggil onNavigate — teruji klik "Tangani Pesan" → tab Pesan aktif; strip "Konten & Komunitas" mempertahankan akses cepat stat lama (blog, chat, layanan, testimoni, faq, paket).
+- Loading skeleton berjenjang + error state dengan Coba Lagi (role=alert); entrance framer-motion staggered dengan useReducedMotion; fokus keyboard focus-visible:ring-gold; label aria di semua kartu/grafik.
+- Hydration safety: semua Date.now()/Intl dihitung setelah mount / dari data fetch (SSR hanya skeleton); useCountUp & waktu relatif tidak pernah tampil di HTML server; TANPA Math.random.
+- Perbaikan lint react-hooks/set-state-in-effect: useCountUp disusun ulang (setState hanya di dalam rAF callback, return reduce/target langsung) dan `now` pakai lazy initializer useState(() => Date.now()) + interval.
+- Verifikasi Agent Browser: login gunara165 via form → dashboard; KPI nyata (Rp 36 jt / Rp 36.000.000 · 50% dari kontrak; Rp 72 jt · 5 invoice; Klien 1; Proposal 4 [DRAF 3, NEGOSIASI 1]; Pesan 1; PGA 165 = P0 40 P1 40 P2 48 P3 37); 3 svg recharts (10 bar rect, 6 pie sector); feed 8 item; 0 console error (hanya warning dev recharts "non-static" yang sudah di-minimize dengan parent relative); screenshot /tmp/admin-analytics-final.png; navigasi cepat & tab tetap berfungsi; sesi cookie persist saat reload.
+- tsc --noEmit: 0 error src/; bun run lint exit 0; dev.log sehat (GET /api/admin/stats 200).
+Stage Summary:
+- Tab Ringkasan admin kini mission control analitik: 6 KPI animasi (pendapatan, kontrak, klien, proposal, pesan, dokumen), 3 grafik recharts (invoice bar + 2 donut), feed aktivitas klien real-time WIB, quick actions — semua data dari /api/admin/stats yang diperluas backward-compatible.
+- API baru: clientProjects, clientProjectsActive, contractValue, revenuePaid, revenueOutstanding, invoiceCount, invoices[], docsByTier{}, recentActivities[] (semua field lama utuh).
+- Angka terverifikasi vs seed: revenuePaid 36.000.000 (50% dari kontrak 72.000.000), 5 invoice, 165 dokumen 4 tier, 8 aktivitas PT Maju Bersama Sejahtera.
+---
+Task ID: 15-b
+Agent: full-stack-developer
+Task: Client Dashboard futuristik 30 fitur premium di #/dashboard
+Work Log:
+- Read worklog (15-a API + 15-c admin) — menemukan 9 file src/components/dashboard/ dari sesi terputus (belum terverifikasi/belum di-worklog). AUDIT penuh 2.926 baris lalu melengkapi & memverifikasi, bukan menulis ulang.
+- Arsitektur 9 file (masing-masing <680 baris): dash-types.ts (tipe payload API + tierRows/docStatus/tierForDoc), dash-utils.ts (formatter Intl Asia/Jakarta, useNow/useMounted useSyncExternalStore, useCountUp rAF), dash-primitives.tsx (DashCard glass+motion whileInView useReducedMotion, IconChip), command-palette.tsx (F01 cmdk di CommandDialog + DASH_SECTIONS meta), dashboard-charts.tsx (F06 ring SVG, F07 donut, F09 bar horizontal, F10 gauge, F16 area akumulasi), dashboard-widgets.tsx (F05 hero, F12 KPI count-up, F08 tier stacked, F11 timeline, F20 legalitas, F21 digitalisasi, F22 OKR, F24 tim), dashboard-panels.tsx (F15 invoice, F17 files, F18 chat, F19 meetings, F23 achievements), dashboard-collab.tsx (F13 notifikasi, F14 aktivitas, F25 quick actions, F26 doc search), client-dashboard.tsx (shell: sidebar collapsible F28, topbar sticky, bottom-nav mobile safe-area, F02/F03/F04, F27 print CSS, F30 skeleton/error/empty).
+- FIX 1 — i18n.tsx: 2 key dipakai komponen tapi belum terdefinisi (tampil sebagai raw key di hero): tambah "dash.started" + "dash.target" ID/EN di blok TASK 15-B; cross-check skrip → 121 key dash.* terpakai, 0 missing.
+- FIX 2 — dashboard-widgets.tsx: segmen "pending" bar tier bg-emerald-950 nyaris tak terlihat → bg-[#2a4a3f] (konsisten dengan warna SLATE donut) di bar + legend.
+- app-router.tsx: type AppRoute + parseHash "dashboard" + render <ClientDashboard /> (nested ThemeProvider next-themes attribute="data-theme", defaultTheme dark, html suppressHydrationWarning sudah ada).
+- navbar.tsx + footer.tsx: tautan "Portal Klien" #/dashboard (desktop nav + mobile sheet + footer links, label i18n dash.nav.portalKlien).
+- Hydration safety diaudit: jam/greeting/count-up/relTime/countdown hanya pasca-mount (null→"--.--.--"), semua Intl timeZone "Asia/Jakarta", tanpa Math.random, fetch /api/dashboard via useEffect + normalisasi defensif array opsional.
+- Verifikasi agent-browser E2E: ring 59% (aria "Progress 59%"), invoice 5 baris, achievements 8 (1 locked grayscale), jam WIB live, greeting "Selamat siang, Andi Wijaya", sidebar 6 nav (256→84px collapse), bottom-nav 6, 6 seksi anchor, KPI 4 kartu, 6 milestone, badge "30 Fitur Premium", 6 quick actions, 6 file, palette Ctrl+K terbuka 12 item + tutup Escape, notif dropdown 5 item + "Tandai dibaca" menghapus badge, doc search "PGA-100" → chip Review·P2 Perluasan, chat kirim → bubble ke-7 "Andi Wijaya · 13.47…", tema terang: dash-light + bg #f7f5ee + data-theme=light, aksi Hubungi Dukungan → #kontak di landing scroll y=17415, print markers 3 data-print-hidden + kop laporan; landing utuh (2 tautan Portal Klien, hero normal); agent-browser errors KOSONG; dev.log: GET / 200, GET /api/dashboard 200, tanpa stacktrace. Screenshot: .zscripts/shots/dashboard-dark.png, dashboard-light.png, dashboard-full.png.
+- bunx tsc --noEmit: 0 error src/; bun run lint exit 0. File .zscripts/ dipakai sementara (gitignored).
+Stage Summary:
+- #/dashboard hidup: Portal Klien premium 30 fitur (F01–F30) lengkap — command palette ⌘K, jam WIB + greeting, tema terang/gelap, ID/EN, hero proyek + status pulse, ring & donut & bar & gauge recharts/SVG, KPI count-up, timeline 6 milestone, invoice + area akumulasi, chat optimistik, notifikasi mark-all-read, meetings countdown, legalitas/digitalisasi/OKR, 8 achievements (gold glow vs grayscale), 6 quick actions, pencari dokumen PGA-XXX, file center, print/PDF, sidebar+bottom-nav responsif, aksesibilitas (skip-link, aria, 44px target), skeleton/error/retry.
+- Integrasi: rute hash dashboard terpasang, Portal Klien ada di navbar desktop+mobile & footer; 121 key i18n dash.* utuh ID/EN.
+- Angka terverifikasi dari API deterministik: 59% (97/165), 5 invoice, 8 pencapaian, kesehatan 87 — tanpa hydration mismatch, 0 console error.
+
+---
+Task ID: 15-d
+Agent: Z.ai Code (main)
+Task: Integrasi & verifikasi akhir Dashboard Era (15-a/15-b/15-c) + README + commit
+
+Work Log:
+- package.json: + db:seed:dashboard.
+- Verifikasi ulang: bunx tsc --noEmit → 0 error src; bun run lint → exit 0; dev.log sehat (GET /api/dashboard 200, /api/admin/stats 200).
+- agent-browser E2E mandiri: #/dashboard → 0 console error, ring "Progress 59%", 6 section, palette Ctrl K, badge "30 Fitur Premium", sidebar OK; landing → 2 link "Portal Klien" (navbar + footer) visible.
+- #/admin: sesi login persist; tab Penawaran render OK; klik Radix-safe ke tab Ringkasan → 3 svg recharts, "Rp 36" pendapatan, "Klien Aktif", "Aktivitas Terbaru" — semua tampil. (Catatan: klik tab pertama saat mid-hydration tidak tembus; dispatch pointerdown→click sequence berhasil.)
+- README: changelog baris 15 (Dashboard Era), peta rute + #/dashboard, struktur tree + src/components/dashboard + seed dashboard.
+- bun run zip:source → snapshot zip fresh dimuat ulang.
+
+Stage Summary:
+- Fitur Task 15 lengkap & terverifikasi ujung-ke-ujung: Client Dashboard 30 fitur (F01–F30) + Admin Analytics Mission Control + fondasi data (4 model, seed, API).
+- Commit "Task 15: Dashboard Era".

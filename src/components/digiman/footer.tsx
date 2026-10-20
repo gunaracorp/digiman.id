@@ -46,6 +46,8 @@ export default function Footer({ settings }: { settings: SiteSettings }) {
     { label: t("footer.paketHarga"), href: "#paket" },
     { label: t("footer.faq"), href: "#faq" },
     { label: t("footer.kontak"), href: "#kontak" },
+    // Task 15-B — Portal Klien (Client Dashboard)
+    { label: t("dash.nav.portalKlien"), href: "#/dashboard" },
   ];
 
   return (

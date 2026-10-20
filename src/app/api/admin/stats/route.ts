@@ -22,6 +22,16 @@ export async function GET() {
       faqs,
       docs,
       packages,
+      // ── Analytics (Task 15-c): klien, kontrak, pendapatan, dokumen, aktivitas ──
+      clientProjects,
+      clientProjectsActive,
+      contractAgg,
+      revenuePaidAgg,
+      revenueOutstandingAgg,
+      invoiceCount,
+      invoiceRows,
+      docsByTierGrouped,
+      recentActivities,
     ] = await Promise.all([
       db.contactMessage.count(),
       db.contactMessage.count({ where: { handled: false } }),
@@ -38,6 +48,25 @@ export async function GET() {
       db.faq.count(),
       db.pgaDocument.count(),
       db.gunaraPackage.count(),
+      db.clientProject.count(),
+      db.clientProject.count({ where: { status: { not: "DONE" } } }),
+      db.clientProject.aggregate({ _sum: { price: true } }),
+      db.invoice.aggregate({ _sum: { amount: true }, where: { status: "PAID" } }),
+      db.invoice.aggregate({
+        _sum: { amount: true },
+        where: { status: { not: "PAID" } },
+      }),
+      db.invoice.count(),
+      db.invoice.findMany({
+        orderBy: { order: "asc" },
+        select: { number: true, label: true, amount: true, status: true },
+      }),
+      db.pgaDocument.groupBy({ by: ["tier"], _count: { _all: true } }),
+      db.activityEvent.findMany({
+        take: 8,
+        orderBy: { createdAt: "desc" },
+        include: { project: { select: { code: true, company: true } } },
+      }),
     ]);
 
     const proposalByStatus: Record<string, number> = {};
@@ -45,7 +74,13 @@ export async function GET() {
       proposalByStatus[row.status] = row._count._all;
     }
 
+    const docsByTier: Record<string, number> = {};
+    for (const row of docsByTierGrouped) {
+      docsByTier[row.tier] = row._count._all;
+    }
+
     return NextResponse.json({
+      // ── Field lama (dipakai komponen lain — jangan diubah) ──
       contactTotal,
       contactUnhandled,
       proposalTotal,
@@ -58,6 +93,23 @@ export async function GET() {
       faqs,
       docs,
       packages,
+      // ── Field baru: analytics mission control ──
+      clientProjects,
+      clientProjectsActive,
+      contractValue: contractAgg._sum.price ?? 0,
+      revenuePaid: revenuePaidAgg._sum.amount ?? 0,
+      revenueOutstanding: revenueOutstandingAgg._sum.amount ?? 0,
+      invoiceCount,
+      invoices: invoiceRows,
+      docsByTier,
+      recentActivities: recentActivities.map((a) => ({
+        id: a.id,
+        type: a.type,
+        title: a.title,
+        description: a.description,
+        createdAt: a.createdAt,
+        project: { code: a.project.code, company: a.project.company },
+      })),
     });
   } catch (e) {
     console.error("[api/admin/stats GET]", e);

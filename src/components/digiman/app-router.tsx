@@ -5,6 +5,7 @@
  *
  * Rute:
  *   #/              → landing (semua seksi premium)
+ *   #/dashboard     → Portal Klien / Client Dashboard (30 fitur premium)
  *   #/os            → Gunara OS Explorer (165 dokumen)
  *   #/blog          → indeks artikel
  *   #/blog/{slug}   → pembaca artikel
@@ -54,9 +55,11 @@ import BlogIndex from "@/components/blog/blog-index";
 import BlogReader from "@/components/blog/blog-reader";
 import ProposalStudio from "@/components/proposal/proposal-studio";
 import AdminApp from "@/components/admin/admin-app";
+import ClientDashboard from "@/components/dashboard/client-dashboard";
 
 export type AppRoute =
   | { view: "landing" }
+  | { view: "dashboard" }
   | { view: "os" }
   | { view: "blog" }
   | { view: "blog-post"; slug: string }
@@ -74,6 +77,7 @@ export function parseHash(rawHash: string): AppRoute {
     .filter(Boolean)
     .map(decodeURIComponent);
   if (parts[0] === "os") return { view: "os" };
+  if (parts[0] === "dashboard") return { view: "dashboard" };
   if (parts[0] === "blog") {
     return parts[1] ? { view: "blog-post", slug: parts[1] } : { view: "blog" };
   }
@@ -124,6 +128,7 @@ export default function AppRouter(props: RouterProps) {
         <LandingView {...props} />
       ) : (
         <div className="min-h-screen bg-night text-foreground">
+          {route.view === "dashboard" && <ClientDashboard />}
           {route.view === "os" && <OsExplorer />}
           {route.view === "blog" && <BlogIndex />}
           {route.view === "blog-post" && (

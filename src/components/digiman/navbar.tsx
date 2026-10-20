@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Menu, MessageCircle } from "lucide-react";
+import { Menu, MessageCircle, LayoutDashboard } from "lucide-react";
 import {
   Sheet,
   SheetClose,
@@ -134,6 +134,14 @@ export default function Navbar({ waNumber }: NavbarProps) {
 
         {/* Aksi desktop */}
         <div className="hidden shrink-0 items-center gap-3 lg:flex">
+          {/* Task 15-B — Portal Klien (Client Dashboard) */}
+          <a
+            href="#/dashboard"
+            className="inline-flex items-center gap-2 rounded-full border border-gold/35 bg-gold/10 px-4 py-2 text-sm font-semibold text-gold transition-all duration-300 hover:bg-gold/20 hover:text-gold-light"
+          >
+            <LayoutDashboard className="h-4 w-4" aria-hidden="true" />
+            {t("dash.nav.portalKlien")}
+          </a>
           <LanguageToggle />
           <a
             href={ctaHref}
@@ -198,6 +206,17 @@ export default function Navbar({ waNumber }: NavbarProps) {
                     </li>
                   ))}
                 </ul>
+
+                {/* Task 15-B — Portal Klien (Client Dashboard) */}
+                <SheetClose asChild>
+                  <a
+                    href="#/dashboard"
+                    className="mt-3 flex items-center gap-3 rounded-xl border border-gold/30 bg-gold/10 px-4 py-3 text-base font-semibold text-gold transition-colors hover:bg-gold/20 hover:text-gold-light"
+                  >
+                    <LayoutDashboard className="h-5 w-5" aria-hidden="true" />
+                    {t("dash.nav.portalKlien")}
+                  </a>
+                </SheetClose>
 
                 <div className="mt-auto space-y-4 pt-6">
                   <div className="flex items-center justify-between rounded-xl border border-emerald-400/15 px-4 py-2">

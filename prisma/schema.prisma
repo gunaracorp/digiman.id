@@ -173,3 +173,71 @@ model AdminSession {
   createdAt DateTime @default(now())
   expiresAt DateTime
 }
+
+// ─── Client Dashboard — portal klien futuristik ───
+
+model ClientProject {
+  id           String          @id @default(cuid())
+  code         String          @unique // PRJ-2026-001
+  clientName   String
+  company      String
+  email        String
+  phone        String
+  packageCode  String // PGA-39/45/72/120/165
+  packageName  String
+  price        Int // total nilai kontrak (rupiah)
+  docTotal     Int             @default(165)
+  docCompleted Int             @default(0)
+  docInReview  Int             @default(0)
+  status       String          @default("ON_TRACK") // ON_TRACK | ATTENTION | AT_RISK | DONE
+  healthScore  Int             @default(80) // 0–100
+  startedAt    DateTime
+  targetDoneAt DateTime
+  extras       String          @default("{}") // JSON: legalitas, digitalisasi, goals, team, files, achievements, notifications, messages
+  invoices     Invoice[]
+  activities   ActivityEvent[]
+  meetings     Meeting[]
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+}
+
+model Invoice {
+  id        String        @id @default(cuid())
+  projectId String
+  project   ClientProject @relation(fields: [projectId], references: [id])
+  number    String        @unique // INV-PRJ-2026-001-01
+  label     String
+  amount    Int
+  dueDate   DateTime
+  paidAt    DateTime?
+  status    String        @default("PENDING") // PAID | PENDING | SCHEDULED
+  order     Int           @default(0)
+
+  @@index([projectId])
+}
+
+model ActivityEvent {
+  id          String        @id @default(cuid())
+  projectId   String
+  project     ClientProject @relation(fields: [projectId], references: [id])
+  type        String // DOC_APPROVED | DOC_REVIEW | PAYMENT | MEETING | MILESTONE | SYSTEM
+  title       String
+  description String
+  createdAt   DateTime
+
+  @@index([projectId])
+}
+
+model Meeting {
+  id          String        @id @default(cuid())
+  projectId   String
+  project     ClientProject @relation(fields: [projectId], references: [id])
+  title       String
+  agenda      String
+  host        String
+  scheduledAt DateTime
+  durationMin Int           @default(60)
+  status      String        @default("UPCOMING") // UPCOMING | DONE
+
+  @@index([projectId])
+}
