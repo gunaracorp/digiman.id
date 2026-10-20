@@ -452,3 +452,21 @@ Work Log:
 Stage Summary:
 - Fitur Task 15 lengkap & terverifikasi ujung-ke-ujung: Client Dashboard 30 fitur (F01–F30) + Admin Analytics Mission Control + fondasi data (4 model, seed, API).
 - Commit "Task 15: Dashboard Era".
+
+---
+Task ID: 16
+Agent: Z.ai Code (main)
+Task: Audit "apakah semua sudah kebawa?" → deteksi sandbox reset jam 13:47, pulihkan data, bangun sistem backup/restore permanen
+
+Work Log:
+- Audit permintaan user: git status bersih (semua commit), zip berisi semua file Task 15 ✓, TAPI query DB semua tabel 0 baris!
+- Forensik: dev server restart 13:47:18 (sandbox reboot kedua; sebelumnya 05:22). db/custom.db menyusut 332K→212K, mtime 13:47. /api/dashboard: "Belum ada proyek klien". KODE SUMBER 100% SELAMAT (git 7fe1558, semua file Task 15 ada) — yang hilang hanya DATA.
+- PEMULIHAN CEPAT: bun run db:seed (165 dok, 5 paket, 6 blog, settings) + bun run db:seed:dashboard (PRJ-2026-001) → /api/dashboard 97/165=59% health 87 ✓.
+- TAMENG PERMANEN: scripts/db-backup.ts (ekspor 16 tabel → db/backup.json, urutan FK-aman, revive DateTime) + scripts/db-restore.ts (deleteMany reverse + createMany forward) + package.json db:backup/db:restore.
+- Uji round-trip: backup 217 baris → restore (hapus semuanya + bangun ulang) → API 97/165 ✓.
+- make-source-zip.sh: sekarang auto `bun run db:backup` dulu + db/backup.json masuk whitelist zip → snapshot dalam zip selalu segar.
+- README: seksi "🛟 Pemulihan & Backup Database".
+
+Stage Summary:
+- Jawaban atas ketakutan user: KODE = git+zip 100% lengkap; DATA = kini terlindungi db/backup.json (di-commit + di-zip, teks ramah-GitHub). Reset sandbox tidak lagi mematikan: bun run db:restore → pulih total.
+- Hilang permanen akibat reset: 4 proposal demo & 1 pesan kontak (data uji) — tidak ter-seed; ke depan tercakup oleh backup.json.

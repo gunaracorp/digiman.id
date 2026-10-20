@@ -18,6 +18,9 @@ trap 'rm -rf "$STAGE"' EXIT
 DEST="$STAGE/digiman.id"
 mkdir -p "$DEST"
 
+# Selalu segarkan backup database sebelum zip — snapshot dalam zip ikut termutakhir.
+bun run db:backup >/dev/null 2>&1 || echo "⚠ db:backup gagal (dilewati)"
+
 rsync -a \
   --exclude 'node_modules/' \
   --exclude '.next/' \
@@ -38,7 +41,7 @@ rsync -a \
   --exclude 'skills/' \
   --exclude '.claude/' \
   --exclude '.z-ai-config' \
-  src prisma scripts public docs \
+  src prisma scripts public docs db/backup.json \
   package.json package-lock.json tsconfig.json next.config.ts \
   tailwind.config.ts postcss.config.mjs eslint.config.mjs \
   components.json bun.lock .gitignore README.md worklog.md \

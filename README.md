@@ -169,6 +169,17 @@ bun run lint      # ESLint — harus exit 0
 > `bun run zip:source` — otomatis mengemas seluruh kode sumber tanpa
 > `node_modules`, `.next`, `.env`, dan database binary.
 
+### 🛟 Pemulihan & Backup Database (penting!)
+
+Seluruh isi database diekspor ke `db/backup.json` (teks, ikut di-commit & dimasukkan ke zip):
+
+```bash
+bun run db:backup   # ekspor semua tabel → db/backup.json
+bun run db:restore  # pulihkan persis seperti saat backup (hapus + isi ulang)
+```
+
+`bun run zip:source` **otomatis** menjalankan `db:backup` dulu — snapshot dalam zip selalu termutakhir. Bila environment baru ter-reset: `bun install && bun run db:push && bun run db:restore` → situs kembali 100% seperti semula.
+
 ### 📍 Peta Rute (hash-router dalam satu `/`)
 
 | Rute | Isi |
