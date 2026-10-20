@@ -1,57 +1,69 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { requireAdmin } from "@/lib/admin-guard";
+import { requireAdmin } from "@/lib/admin-auth";
 
-export async function GET(req: NextRequest) {
-  const session = await requireAdmin(req);
-  if (!session) return NextResponse.json({ error: "Tidak terautentikasi." }, { status: 401 });
+export const dynamic = "force-dynamic";
 
-  const [team, services, testimonials, faqs, offices, mediaCount, unreadMessages, sectionCount, userCount] =
-    await Promise.all([
-      db.teamMember.count(),
+export async function GET() {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
+  try {
+    const [
+      contactTotal,
+      contactUnhandled,
+      proposalTotal,
+      proposalGrouped,
+      blogTotal,
+      chatSessions,
+      chatMessages,
+      services,
+      testimonials,
+      faqs,
+      docs,
+      packages,
+    ] = await Promise.all([
+      db.contactMessage.count(),
+      db.contactMessage.count({ where: { handled: false } }),
+      db.proposal.count(),
+      db.proposal.groupBy({ by: ["status"], _count: { _all: true } }),
+      db.blogPost.count(),
+      db.chatLog.findMany({
+        select: { sessionId: true },
+        distinct: ["sessionId"],
+      }),
+      db.chatLog.count(),
       db.service.count(),
       db.testimonial.count(),
       db.faq.count(),
-      db.office.count(),
-      db.mediaAsset.count(),
-      db.contactMessage.count({ where: { status: "NEW" } }),
-      db.sectionConfig.count(),
-      db.adminUser.count(),
+      db.pgaDocument.count(),
+      db.gunaraPackage.count(),
     ]);
 
-  const settings = await db.siteSetting.findUnique({ where: { id: 1 } });
+    const proposalByStatus: Record<string, number> = {};
+    for (const row of proposalGrouped) {
+      proposalByStatus[row.status] = row._count._all;
+    }
 
-  // Skor kelengkapan situs (site health) — checklist ala WordPress Site Health
-  const checks = [
-    { label: "Logo kustom terpasang", ok: Boolean(settings?.logoUrl) },
-    { label: "Kontak lengkap (WA & email)", ok: Boolean(settings?.waNumber && settings?.email) },
-    { label: "Struktur direksi terisi", ok: team >= 2 },
-    { label: "Head office & cabang terisi", ok: offices >= 2 },
-    { label: "Layanan minimal 10 kartu", ok: services >= 10 },
-    { label: "Testimoni minimal 5 klien", ok: testimonials >= 5 },
-    { label: "FAQ minimal 6 pertanyaan", ok: faqs >= 6 },
-    { label: "Hero beranda tersedia", ok: Boolean(settings?.heroHeadline) },
-    { label: "SEO metadata terisi", ok: Boolean(settings?.metaTitle && settings?.metaDescription) },
-    { label: "Tidak ada pesan belum dibaca", ok: unreadMessages === 0 },
-  ];
-  const done = checks.filter((c) => c.ok).length;
-
-  return NextResponse.json({
-    stats: { team, services, testimonials, faqs },
-    mediaCount,
-    unreadMessages,
-    sectionCount,
-    userCount,
-    health: {
-      score: Math.round((done / checks.length) * 100),
-      done,
-      total: checks.length,
-      checks,
-    },
-    settings: settings
-      ? { waDisplay: settings.waDisplay, email: settings.email, hasLogo: Boolean(settings.logoUrl), updatedAt: settings.updatedAt }
-      : null,
-  });
+    return NextResponse.json({
+      contactTotal,
+      contactUnhandled,
+      proposalTotal,
+      proposalByStatus,
+      blogTotal,
+      chatSessions: chatSessions.length,
+      chatMessages,
+      services,
+      testimonials,
+      faqs,
+      docs,
+      packages,
+    });
+  } catch (e) {
+    console.error("[api/admin/stats GET]", e);
+    return NextResponse.json(
+      { error: "Gagal menghitung statistik." },
+      { status: 500 },
+    );
+  }
 }
-
-// force rebuild: prisma client freshness

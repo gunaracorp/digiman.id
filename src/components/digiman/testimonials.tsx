@@ -1,92 +1,150 @@
 "use client";
 
-import { m } from "framer-motion";
-import { Star, Quote } from "lucide-react";
-import { useI18n } from "@/components/i18n/locale-provider";
-import { testiC } from "@/lib/i18n";
+import { motion } from "framer-motion";
+import { Star } from "lucide-react";
+import type { TestimonialItem } from "@/lib/digiman-data";
+import { useI18n } from "@/lib/i18n";
+import { cn } from "@/lib/utils";
 
-export interface TestimonialItem {
-  slug: string | null;
-  name: string;
-  role: string;
-  text: string;
+function initials(name: string): string {
+  return name
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase() ?? "")
+    .join("");
 }
 
-interface T extends TestimonialItem {
-  initials: string;
-  localized: string;
-}
-
-function Card({ t }: { t: T }) {
+function TestimonialCard({
+  t,
+  hidden = false,
+}: {
+  t: TestimonialItem;
+  hidden?: boolean;
+}) {
+  // Alias "tr" karena param "t" adalah item testimoni (data, tidak diterjemahkan).
+  const { t: tr } = useI18n();
   return (
-    <div className="glass card-glow w-[340px] shrink-0 rounded-3xl p-6 sm:w-[400px]">
-      <div className="mb-4 flex items-center gap-1" aria-label="Rating 5 dari 5">
-        {Array.from({ length: 5 }).map((_, i) => (
-          <Star key={i} className="h-4 w-4 fill-gold text-gold" />
+    <figure
+      aria-hidden={hidden || undefined}
+      className="card-glow mr-6 w-[340px] shrink-0 rounded-2xl glass p-6 whitespace-normal"
+    >
+      <div
+        className="mb-4 flex items-center gap-1"
+        aria-label={tr("testimonials.ratingAria", { rating: t.rating })}
+      >
+        {[1, 2, 3, 4, 5].map((i) => (
+          <Star
+            key={i}
+            aria-hidden="true"
+            className={cn(
+              "h-4 w-4",
+              i <= Math.round(t.rating)
+                ? "fill-gold text-gold"
+                : "text-emerald-50/25"
+            )}
+          />
         ))}
       </div>
-      <Quote className="mb-3 h-5 w-5 text-emerald-400/50" />
-      <p className="text-sm leading-relaxed text-emerald-50/75">&ldquo;{t.localized}&rdquo;</p>
-      <div className="mt-5 flex items-center gap-3 border-t border-emerald-400/10 pt-4">
-        <div className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-teal-600 font-display text-sm font-bold text-emerald-950">
-          {t.initials}
-        </div>
-        <div>
-          <div className="text-sm font-bold text-white">{t.name}</div>
-          <div className="text-xs text-emerald-50/50">{t.role}</div>
-        </div>
-      </div>
-    </div>
+
+      <blockquote className="line-clamp-4 text-sm leading-relaxed text-emerald-50/75">
+        &ldquo;{t.text}&rdquo;
+      </blockquote>
+
+      <figcaption className="mt-5 flex items-center gap-3">
+        <span
+          aria-hidden="true"
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400/40 to-teal-600/20 font-display text-sm font-bold text-emerald-100 ring-1 ring-emerald-400/40"
+        >
+          {initials(t.name)}
+        </span>
+        <span className="min-w-0">
+          <span className="block truncate text-sm font-bold text-white">
+            {t.name}
+          </span>
+          <span className="block truncate text-xs text-emerald-50/50">
+            {t.role}
+          </span>
+        </span>
+      </figcaption>
+    </figure>
   );
 }
 
-export default function Testimonials({ items }: { items?: TestimonialItem[] }) {
-  const { dict, locale } = useI18n();
-  const source = items ?? [];
-  const half = Math.ceil(source.length / 2);
-  const withInitials: T[] = source.map((t) => ({
-    ...t,
-    localized: testiC(t, dict, locale).text,
-    initials: t.name
-      .replace(/^dr\.\s*/i, "")
-      .split(" ")
-      .filter(Boolean)
-      .slice(0, 2)
-      .map((w) => w[0]?.toUpperCase())
-      .join(""),
-  }));
-  const rowA = withInitials.slice(0, half);
-  const rowB = withInitials.slice(half);
-  const finalRowB = rowB.length > 0 ? rowB : rowA;
+export default function Testimonials({
+  testimonials,
+}: {
+  testimonials: TestimonialItem[];
+}) {
+  const { t } = useI18n();
+  const row2 = [...testimonials].reverse();
 
   return (
-    <section id="testimoni" className="relative overflow-hidden py-24 sm:py-32">
-      <div className="section-padding mx-auto mb-14 max-w-3xl text-center">
-        <m.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
-          <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/5 px-5 py-2 text-xs font-bold uppercase tracking-[0.3em] text-emerald-300">
-            {dict.testi.kicker}
-          </span>
-          <h2 className="text-3xl font-extrabold leading-tight text-white sm:text-5xl">
-            {dict.testi.heading.split(" ").slice(0, -2).join(" ")} {" "}
-            <span className="gradient-text-gold">{dict.testi.heading.split(" ").slice(-2).join(" ")}</span>
-          </h2>
-          <p className="mt-5 leading-relaxed text-emerald-50/60 sm:text-lg">
-            {dict.testi.sub}
-          </p>
-        </m.div>
-      </div>
+    <section id="testimoni" className="section-padding relative overflow-hidden py-24">
+      {/* ambient glow */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 top-0 h-72 w-[42rem] max-w-full -translate-x-1/2 rounded-full bg-emerald-400/10 blur-[120px]"
+      />
 
-      <div className="marquee-paused space-y-6 [mask-image:linear-gradient(90deg,transparent,black_8%,black_92%,transparent)]">
-        <div className="flex w-max animate-marquee-fast gap-6 pr-6">
-          {[...rowA, ...rowA].map((t, i) => (
-            <Card key={`a-${i}`} t={t} />
-          ))}
-        </div>
-        <div className="flex w-max animate-marquee-reverse gap-6 pr-6">
-          {[...finalRowB, ...finalRowB].map((t, i) => (
-            <Card key={`b-${i}`} t={t} />
-          ))}
-        </div>
+      <div className="relative mx-auto max-w-7xl">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="mx-auto max-w-2xl text-center"
+        >
+          <span className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-gold">
+            <Star className="h-3.5 w-3.5 fill-gold" aria-hidden="true" />
+            {t("testimonials.kicker")}
+          </span>
+          <h2 className="font-display mt-5 text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
+            {t("testimonials.judulA")}{" "}
+            <span className="gradient-text-gold">{t("testimonials.judulB")}</span>
+          </h2>
+          <p className="mt-4 text-sm leading-relaxed text-emerald-50/60 sm:text-base">
+            {t("testimonials.sub")}
+          </p>
+        </motion.div>
+
+        {testimonials.length === 0 ? (
+          <p className="mt-12 text-center text-sm text-emerald-50/50">
+            {t("testimonials.kosong")}
+          </p>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.8 }}
+            className="marquee-paused mt-14 space-y-6"
+          >
+            {/* Row 1 — maju */}
+            <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
+              <div className="animate-marquee flex w-max whitespace-nowrap py-2">
+                {testimonials.map((t, i) => (
+                  <TestimonialCard key={`r1-a-${i}`} t={t} />
+                ))}
+                {testimonials.map((t, i) => (
+                  <TestimonialCard key={`r1-b-${i}`} t={t} hidden />
+                ))}
+              </div>
+            </div>
+
+            {/* Row 2 — mundur */}
+            <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
+              <div className="animate-marquee-reverse flex w-max whitespace-nowrap py-2">
+                {row2.map((t, i) => (
+                  <TestimonialCard key={`r2-a-${i}`} t={t} />
+                ))}
+                {row2.map((t, i) => (
+                  <TestimonialCard key={`r2-b-${i}`} t={t} hidden />
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
       </div>
     </section>
   );

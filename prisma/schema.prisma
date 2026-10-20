@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,207 +7,169 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  name      String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
+// ─── Konten publik (di-seed, bisa diubah admin) ───
 
-// Artikel blog — Panel Admin > Blog. Artikel bertanggal masa depan =
-// TERJADWAL: otomatis tayang di hari & jam yang ditentukan (ritme mingguan).
-model Post {
-  id          String   @id @default(cuid())
-  slug        String   @unique
-  title       String
-  excerpt     String   @default("")
-  content     String   @default("") // JSON sections (format sama dengan artikel statis) atau teks polos
-  tags        String   @default("") // kata kunci SEO, dipisah koma
-  readMinutes Int      @default(6)
-  author      String   @default("Dewan Pakar DIGIMAN.ID")
-  published   Boolean  @default(false) // saklar editorial (draf vs lolos tayang)
-  date        DateTime @default(now()) // tanggal terbit — masa depan = terjadwal
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
-
-// Struktur organisasi PT Digital Bisnis Manajemen
-model TeamMember {
-  id        String   @id @default(cuid())
-  name      String
-  role      String
-  division  String?
-  photo     String? // data URL (base64) foto hasil upload
-  order     Int      @default(0)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-// Pengaturan situs (baris tunggal, id = 1)
-model SiteSetting {
-  id           Int      @id @default(1)
-  companyName  String   @default("PT Digital Bisnis Manajemen")
-  waNumber     String   @default("6281333397223") // format internasional tanpa +, untuk link wa.me
-  waDisplay    String   @default("+62 813-3339-7223")
-  email        String   @default("halo@digiman.id")
-  addressShort String   @default("Jl. Muararajeun Lama No.26, Bandung")
-  addressFull  String   @default("Jl. Muararajeun Lama No.26, Kel. Cihaur Geulis, Kec. Cibeunying Kaler, Kota Bandung, Jawa Barat 40122")
-  logoUrl      String? // data URL logo hasil upload (kosong = pakai /logo-emblem.png bawaan)
-  statClients  Int      @default(2500)
-  statExperts  Int      @default(46)
-  statLayers   Int      @default(7)
-  statSuccess  Int      @default(98)
-
-  // --- Hero Editor (section paling atas / beranda) ---
-  heroHeadline String   @default("Naikkan Bisnis Anda ke 7 Lapis Langit Legalitas.")
-  heroSub      String   @default("Satu pintu untuk seluruh legalitas perusahaan di Indonesia — dari akta pendirian, perizinan OSS, kekayaan intelektual, hingga transformasi digital. Didampingi 46 dewan pakar lintas bidang, proses transparan, garansi di tangan.")
-  heroWords    String   @default("[\"Pendirian PT\",\"Pendirian CV\",\"PT PMA\",\"NIB & OSS\",\"Pendaftaran Merek\",\"Sertifikasi Halal\",\"Digitalisasi Bisnis\"]") // JSON array
-
-  // --- SEO ---
-  metaTitle       String @default("DIGIMAN.ID — Naikkan Bisnis Anda ke 7 Lapis Langit Legalitas & Digitalisasi")
-  metaDescription String @default("PT Digital Bisnis Manajemen (DIGIMAN.ID) — Jasa pembuatan akta pendirian perusahaan (PT, CV, PT PMA) dan seluruh legalitas usaha di Indonesia: NIB, OSS, NPWP, Merek, Halal, hingga konsultan digitalisasi bisnis.")
-
-  // --- SEO lanjutan ---
-  metaKeywords           String  @default("")
-  ogImage                String? // data URL gambar share (og:image)
-  googleSiteVerification String  @default("")
-  headScripts            String  @default("") // kode analytics/pixel custom (GA, GTM, Meta Pixel)
-  contactFormEnabled     Boolean @default(true) // tampilkan formulir konsultasi di beranda
-
-  // --- Legalitas perusahaan (dari dokumen asli: SK Kemenkumham, NIB OSS, NPWP) ---
-  skNumber    String @default("AHU-059566.AH.01.30.Tahun 2022") // Sertifikat Pendaftaran Pendirian Perseroan Perorangan
-  nibNumber   String @default("2612220035584") // Nomor Induk Berusaha (Perizinan Berusaha Berbasis Risiko)
-  npwpNumber  String @default("62.239.729.7-423.000") // NPWP perusahaan (KPP Pratama Bandung Cibeunying)
-  established String @default("26 Desember 2022") // tanggal terbit SK / berbadan hukum
-
-  // --- Info tambahan & sosial media ---
-  hours     String @default("Senin–Jumat 09.00–17.00 WIB")
-  instagram String @default("")
-  linkedin  String @default("")
-  tiktok    String @default("")
-  facebook  String @default("")
-  youtube   String @default("")
-  updatedAt DateTime @updatedAt
-}
-
-// Pusat Media — aset gambar hasil upload (ala WordPress Media Library)
-model MediaAsset {
-  id        String   @id @default(cuid())
-  name      String // nama file asli
-  mime      String // image/png | image/jpeg | image/webp
-  size      Int      @default(0) // bytes setelah kompresi klien
-  width     Int      @default(0)
-  height    Int      @default(0)
-  dataUrl   String // data URL base64 (portabel, aman utk shared hosting)
-  createdAt DateTime @default(now())
-}
-
-// Kotak masuk leads dari formulir konsultasi di beranda
-model ContactMessage {
-  id        String   @id @default(cuid())
-  name      String
-  phone     String
-  email     String   @default("")
-  service   String   @default("") // layanan yang diminati
-  message   String
-  status    String   @default("NEW") // NEW | READ | ARCHIVED
-  starred   Boolean  @default(false)
-  createdAt DateTime @default(now())
-}
-
-// Konfigurasi tampilan beranda: urutan & visibilitas tiap section
-model SectionConfig {
-  id        String   @id @default(cuid())
-  key       String   @unique // hero | stats | services | ...
-  label     String
-  enabled   Boolean  @default(true)
-  order     Int      @default(0)
-  updatedAt DateTime @updatedAt
-}
-
-// Statistik kunjungan halaman publik (ringan, tanpa cookie pihak ketiga)
-model PageView {
-  id        String   @id @default(cuid())
-  path      String   @default("/")
-  referrer  String   @default("")
-  device    String   @default("desktop") // mobile | desktop
-  createdAt DateTime @default(now())
-
-  @@index([createdAt])
-}
-
-// Jejak aktivitas admin (audit trail ala WordPress)
-model ActivityLog {
-  id        String   @id @default(cuid())
-  action    String // LOGIN | LOGOUT | CREATE | UPDATE | DELETE | SETTINGS
-  detail    String // deskripsi manusiawi, mis. "Menambah anggota struktur 'Rina Kartika'"
-  username  String
-  createdAt DateTime @default(now())
-}
-
-// Kantor perusahaan (head office & cabang) — ditampilkan di footer & CTA
-model Office {
-  id        String   @id @default(cuid())
-  type      String   @default("BRANCH") // "HEAD" | "BRANCH"
-  label     String // mis. "Head Office — Tasikmalaya", "Cabang I — Bandung"
-  address   String
-  order     Int      @default(0)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-// Kartu layanan di section #layanan
 model Service {
   id        String   @id @default(cuid())
-  slug      String?  @unique // kunci terjemahan multi-bahasa (opsional; diisi seed)
+  slug      String?  @unique
   title     String
   desc      String
-  price     String   @default("Konsultasi custom")
-  features  String // JSON array of string (SQLite tidak mendukung list)
-  icon      String   @default("Building2") // nama ikon lucide-react
-  category  String   @default("pendirian") // pendirian|perizinan|kekayaan-intelektual|sertifikasi|pajak|ketenagakerjaan|korporasi|digital
+  price     String
+  features  String // JSON array of strings
+  icon      String
+  category  String
   featured  Boolean  @default(false)
-  order     Int      @default(0)
   visible   Boolean  @default(true)
+  order     Int      @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
-// Testimoni klien (marquee 2 baris)
 model Testimonial {
   id        String   @id @default(cuid())
-  slug      String?  @unique // kunci terjemahan (opsional; diisi seed)
+  slug      String?  @unique
   name      String
   role      String
   text      String
   rating    Int      @default(5)
-  order     Int      @default(0)
   visible   Boolean  @default(true)
+  order     Int      @default(0)
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }
 
-// Pertanyaan yang sering diajukan
 model Faq {
   id        String   @id @default(cuid())
-  slug      String?  @unique // kunci terjemahan (opsional; diisi seed)
+  slug      String?  @unique
   question  String
   answer    String
-  order     Int      @default(0)
   visible   Boolean  @default(true)
+  order     Int      @default(0)
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }
 
-// Akun admin panel (/admin)
-model AdminUser {
+model Office {
+  id        String   @id @default(cuid())
+  type      String // "HEAD" | "BRANCH"
+  label     String
+  address   String
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+// ─── Interaksi pengunjung ───
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String
+  service   String?
+  message   String
+  handled   Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model ChatLog {
+  id        String   @id @default(cuid())
+  sessionId String
+  role      String // "user" | "assistant"
+  content   String
+  createdAt DateTime @default(now())
+}
+
+// ─── GUNARA OS — arsitektur dokumen PGA-165 ───
+
+model PgaDomain {
+  id          String        @id @default(cuid())
+  number      Int           @unique
+  name        String
+  tagline     String
+  description String
+  docs        PgaDocument[]
+}
+
+model PgaDocument {
   id           String    @id @default(cuid())
-  username     String    @unique
-  passwordHash String // scrypt: salt:hash (hex)
-  name         String    @default("Administrator")
-  role         String    @default("SUPERADMIN") // SUPERADMIN | EDITOR | VIEWER
-  lastLoginAt  DateTime?
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
+  code         String    @unique // PGA-01 .. PGA-165
+  number       Int
+  title        String
+  tier         String // P0 Navigasi | P1 Pertumbuhan | P2 Perluasan | P3 Warisan
+  owner        String
+  points       String // JSON array of strings
+  domainNumber Int
+  domain       PgaDomain @relation(fields: [domainNumber], references: [number])
+
+  @@index([domainNumber])
+  @@index([tier])
+}
+
+model GunaraPackage {
+  id            String   @id @default(cuid())
+  code          String   @unique // PGA-39, PGA-45, PGA-72, PGA-120, PGA-165
+  name          String
+  tagline       String
+  description   String
+  docCount      Int
+  price         Int // rupiah (formula: docCount x 1.000.000)
+  durationWeeks String // "6–8"
+  features      String // JSON array of strings
+  documentCodes String // JSON array of PGA-XX codes
+  highlight     Boolean  @default(false)
+  active        Boolean  @default(true)
+  order         Int      @default(0)
+}
+
+// ─── Blog ───
+
+model BlogPost {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  title       String
+  excerpt     String
+  content     String // markdown
+  category    String
+  tags        String // JSON array
+  readMinutes Int       @default(5)
+  views       Int       @default(0)
+  published   Boolean   @default(true)
+  publishedAt DateTime? 
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+// ─── Penawaran (Proposal Studio) ───
+
+model Proposal {
+  id            String   @id @default(cuid())
+  code          String   @unique // PNW-20251204-XYZ
+  clientName    String
+  clientCompany String
+  clientEmail   String
+  clientWa      String
+  packageCode   String // PGA-39/45/72/120/165 atau "CUSTOM"
+  documentCodes String // JSON array
+  addons        String // JSON array of {title, price}
+  items         String // JSON line items
+  subtotal      Int
+  discount      Int
+  total         Int
+  durationWeeks String
+  notes         String
+  status        String   @default("DRAFT") // DRAFT | SENT | NEGOTIATION | WON | LOST
+  validUntil    DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+// ─── Pengaturan situs & admin ───
+
+model SiteSetting {
+  key   String @id
+  value String
+}
+
+model AdminSession {
+  token     String   @id
+  createdAt DateTime @default(now())
+  expiresAt DateTime
 }

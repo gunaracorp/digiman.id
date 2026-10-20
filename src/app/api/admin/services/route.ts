@@ -1,73 +1,197 @@
 import { NextRequest, NextResponse } from "next/server";
+import type { Prisma } from "@prisma/client";
 import { db } from "@/lib/db";
-import { cleanStr, logActivity, requireAdmin, requireWrite, toInt } from "@/lib/admin-guard";
+import { requireAdmin } from "@/lib/admin-auth";
 
-/** Ikon lucide yang diizinkan untuk kartu layanan */
-export const ALLOWED_ICONS = [
-  "Building2", "Users", "Globe2", "Stamp", "Lightbulb", "Rocket",
-  "FileCheck2", "ScrollText", "BadgeCheck", "Landmark", "Briefcase",
-  "ShieldCheck", "Scale", "HeartHandshake", "Cpu", "BarChart3",
-  "FileBadge", "Store", "Handshake", "Network", "MapPin", "FileSignature",
-  "Copyright", "Award", "Medal", "Receipt", "Calculator", "HeartPulse",
-  "Plane", "FileText", "Archive", "MonitorSmartphone", "Sparkles",
-];
+export const dynamic = "force-dynamic";
 
-export const ALLOWED_CATEGORIES = [
-  "pendirian", "perizinan", "ki", "sertifikasi",
-  "pajak", "ketenagakerjaan", "korporasi", "digital",
-];
+type Body = Record<string, unknown>;
 
-export async function GET(req: NextRequest) {
-  const session = await requireAdmin(req);
-  if (!session) return NextResponse.json({ error: "Tidak terautentikasi." }, { status: 401 });
-
-  const services = await db.service.findMany({ orderBy: [{ order: "asc" }, { createdAt: "asc" }] });
-  return NextResponse.json({ services });
+function slugify(v: string): string {
+  return v
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 60);
 }
 
-export async function POST(req: NextRequest) {
-  const session = await requireWrite(req, "services");
-  if (session instanceof NextResponse) return session;
+async function uniqueSlug(base: string, excludeId?: string): Promise<string> {
+  const root = slugify(base) || "layanan";
+  let candidate = root;
+  let i = 2;
+  for (;;) {
+    const clash = await db.service.findFirst({
+      where: { slug: candidate, ...(excludeId ? { NOT: { id: excludeId } } : {}) },
+      select: { id: true },
+    });
+    if (!clash) return candidate;
+    candidate = `${root}-${i++}`;
+  }
+}
+
+function parseArr(s: string): string[] {
+  try {
+    const v = JSON.parse(s);
+    return Array.isArray(v) ? v.map(String) : [];
+  } catch {
+    return [];
+  }
+}
+
+function serialize(row: Awaited<ReturnType<typeof db.service.findFirst>>) {
+  if (!row) return null;
+  return { ...row, features: parseArr(row.features) };
+}
+
+/** GET — semua layanan urut `order` asc. features di-parse jadi array. */
+export async function GET() {
+  const denied = await requireAdmin();
+  if (denied) return denied;
 
   try {
-    const body = await req.json();
-    const title = cleanStr(body.title, 80);
-    const desc = cleanStr(body.desc, 400);
-    const price = cleanStr(body.price, 60) || "Konsultasi custom";
-    const icon = ALLOWED_ICONS.includes(body.icon) ? body.icon : "Building2";
-    const category = ALLOWED_CATEGORIES.includes(body.category) ? body.category : "pendirian";
-    const featured = Boolean(body.featured);
-    const slug =
-      typeof body.slug === "string" && /^[a-z0-9-]{2,60}$/.test(body.slug.trim())
-        ? body.slug.trim()
-        : null;
-
-    const features: string[] = Array.isArray(body.features)
-      ? body.features.map((f: unknown) => String(f).trim().slice(0, 120)).filter(Boolean).slice(0, 8)
-      : [];
-    if (!title || !desc || features.length === 0) {
-      return NextResponse.json({ error: "Judul, deskripsi, dan minimal 1 fitur wajib diisi." }, { status: 400 });
-    }
-
-    const payload = {
-      title, desc, price, icon, category, featured, slug,
-      features: JSON.stringify(features),
-      order: toInt(body.order, 0),
-      visible: body.visible === undefined ? true : Boolean(body.visible),
-    };
-
-    if (body.id) {
-      const updated = await db.service.update({ where: { id: String(body.id) }, data: payload });
-      await logActivity(session.username, "UPDATE", `Mengubah layanan “${title}”`);
-      return NextResponse.json({ service: updated });
-    }
-
-    const last = await db.service.findFirst({ orderBy: { order: "desc" } });
-    const created = await db.service.create({ data: { ...payload, order: (last?.order ?? -1) + 1 } });
-    await logActivity(session.username, "CREATE", `Menambah layanan “${title}”`);
-    return NextResponse.json({ service: created }, { status: 201 });
+    const rows = await db.service.findMany({
+      orderBy: [{ order: "asc" }, { createdAt: "desc" }],
+    });
+    return NextResponse.json(rows.map((r) => serialize(r)));
   } catch (e) {
-    console.error("POST /api/admin/services error:", e);
-    return NextResponse.json({ error: "Gagal menyimpan layanan." }, { status: 500 });
+    console.error("[api/admin/services GET]", e);
+    return NextResponse.json({ error: "Gagal memuat layanan." }, { status: 500 });
+  }
+}
+
+/** POST — create. slug otomatis dari title bila kosong (+suffix unik). */
+export async function POST(req: NextRequest) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
+  try {
+    const body = (await req.json().catch(() => ({}))) as Body;
+
+    const title = String(body.title ?? "").trim();
+    if (!title)
+      return NextResponse.json(
+        { error: "Judul layanan wajib diisi." },
+        { status: 400 },
+      );
+
+    const features = Array.isArray(body.features)
+      ? body.features.map(String)
+      : [];
+    const slug = await uniqueSlug(
+      typeof body.slug === "string" && body.slug.trim() ? body.slug : title,
+    );
+
+    const created = await db.service.create({
+      data: {
+        slug,
+        title,
+        desc: String(body.desc ?? "").trim(),
+        price: String(body.price ?? "").trim(),
+        features: JSON.stringify(features),
+        icon: String(body.icon ?? "").trim() || "Sparkles",
+        category: String(body.category ?? "").trim() || "Umum",
+        featured: Boolean(body.featured),
+        visible: body.visible === undefined ? true : Boolean(body.visible),
+        order: Number(body.order) || 0,
+      },
+    });
+
+    return NextResponse.json(
+      { ok: true, service: serialize(created) },
+      { status: 201 },
+    );
+  } catch (e) {
+    console.error("[api/admin/services POST]", e);
+    return NextResponse.json(
+      { error: "Gagal menambah layanan." },
+      { status: 500 },
+    );
+  }
+}
+
+/** PUT ?id= — update parsial sesuai field yang dikirim. */
+export async function PUT(req: NextRequest) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
+  try {
+    const id = new URL(req.url).searchParams.get("id");
+    if (!id)
+      return NextResponse.json(
+        { error: "Parameter id wajib." },
+        { status: 400 },
+      );
+
+    const body = (await req.json().catch(() => ({}))) as Body;
+    const data: Prisma.ServiceUpdateInput = {};
+
+    if (typeof body.title === "string" && body.title.trim())
+      data.title = body.title.trim();
+    if (typeof body.desc === "string") data.desc = body.desc.trim();
+    if (typeof body.price === "string") data.price = body.price.trim();
+    if (typeof body.icon === "string" && body.icon.trim())
+      data.icon = body.icon.trim();
+    if (typeof body.category === "string" && body.category.trim())
+      data.category = body.category.trim();
+    if (Array.isArray(body.features))
+      data.features = JSON.stringify(body.features.map(String));
+    if (typeof body.featured === "boolean") data.featured = body.featured;
+    if (typeof body.visible === "boolean") data.visible = body.visible;
+    if (body.order !== undefined) data.order = Number(body.order) || 0;
+
+    if (typeof body.slug === "string" && body.slug.trim()) {
+      data.slug = await uniqueSlug(body.slug, id);
+    }
+
+    const updated = await db.service
+      .update({ where: { id }, data })
+      .catch(() => null);
+    if (!updated)
+      return NextResponse.json(
+        { error: "Layanan tidak ditemukan." },
+        { status: 404 },
+      );
+
+    return NextResponse.json({ ok: true, service: serialize(updated) });
+  } catch (e) {
+    console.error("[api/admin/services PUT]", e);
+    return NextResponse.json(
+      { error: "Gagal memperbarui layanan." },
+      { status: 500 },
+    );
+  }
+}
+
+/** DELETE ?id= */
+export async function DELETE(req: NextRequest) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
+  try {
+    const id = new URL(req.url).searchParams.get("id");
+    if (!id)
+      return NextResponse.json(
+        { error: "Parameter id wajib." },
+        { status: 400 },
+      );
+
+    const deleted = await db.service
+      .delete({ where: { id } })
+      .catch(() => null);
+    if (!deleted)
+      return NextResponse.json(
+        { error: "Layanan tidak ditemukan." },
+        { status: 404 },
+      );
+
+    return NextResponse.json({ ok: true });
+  } catch (e) {
+    console.error("[api/admin/services DELETE]", e);
+    return NextResponse.json(
+      { error: "Gagal menghapus layanan." },
+      { status: 500 },
+    );
   }
 }

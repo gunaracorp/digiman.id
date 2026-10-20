@@ -2,25 +2,27 @@ import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import { BRAND, SOCIAL_HREFS, CREDIT_LINE } from "@/lib/brand";
+import { topKeywords } from "@/lib/seo-keywords";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
   subsets: ["latin"],
-  // Ringan: hanya weight yang benar-benar terpakai di situs (hemat ~1 file font)
   weight: ["400", "500", "600", "700", "800"],
 });
 
 const grotesk = Space_Grotesk({
   variable: "--font-grotesk",
   subsets: ["latin"],
-  // Ringan: display font hanya dipakai bold/semibold — 2 file, bukan 4
-  weight: ["600", "700"],
+  weight: ["500", "600", "700"],
 });
 
 /**
- * Registri entitas konstelasi digital — dibaca mesin pencari (schema.org @graph).
- * Menghubungkan DIGIMAN.ID dengan Gugun Gunara, Muhammad Lutfi Azmi,
- * TOP Konsultan (topkonsultan.com) dan Grand Design by Gunara secara semantik.
+ * ENTITY GRAPH — schema.org JSON-LD.
+ * Satu @graph berisi Organization (DIGIMAN + TopKonsultan), Brand (Santri Angon),
+ * dua Person (Gugun Gunara & Muhammad Lutfi Azmi) yang saling terhubung via
+ * @id, dan `sameAs` ke seluruh profil sosial — strategi entity-building agar
+ * nama & brand terasosiasi kuat di mesin pencari (knowledge panel / brand SERP).
  */
 const ENTITY_JSON_LD = {
   "@context": "https://schema.org",
@@ -28,88 +30,70 @@ const ENTITY_JSON_LD = {
     {
       "@type": "Organization",
       "@id": "https://digiman.id/#organisasi",
-      "name": "PT Digital Bisnis Manajemen",
-      "alternateName": ["DIGIMAN.ID", "Digiman ID", "DIGIMAN"],
-      "url": "https://digiman.id/",
-      "logo": "https://digiman.id/logo-digiman.png",
-      "email": "halo@digiman.id",
-      "telephone": "+62-813-1651-6524",
-      "address": {
+      name: "PT Digital Bisnis Manajemen",
+      alternateName: ["DIGIMAN.ID", "Digiman ID", "DIGIMAN"],
+      url: "https://digiman.id/",
+      logo: "https://digiman.id/logo-digiman.png",
+      email: "halo@digiman.id",
+      telephone: "+62-813-3339-7223",
+      address: {
         "@type": "PostalAddress",
-        "addressLocality": "Tasikmalaya",
-        "addressRegion": "Jawa Barat",
-        "addressCountry": "ID",
+        addressLocality: "Tasikmalaya",
+        addressRegion: "Jawa Barat",
+        addressCountry: "ID",
       },
-      "location": [
-        {
-          "@type": "Place",
-          "name": "Representative Office Jakarta SCBD",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Gedung Bursa Efek Indonesia, SCBD Lot 8, Jl. Jend. Sudirman Kav. 52-53",
-            "addressLocality": "Jakarta Selatan",
-            "addressRegion": "DKI Jakarta",
-            "postalCode": "12190",
-            "addressCountry": "ID",
-          },
-        },
+      founder: { "@id": "https://digiman.id/#gugun-gunara" },
+      employee: [
+        { "@id": "https://digiman.id/#gugun-gunara" },
+        { "@id": "https://digiman.id/#muhammad-lutfi-azmi" },
       ],
-      "founder": { "@id": "https://digiman.id/#gugun-gunara" },
-      "sameAs": ["https://topkonsultan.com/"],
-      "hasOfferCatalog": {
+      // sameAs = kunci asosiasi entitas di mesin pencari
+      sameAs: ["https://topkonsultan.web.id", ...SOCIAL_HREFS],
+      sponsor: { "@id": "https://digiman.id/#topkonsultan" },
+      hasOfferCatalog: {
         "@type": "OfferCatalog",
-        "name": "Paket Legalitas & Digitalisasi DIGIMAN.ID",
-        "itemListElement": [
+        name: "Paket Legalitas & Digitalisasi DIGIMAN.ID",
+        itemListElement: [
           {
             "@type": "Offer",
-            "name": "Paket Berdiri — PT Perorangan (UUCK)",
-            "priceCurrency": "IDR",
-            "price": "850000",
-            "priceSpecification": {
-              "@type": "PriceSpecification",
-              "minPrice": "850000",
-              "priceCurrency": "IDR",
-            },
-            "url": "https://digiman.id/#paket",
+            name: "Paket Berdiri — PT Perorangan (UUCK)",
+            priceCurrency: "IDR",
+            price: "850000",
           },
           {
             "@type": "Offer",
-            "name": "Paket Tumbuh — Pendirian PT Lengkap",
-            "priceCurrency": "IDR",
-            "price": "3500000",
-            "priceSpecification": {
-              "@type": "PriceSpecification",
-              "minPrice": "3500000",
-              "priceCurrency": "IDR",
-            },
-            "url": "https://digiman.id/#paket",
+            name: "Paket Tumbuh — Pendirian PT Lengkap",
+            priceCurrency: "IDR",
+            price: "3500000",
           },
           {
             "@type": "Offer",
-            "name": "Paket Terbang — PT + Merek + Website",
-            "priceCurrency": "IDR",
-            "price": "7500000",
-            "priceSpecification": {
-              "@type": "PriceSpecification",
-              "minPrice": "7500000",
-              "priceCurrency": "IDR",
-            },
-            "url": "https://digiman.id/#paket",
+            name: "Paket Terbang — PT + Merek + Website",
+            priceCurrency: "IDR",
+            price: "7500000",
           },
           {
             "@type": "Offer",
-            "name": "Paket 7 Lapis Langit — PMA, Ekspansi & Enterprise",
-            "priceCurrency": "IDR",
-            "priceSpecification": {
+            name: "Paket 7 Lapis Langit — PMA, Ekspansi & Enterprise",
+            priceSpecification: {
               "@type": "PriceSpecification",
-              "minPrice": "15000000",
-              "priceCurrency": "IDR",
+              minPrice: "15000000",
+              priceCurrency: "IDR",
             },
-            "url": "https://digiman.id/#paket",
+          },
+          {
+            "@type": "Offer",
+            name: "Gunara OS — Standarisasi 165 Dokumen Super Organisasi (PGA-39 s.d. PGA-165)",
+            priceSpecification: {
+              "@type": "PriceSpecification",
+              minPrice: "39000000",
+              maxPrice: "165000000",
+              priceCurrency: "IDR",
+            },
           },
         ],
       },
-      "knowsAbout": [
+      knowsAbout: [
         "Jasa pendirian PT",
         "Akta pendirian perusahaan",
         "Legalitas usaha Indonesia",
@@ -117,166 +101,175 @@ const ENTITY_JSON_LD = {
         "Pendaftaran merek",
         "Sertifikasi halal",
         "Konsultan digitalisasi bisnis",
-        "Grand Design by Gunara",
+        "Gunara OS",
+        "Standarisasi dokumen super organisasi",
       ],
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://digiman.id/#topkonsultan",
+      name: "PT Top Konsultan Internasional",
+      alternateName: ["Top Konsultan", "TOPKONSULTAN"],
+      url: "https://topkonsultan.web.id",
+      sameAs: ["https://digiman.id/"],
+    },
+    {
+      "@type": "Brand",
+      "@id": "https://digiman.id/#santri-angon",
+      name: "Santri Angon",
+      url: "https://digiman.id/",
     },
     {
       "@type": "Person",
       "@id": "https://digiman.id/#gugun-gunara",
-      "name": "Gugun Gunara",
-      "jobTitle": "Pendiri & Direktur Utama",
-      "worksFor": { "@id": "https://digiman.id/#organisasi" },
-      "url": "https://digiman.id/",
-      "sameAs": ["https://topkonsultan.com/"],
-      "knowsAbout": [
-        "Grand Design by Gunara",
-        "Legalitas perusahaan Indonesia",
-        "Konsultan digitalisasi bisnis",
-        "TOP Konsultan",
+      name: "Gugun Gunara",
+      alternateName: ["Gugun", "Founder Gunara OS"],
+      jobTitle: "Pendiri & Direktur Utama",
+      worksFor: { "@id": "https://digiman.id/#organisasi" },
+      url: "https://digiman.id/",
+      image: "https://digiman.id/logo-emblem.png",
+      sameAs: ["https://topkonsultan.web.id", ...SOCIAL_HREFS],
+      knowsAbout: [
+        "Legalitas bisnis Indonesia",
+        "Gunara OS",
+        "Standarisasi 165 dokumen super organisasi",
+        "Konsultan manajemen internasional",
       ],
     },
     {
       "@type": "Person",
       "@id": "https://digiman.id/#muhammad-lutfi-azmi",
-      "name": "Muhammad Lutfi Azmi",
-      "sameAs": ["https://topkonsultan.com/"],
-      "knowsAbout": [
-        "TOP Konsultan",
-        "Grand Design by Gunara",
-        "Konsultan digitalisasi bisnis",
+      name: "Muhammad Lutfi Azmi",
+      alternateName: ["prabudanling", "Lutfi Azmi", "Danling"],
+      jobTitle: "Arsitek Digital & Pengembang Sistem Gunara OS",
+      worksFor: [
+        { "@id": "https://digiman.id/#organisasi" },
+        { "@id": "https://digiman.id/#topkonsultan" },
+      ],
+      url: "https://digiman.id/",
+      sameAs: SOCIAL_HREFS,
+      knowsAbout: [
+        "Digitalisasi bisnis",
+        "Gunara OS",
+        "Otomasi AI",
+        "Pengembangan web",
+        "Santri Angon",
       ],
     },
     {
       "@type": "WebSite",
       "@id": "https://digiman.id/#website",
-      "url": "https://digiman.id/",
-      "name": "DIGIMAN.ID",
-      "alternateName": "DIGIMAN — PT Digital Bisnis Manajemen",
-      "publisher": { "@id": "https://digiman.id/#organisasi" },
-      "inLanguage": "id-ID",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://digiman.id/layanan?q={search_term_string}",
-        },
-        "query-input": "required name=search_term_string",
-      },
+      url: "https://digiman.id/",
+      name: "DIGIMAN.ID",
+      alternateName: "DIGIMAN — PT Digital Bisnis Manajemen",
+      publisher: { "@id": "https://digiman.id/#organisasi" },
+      author: [
+        { "@id": "https://digiman.id/#gugun-gunara" },
+        { "@id": "https://digiman.id/#muhammad-lutfi-azmi" },
+      ],
+      inLanguage: "id-ID",
+      keywords: topKeywords(80).join(", "),
     },
     {
       "@type": "ProfessionalService",
       "@id": "https://digiman.id/#layanan-bisnis",
-      "name": "DIGIMAN.ID — Jasa Legalitas & Digitalisasi Bisnis",
-      "parentOrganization": { "@id": "https://digiman.id/#organisasi" },
-      "url": "https://digiman.id/",
-      "image": "https://digiman.id/logo-digiman.png",
-      "priceRange": "Rp 350.000 - Rp 15.000.000",
-      "currenciesAccepted": "IDR",
-      "paymentAccepted": "Bank Transfer, QRIS, E-Wallet",
-      "openingHoursSpecification": {
+      name: "DIGIMAN.ID — Jasa Legalitas & Digitalisasi Bisnis",
+      parentOrganization: { "@id": "https://digiman.id/#organisasi" },
+      url: "https://digiman.id/",
+      image: "https://digiman.id/logo-digiman.png",
+      priceRange: "Rp 350.000 - Rp 165.000.000",
+      currenciesAccepted: "IDR",
+      paymentAccepted: "Bank Transfer, QRIS, E-Wallet",
+      openingHoursSpecification: {
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        "opens": "09:00",
-        "closes": "17:00",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "09:00",
+        closes: "17:00",
       },
-      "areaServed": [
-        { "@type": "Country", "name": "Indonesia" },
-        "Jakarta", "Bandung", "Tasikmalaya", "Jawa Barat",
+      areaServed: [
+        { "@type": "Country", name: "Indonesia" },
+        "Jakarta",
+        "Bandung",
+        "Tasikmalaya",
+        "Jawa Barat",
       ],
-      "address": {
+      address: {
         "@type": "PostalAddress",
-        "streetAddress": "Andalusia Garden Cluster Granada No.11, Mangkubumi",
-        "addressLocality": "Tasikmalaya",
-        "addressRegion": "Jawa Barat",
-        "postalCode": "46181",
-        "addressCountry": "ID",
+        streetAddress: "Andalusia Garden Cluster Granada No.11, Mangkubumi",
+        addressLocality: "Tasikmalaya",
+        addressRegion: "Jawa Barat",
+        postalCode: "46181",
+        addressCountry: "ID",
       },
-      "telephone": "+62-813-1651-6524",
-      "email": "halo@digiman.id",
-      "department": [
-        {
-          "@type": "Place",
-          "name": "Representative Office Jakarta SCBD",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Gedung Bursa Efek Indonesia, SCBD Lot 8, Jl. Jend. Sudirman Kav. 52-53",
-            "addressLocality": "Jakarta Selatan",
-            "addressRegion": "DKI Jakarta",
-            "postalCode": "12190",
-            "addressCountry": "ID",
-          },
-        },
-        {
-          "@type": "Place",
-          "name": "Branch Office Bandung",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Bandung",
-            "addressRegion": "Jawa Barat",
-            "addressCountry": "ID",
-          },
-        },
-      ],
+      telephone: "+62-813-3339-7223",
+      email: "halo@digiman.id",
+      founder: { "@id": "https://digiman.id/#gugun-gunara" },
     },
   ],
 };
 
+const JSON_LD_HTML = JSON.stringify(ENTITY_JSON_LD).replace(/</g, "\\u003c");
+
 export const metadata: Metadata = {
-  title: "DIGIMAN.ID — Naikkan Bisnis Anda ke 7 Lapis Langit Legalitas & Digitalisasi",
+  title:
+    "DIGIMAN.ID — Naikkan Bisnis Anda ke 7 Lapis Langit Legalitas & Digitalisasi | by Gugun Gunara",
   description:
-    "PT Digital Bisnis Manajemen (DIGIMAN.ID) — Jasa pembuatan akta pendirian perusahaan (PT, CV, PT PMA) dan seluruh legalitas usaha di Indonesia: NIB, OSS, NPWP, Merek, Halal, hingga konsultan digitalisasi bisnis. Cepat, transparan, didampingi 46 dewan pakar.",
-  keywords: [
-    "jasa pendirian pt",
-    "akta pendirian perusahaan",
-    "legalitas usaha indonesia",
-    "pendirian cv",
-    "pt pma",
-    "nib oss rba",
-    "pendaftaran merek",
-    "sertifikasi halal",
-    "konsultan digitalisasi bisnis",
-    "digiman.id",
-  ],
-  authors: [{ name: "Gugun Gunara", url: "https://digiman.id" }],
-  creator: "Gugun Gunara — PT Digital Bisnis Manajemen",
-  publisher: "PT Digital Bisnis Manajemen (digiman.id)",
-  metadataBase: new URL("https://digiman.id"),
-  icons: {
-    icon: "/favicon-digiman.png",
-  },
-  alternates: {
-    types: {
-      "application/rss+xml": [
-        { url: "/feed.xml", title: "Blog DIGIMAN.ID — Panduan Legalitas Bisnis" },
-      ],
+    "PT Digital Bisnis Manajemen (DIGIMAN.ID) — Jasa akta pendirian perusahaan (PT, CV, PT PMA) & seluruh legalitas usaha Indonesia: NIB, OSS, Merek, Halal, hingga Gunara OS (standarisasi 165 dokumen super organisasi). Didirikan Gugun Gunara, sistem dibangun Muhammad Lutfi Azmi (prabudanling) — didukung Santri Angon & PT Top Konsultan Internasional (topkonsultan.web.id).",
+  // SEO GOD MODE — 250 kata kunci teratas dari korpus 1.000 (lihat seo-keywords.ts).
+  // Korpus penuh 1.000 + 1.000 tagar dirender sebagai direktori terlihat di SeoHub.
+  keywords: topKeywords(250),
+  authors: [
+    { name: "Gugun Gunara", url: "https://digiman.id" },
+    {
+      name: "Muhammad Lutfi Azmi (prabudanling)",
+      url: "https://www.instagram.com/prabudanling",
     },
-  },
+  ],
+  creator: "Gugun Gunara & Muhammad Lutfi Azmi (prabudanling)",
+  publisher:
+    "PT Digital Bisnis Manajemen (digiman.id) × PT Top Konsultan Internasional",
+  metadataBase: new URL("https://digiman.id"),
+  alternates: { canonical: "/" },
+  icons: { icon: "/favicon-digiman.png" },
   openGraph: {
-    title: "DIGIMAN.ID — 7 Lapis Langit Legalitas Bisnis Indonesia",
+    title: "DIGIMAN.ID — 7 Lapis Langit Legalitas Bisnis Indonesia | by Gugun Gunara",
     description:
-      "Satu pintu dari akta pendirian sampai transformasi digital. Didampingi 46 dewan pakar lintas bidang.",
+      "Satu pintu dari akta pendirian sampai transformasi digital + Gunara OS 165 dokumen. " +
+      CREDIT_LINE,
     url: "https://digiman.id",
     siteName: "DIGIMAN.ID",
     type: "website",
     locale: "id_ID",
+    images: [
+      {
+        url: BRAND.ogImage,
+        width: 1344,
+        height: 768,
+        alt: "DIGIMAN.ID — by Gugun Gunara & Muhammad Lutfi Azmi, didukung PT Top Konsultan Internasional",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DIGIMAN.ID — 7 Lapis Langit Legalitas Bisnis",
-    description: "Jasa legalitas perusahaan & konsultan digitalisasi #1 di Indonesia.",
+    title: "DIGIMAN.ID — 7 Lapis Langit Legalitas Bisnis | by Gugun Gunara",
+    description:
+      "Jasa legalitas perusahaan & konsultan digitalisasi + Gunara OS 165 dokumen super organisasi.",
+    site: "@prabudanling",
+    creator: "@gunzz_krenzz",
+    images: [BRAND.ogImage],
   },
-  other: {
-    // Sinyal konstelasi entitas — dibaca mesin pencari, tak tampil di layar
-    "og:see_also": "https://topkonsultan.com/",
-    "digiman:founder": "Gugun Gunara — Pendiri & Direktur Utama",
-    "digiman:ecosystem": "TOP Konsultan (https://topkonsultan.com)",
-    "digiman:framework": "Grand Design by Gunara",
-    "digiman:network": "Gugun Gunara; Muhammad Lutfi Azmi; TOP Konsultan; Grand Design by Gunara",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
+  category: "business",
 };
-
-/** String JSON-LD aman injeksi (escape '<' agar tak bisa keluar dari script) */
-const JSON_LD_HTML = JSON.stringify(ENTITY_JSON_LD).replace(/</g, "\\u003c");
 
 export const viewport: Viewport = {
   themeColor: "#050d0a",
@@ -284,49 +277,25 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const headScripts = await getHeadScripts();
   return (
     <html lang="id" suppressHydrationWarning>
       <head>
-        {/*
-          Registri konstelasi digital DIGIMAN.ID — dibaca perayap mesin pencari:
-          Gugun Gunara (Pendiri & Direktur Utama, PT Digital Bisnis Manajemen) ·
-          Muhammad Lutfi Azmi · TOP Konsultan (topkonsultan.com) ·
-          Grand Design by Gunara — ditanam abadi via JSON-LD di bawah.
-        */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON_LD_HTML }}
         />
-        {/* Skrip analytics/pixel custom dari Panel Admin > SEO Lanjutan */}
-        {headScripts ? (
-          <script
-            id="digiman-custom-head"
-            type="text/javascript"
-            dangerouslySetInnerHTML={{ __html: headScripts }}
-          />
-        ) : null}
       </head>
-      <body className={`${jakarta.variable} ${grotesk.variable} antialiased bg-background text-foreground`}>
+      <body
+        className={`${jakarta.variable} ${grotesk.variable} antialiased bg-background text-foreground`}
+      >
         {children}
         <Toaster />
       </body>
     </html>
   );
-}
-
-/** Baca kode skrip kustom dari DB (aman gagal: fallback string kosong) */
-async function getHeadScripts(): Promise<string> {
-  try {
-    const { getSiteData } = await import("@/lib/site-data");
-    const { settings } = await getSiteData();
-    return settings.headScripts || "";
-  } catch {
-    return "";
-  }
 }

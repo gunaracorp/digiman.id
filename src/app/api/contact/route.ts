@@ -1,64 +1,56 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 
-/** Rate limit in-memory: maks 5 pesan / 10 menit per IP */
-const hits = new Map<string, { count: number; resetAt: number }>();
-function rateLimited(ip: string): boolean {
-  const now = Date.now();
-  const e = hits.get(ip);
-  if (!e || e.resetAt < now) {
-    hits.set(ip, { count: 1, resetAt: now + 10 * 60 * 1000 });
-    return false;
-  }
-  e.count += 1;
-  return e.count > 5;
-}
-function clientIp(req: NextRequest): string {
-  return (
-    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-    req.headers.get("x-real-ip") ||
-    "local"
-  );
+interface ContactPayload {
+  nama?: string;
+  email?: string;
+  wa?: string;
+  layanan?: string;
+  pesan?: string;
+  company?: string;
 }
 
-/** Endpoint publik: kirim pesan konsultasi dari formulir beranda → kotak masuk admin */
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export async function POST(req: NextRequest) {
   try {
-    if (rateLimited(clientIp(req))) {
-      return NextResponse.json(
-        { error: "Terlalu banyak pesan terkirim. Silakan coba lagi nanti." },
-        { status: 429 }
-      );
+    const body = (await req.json()) as ContactPayload;
+
+    // Honeypot — bot terdeteksi: balas sukses tanpa simpan
+    if (typeof body.company === "string" && body.company.trim() !== "") {
+      return NextResponse.json({ ok: true });
     }
 
-    const body = await req.json().catch(() => ({}));
-    const name = typeof body.name === "string" ? body.name.trim().slice(0, 100) : "";
-    const phone = typeof body.phone === "string" ? body.phone.replace(/[^0-9+\- ]/g, "").trim().slice(0, 25) : "";
-    const email = typeof body.email === "string" ? body.email.trim().slice(0, 120) : "";
-    const service = typeof body.service === "string" ? body.service.trim().slice(0, 120) : "";
-    const message = typeof body.message === "string" ? body.message.trim().slice(0, 2000) : "";
+    const nama = (body.nama ?? "").trim();
+    const email = (body.email ?? "").trim();
+    const wa = (body.wa ?? "").trim();
+    const layanan = (body.layanan ?? "").trim();
+    const pesan = (body.pesan ?? "").trim();
 
-    if (name.length < 2) {
-      return NextResponse.json({ error: "Nama wajib diisi (minimal 2 karakter)." }, { status: 400 });
-    }
-    const digits = phone.replace(/[^0-9]/g, "");
-    if (digits.length < 8 || digits.length > 15) {
-      return NextResponse.json({ error: "Nomor WhatsApp tidak valid (8–15 digit)." }, { status: 400 });
-    }
-    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      return NextResponse.json({ error: "Format email tidak valid." }, { status: 400 });
-    }
-    if (message.length < 5) {
-      return NextResponse.json({ error: "Pesan wajib diisi (minimal 5 karakter)." }, { status: 400 });
+    const errors: Record<string, string> = {};
+    if (nama.length < 3) errors.nama = "Nama lengkap minimal 3 karakter.";
+    if (!EMAIL_RE.test(email)) errors.email = "Email tidak valid.";
+    const digits = wa.replace(/\D/g, "");
+    if (digits.length < 9 || digits.length > 15) errors.wa = "Nomor WhatsApp tidak valid.";
+    if (pesan.length < 10) errors.pesan = "Pesan minimal 10 karakter.";
+
+    if (Object.keys(errors).length > 0 || !nama || !email || !wa || !pesan) {
+      return NextResponse.json({ ok: false, errors }, { status: 400 });
     }
 
-    const created = await db.contactMessage.create({
-      data: { name, phone, email, service, message },
+    await db.contactMessage.create({
+      data: {
+        name: nama,
+        email,
+        phone: digits,
+        service: layanan || null,
+        message: pesan,
+      },
     });
 
-    return NextResponse.json({ ok: true, id: created.id });
+    return NextResponse.json({ ok: true });
   } catch (e) {
-    console.error("POST /api/contact error:", e);
-    return NextResponse.json({ error: "Terjadi kesalahan server." }, { status: 500 });
+    console.error("[api/contact]", e);
+    return NextResponse.json({ ok: false, error: "Terjadi kesalahan server." }, { status: 500 });
   }
 }

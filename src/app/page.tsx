@@ -1,133 +1,164 @@
-import type { Metadata } from "next";
-import { getSiteData } from "@/lib/site-data";
-import Preloader from "@/components/digiman/preloader";
-import ScrollProgress from "@/components/digiman/scroll-progress";
-import CursorGlow from "@/components/digiman/cursor-glow";
-import Navbar from "@/components/digiman/navbar";
-import Hero from "@/components/digiman/hero";
-import Marquee from "@/components/digiman/marquee";
-import Stats from "@/components/digiman/stats";
-import SevenHeavens from "@/components/digiman/seven-heavens";
-import Services from "@/components/digiman/services";
-import Paket from "@/components/digiman/paket";
-import WhyUs from "@/components/digiman/why-us";
-import TeamStructure from "@/components/digiman/team-structure";
-import Process from "@/components/digiman/process";
-import Testimonials from "@/components/digiman/testimonials";
-import Faq from "@/components/digiman/faq";
-import BlogTeaser from "@/components/digiman/blog-teaser";
-import CtaSection from "@/components/digiman/cta";
-import Offices from "@/components/digiman/offices";
-import Footer from "@/components/digiman/footer";
-import FloatingWidgets from "@/components/digiman/floating-widgets";
-import ContactForm from "@/components/digiman/contact-form";
-import PageViewTracker from "@/components/digiman/pageview-tracker";
-import { LocaleProvider } from "@/components/i18n/locale-provider";
-import MotionProvider from "@/components/digiman/motion-provider";
-import { getAllVisiblePosts } from "@/lib/blog-data";
+/**
+ * DIGIMAN.ID — Halaman utama (server component).
+ * Seluruh konten dibaca dari database (getSiteData + blog + Gunara OS),
+ * lalu dirender via AppRouter: landing multi-seksi + view hash (#/os, #/blog,
+ * #/blog/{slug}, #/proposal, #/admin) dalam satu route "/".
+ */
+import { getSiteData } from "@/lib/digiman-data";
+import { db } from "@/lib/db";
+import { parseBlogCard } from "@/lib/blog-types";
+import type { BlogCardData } from "@/lib/blog-types";
+import type { GunaraPackageData } from "@/lib/gunara";
+import AppRouter from "@/components/digiman/app-router";
+import { LocaleProvider } from "@/lib/i18n";
 
-// Konten dikelola via Panel Admin — selalu ambil data terbaru
-// ISR: halaman di-cache 60 detik — cepat utk pengunjung, konten admin tetap segar
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
 
-// SEO dinamis: meta title & description dikelola dari Panel Admin > Pengaturan
-export async function generateMetadata(): Promise<Metadata> {
-  const { settings } = await getSiteData();
-  const keywords = settings.metaKeywords
-    ? settings.metaKeywords.split(",").map((k) => k.trim()).filter(Boolean)
-    : undefined;
-  return {
-    title: settings.metaTitle,
-    description: settings.metaDescription,
-    ...(keywords ? { keywords } : {}),
-    ...(settings.googleSiteVerification
-      ? { verification: { google: settings.googleSiteVerification } }
-      : {}),
-    alternates: { canonical: "https://digiman.id" },
-    openGraph: {
-      title: settings.metaTitle,
-      description: settings.metaDescription,
-      url: "https://digiman.id",
-      siteName: "DIGIMAN.ID",
-      type: "website",
-      locale: "id_ID",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: settings.metaTitle,
-      description: settings.metaDescription,
-    },
-  };
+function jsonArr(raw: string | null | undefined): string[] {
+  try {
+    const v: unknown = JSON.parse(raw ?? "[]");
+    return Array.isArray(v) ? v.map((x) => String(x)) : [];
+  } catch {
+    return [];
+  }
 }
 
-export default async function Home() {
-  const [data, blogPosts] = await Promise.all([getSiteData(), getAllVisiblePosts()]);
-  const s = data.settings;
+export default async function Page() {
+  const { settings, services, testimonials, faqs, offices } = await getSiteData();
 
-  // Urutan & visibilitas section dikendalikan dari Panel Admin > Tampilan
-  const enabled = data.sections.filter((sec) => sec.enabled);
-  const sectionMap: Record<string, React.ReactNode> = {
-    hero: (
-      <Hero waNumber={s.waNumber} headline={s.heroHeadline} sub={s.heroSub} rotatingWords={s.heroWords} />
-    ),
-    marquee: <Marquee />,
-    stats: (
-      <Stats clients={s.statClients} experts={s.statExperts} layers={s.statLayers} success={s.statSuccess} />
-    ),
-    "seven-heavens": <SevenHeavens />,
-    services: <Services items={data.services} waNumber={s.waNumber} />,
-    paket: <Paket waNumber={s.waNumber} />,
-    "why-us": <WhyUs />,
-    team: <TeamStructure members={data.team} />,
-    offices: (
-      <Offices offices={data.offices} waDisplay={s.waDisplay} hours={s.hours} waNumber={s.waNumber} />
-    ),
-    process: <Process />,
-    testimonials: <Testimonials items={data.testimonials} />,
-    faq: <Faq faqs={data.faqs} />,
-    artikel: <BlogTeaser posts={blogPosts.slice(0, 3)} />,
-    cta: <CtaSection waNumber={s.waNumber} waDisplay={s.waDisplay} email={s.email} address={s.addressShort} />,
-    "contact-form": s.contactFormEnabled ? (
-      <ContactForm services={data.services.map((sv) => sv.title)} />
-    ) : null,
+  // Data fitur baru — gagal aman: landing tetap tampil tanpa teaser.
+  let blogPosts: BlogCardData[] = [];
+  let packages: GunaraPackageData[] = [];
+  let domainCount = 0;
+  let docCount = 0;
+  try {
+    const [rows, pkgs, dc, tc] = await Promise.all([
+      db.blogPost.findMany({
+        where: { published: true },
+        orderBy: [{ publishedAt: "desc" }, { createdAt: "desc" }],
+        take: 3,
+      }),
+      db.gunaraPackage.findMany({
+        where: { active: true },
+        orderBy: { order: "asc" },
+      }),
+      db.pgaDomain.count(),
+      db.pgaDocument.count(),
+    ]);
+    blogPosts = rows.map(parseBlogCard);
+    packages = pkgs.map((p) => ({
+      code: p.code,
+      name: p.name,
+      tagline: p.tagline,
+      description: p.description,
+      docCount: p.docCount,
+      price: p.price,
+      durationWeeks: p.durationWeeks,
+      features: jsonArr(p.features),
+      documentCodes: jsonArr(p.documentCodes),
+      highlight: p.highlight,
+      order: p.order,
+    }));
+    domainCount = dc;
+    docCount = tc;
+  } catch {
+    // fallback: teaser disembunyikan, situs tetap hidup
+  }
+
+  // ── SEO GOD MODE: JSON-LD level halaman ──────────────────────────────
+  // Digabung ke entity graph (layout.tsx) via @id yang sama:
+  //   • FAQPage   → rich result tanya-jawab di SERP
+  //   • Review + AggregateRating dari testimoni asli → bintang di SERP
+  //   • ItemList seluruh layanan → pemetaan katalog di mesin pencari
+  const ratingVals = testimonials
+    .map((tst) => Number(tst.rating) || 0)
+    .filter((r) => r > 0);
+  const ratingAvg =
+    ratingVals.length > 0
+      ? ratingVals.reduce((a, b) => a + b, 0) / ratingVals.length
+      : 0;
+
+  const PAGE_JSON_LD = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "FAQPage",
+        "@id": "https://digiman.id/#faq-halaman",
+        isPartOf: { "@id": "https://digiman.id/#website" },
+        mainEntity: faqs
+          .slice(0, 20)
+          .map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+      },
+      {
+        // Node pelengkap untuk @id "#layanan-bisnis" yang sudah didefinisikan
+        // di layout.tsx — mesin pencari menggabungkan propertinya otomatis.
+        "@type": "ProfessionalService",
+        "@id": "https://digiman.id/#layanan-bisnis",
+        aggregateRating:
+          ratingAvg > 0
+            ? {
+                "@type": "AggregateRating",
+                ratingValue: ratingAvg.toFixed(1),
+                reviewCount: ratingVals.length,
+                bestRating: 5,
+                worstRating: 1,
+              }
+            : undefined,
+        review: testimonials.slice(0, 3).map((tst) => ({
+          "@type": "Review",
+          author: { "@type": "Person", name: tst.name },
+          reviewRating: {
+            "@type": "Rating",
+            ratingValue: Number(tst.rating) || 5,
+            bestRating: 5,
+          },
+          reviewBody: tst.text,
+        })),
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://digiman.id/#katalog-layanan",
+        name: "Katalog Layanan DIGIMAN.ID",
+        numberOfItems: services.length,
+        itemListElement: services.map((svc, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          item: {
+            "@type": "Service",
+            name: svc.title,
+            provider: { "@id": "https://digiman.id/#organisasi" },
+            areaServed: { "@type": "Country", name: "Indonesia" },
+          },
+        })),
+      },
+    ],
   };
 
   return (
-    <LocaleProvider>
-      <MotionProvider>
-      <PageViewTracker />
-      <div className="relative flex min-h-screen flex-col bg-[#050d0a]">
-        <Preloader logoUrl={s.logoUrl} />
-        <ScrollProgress />
-        <CursorGlow />
-        <Navbar logoUrl={s.logoUrl} />
-
-        <main className="flex-1">
-          {enabled.map((sec) => {
-            const node = sectionMap[sec.key];
-            return node ? <div key={sec.key}>{node}</div> : null;
-          })}
-        </main>
-
-        <Footer
-          logoUrl={s.logoUrl}
-          waNumber={s.waNumber}
-          waDisplay={s.waDisplay}
-          email={s.email}
-          addressFull={s.addressFull}
-          hours={s.hours}
-          instagram={s.instagram}
-          linkedin={s.linkedin}
-          tiktok={s.tiktok}
-          skNumber={s.skNumber}
-          nibNumber={s.nibNumber}
-          npwpNumber={s.npwpNumber}
-          established={s.established}
-          offices={data.offices}
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(PAGE_JSON_LD).replace(/</g, "\\u003c"),
+        }}
+      />
+      <LocaleProvider>
+        <AppRouter
+          settings={settings}
+          services={services}
+          testimonials={testimonials}
+          faqs={faqs}
+          offices={offices}
+          blogPosts={blogPosts}
+          packages={packages}
+          domainCount={domainCount}
+          docCount={docCount}
         />
-        <FloatingWidgets waNumber={s.waNumber} />
-      </div>
-      </MotionProvider>
-    </LocaleProvider>
+      </LocaleProvider>
+    </>
   );
 }

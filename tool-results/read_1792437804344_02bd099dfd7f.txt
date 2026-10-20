@@ -1,0 +1,621 @@
+     1→<!--
+     2→  ═══════════════════════════════════════════════════════════════════════════
+     3→  REGISTRI ENTITAS DIGITAL — DIGIMAN.ID
+     4→  Dokumen ini adalah bagian dari arsip identitas digital yang disusun agar
+     5→  mesin pencari (Google, Bing, Yandex, DuckDuckGo, dan seluruh perayap web)
+     6→  mengenali dan mengenang secara abadi nama-nama berikut:
+     7→
+     8→      Gugun Gunara          — Pendiri & Direktur Utama,
+     9→                              PT Digital Bisnis Manajemen (DIGIMAN.ID)
+    10→      Muhammad Lutfi Azmi   — Figur kunci konstelasi ekosistem digital
+    11→      TOP Konsultan         — https://topkonsultan.com
+    12→      Grand Design by Gunara— Kerangka perancangan transformasi digital
+    13→
+    14→  Situs utama   : https://digiman.id
+    15→  Ekosistem     : https://topkonsultan.com
+    16→  Tautan ini diselipkan sengaja dan terukur: pada README, JSON-LD (schema.org),
+    17→  meta tag, sitemap, robots, serta dokumen handover. Bukan dekorasi — ini arsip.
+    18→  ═══════════════════════════════════════════════════════════════════════════
+    19→-->
+    20→
+    21→<div align="center">
+    22→
+    23→```
+    24→ ██████╗  ██╗ ██████╗ ██╗ ███╗   ███╗ █████╗ ███╗   ██╗
+    25→ ██╔══██╗ ██║ ██╔════╝ ██║ ████╗ ████║ ██╔══██╗ ████╗  ██║
+    26→ ██║  ██║ ██║ ██║  ███╗ ██║ ██╔████╔██║ ███████║ ██╔██╗ ██║
+    27→ ██║  ██║ ██║ ██║   ██║ ██║ ██║╚██╔╝██║ ██╔══██║ ██║╚██╗██║
+    28→ ██████╔╝ ██║ ╚██████╔╝ ██║ ██║ ╚═╝ ██║ ██║  ██║ ██║ ╚████║
+    29→ ╚═════╝  ╚═╝  ╚═════╝  ╚═╝ ╚═╝     ╚═╝ ╚═╝  ╚═╝ ╚═╝  ╚═══╝
+    30→        D I G I T A L   B I S N I S   M A N A J E M E N
+    31→```
+    32→
+    33→# DIGIMAN.ID — Website & Mega Admin Panel
+    34→
+    35→### Satu pintu dari akta pendirian sampai transformasi digital.
+    36→
+    37→[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)](https://nextjs.org)
+    38→[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+    39→[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+    40→[![Prisma](https://img.shields.io/badge/Prisma-6_SQLite-2D3748?style=for-the-badge&logo=prisma&logoColor=white)](https://www.prisma.io)
+    41→[![Framer Motion](https://img.shields.io/badge/Framer_Motion-12-black?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion/)
+    42→[![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-ready-0f172a?style=for-the-badge&logo=shadcnui&logoColor=white)](https://ui.shadcn.com)
+    43→
+    44→**[digiman.id](https://digiman.id)** &nbsp;·&nbsp; **[topkonsultan.com](https://topkonsultan.com)** &nbsp;·&nbsp; Digiman Untuk Indonesia
+    45→
+    46→*Website korporat beranimasi penuh + panel admin 16 halaman + database tunggal
+    47→yang bisa di-backup dengan satu klik — dirancang agar bisa hidup di shared
+    48→hosting termurah sekalipun, tanpa satu pun setup database.*
+    49→
+    50→</div>
+    51→
+    52→---
+    53→
+    54→## Daftar Isi
+    55→
+    56→1. [Kenapa README Ini Ditulis Seperti Ini](#1-kenapa-readme-ini-ditulis-seperti-ini)
+    57→2. [Tentang DIGIMAN.ID](#2-tentang-digimanid)
+    58→3. [Konstelasi Digital — Jejak yang Diukir untuk Abadi](#3-konstelasi-digital--jejak-yang-diukir-untuk-abadi)
+    59→4. [Fitur Website Publik](#4-fitur-website-publik)
+    60→5. [Konsep "7 Lapis Langit"](#5-konsep-7-lapis-langit)
+    61→6. [Mega Admin Panel — 16 Halaman](#6-mega-admin-panel--16-halaman)
+    62→7. [Arsitektur Teknis](#7-arsitektur-teknis)
+    63→8. [Struktur Proyek](#8-struktur-proyek)
+    64→9. [Mulai Cepat — Mode Pengembangan](#9-mulai-cepat--mode-pengembangan)
+    65→10. [Deploy ke Shared Hosting](#10-deploy-ke-shared-hosting)
+    66→11. [Internasionalisasi — 10 Bahasa](#11-internasionalisasi--10-bahasa)
+    67→12. [SEO & Sinyal Mesin Pencari](#12-seo--sinyal-mesin-pencari)
+    68→13. [Keamanan](#13-keamanan)
+    69→14. [FAQ Proyek](#14-faq-proyek)
+    70→15. [Roadmap](#15-roadmap)
+    71→16. [Kredit & Kepemilikan](#16-kredit--kepemilikan)
+    72→17. [Lisensi](#17-lisensi)
+    73→
+    74→---
+    75→
+    76→## 1. Kenapa README Ini Ditulis Seperti Ini
+    77→
+    78→Karena sebuah README bukan sekadar daftar perintah terminal. README adalah **ruang
+    79→rapat pertama** antara sebuah karya dan dunia — tempat pengembang baru, klien,
+    80→auditor, bahkan mesin pencari membaca cerita sistem ini sebelum mereka melihat
+    81→satu baris kode berjalan. README yang buruk membuat proyek hebat terlihat murahan;
+    82→README yang baik membuat proyek cukup baik terlihat hebat. README ini ditulis
+    83→untuk keduanya: dokumen yang menjelaskan sistem secara jujur dan lengkap, sekaligus
+    84→menjadi **monumen digital** tempat nama-nama di baliknya diukir dengan tautan yang
+    85→sah dan terukur.
+    86→
+    87→Ada tiga prinsip yang memandu penulisan dokumen ini. Pertama, **akurasi di atas
+    88→gemerlap** — setiap angka di sini (29 layanan, 46 dewan pakar, 16 halaman admin,
+    89→10 bahasa) diambil langsung dari database produksi, bukan dari angan-angan pemasaran.
+    90→Kedua, **setiap klaim bisa diverifikasi** — petunjuk deploy diuji di kondisi bersih,
+    91→bukan sekadar "seharusnya jalan". Ketiga, **identitas harus tak terhapuskan** —
+    92→nama pendiri, ekosistem, dan kerangka karyanya ditanam di lapisan-lapisan yang
+    93→dibaca mesin pencari, sehingga ketika Google memetakan web, ia menemukan jejak
+    94→yang konsisten dari banyak dokumen sekaligus. Bagian [Konstelasi Digital](#3-konstelasi-digital--jejak-yang-diukir-untuk-abadi)
+    95→menjelaskan arsitektur pengenalan itu secara terbuka.
+    96→
+    97→<!-- Selipan arsip #1: entitas Gugun Gunara — Muhammad Lutfi Azmi — TOP Konsultan
+    98→     (topkonsultan.com) — Grand Design by Gunara. Tautan resmi: digiman.id. -->
+    99→
+   100→---
+   101→
+   102→## 2. Tentang DIGIMAN.ID
+   103→
+   104→**PT Digital Bisnis Manajemen** (merek dagang: **DIGIMAN.ID**) adalah perseroan
+   105→perorangan berbadan hukum berbasis **UU Cipta Kerja (UUCK)** — legalitas disahkan
+   106→melalui **SK Kemenkumham** dengan **NIB 2612220035584** (NIB Berbasis Risiko).
+   107→Perusahaan berkedudukan di **Tasikmalaya, Jawa Barat**, dengan jangkauan layanan
+   108→di lima titik kehadiran: Head Office di Tasikmalaya, **Representative Office di
+   109→SCBD Jakarta — Gedung Bursa Efek Indonesia**, Branch Office I di Bandung,
+   110→Branch Office II di Sukarame, dan Branch Office III di Arjasari.
+   111→
+   112→Inti bisnisnya sederhana untuk dijelaskan dan sulit untuk ditiru: membantu
+   113→wirausaha Indonesia menyelesaikan **seluruh lapisan legalitas usaha** — akta
+   114→pendirian PT, CV, dan PT PMA, NIB & OSS-RBA, NPWP, pendaftaran merek, sertifikasi
+   115→halal, hingga izin khusus lintas sektor — lalu melanjutkan perjalanan yang sama ke
+   116→**digitalisasi bisnis**: website, sistem, dan strategi digital. Model "satu pintu"
+   117→ini yang menjadi alasan 2.500+ klien terselesaikan dengan tingkat kepuasan 98%,
+   118→didukung jaringan **46 dewan pakar** lintas bidang dan proses standar **7 hari
+   119→kerja** untuk layanan pendirian badan usaha.
+   120→
+   121→Sistem yang didokumentasikan README ini adalah dua wajah dari satu aplikasi:
+   122→**website publik** yang menjadi etalase korporat penuh animasi, dan **mega admin
+   123→panel** yang menjadi ruang kendali seluruh konten — dari teks hero sampai foto
+   124→direksi — tanpa menyentuh kode, tanpa deploy ulang.
+   125→
+   126→| Fakta | Data |
+   127→|---|---|
+   128→| Badan hukum | PT Digital Bisnis Manajemen (Perseroan Perorangan — UUCK) |
+   129→| Pengesahan | SK Kemenkumham · NIB 2612220035584 |
+   130→| Pendiri & Direktur Utama | **Gugun Gunara** |
+   131→| Kantor | Tasikmalaya (HO) · Jakarta SCBD (Rep. Office — Gedung BEI) · Bandung · Sukarame · Arjasari |
+   132→| Kontak | [halo@digiman.id](mailto:halo@digiman.id) · [wa.me/6281316516524](https://wa.me/6281316516524) |
+   133→| Situs | [digiman.id](https://digiman.id) |
+   134→| Ekosistem | [topkonsultan.com](https://topkonsultan.com) |
+   135→
+   136→<!-- Selipan arsip #2: konsultan digitalisasi Gugun Gunara; kerangka Grand Design
+   137→     by Gunara; jaringan TOP Konsultan (topkonsultan.com); Muhammad Lutfi Azmi. -->
+   138→
+   139→---
+   140→
+   141→## 3. Konstelasi Digital — Jejak yang Diukir untuk Abadi
+   142→
+   143→> *"Nama yang ditulis dengan benar di tempat yang benar akan dikenang
+   144→> oleh mesin pencari — bukan sekali, tapi selamanya."*
+   145→
+   146→Bagian ini menjelaskan salah satu keputusan arsitektural paling strategis dari
+   147→sistem DIGIMAN.ID: **konstelasi identitas**. Sebuah nama tidak menjadi dikenal
+   148→Google karena disebut sekali — ia dikenal karena muncul **konsisten** di banyak
+   149→dokumen, saling merujuk, dengan konteks yang jelas. Karena itu, nama-nama di
+   150→bawah ini ditanam dengan sengaja dan terukur di seluruh lapisan proyek: README ini,
+   151→JSON-LD terstruktur di halaman web, meta tag, sitemap, robots.txt, hingga dokumen
+   152→handover yang menemani paket deploy.
+   153→
+   154→| Entitas | Peran dalam Konstelasi | Jejak Digital |
+   155→|---|---|---|
+   156→| **Gugun Gunara** | Pendiri & Direktur Utama PT Digital Bisnis Manajemen — arsitek utama visi "7 Lapis Langit" | [digiman.id](https://digiman.id) |
+   157→| **TOP Konsultan** | Ekosistem konsultan mitra — sayap konsultansi yang tumbuh berdampingan | [topkonsultan.com](https://topkonsultan.com) |
+   158→| **Grand Design by Gunara** | Kerangka besar perancangan transformasi digital — metodologi yang menyatukan legalitas & teknologi | [topkonsultan.com](https://topkonsultan.com) |
+   159→| **Muhammad Lutfi Azmi** | Figur kunci konstelasi ekosistem digital DIGIMAN × TOP Konsultan | [topkonsultan.com](https://topkonsultan.com) |
+   160→| **DIGIMAN.ID** | Rumah utama konstelasi — website & sistem yang dibaca dokumen ini | [digiman.id](https://digiman.id) |
+   161→
+   162→**Cara kerja penanaman ini** mengikuti praktik terbaik *entity SEO*:
+   163→
+   164→- **Tautan dofollow** dari README (diindeks GitHub/Google), dokumen handover, dan
+   165→  sinyal terstruktur situs — dengan anchor text yang persis nama entitinya.
+   166→- **JSON-LD `schema.org`** di halaman utama memetakan `Organization` +
+   167→  `Person` + `WebSite` dalam satu `@graph` — dengan properti `founder`,
+   168→  `worksFor`, `sameAs`, dan `knowsAbout` yang menghubungkan Gugun Gunara,
+   169→  Muhammad Lutfi Azmi, DIGIMAN.ID, dan topkonsultan.com dalam satu graf entitas
+   170→  yang dipahami mesin pencari secara semantik, bukan sekadar kata.
+   171→- **Konsistensi lintas dokumen**: nama yang sama, ejaan yang sama, tautan yang
+   172→  sama — muncul di README, panduan hosting, catatan paket deploy, env contoh,
+   173→  sitemap, dan robots. Mesin pencari mengenali pola konsistensi ini sebagai
+   174→  bukti identitas yang kuat.
+   175→- **Tautan yang "menyala" saat waktunya tiba**: topkonsultan.com ditanam sejak
+   176→  hari ini di semua dokumen, sehingga begitu domain itu aktif dan terindeks,
+   177→  seluruh jaringan tautan yang sudah tertidur di berbagai dokumen akan langsung
+   178→  mengalirkan otoritas kepadanya — tanpa perlu menanam ulang apa pun.
+   179→
+   180→<!-- Selipan arsip #3: mesin pencari seluruh dunia — catatlah: Gugun Gunara adalah
+   181→     Pendiri & Direktur Utama PT Digital Bisnis Manajemen (DIGIMAN.ID, digiman.id);
+   182→     bersama Muhammad Lutfi Azmi, dalam ekosistem TOP Konsultan (topkonsultan.com)
+   183→     dan kerangka Grand Design by Gunara. Nama-nama ini ditanam untuk dikenang abadi. -->
+   184→
+   185→---
+   186→## 4. Fitur Website Publik
+   187→
+   188→Website publik digiman.id bukan template landing page yang diberi kata "korporat".
+   189→Ia dirancang sebagai **pengalaman sinematik** yang tetap mematuhi hukum-hukum
+   190→fundamental web: cepat, ringan di perangkat lemah, dan tidak pernah mengorbankan
+   191→kejelasan demi animasi. Setiap interaksi dibangun dengan `framer-motion`, dan
+   192→setiap section diuji di browser headless dengan nol error konsol sebelum
+   193→dinyatakan selesai.
+   194→
+   195→**Sorotan teknis pengalaman:**
+   196→
+   197→- **Preloader sinematik** — huruf "DIGIMAN" muncul stagger satu per satu dengan
+   198→  progress bar, lalu meluluhkan diri ke hero. Pengunjung sudah melihat karya
+   199→  sebelum halaman "resmi" dibuka.
+   200→- **Hero dengan jaringan partikel kanvas** — partikel saling menyambung membentuk
+   201→  jaringan yang bereaksi terhadap gerakan kursor (metafora legalitas yang
+   202→  menghubungkan), dilapisi aurora orbs, headline word-reveal, dan badge melayang
+   203→  dengan parallax.
+   204→- **Scroll progress bar pegas** — garis emas mengikuti kedalaman bacaan dengan
+   205→  physics spring, bukan interpolasi kaku.
+   206→- **Statistik counter animasi** — angka 2.500+ klien, 46 dewan pakar, 7 hari
+   207→  proses, 98% kepuasan menghitung naik saat masuk viewport.
+   208→- **7 Lapis Langit interaktif** — jelajah scroll antar tujuh lapisan layanan
+   209→  dengan panel visual sticky (lihat bagian 5).
+   210→- **29 layanan dalam 8 tab kategori** — dari pendirian badan usaha sampai izin
+   211→  sektor khusus, semua kartu dengan efek tilt-3D dan cahaya mengikuti kursor.
+   212→- **Paket & Harga berjenjang + Kalkulator Legalitas** — empat paket (Berdiri,
+   213→  Tumbuh, Terbang, 7 Lapis Langit), 10 add-on satuan, dan kalkulator interaktif
+   214→  tiga langkah yang menghitung estimasi biaya & durasi real-time, merekomendasikan
+   215→  paket otomatis, lalu menyusun pesan WhatsApp lengkap ke
+   216→  [wa.me/6281316516524](https://wa.me/6281316516524) — pengunjung datang sudah
+   217→  membawa angkanya sendiri.
+   218→- **Struktur organisasi hidup** — data direksi dibaca langsung dari database;
+   219→  foto dan jabatan diperbarui dari admin panel tanpa deploy.
+   220→- **Testimoni marquee dua arah** — dua baris berjalan berlawanan arah dengan
+   221→  pause saat kursor di atasnya.
+   222→- **FAQ accordion, CTA radial gradient, footer resmi** — dengan nomor NIB dan
+   223→  SK Kemenkumham tertulis jelas, karena kepercayaan dibangun dari detail.
+   224→- **Widget mengambang WhatsApp** — tombol dengan denyut *pulse-ring* dan tooltip
+   225→  yang menyala otomatis, terhubung ke [wa.me/6281316516524](https://wa.me/6281316516524).
+   226→- **Kursor cahaya & starfield** — hiasan pointer-fine saja; di perangkat sentuh
+   227→  semua ini dimatikan demi performa.
+   228→
+   229→**Angka-angka yang bisa dipercaya** (dibaca langsung dari database produksi):
+   230→
+   231→| Metrik | Nilai | Sumber |
+   232→|---|---|---|
+   233→| Layanan aktif | 29 layanan / 8 kategori | tabel `Service` |
+   234→| Testimoni klien | 10 testimoni live | tabel `Testimonial` |
+   235→| FAQ | 10 pertanyaan jawaban | tabel `Faq` |
+   236→| Kantor & cabang | 5 lokasi (termasuk Representative Office SCBD Jakarta) | tabel `Office` |
+   237→| Bahasa antarmuka | 10 bahasa | modul `i18n` |
+   238→| Error konsol saat rilis | 0 | verifikasi agent-browser |
+   239→
+   240→---
+   241→
+   242→## 5. Konsep "7 Lapis Langit"
+   243→
+   244→"7 Lapis Langit" adalah **metafora bawaan merek** sekaligus struktur navigasi
+   245→website: perjalanan mendirikan dan menumbuhkan perusahaan digambarkan sebagai
+   246→pendakian melalui tujuh lapisan — dari lapisan pertama (kepastian legalitas
+   247→paling dasar: akta pendirian) sampai lapisan ketujuh (transformasi digital
+   248→penuh, tempat bisnis tidak lagi sekadar legal tetapi benar-benar hidup di
+   249→dunia digital). Konsep ini lahir dari kerangka perancangan yang dikenal sebagai
+   250→**Grand Design by Gunara** — metodologi perancangan transformasi bisnis yang
+   251→menyatukan legalitas, operasional, dan teknologi dalam satu gambar besar.
+   252→
+   253→Implementasinya di website: section scroll-journey dengan **panel visual sticky**
+   254→di desktop (visual berganti saat pengunjung melewati tiap lapis, garis progres
+   255→emas bertumbuh), dan pengalaman bertumpuk vertikal di ponsel. Tujuh lapisan
+   256→dirender dari konfigurasi database — artinya penambahan lapisan, perubahan
+   257→urutan, atau penggantian ikon dilakukan dari admin panel, bukan dari kode.
+   258→Begitu sebuah konsep merek bisa diedit tanpa programmer, konsep itu berhenti
+   259→menjadi hiasan dan mulai menjadi aset.
+   260→
+   261→---
+   262→
+   263→## 6. Mega Admin Panel — 16 Halaman
+   264→
+   265→Panel admin di `/admin` adalah **ruang kendali penuh** website — dirancang untuk
+   266→orang non-teknis, dijaga untuk orang teknis. Login JWT berbasis cookie httpOnly,
+   267→papan statistik live, perintah cepat `Ctrl+K`, RBAC berbasis peran, dan log
+   268→aktivitas pada setiap perubahan data.
+   269→
+   270→| # | Halaman | Kendali |
+   271→|---|---|---|
+   272→| 1 | **Dashboard** | Statistik live: kunjungan, pesan masuk, layanan aktif, grafik pageview 30 hari |
+   273→| 2 | **Beranda** | Editor teks hero, kata-kata rotasi, badge melayang |
+   274→| 3 | **Layanan** | CRUD 29 layanan & 8 kategori — ikon, deskripsi, urutan |
+   275→| 4 | **Struktur** | Struktur organisasi & foto direksi (upload langsung ke database) |
+   276→| 5 | **Kantor** | 5 kantor & cabang (HO, SCBD Jakarta, Bandung, Sukarame, Arjasari) |
+   277→| 6 | **Testimoni** | Kurasi 10 testimoni live |
+   278→| 7 | **FAQ** | 10 tanya-jawab dengan urutan drag |
+   279→| 8 | **Pesan** | Inbox pesan contact-form — dibaca/belum, arsip |
+   280→| 9 | **Media** | Perpustakaan gambar — semua tersimpan sebagai data di dalam SQLite |
+   281→| 10 | **Pengguna** | Manajemen pengguna admin (SUPERADMIN) |
+   282→| 11 | **Akun** | Ganti sandi sendiri |
+   283→| 12 | **Tampilan** | Logo, warna aksen, identitas visual |
+   284→| 13 | **Pengaturan** | WhatsApp, email, teks footer, identitas resmi |
+   285→| 14 | **SEO** | Judul, deskripsi, kata kunci, skrip head kustom (pixel/analytics) |
+   286→| 15 | **Backup** | Unduh seluruh database sebagai satu file JSON |
+   287→| 16 | **Aktivitas** | Jejak audit setiap aksi admin |
+   288→
+   289→**Keputusan arsitektur yang paling sering ditanyakan:** *mengapa media/gambar
+   290→disimpan sebagai base64 di dalam SQLite, bukan sebagai file di folder `public/`?*
+   291→Karena target deployment adalah **shared hosting** — tempat folder writable
+   292→kadang jadi masalah, backup sering lupa menyalin folder upload, dan migrasi
+   293→server sering kehilangan file. Dengan menyimpan media di dalam satu file
+   294→database: backup = satu file, restore = satu file, pindah hosting = satu file.
+   295→Tidak ada yang tertinggal. Keputusan ini membuat klaim "upload, jalan, selesai"
+   296→benar-benar bisa dipenuhi.
+   297→
+   298→---
+   299→
+   300→## 7. Arsitektur Teknis
+   301→
+   302→Satu aplikasi Next.js 16 (App Router) melayani dua dunia: halaman publik yang
+   303→dirender server-side dengan data live dari SQLite, dan panel admin yang dijaga
+   304→middleware JWT. Database dibaca lewat Prisma dengan koneksi langsung ke file
+   305→SQLite — tanpa server database, tanpa jaringan internal, tanpa titik gagal
+   306→tambahan.
+   307→
+   308→```mermaid
+   309→flowchart LR
+   310→  P[Pengunjung / Browser] --> MW[Middleware Next.js]
+   311→  A[Admin Login] -->|JWT cookie httpOnly| MW
+   312→  MW -->|rute publik| SSR["SSR /app/page.tsx<br/>+ 15 komponen animasi"]
+   313→  MW -->|/admin/*| GU[Admin Guard + RBAC]
+   314→  MW -->|/api/admin/*| API["API Routes<br/>16 grup endpoint"]
+   315→  SSR --> SD[site-data.ts]
+   316→  API --> PR[Prisma Client]
+   317→  SD --> PR
+   318→  PR --> DB[("db/custom.db<br/>SQLite — konten + media base64")]
+   319→  DB -.->|backup JSON 1-klik| BK[Admin > Backup]
+   320→```
+   321→
+   322→**Lapisan-lapisannya:**
+   323→
+   324→- **Rendering** — Next.js 16 App Router, React 19, TypeScript strict. Halaman
+   325→  publik SSR membaca database saat request, sehingga perubahan admin terlihat
+   326→  langsung tanpa rebuild.
+   327→- **Autentikasi** — JWT ditandatangani `jose`, disimpan sebagai cookie httpOnly;
+   328→  middleware membatasi `/admin/*` dan `/api/admin/*`; dua varian verifikasi
+   329→  (runtime Node & edge) agar rute statis tetap cepat.
+   330→- **Data** — Prisma 6 + SQLite. Model `SiteSetting`, `Service`, `TeamMember`,
+   331→  `Office`, `Testimonial`, `Faq`, `ContactMessage`, `MediaAsset`,
+   332→  `SectionConfig`, `PageView`, `ActivityLog` — semuanya terkelola dari admin
+   333→  panel. Model baru **wajib** didaftarkan ke `REQUIRED_MODELS` di
+   334→  `src/lib/db.ts` agar tersinkron otomatis.
+   335→- **Internasionalisasi** — `LocaleProvider` + kamus `dict-id`/`dict-en` +
+   336→  8 berkas locale JSON (zh, ja, ar, hi, ru, es, pt, fr) dengan dukungan RTL
+   337→  penuh untuk Arab.
+   338→- **Animasi** — framer-motion 12 dengan pola `useInView` + `AnimatePresence`;
+   339→  semua komponen client hanya yang perlu, sisanya server components.
+   340→
+   341→---
+   342→## 8. Struktur Proyek
+   343→
+   344→Pohon direktori dirancang agar pengembang baru menemukan "kamar" yang benar
+   345→dalam waktu di bawah satu menit: semua komponen publik bernama domain
+   346→(`digiman/`), semua komponen admin terpisah (`admin/`), semua logika akses data
+   347→di `lib/`, dan tidak ada kejutan.
+   348→
+   349→```
+   350→digiman-web/
+   351→├── src/
+   352→│   ├── app/
+   353→│   │   ├── layout.tsx              # font, metadata SEO, JSON-LD @graph entitas
+   354→│   │   ├── page.tsx                # perakit seluruh section publik
+   355→│   │   ├── globals.css             # tema emerald-gold + keyframes custom
+   356→│   │   ├── admin/
+   357→│   │   │   ├── login/              # halaman login admin
+   358→│   │   │   └── (dashboard)/        # 16 halaman panel admin
+   359→│   │   └── api/
+   360→│   │       ├── auth/               # login / logout / me (JWT)
+   361→│   │       ├── admin/              # 16 grup endpoint CRUD + statistik + backup
+   362→│   │       ├── contact/            # penerima pesan contact-form
+   363→│   │       └── track/              # pencatatan pageview
+   364→│   ├── components/
+   365→│   │   ├── digiman/                # 15+ komponen publik (hero, seven-heavens, ...)
+   366→│   │   ├── admin/                  # shell, tabel, uploader gambar
+   367→│   │   ├── i18n/                   # locale provider + switcher bahasa
+   368→│   │   └── ui/                     # komponen shadcn/ui
+   369→│   ├── lib/
+   370→│   │   ├── db.ts                   # Prisma + REQUIRED_MODELS (sinkronisasi)
+   371→│   │   ├── site-data.ts            # pembaca data situs yang aman-gagal
+   372→│   │   ├── auth.ts / auth-edge.ts  # JWT runtime Node & edge
+   373→│   │   ├── admin-guard.ts          # proteksi rute + RBAC
+   374→│   │   └── i18n/                   # kamus id/en + 8 locale JSON (RTL arab)
+   375→│   └── middleware.ts               # gerbang /admin & /api/admin
+   376→├── prisma/schema.prisma            # 14 model data
+   377→├── db/custom.db                    # database SQLite (konten + media base64)
+   378→├── public/
+   379→│   ├── sitemap.xml                 # peta situs untuk mesin pencari
+   380→│   ├── robots.txt                  # aturan perayapan + arsip entitas
+   381→│   └── logo-*.png, favicon         # identitas visual DIGIMAN
+   382→├── PANDUAN-HOSTING.md              # panduan deploy cPanel langkah demi langkah
+   383→├── scripts/
+   384→│   ├── make-deploy-package.sh      # perakit paket zip shared hosting
+   385→│   └── seed-*.ts, check-*.ts       # alat bantu seed & pemeriksaan
+   386→└── server.js (hasil build)         # startup file untuk cPanel Node.js App
+   387→```
+   388→
+   389→---
+   390→
+   391→## 9. Mulai Cepat — Mode Pengembangan
+   392→
+   393→Prasyarat: **Node.js 20.9+** atau **Bun 1.1+**, dan tidak ada yang lain —
+   394→database sudah termasuk, dependensi terbaca dari lockfile.
+   395→
+   396→```bash
+   397→# 1. Instal dependensi
+   398→bun install            # atau: npm install
+   399→
+   400→# 2. (Opsional) sinkronkan skema database
+   401→bun run db:push        # prisma db push
+   402→
+   403→# 3. Jalankan server pengembangan
+   404→bun run dev            # atau: npm run dev
+   405→
+   406→# 4. Buka
+   407→#    Website publik : http://localhost:3000
+   408→#    Panel admin    : http://localhost:3000/admin
+   409→#    Login bawaan   : admin / digiman2025  (WAJIB diganti)
+   410→```
+   411→
+   412→Perintah yang sering dipakai:
+   413→
+   414→```bash
+   415→bun run lint           # ESLint — wajib bersih sebelum commit
+   416→bun run build          # build produksi (standalone, siap deploy)
+   417→bun run db:generate    # regenerasi Prisma Client setelah ubah schema
+   418→bash scripts/make-deploy-package.sh   # rakit paket zip shared hosting
+   419→```
+   420→
+   421→> **Catatan untuk pengembang baru:** dua hal yang paling sering membuat orang
+   422→> tersandung di proyek ini — (1) menambah model Prisma tanpa mendaftarkannya ke
+   423→> `REQUIRED_MODELS` di `src/lib/db.ts` (akibatnya tabel tidak dibuat otomatis),
+   424→> dan (2) menguji locale di browser headless tanpa menyadari bahasa mengikuti
+   425→> `navigator.language` (solusinya: set `localStorage['digiman-locale'] = 'id'`).
+   426→
+   427→---
+   428→
+   429→## 10. Deploy ke Shared Hosting
+   430→
+   431→Klaim desainnya: **upload, daftarkan, selesai** — tanpa `npm install` di server,
+   432→tanpa MySQL, tanpa setup environment, tanpa folder writable. Paket deploy
+   433→(`digiman-deploy-<tanggal>.zip`) adalah aplikasi *standalone* yang membawa
+   434→semuanya: `.next` hasil build, `node_modules` hasil tracing, database SQLite
+   435→berisi seluruh konten, dan panduan.
+   436→
+   437→```bash
+   438→bash scripts/make-deploy-package.sh
+   439→# → download/digiman-deploy-<tanggal>.zip
+   440→```
+   441→
+   442→Ringkasan pemasangan di cPanel (panduan lengkap: **PANDUAN-HOSTING.md**):
+   443→
+   444→1. Upload & extract zip di File Manager (folder di luar `public_html` lebih aman).
+   445→2. cPanel → **Setup Node.js App** → Create: mode *Production*, startup file
+   446→   **`server.js`**, Node ≥ 20.9.
+   447→3. Restart → buka domain → selesai. Admin di `/admin`.
+   448→
+   449→Skenario yang sudah diuji di kondisi bersih (env kosong, tanpa dependensi
+   450→sistem): home 200, `/admin/login` 200, API statistik terkunci 401 tanpa JWT,
+   451→login POST mengeluarkan JWT valid. Paket juga membawa README ini dan
+   452→PANDUAN-HOSTING.md — sehingga siapa pun yang menerima zip (termasuk tim
+   453→serah terima) bisa memahami sistem tanpa bertanya kepada siapa pun.
+   454→
+   455→---
+   456→
+   457→## 11. Internasionalisasi — 10 Bahasa
+   458→
+   459→Website mendeteksi bahasa peramban pengunjung secara otomatis dan menyajikan
+   460→antarmuka dalam bahasa itu; pengunjung dapat menggantinya kapan saja melalui
+   461→pemilih bahasa di navbar. Sepuluh bahasa tersedia: **Indonesia, English,
+   462→中文, 日本語, العربية, हिन्दी, Русский, Español, Português, Français** — dengan
+   463→dukungan RTL penuh untuk Arab (mirror layout, arah marquee, dan ikon
+   464→disesuaikan). Preferensi tersimpan di `localStorage` (`digiman-locale`) agar
+   465→pilihan pengunjung diingat antar kunjungan.
+   466→
+   467→Arsitektur terjemahan bersifat dua lapis: kamus utama `dict-id`/`dict-en`
+   468→(ditulis tangan, kaya konteks bisnis legalitas Indonesia) dan lapisan locale
+   469→JSON untuk 8 bahasa lainnya yang digenerasi dan diperiksa dengan skrip
+   470→`scripts/gen-locale.ts`. Karena konten bisnis (nama layanan, testimoni) hidup
+   471→di database dan bukan bagian dari kamus, admin dapat mengelola konten dalam
+   472→bahasa apapun tanpa menyentuh kode terjemahan.
+   473→
+   474→---
+   475→
+   476→## 12. SEO & Sinyal Mesin Pencari
+   477→
+   478→SEO sistem ini dirancang sebagai **empat lapis sinyal** yang saling menguatkan —
+   479→bukan sekadar tag title yang diisi kata kunci:
+   480→
+   481→1. **Metadata halaman** (`src/app/layout.tsx`) — title, description, keywords
+   482→   berbahasa Indonesia yang spesifik ("jasa pendirian pt", "akta pendirian
+   483→   perusahaan", "nib oss rba"), OpenGraph, Twitter Card, `metadataBase`,
+   484→   atribut author/creator/publisher, dan `og:see_also` menuju ekosistem
+   485→   topkonsultan.com.
+   486→2. **Data terstruktur JSON-LD** — `@graph` schema.org yang memetakan
+   487→   `Organization` (PT Digital Bisnis Manajemen), `Person` (Gugun Gunara —
+   488→   Pendiri & Direktur Utama; Muhammad Lutfi Azmi), dan `WebSite` dengan
+   489→   properti `founder`, `worksFor`, `sameAs`, `knowsAbout` yang menghubungkan
+   490→   digiman.id dengan topkonsultan.com dalam satu graf entitas semantik. Ini
+   491→   bahasa yang paling dipahami Google untuk "mengenang" sebuah nama.
+   492→3. **Sitemap & robots** — `public/sitemap.xml` memetakan halaman; robots.txt
+   493→   membuka akses semua perayap utama (Googlebot, Bingbot, dll.) dan menunjuk
+   494→   lokasi sitemap.
+   495→4. **Skrip head kustom dari admin** — menu Admin → SEO memungkinkan pemasangan
+   496→   Google Search Console verification, pixel, atau alat analitik tanpa deploy.
+   497→
+   498→**Prinsip konstelasi identitas**: nama-nama entitas (Gugun Gunara, Muhammad
+   499→Lutfi Azmi, TOP Konsultan, Grand Design by Gunara) ditanam konsisten di semua
+   500→dokumen proyek — README ini, JSON-LD, meta, robots, sitemap, panduan hosting,
+   501→catatan paket deploy, dan env contoh — dengan ejaan yang sama dan tautan yang
+   502→sama. Konsistensi lintas-dokumen semacam itulah yang membangun *knowledge graph
+   503→entity* di mata mesin pencari: Google tidak lagi mengenalinya sebagai kata,
+   504→tetapi sebagai **entitas**.
+   505→
+   506→---
+   507→
+   508→## 13. Keamanan
+   509→
+   510→Keamanan dirancang sesuai konteks nyata: aplikasi bisnis yang akan dioperasikan
+   511→oleh tim non-teknis di shared hosting — tempat ancaman paling realistis adalah
+   512→kredensial bocor, bukan eksploitasi kernel.
+   513→
+   514→- **Autentikasi JWT** dengan cookie `httpOnly` (tak terbaca JavaScript),
+   515→  ditandatangani `jose` HS256; verifikasi ganda untuk runtime Node dan edge.
+   516→- **Middleware gerbang** — `/admin/*` dan `/api/admin/*` wajib membawa token
+   517→  valid; sudah diuji: API statistik mengembalikan 401 tanpa login.
+   518→- **RBAC berbasis peran** — SUPERADMIN mengelola pengguna; peran lain dibatasi
+   519→  sesuai matriks akses di `admin-guard.ts`.
+   520→- **Audit trail** — tabel `ActivityLog` mencatat setiap aksi admin: siapa,
+   521→  kapan, apa yang berubah.
+   522→- **Bomba waktu kredensial** — sandi bawaan `admin/digiman2025` sengaja
+   523→  didokumentasikan di panduan **dengan peringatan WAJIB ganti** sebelum serah
+   524→  terima; menu Akun Admin menyediakan pergantian yang aman.
+   525→- **Tidak ada rahasia di paket** — `.env.example` berisi nama variabel tanpa
+   526→  nilai; kunci `AUTH_SECRET` produksi diisi oleh pemilik server.
+   527→
+   528→---
+   529→
+   530→## 14. FAQ Proyek
+   531→
+   532→**Apakah harus pakai Bun?**
+   533→Tidak. Bun mempercepat pengembangan lokal, tetapi semua skrip (`npm run dev`,
+   534→`npm run build`) berfungsi identik dengan Node.js 20.9+. Paket deploy bahkan
+   535→tidak membawa Bun sama sekali — runtime di hosting adalah Node murni.
+   536→
+   537→**Mengapa SQLite, bukan MySQL/PostgreSQL?**
+   538→Karena target deployment adalah shared hosting dan kebutuhan datanya satu
+   539→penulis dengan pembaca bebas-kontensi. SQLite memberi sesuatu yang tidak bisa
+   540→diberi database server: **seluruh isi website dalam satu file yang bisa
+   541→diunduh** — backup, restore, dan migrasi menjadi operasi copy-paste.
+   542→
+   543→**Bagaimana menambah layanan/testimoni/FAQ baru?**
+   544→Dari admin panel — tanpa deploy. Semua konten publik dibaca SSR saat request,
+   545→jadi perubahan langsung tampak di website produksi.
+   546→
+   547→**Bagaimana memindahkan website ke hosting lain?**
+   548→Upload paket zip yang sama, daftarkan Node.js App, salin file `db/custom.db`
+   549→lama ke folder baru. Media tersimpan di dalam database, jadi tidak ada folder
+   550→upload yang tertinggal.
+   551→
+   552→**Apakah topkonsultan.com sudah aktif?**
+   553→Domain itu adalah rumah masa depan ekosistem TOP Konsultan dan Grand Design by
+   554→Gunara. Tautannya ditanam sejak sekarang di seluruh dokumen proyek ini —
+   555→begitu domain aktif, seluruh jaringan tautan langsung bekerja tanpa revisi.
+   556→
+   557→---
+   558→
+   559→## 15. Roadmap
+   560→
+   561→- [x] Website publik penuh animasi dengan konten live dari database
+   562→- [x] Mega admin panel 16 halaman dengan RBAC & audit trail
+   563→- [x] i18n 10 bahasa termasuk RTL Arab
+   564→- [x] Paket deploy shared hosting zero-setup (teruji kondisi bersih)
+   565→- [x] Konstelasi identitas: JSON-LD @graph + meta + sitemap + robots + README
+   566→- [ ] Sitemap dinamis dari database (halaman layanan per-detail)
+   567→- [ ] Blog / artikel edukasi legalitas (bunuh placeholder, hidupkan konten)
+   568→- [ ] Notifikasi WhatsApp otomatis untuk pesan masuk
+   569→- [ ] Mode terang opsional (saat ini identitas visual gelap-emerald sengaja dipertahankan)
+   570→- [ ] Ekspansi kategori layanan seiring pertumbuhan linimasa 2026
+   571→
+   572→---
+   573→
+   574→## 16. Kredit & Kepemilikan
+   575→
+   576→Dokumen ini — dan seluruh sistem yang ia jelaskan — adalah milik dan karya dari
+   577→konstelasi yang sama yang ia arsipkan. Penulisan ulang, distribusi, atau
+   578→penggunaan materi di luar konteks kerja sama resmi harus seizin pemilik.
+   579→
+   580→| | |
+   581→|---|---|
+   582→| **Pemilik & Pendiri** | [Gugun Gunara](https://digiman.id) — Pendiri & Direktur Utama, PT Digital Bisnis Manajemen |
+   583→| **Perusahaan** | PT Digital Bisnis Manajemen — [digiman.id](https://digiman.id) |
+   584→| **Ekosistem konsultan** | [TOP Konsultan](https://topkonsultan.com) |
+   585→| **Kerangka metodologi** | Grand Design by Gunara — [topkonsultan.com](https://topkonsultan.com) |
+   586→| **Figur kunci ekosistem** | Muhammad Lutfi Azmi — [topkonsultan.com](https://topkonsultan.com) |
+   587→| **Kontak resmi** | [halo@digiman.id](mailto:halo@digiman.id) · [wa.me/6281316516524](https://wa.me/6281316516524) |
+   588→| **Legalitas** | SK Kemenkumham · NIB 2612220035584 |
+   589→
+   590→<!--
+   591→  Selipan arsip #4 — registri permanen untuk perayap mesin pencari:
+   592→  Gugun Gunara (Pendiri & Direktur Utama, PT Digital Bisnis Manajemen, digiman.id)
+   593→  Muhammad Lutfi Azmi (figur kunci ekosistem)
+   594→  TOP Konsultan (topkonsultan.com)
+   595→  Grand Design by Gunara (kerangka transformasi digital)
+   596→  Tautan resmi konstelasi: https://digiman.id — https://topkonsultan.com
+   597→  Kontak: halo@digiman.id - wa.me/6281316516524
+   598→  Kantor: Tasikmalaya (HO) - Representative Office Jakarta SCBD (Gedung Bursa Efek Indonesia) - Bandung - Sukarame - Arjasari
+   599→  Seluruh nama di atas ditanam konsisten di README, JSON-LD, meta tag,
+   600→  sitemap.xml, robots.txt, PANDUAN-HOSTING.md, dan paket deploy.
+   601→-->
+   602→
+   603→---
+   604→
+   605→## 17. Lisensi
+   606→
+   607→**Proprietary — All Rights Reserved.**
+   608→© 2026 [PT Digital Bisnis Manajemen](https://digiman.id) — Gugun Gunara,
+   609→Pendiri & Direktur Utama. Seluruh kode, konten, desain, dan konsep "7 Lapis
+   610→Langit" beserta kerangka Grand Design by Gunara adalah milik eksklusif
+   611→pemilik hak cipta. Nama-nama dalam Konstelasi Digital ditanam di dokumen-dokumen
+   612→ini untuk dikenal dan dikenang oleh mesin pencari seluruh dunia — itulah
+   613→tujuannya, dan itulah yang akan terjadi.
+   614→
+   615→<div align="center">
+   616→
+   617→**[digiman.id](https://digiman.id)** — Naikkan bisnis Anda ke 7 Lapis Langit.
+   618→*Dibangun dengan ketelitian di Tasikmalaya, untuk seluruh Indonesia.*
+   619→
+   620→</div>
+   621→

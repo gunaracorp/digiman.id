@@ -91,6 +91,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 96px;
 }
 
 body {
@@ -233,19 +234,31 @@ body {
   }
 }
 
+/* Durasi marquee sengaja DIPERLAMBAT (42s/28s/55s → 120s/64s/150s) agar
+   kecepatan efektif ~95-120 px/s: tenang, elegan, dan mudah dibaca.
+   Jangan diturunkan lagi — di bawah 90s akan terasa terburu-buru. */
 .animate-marquee {
-  animation: marquee-x 42s linear infinite;
+  animation: marquee-x 120s linear infinite;
 }
 .animate-marquee-fast {
-  animation: marquee-x 28s linear infinite;
+  animation: marquee-x 64s linear infinite;
 }
 .animate-marquee-reverse {
-  animation: marquee-x 55s linear infinite reverse;
+  animation: marquee-x 150s linear infinite reverse;
 }
 .marquee-paused:hover .animate-marquee,
 .marquee-paused:hover .animate-marquee-fast,
 .marquee-paused:hover .animate-marquee-reverse {
   animation-play-state: paused;
+}
+/* Aksesibilitas: hormati preferensi pengguna yang sensitif gerakan —
+   ticker berhenti total tapi konten tetap terbaca (statis). */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-marquee-fast,
+  .animate-marquee-reverse {
+    animation-play-state: paused;
+  }
 }
 
 @keyframes floaty {
@@ -384,6 +397,24 @@ body {
   background: linear-gradient(180deg, #34d399, #ffe9a8);
 }
 
+/* Scrollbar tipis untuk area gulir internal (SEO Hub, panel panjang) */
+.custom-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(52, 211, 153, 0.45) rgba(5, 13, 10, 0.4);
+}
+.custom-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: rgba(52, 211, 153, 0.45);
+  border-radius: 6px;
+  border: none;
+}
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(242, 193, 78, 0.6);
+}
+
 ::selection {
   background: rgba(242, 193, 78, 0.85);
   color: #050d0a;
@@ -391,10 +422,6 @@ body {
 
 /* ============================================================
    AKSESIBILITAS — hormati prefers-reduced-motion
-   Matikan semua animasi/transition CSS (marquee, aurora, twinkle,
-   shimmer, floaty, pulse-ring, dll) bagi pengguna yang memilih
-   "kurangi gerakan" di OS-nya. Animasi framer-motion ditangani
-   MotionConfig reducedMotion="user" di motion-provider.tsx.
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
   *,

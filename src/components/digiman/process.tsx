@@ -1,88 +1,125 @@
 "use client";
 
-import { useRef } from "react";
-import { m, useScroll, useSpring } from "framer-motion";
-import { MessagesSquare, FolderCheck, FileSignature, PartyPopper } from "lucide-react";
-import { useI18n } from "@/components/i18n/locale-provider";
+import { motion } from "framer-motion";
+import {
+  type LucideIcon,
+  BadgeCheck,
+  FileSpreadsheet,
+  MessagesSquare,
+  Sparkles,
+  Workflow,
+} from "lucide-react";
+import { PROCESS_STEPS } from "@/lib/digiman-data";
+import { useI18n } from "@/lib/i18n";
 
-const STEP_ICONS = [MessagesSquare, FolderCheck, FileSignature, PartyPopper];
+const ICON_MAP: Record<string, LucideIcon> = {
+  MessagesSquare,
+  FileSpreadsheet,
+  Workflow,
+  BadgeCheck,
+};
+
+const FALLBACK_ICON = Sparkles;
+const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+function StepNode({ icon, no }: { icon: LucideIcon; no: string }) {
+  const Icon = icon;
+  return (
+    <div className="glass relative z-10 flex h-20 w-20 shrink-0 items-center justify-center rounded-full ring-1 ring-emerald-400/40 shadow-[0_0_30px_-10px_rgba(52,211,153,0.45)]">
+      <Icon className="h-8 w-8 text-emerald-300" aria-hidden />
+      <span className="font-display absolute -right-1.5 -top-1.5 flex h-7 w-7 items-center justify-center rounded-full border border-gold/60 bg-[#0a1613] text-[11px] font-bold text-gold">
+        {no}
+      </span>
+    </div>
+  );
+}
 
 export default function Process() {
-  const { dict } = useI18n();
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.7", "end 0.6"] });
-  const lineScale = useSpring(scrollYProgress, { stiffness: 80, damping: 22 });
-  const steps = dict.process.steps.map((s, i) => ({ ...s, no: String(i + 1).padStart(2, "0"), icon: STEP_ICONS[i] }));
-
+  const { t } = useI18n();
   return (
-    <section id="proses" className="section-padding relative py-24 sm:py-32">
-      <div
-        aria-hidden
-        className="absolute right-0 top-1/3 h-[420px] w-[420px] rounded-full bg-yellow-400/6 blur-[130px]"
-      />
-      <div className="mx-auto max-w-5xl">
-        <m.div
-          initial={{ opacity: 0, y: 30 }}
+    <section
+      id="proses"
+      aria-label={t("process.ariaLabel")}
+      className="section-padding relative overflow-hidden py-24 md:py-32"
+    >
+      {/* Latar grid halus */}
+      <div aria-hidden className="grid-lines pointer-events-none absolute inset-0 -z-10" />
+
+      <div className="mx-auto max-w-7xl">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mx-auto mb-16 max-w-3xl text-center"
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.65, ease: EASE }}
+          className="mx-auto max-w-3xl text-center"
         >
-          <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/5 px-5 py-2 text-xs font-bold uppercase tracking-[0.3em] text-emerald-300">
-            {dict.process.kicker}
+          <span className="text-gold inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em]">
+            <Sparkles className="h-3.5 w-3.5" aria-hidden />
+            {t("process.kicker")}
           </span>
-          <h2 className="text-3xl font-extrabold leading-tight text-white sm:text-5xl">
-            {dict.process.headingA}{" "}
-            <span className="gradient-text-emerald">{dict.process.headingB}</span>
+          <h2 className="font-display mt-5 text-3xl font-bold leading-tight text-white md:text-5xl">
+            {t("process.judulA")}{" "}
+            <span className="gradient-text-gold">{t("process.judulB")}</span>
           </h2>
-          <p className="mt-5 leading-relaxed text-emerald-50/60 sm:text-lg">
-            {dict.process.sub}
+          <p className="mt-4 text-base leading-relaxed text-emerald-50/60">
+            {t("process.sub")}
           </p>
-        </m.div>
+        </motion.div>
 
-        <div ref={ref} className="relative">
-          {/* Vertical line */}
-          <div className="absolute bottom-8 left-[26px] top-2 w-px bg-emerald-400/12 sm:left-1/2" aria-hidden>
-            <m.div
-              className="h-full w-px origin-top bg-gradient-to-b from-emerald-400 via-yellow-300 to-gold"
-              style={{ scaleY: lineScale }}
-            />
-          </div>
+        {/* Desktop — 4 kolom + garis penghubung */}
+        <div className="relative mt-16 hidden md:grid md:grid-cols-4 md:gap-6">
+          <div
+            aria-hidden
+            className="border-animated absolute left-[12.5%] right-[12.5%] top-10 h-px"
+          />
+          {PROCESS_STEPS.map((step, i) => {
+            const Icon = ICON_MAP[step.icon] ?? FALLBACK_ICON;
+            return (
+              <motion.div
+                key={step.no}
+                initial={{ opacity: 0, y: 32 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.65, ease: EASE, delay: i * 0.12 }}
+                className="relative flex flex-col items-center text-center"
+              >
+                <StepNode icon={Icon} no={step.no} />
+                <div className="glass card-glow mt-6 w-full rounded-2xl p-5">
+                  <h3 className="font-bold text-white">{step.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-emerald-50/60">{step.desc}</p>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
 
-          <div className="space-y-12">
-            {steps.map((s, i) => {
-              const left = i % 2 === 0;
+        {/* Mobile — stack vertikal dengan rail kiri */}
+        <div className="relative mt-14 md:hidden">
+          <div
+            aria-hidden
+            className="absolute bottom-6 left-10 top-4 w-px bg-gradient-to-b from-emerald-400/60 via-gold/40 to-transparent"
+          />
+          <div className="space-y-10">
+            {PROCESS_STEPS.map((step, i) => {
+              const Icon = ICON_MAP[step.icon] ?? FALLBACK_ICON;
               return (
-                <m.div
-                  key={s.no}
-                  initial={{ opacity: 0, y: 40, x: 0 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-80px" }}
-                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                  className={`relative flex gap-6 sm:w-1/2 ${
-                    left ? "sm:pr-14" : "sm:ml-auto sm:pl-14"
-                  } pl-16 sm:pl-0 ${left ? "" : "sm:pl-14"}`}
+                <motion.div
+                  key={step.no}
+                  initial={{ opacity: 0, x: -24 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.6, ease: EASE, delay: i * 0.1 }}
+                  className="relative flex items-start gap-5"
                 >
-                  {/* Node */}
-                  <div
-                    className={`absolute left-0 top-1 flex h-[54px] w-[54px] items-center justify-center rounded-2xl border border-emerald-400/35 bg-[#0a1613] shadow-[0_0_24px_rgba(52,211,153,0.25)] ${
-                      left ? "sm:left-auto sm:-right-[27px]" : "sm:-left-[27px]"
-                    }`}
-                  >
-                    <s.icon className="h-6 w-6 text-emerald-300" />
+                  <div className="h-20 w-20">
+                    <StepNode icon={Icon} no={step.no} />
                   </div>
-
-                  <div className="card-glow glass w-full rounded-3xl p-7">
-                    <div className="mb-3 flex items-center justify-between">
-                      <span className="font-display text-3xl font-bold text-emerald-400/30">{s.no}</span>
-                      <span className="rounded-full border border-gold/35 bg-yellow-300/8 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-gold-light">
-                        {s.tag}
-                      </span>
-                    </div>
-                    <h3 className="font-display text-xl font-bold text-white">{s.title}</h3>
-                    <p className="mt-2.5 text-sm leading-relaxed text-emerald-50/60">{s.desc}</p>
+                  <div className="glass flex-1 rounded-2xl p-4">
+                    <h3 className="font-bold text-white">{step.title}</h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-emerald-50/60">{step.desc}</p>
                   </div>
-                </m.div>
+                </motion.div>
               );
             })}
           </div>

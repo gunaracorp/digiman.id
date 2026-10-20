@@ -1,25 +1,30 @@
 import type { MetadataRoute } from "next";
 
-/**
- * PWA manifest — situs dapat di-install di layar utama HP,
- * sinyal kualitas tambahan di Lighthouse & mesin pencari.
- */
+/** PWA manifest (disajikan di /manifest.webmanifest) — identitas brand saat install. */
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "DIGIMAN.ID — PT Digital Bisnis Manajemen",
+    name: "DIGIMAN.ID — PT Digital Bisnis Manajemen × PT Top Konsultan Internasional",
     short_name: "DIGIMAN.ID",
     description:
-      "Satu pintu legalitas usaha Indonesia: akta pendirian PT/CV/PMA, NIB OSS, merek, halal, hingga digitalisasi bisnis.",
+      "Jasa legalitas usaha & Gunara OS — standarisasi 165 dokumen super organisasi. by Gugun Gunara & Muhammad Lutfi Azmi (prabudanling).",
     start_url: "/",
     display: "standalone",
     background_color: "#050d0a",
     theme_color: "#050d0a",
     lang: "id",
-    orientation: "portrait",
+    categories: ["business", "productivity"],
     icons: [
-      { src: "/favicon-digiman.png", sizes: "32x32", type: "image/png" },
-      { src: "/logo-digiman.png", sizes: "512x512", type: "image/png", purpose: "any" },
-      { src: "/logo-emblem.png", sizes: "192x192", type: "image/png", purpose: "maskable" },
+      {
+        src: "/favicon-digiman.png",
+        sizes: "64x64",
+        type: "image/png",
+      },
+      {
+        src: "/logo-emblem.png",
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "any",
+      },
     ],
   };
 }

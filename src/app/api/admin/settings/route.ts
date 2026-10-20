@@ -1,84 +1,84 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { requireAdmin, requireWrite, cleanStr, isValidDataUrl, toInt, logActivity } from "@/lib/admin-guard";
+import { requireAdmin } from "@/lib/admin-auth";
 
-const MAX_LOGO_LEN = 2_600_000; // ~2 MB setelah kompresi klien
+export const dynamic = "force-dynamic";
 
-export async function GET(req: NextRequest) {
-  const session = await requireAdmin(req);
-  if (!session) return NextResponse.json({ error: "Tidak terautentikasi." }, { status: 401 });
+const MASK = "••••••";
 
-  let settings = await db.siteSetting.findUnique({ where: { id: 1 } });
-  if (!settings) settings = await db.siteSetting.create({ data: { id: 1 } });
-  return NextResponse.json({ settings });
-}
-
-export async function PUT(req: NextRequest) {
-  const session = await requireWrite(req, "settings");
-  if (session instanceof NextResponse) return session;
+/** GET — list SiteSetting; value adminPassword disamarkan. */
+export async function GET() {
+  const denied = await requireAdmin();
+  if (denied) return denied;
 
   try {
-    // Update parsial aman: field yang tidak dikirim dipertahankan dari nilai saat ini
-    const incoming = await req.json();
-    const current = await db.siteSetting.findUnique({ where: { id: 1 } });
-    const body = { ...(current ?? {}), ...incoming };
-    const waNumber = cleanStr(body.waNumber, 20).replace(/[^0-9]/g, "");
-    const email = cleanStr(body.email, 120);
-    const logoUrl = typeof body.logoUrl === "string" ? body.logoUrl : null;
+    const rows = await db.siteSetting.findMany({
+      orderBy: { key: "asc" },
+    });
+    return NextResponse.json(
+      rows.map((r) =>
+        r.key === "adminPassword"
+          ? { key: r.key, value: MASK, masked: true }
+          : { key: r.key, value: r.value },
+      ),
+    );
+  } catch (e) {
+    console.error("[api/admin/settings GET]", e);
+    return NextResponse.json(
+      { error: "Gagal memuat pengaturan." },
+      { status: 500 },
+    );
+  }
+}
 
-    if (waNumber && !/^[0-9]{8,15}$/.test(waNumber)) {
-      return NextResponse.json(
-        { error: "Nomor WA harus 8–15 digit angka (format internasional tanpa +, mis. 6281333397223)." },
-        { status: 400 }
-      );
-    }
-    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      return NextResponse.json({ error: "Format email tidak valid." }, { status: 400 });
-    }
-    if (logoUrl && !isValidDataUrl(logoUrl, MAX_LOGO_LEN)) {
-      return NextResponse.json({ error: "Logo tidak valid atau terlalu besar (maks ~2MB)." }, { status: 400 });
-    }
-    const ogImage = typeof body.ogImage === "string" ? body.ogImage : null;
-    if (ogImage && !isValidDataUrl(ogImage, MAX_LOGO_LEN)) {
-      return NextResponse.json({ error: "OG Image tidak valid atau terlalu besar (maks ~2MB)." }, { status: 400 });
-    }
+/**
+ * PUT {key, value} — upsert SiteSetting.
+ * Untuk adminPassword: hanya diterima bila value bukan mask dan panjang ≥ 6.
+ */
+export async function PUT(req: NextRequest) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
 
-    const data = {
-      companyName: cleanStr(body.companyName, 120) || "PT Digital Bisnis Manajemen",
-      waNumber: waNumber || "6281333397223",
-      waDisplay: cleanStr(body.waDisplay, 30) || "+62 813-3339-7223",
-      email: email || "halo@digiman.id",
-      addressShort: cleanStr(body.addressShort, 160),
-      addressFull: cleanStr(body.addressFull, 300),
-      statClients: Math.min(1_000_000, Math.max(0, toInt(body.statClients, 2500))),
-      statExperts: Math.min(1_000, Math.max(0, toInt(body.statExperts, 46))),
-      statLayers: Math.min(100, Math.max(0, toInt(body.statLayers, 7))),
-      statSuccess: Math.min(100, Math.max(0, toInt(body.statSuccess, 98))),
-      metaTitle: cleanStr(body.metaTitle, 200),
-      metaDescription: cleanStr(body.metaDescription, 400),
-      metaKeywords: cleanStr(body.metaKeywords, 300),
-      googleSiteVerification: cleanStr(body.googleSiteVerification, 200),
-      headScripts: typeof body.headScripts === "string" ? body.headScripts.slice(0, 8000) : "",
-      contactFormEnabled: body.contactFormEnabled !== false,
-      hours: cleanStr(body.hours, 120),
-      instagram: cleanStr(body.instagram, 300),
-      linkedin: cleanStr(body.linkedin, 300),
-      tiktok: cleanStr(body.tiktok, 300),
-      facebook: cleanStr(body.facebook, 300),
-      youtube: cleanStr(body.youtube, 300),
-      skNumber: cleanStr(body.skNumber, 80),
-      nibNumber: cleanStr(body.nibNumber, 40),
-      npwpNumber: cleanStr(body.npwpNumber, 40),
-      established: cleanStr(body.established, 60),
-      ...(body.logoClear === true ? { logoUrl: null } : logoUrl ? { logoUrl } : {}),
-      ...(body.ogImageClear === true ? { ogImage: null } : ogImage ? { ogImage } : {}),
+  try {
+    const body = (await req.json().catch(() => ({}))) as {
+      key?: string;
+      value?: string;
     };
 
-    const settings = await db.siteSetting.upsert({ where: { id: 1 }, update: data, create: { id: 1, ...data } });
-    await logActivity(session.username, "SETTINGS", "Memperbarui pengaturan situs (kontak, logo, statistik, SEO, sosial media)");
-    return NextResponse.json({ settings });
+    const key = (body.key ?? "").trim();
+    const value = body.value;
+    if (!key || typeof value !== "string")
+      return NextResponse.json(
+        { error: "Payload tidak valid — key dan value wajib." },
+        { status: 400 },
+      );
+
+    if (key === "adminPassword") {
+      if (value === MASK || value.trim().length < 6) {
+        return NextResponse.json(
+          { error: "Password baru tidak valid (minimal 6 karakter)." },
+          { status: 400 },
+        );
+      }
+      const setting = await db.siteSetting.upsert({
+        where: { key },
+        update: { value },
+        create: { key, value },
+      });
+      return NextResponse.json({ ok: true, masked: true, setting: { key: setting.key, value: MASK, masked: true } });
+    }
+
+    const setting = await db.siteSetting.upsert({
+      where: { key },
+      update: { value },
+      create: { key, value },
+    });
+    return NextResponse.json({ ok: true, setting });
   } catch (e) {
-    console.error("PUT /api/admin/settings error:", e);
-    return NextResponse.json({ error: "Gagal menyimpan pengaturan." }, { status: 500 });
+    console.error("[api/admin/settings PUT]", e);
+    return NextResponse.json(
+      { error: "Gagal menyimpan pengaturan." },
+      { status: 500 },
+    );
   }
 }
