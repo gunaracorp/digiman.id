@@ -338,3 +338,20 @@ Work Log:
 Stage Summary:
 - SEO lengkap berlapis: 1.000 kw + 1.000 tagar (meta 250 + full direktori terlihat), entity graph 7+3 node, rich result FAQ/rating/review, OG dinamis, sitemap fresh, robots, manifest.
 - README siap GitHub dengan banner AI + changelog lengkap. Anchor TOC pakai konvensi GitHub (em dash → --).
+---
+Task ID: 13
+Agent: Z.ai (orchestrator)
+Task: "Download all yang benar saja" — paket ZIP bersih semua file proyek + tombol unduh
+
+Work Log:
+- KRISIS: antar-sesi, /home/z/my-project TERHAPUS (hanya .env/.git/download/upload/skills tersisa; server mati). git hanya 1 commit awal; dangling commit fsck = duplikat awal.
+- PEMULIHAN: menemukan salinan utuh versi TERBARU di /tmp/my-project (Task 1-12 lengkap: seo-keywords, seo-hub, opengraph-image, README, banner, worklog Task 12, marquee 120s, db/custom.db 339KB). cp -a pulihkan semua; upload/PGA165 (127KB) pulih via cat dari salinan; bun install 827 paket; dev server hidup GET 200.
+- ZIP bersih: python3 zipfile → public/download/digiman-id-source-lengkap.zip — 159 file (src, prisma, db/custom.db, public, docs, scripts, upload, README, worklog, semua config, .env) = 2.72 MB → 1.31 MB; integritas testzip OK; TANPA node_modules/.next/.git/examples/skills/tests/agent-ctx; struktur root zip: digiman.id/.
+- Footer: tombol emas "⬇ Unduh Kode Sumber (.zip)" di bottom bar (lucide Download, href /download/..., attr download) + i18n footer.unduhKode ID/EN.
+- PROTEKSI: git add -A + commit 6bc28c1 — seluruh proyek terkunci (node_modules/.next/dev.log ter-ignore).
+- Verifikasi: HEAD /download/*.zip → 200 application/zip 1.311.087 bytes; tombol ada di DOM + screenshot footer OK; lint exit 0; dev.log sehat.
+
+Stage Summary:
+- User bisa unduh SEMUA file yang benar via tombol footer atau URL /download/digiman-id-source-lengkap.zip (1.31 MB).
+- Pemulihan bencana sukses total tanpa kehilangan data; proyek kini aman di git (commit 6bc28c1) — kejadian reset sandbox tidak akan menghapus pekerjaan lagi.
+- Catatan: zip memuat .env + db (kebutuhan user); sebelum go-live publik, regenerate tanpa keduanya bila perlu.
