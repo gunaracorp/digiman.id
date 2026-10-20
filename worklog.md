@@ -514,3 +514,25 @@ Stage Summary:
 - Repo bersih dari binary zip; user tinggal `git push` ke GitHub.
 - Catatan: riwayat git masih memuat zip lama di commit historis (ukuran kecil, tidak masalah); bila ingin riwayat 100% bersih bisa squash saat push pertama.
 - Catatan verifikasi tambahan: Task 17 (LEGACY 17 TAHUN) terkonfirmasi SUDAH selesai sebelumnya (worklog #475, brand.ts LEGACY, legacy.tsx live) — tidak dikerjakan ulang.
+
+---
+Task ID: 19 (Genesis Stage 1)
+Agent: main (orchestrator)
+Task: GENESIS HOLDING MODE — Stage 1: tata kelola repo, security, & section Arsitektur Holding
+
+Work Log:
+- Audit repo (jawab concern "kok hanya 10MB"): 173 file ter-track = 3.1MB working tree; SEMUA file kritis ✅ (schema.prisma, db/backup.json, seed scripts, pga-parsed.json, brand.ts, .env.example, semua src); skills/examples/tests TIDAK ter-track (bersih); untracked tersisa hanya .env (rahasia — benar), next-env.d.ts, tsbuildinfo. Kesimpulan: tidak ada yang tertinggal; 10MB GitHub = tree + riwayat git.
+- Section BARU src/components/digiman/holding.tsx (#holding, antara Legacy & Process): kartu induk glass-strong (Network icon, DIGIMAN.ID — PT Digital Bisnis Manajemen, chips SK AHU-059566/2022/Induk Ekosistem), konektor gradient, 4 pilar dari BRAND.ecosystem (PT Top Konsultan↗ eksternal, Gunara OS→#/os, Santri Angon, Platform digiman.id aksen emas), strip kepemimpinan (Gugun Gunara + LEGACY.yearsLabel). Motion whileInView EASE [0.22,1,0.36,1], footer link baru #holding.
+- i18n: 24 key holding.* + footer.holding (ID/EN).
+- next.config.ts: headers() global — X-Content-Type-Options, X-Frame-Options SAMEORIGIN, Referrer-Policy, Permissions-Policy (CSP ketat disengaja ditunda → Stage 4, dicatat di ARCHITECTURE.md).
+- File tata kelola BARU: ARCHITECTURE.md (filosofi, business/brand architecture, sitemap hash→App Router, design system tokens, technical/data/SEO/security/deployment architecture, roadmap Stage 1–5, known debts), SECURITY.md, CONTRIBUTING.md, CHANGELOG.md (0.1.0→0.18.0), LICENSE (proprietary PT DBM), .github/workflows/ci.yml (setup-bun, prisma db push, lint, tsc, build), PULL_REQUEST_TEMPLATE.md (What/Why/Testing/Risk/Checklist), ISSUE_TEMPLATE (bug, feature, config), dependabot.yml (npm weekly + actions monthly).
+- README: struktur + .github/docs governance + changelog #19.
+- Perbaikan sendiri: nested li>a>li di holding.tsx → ul>motion.li>a (valid HTML).
+- Verifikasi: tsc 0 error (src), lint exit 0; browser: section render (kicker/judul/4 pilar/strip pemimpin) di EN dan ID ("Satu Ekosistem. Empat Pilar Kekuatan."), link footer ada, 4 security header terverifikasi via curl -I, 0 console error; screenshot /tmp/holding.png + /tmp/holding-pilar.png.
+- Commit 6f63ce7.
+
+Stage Summary:
+- Genesis Stage 1 SELESAI: situs kini menampilkan identitas HOLDING secara eksplisit (section #holding) tanpa mengorbankan narasi "7 Lapis Langit" yang sudah kuat.
+- Repo punya lapisan tata kelola GitHub lengkap (§26 terpenuhi): CI, template, dependabot, 4 dokumen governance + LICENSE proprietary.
+- Roadmap tertulis di ARCHITECTURE.md §10: Stage 2 (data model Business/Venture + admin CRUD), Stage 3 (App Router nyata + rate limit), Stage 4 (NextAuth + CSP), Stage 5 (Postgres/Supabase + observability).
+- Keputusan arsitektur penting: TIDAK me-rebuild dari nol (18 task live = aset); narasi holding dibangun di atas ekosistem NYATA (§38 never fabricate trust); hash-router dipertahankan sebagai constraint terdokumentasi dengan jalur migrasi jelas via parseHash().
