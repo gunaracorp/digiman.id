@@ -1,11 +1,13 @@
 /**
- * Parser PGA-165 — mengubah upload/PGA165_Digiman_TopManajemen.md
+ * Parser PGA-165 — mengubah docs/PGA165-master-architecture.md
  * menjadi scripts/pga-parsed.json (20 domain, 165 dokumen).
+ * Jalankan dari root proyek: bun run scripts/parse-pga.ts
  */
 import { readFileSync, writeFileSync } from "fs";
+import { join } from "path";
 
-const SRC = "/home/z/my-project/upload/PGA165_Digiman_TopManajemen.md";
-const OUT = "/home/z/my-project/scripts/pga-parsed.json";
+const SRC = join(process.cwd(), "docs", "PGA165-master-architecture.md");
+const OUT = join(process.cwd(), "scripts", "pga-parsed.json");
 
 const raw = readFileSync(SRC, "utf-8");
 // Hentikan di register tabel akhir

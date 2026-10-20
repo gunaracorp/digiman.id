@@ -355,3 +355,27 @@ Stage Summary:
 - User bisa unduh SEMUA file yang benar via tombol footer atau URL /download/digiman-id-source-lengkap.zip (1.31 MB).
 - Pemulihan bencana sukses total tanpa kehilangan data; proyek kini aman di git (commit 6bc28c1) — kejadian reset sandbox tidak akan menghapus pekerjaan lagi.
 - Catatan: zip memuat .env + db (kebutuhan user); sebelum go-live publik, regenerate tanpa keduanya bila perlu.
+
+---
+Task ID: 14
+Agent: Z.ai Code (main)
+Task: Audit & siapkan repo untuk upload GitHub terbaru — jawab "apakah benar hanya ~5.5MB? ada yang ketinggalan?"
+
+Work Log:
+- Audit zip lama (159 file) vs git ls-files (193 file): zip hampir lengkap, hanya zip-nya sendiri yang dikecualikan (benar), TAPI ada masalah: .env ikut ter-zip, dan git men-track junk sandbox (.env, db/custom.db, tool-results/ 15 file, .zscripts/ 9 file, agent-ctx/, .initial_snapshot.json, download/, upload/, mini-services/.gitkeep, examples/, tests/).
+- Jelaskan anatomi 1.5GB workspace: node_modules 1.2GB + .next 198MB = 99% (tidak pernah masuk GitHub; diregenerasi bun install/next dev). Kode sumber asli memang kecil (~2.7MB uncompressed, 1.2MB zip) — NORMAL untuk proyek Next.js.
+- git rm -r --cached: .env, db/custom.db, tool-results, .zscripts, agent-ctx, .initial_snapshot.json, download, upload, mini-services, examples, tests → file tetap aman di disk, hanya untrack.
+- .gitignore diperkuat: *.db, *.db-journal, .initial_snapshot.json, /tool-results/, /.zscripts/, /agent-ctx/, /upload/, /download/, /mini-services/; catatan bahwa public/download/*.zip SENGAJA di-track (tombol unduh footer butuh file itu di clone fresh).
+- git mv (manual mv) upload/PGA165_Digiman_TopManajemen.md → docs/PGA165-master-architecture.md (127KB); folder upload/ = mountpoint sandbox, dibiarkan kosong.
+- scripts/parse-pga.ts: path absolut /home/z/my-project/... → join(process.cwd(), ...) portabel untuk clone GitHub.
+- Buat .env.example (DATABASE_URL placeholder SQLite).
+- Buat scripts/make-source-zip.sh (rsync whitelist + exclude junk + zip -9) + package.json: db:seed & zip:source.
+- Rebuild zip: 193 file, 1.2MB — audit keamanan: TANPA .env/db/log/tool-results/examples/tests; audit kelengkapan: 131 file src utuh (+28 entri direktori), .env.example/.gitignore/README/worklog/bun.lock/Caddyfile/docs PGA165/pga-parsed.json/seed/schema ✓.
+- README: tambah langkah cp .env.example .env, catatan zip:source, struktur tree (db regenerasi, docs PGA-165, .env.example), changelog baris 13 & 14.
+- Verifikasi: bunx tsc --noEmit bersih (src 0 error), bun run lint exit 0.
+
+Stage Summary:
+- Repo kini bersih: git track hanya kode sumber + config + docs (tidak ada rahasia, tidak ada binary db, tidak ada junk sandbox).
+- Snapshot zip terbaru: public/download/digiman-id-source-lengkap.zip (1.2MB, 193 file) — siap diunduh via footer situs atau /download/ di preview panel.
+- Regenerasi zip kapan pun: bun run zip:source. Regenerasi DB: bun run db:push && bun run db:seed.
+- Cara upload GitHub: unduh zip → ekstrak → drag-drop semua isi ke repo prabudanling/digiman.id (GitHub web), atau push via git dari mesin lokal.

@@ -146,6 +146,9 @@ digiman.id — PT Digital Bisnis Manajemen — support system ini
 ## 🚀 Menjalankan Proyek
 
 ```bash
+# 0. Salin environment variables
+cp .env.example .env
+
 # 1. Instal dependensi
 bun install
 
@@ -153,14 +156,18 @@ bun install
 bun run db:push
 
 # 3. Isi data awal (layanan, testimoni, FAQ, 165 dokumen Gunara OS)
-bun run db:seed   # scripts/seed-gunara.ts
+bun run db:seed   # scripts/seed-gunara.ts — idempotent
 
 # 4. Jalankan server pengembangan
 bun run dev       # → http://localhost:3000
 
-# 4. Kualitas kode
+# 5. Kualitas kode
 bun run lint      # ESLint — harus exit 0
 ```
+
+> 💡 **Regenerasi snapshot zip** (tombol "Unduh Kode Sumber" di footer):
+> `bun run zip:source` — otomatis mengemas seluruh kode sumber tanpa
+> `node_modules`, `.next`, `.env`, dan database binary.
 
 ### 📍 Peta Rute (hash-router dalam satu `/`)
 
@@ -188,10 +195,11 @@ bun run lint      # ESLint — harus exit 0
 ```
 digiman.id/
 ├── 📂 prisma/                    # Skema database (SQLite)
-├── 📂 db/                        # File database
-├── 📂 scripts/                   # Seed 165 dokumen + data awal
-├── 📂 docs/                      # Aset README (banner)
-├── 📂 public/                    # Logo, artwork, robots.txt
+├── 📂 db/                        # File database (regenerasi: db:push + db:seed)
+├── 📂 scripts/                   # Seed 165 dokumen + parser PGA + zip generator
+├── 📂 docs/                      # Banner README + arsitektur master PGA-165
+├── 📂 public/                    # Logo, artwork, robots.txt, snapshot zip unduhan
+├── 📄 .env.example               # Template environment variables
 └── 📂 src/
     ├── 📂 app/
     │   ├── layout.tsx            # Metadata global + JSON-LD entity graph
@@ -248,6 +256,8 @@ flowchart LR
 | 10 | **Branding & Entity SEO** — JSON-LD graph 7 entitas, footer kredit, 6 sosial, sitemap, manifest, robots | ✅ |
 | 11 | Marquee diperlambat ke zona premium (120s/150s) + aksesibilitas `prefers-reduced-motion` | ✅ |
 | 12 | 🔥 **SEO GOD MODE TIER MAX** — korpus 1.000 kata kunci + 1.000 tagar, SEO Hub dirender, FAQPage + Review + ItemList JSON-LD, OG image dinamis, sitemap freshness, README mahakarya ini | ✅ |
+| 13 | Tombol "Unduh Kode Sumber" di footer + snapshot zip | ✅ |
+| 14 | 🧹 **Repo Hygiene siap-GitHub** — untrack `.env`/db binary/sampah sandbox, `.gitignore` diperkuat, `.env.example`, `db:seed` & `zip:source`, dokumen master PGA-165 → `docs/`, zip snapshot di-rebuild | ✅ |
 
 ---
 

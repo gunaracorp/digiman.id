@@ -32,6 +32,7 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
 # vercel
 .vercel
@@ -52,3 +53,30 @@ prompt
 server.log
 # Skills directory
 /skills/
+# === Task 14: repo hygiene (GitHub-ready) ===
+# database binary — regenerasi via: bun run db:push && bun run scripts/seed-gunara.ts
+*.db
+*.db-journal
+# sandbox/internal artifacts — jangan di-push
+.initial_snapshot.json
+/tool-results/
+/.zscripts/
+/agent-ctx/
+/upload/
+/download/
+/mini-services/
+# catatan: public/download/digiman-id-source-lengkap.zip SENGAJA di-track
+# (snapshot untuk tombol unduh di footer). Regenerate: bun run zip:source
+
+# Local runtime and database files
+.zscripts/dev.pid
+db/custom.db
+
+# Private legal and identity documents - keep local
+**/AKTA PENDIRIAN  PERTAMA  PT DIGITAL BISNIS MANAJEMEN.pdf
+**/KEMENKUMHAM  PT DIGITAL BISNIS MANAJEMEN ke - 1.pdf
+**/KEMENKUMHAM ke - 1.pdf
+**/KTP DAN NPWP GUGUN GUNARA (2).pdf
+**/NIB BERBASIS RESIKO PT DIGITAL BISNIS MANAJEMEN ke - 1.pdf
+**/NPWP PT DIGITAL BISNIS MANAJEMEN 622397297423000.jpg
+**/Pasted Content_1789176941505.txt
