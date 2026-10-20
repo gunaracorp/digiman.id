@@ -65,8 +65,6 @@ server.log
 /upload/
 /download/
 /mini-services/
-# catatan: public/download/digiman-id-source-lengkap.zip SENGAJA di-track
-# (snapshot untuk tombol unduh di footer). Regenerate: bun run zip:source
 # kerangka sandbox (demo websocket & shell runtime) — bukan bagian aplikasi
 /examples/
 /tests/

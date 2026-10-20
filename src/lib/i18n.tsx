@@ -502,9 +502,9 @@ export const DICTIONARY: Record<string, DictEntry> = {
     id: "Profil media sosial resmi DIGIMAN.ID",
     en: "Official DIGIMAN.ID social media profiles",
   },
-  "footer.unduhKode": {
-    id: "Unduh Kode Sumber (.zip)",
-    en: "Download Source Code (.zip)",
+  "footer.github": {
+    id: "Kode Sumber di GitHub",
+    en: "Source Code on GitHub",
   },
   "seoHub.kicker": { id: "SEO God Mode", en: "SEO God Mode" },
   "seoHub.judul": {

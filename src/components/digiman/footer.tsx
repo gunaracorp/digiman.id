@@ -3,8 +3,8 @@
 import Image from "next/image";
 import {
   Clock,
-  Download,
   ExternalLink,
+  Github,
   Mail,
   MapPin,
   MessageCircle,
@@ -251,12 +251,13 @@ export default function Footer({ settings }: { settings: SiteSettings }) {
               {t("footer.hakCipta", { year })}
             </p>
             <a
-              href="/download/digiman-id-source-lengkap.zip"
-              download="digiman-id-source-lengkap.zip"
+              href="https://github.com/prabudanling/digiman.id"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 rounded-full border border-gold/30 bg-gold/10 px-3 py-1.5 font-semibold text-gold transition hover:bg-gold/20"
             >
-              <Download className="h-3.5 w-3.5" aria-hidden="true" />
-              {t("footer.unduhKode")}
+              <Github className="h-3.5 w-3.5" aria-hidden="true" />
+              {t("footer.github")}
             </a>
             <p>
               {t("footer.founder", { date: settings.established })}

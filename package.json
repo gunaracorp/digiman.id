@@ -14,8 +14,7 @@
     "db:seed": "bun run scripts/seed-gunara.ts",
     "db:seed:dashboard": "bun run scripts/seed-dashboard.ts",
     "db:backup": "bun run scripts/db-backup.ts",
-    "db:restore": "bun run scripts/db-restore.ts",
-    "zip:source": "bash scripts/make-source-zip.sh"
+    "db:restore": "bun run scripts/db-restore.ts"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
