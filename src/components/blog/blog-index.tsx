@@ -100,7 +100,7 @@ function BlogCard({ post, index }: { post: BlogCardData; index: number }) {
       className="h-full"
     >
       <a
-        href={`#/blog/${post.slug}`}
+        href={`#route-blog/${post.slug}`}
         aria-label={`Baca artikel: ${post.title}`}
         className="group glass card-glow flex h-full flex-col rounded-2xl p-6 outline-none focus-visible:ring-2 focus-visible:ring-gold/60"
       >
@@ -120,7 +120,7 @@ function BlogCard({ post, index }: { post: BlogCardData; index: number }) {
 }
 
 /**
- * Halaman penuh daftar blog — dirender saat hash #/blog.
+ * Halaman penuh daftar blog — dirender saat hash #route-blog.
  * Fetch client ke GET /api/blog (no-store) dengan ?q= & ?category=.
  */
 export default function BlogIndex() {

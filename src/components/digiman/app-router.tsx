@@ -71,8 +71,9 @@ export type AppRoute =
 export function parseHash(rawHash: string): AppRoute {
   const h = (rawHash || "").replace(/^#/, "");
   // Anchor biasa (#layanan dst) atau kosong → landing.
-  if (!h.startsWith("/")) return { view: "landing" };
-  const parts = h
+  const routeHash = h.startsWith("route-") ? `/${h.slice("route-".length)}` : h;
+  if (!routeHash.startsWith("/")) return { view: "landing" };
+  const parts = routeHash
     .slice(1)
     .split("?")[0]
     .split("/")

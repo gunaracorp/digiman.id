@@ -4,7 +4,7 @@
  * GUNARA OS EXPLORER — full-page view (dirender ketika hash #/os).
  * Tidak membawa navbar sendiri; kembali ke landing via tombol "← Beranda".
  * Alur jualan: lihat seluruh arsitektur 165 dokumen → pilih paket / dokumen
- * → preset disimpan ke sessionStorage → lanjut ke #/proposal (Proposal Studio).
+ * → preset disimpan ke sessionStorage → lanjut ke #route-proposal (Proposal Studio).
  */
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
@@ -217,7 +217,7 @@ function PackageCard({
       </ul>
 
       <a
-        href="#/proposal"
+        href="#route-proposal"
         onClick={() => savePackagePreset(pkg.code)}
         className={`mt-6 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition-transform hover:scale-[1.02] ${
           isFeatured
@@ -741,7 +741,7 @@ export default function OsExplorer() {
                   </p>
                   <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
                     <a
-                      href="#/proposal"
+                      href="#route-proposal"
                       className="shimmer-btn inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-yellow-300 to-amber-400 px-8 py-4 text-sm font-bold text-emerald-950 transition-transform hover:scale-[1.03] sm:w-auto"
                     >
                       Buka Proposal Studio
@@ -861,7 +861,7 @@ export default function OsExplorer() {
                   </button>
                 )}
                 <a
-                  href="#/proposal"
+                  href="#route-proposal"
                   onClick={() => setSelectedDoc(null)}
                   className="glass inline-flex flex-1 items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-emerald-100 transition-colors duration-300 hover:border-gold/50 hover:text-gold-light"
                 >

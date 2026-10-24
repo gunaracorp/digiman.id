@@ -26,7 +26,7 @@ const NAV_LINKS: NavLink[] = [
   { href: "#tujuh-langit", key: "nav.tujuhLangit" },
   { href: "#layanan", key: "nav.layanan" },
   { href: "#paket", key: "nav.paket" },
-  { href: "#/os", key: "nav.gunaraOs" },
+  { href: "#route-os", key: "nav.gunaraOs" },
   { href: "#/blog", key: "nav.blog" },
   { href: "#faq", key: "nav.faq" },
   { href: "#kontak", key: "nav.kontak" },

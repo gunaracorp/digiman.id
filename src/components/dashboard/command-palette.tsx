@@ -145,7 +145,7 @@ export function CommandPalette({
         <CommandGroup heading={t("dash.palette.links")}>
           <CommandItem
             value="gunara os explorer dokumen"
-            onSelect={() => run(() => (window.location.hash = "#/os"))}
+            onSelect={() => run(() => (window.location.hash = "#route-os"))}
             className="gap-3"
           >
             <Boxes className="text-gold" aria-hidden="true" />
@@ -153,7 +153,7 @@ export function CommandPalette({
           </CommandItem>
           <CommandItem
             value="blog artikel berita"
-            onSelect={() => run(() => (window.location.hash = "#/blog"))}
+            onSelect={() => run(() => (window.location.hash = "#route-blog"))}
             className="gap-3"
           >
             <Globe className="text-gold" aria-hidden="true" />
@@ -161,7 +161,7 @@ export function CommandPalette({
           </CommandItem>
           <CommandItem
             value="beranda landing home situs"
-            onSelect={() => run(() => (window.location.hash = "#/"))}
+            onSelect={() => run(() => (window.location.hash = "#route-"))}
             className="gap-3"
           >
             <Globe className="text-gold" aria-hidden="true" />

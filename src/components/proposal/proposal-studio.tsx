@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * PROPOSAL STUDIO — full-page view (dirender ketika hash #/proposal).
+ * PROPOSAL STUDIO — full-page view (dirender ketika hash #route-proposal).
  * Wizard 3 langkah: Data Klien → Paket & Dokumen → Review & Kirim,
  * diakhiri PREVIEW MODE berupa dokumen resmi yang siap dicetak.
  *
@@ -428,7 +428,7 @@ export default function ProposalStudio() {
                 className="mx-auto max-w-6xl"
               >
                 <a
-                  href="#/"
+                  href="#route-"
                   className="glass inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-emerald-50/70 transition-colors duration-300 hover:border-gold/40 hover:text-gold"
                 >
                   <ArrowLeft className="h-4 w-4" aria-hidden />

@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * DIGIMAN.ID — Client Dashboard (#/dashboard) · Task 15-b
+ * DIGIMAN.ID — Client Dashboard (#route-dashboard) · Task 15-b
  * 30 fitur premium (F01–F30) — daftar fitur ditandai di komentar tiap bagian.
  *
  * Shell: sidebar desktop collapsible (F28) · topbar sticky · bottom-nav mobile ·

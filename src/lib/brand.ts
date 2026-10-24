@@ -48,7 +48,7 @@ export const BRAND = {
     },
     {
       name: "Gunara OS",
-      href: "#/os",
+      href: "#route-os",
       note: "standarisasi 165 dokumen",
     },
   ] as ReadonlyArray<{ name: string; href: string | null; note?: string }>,

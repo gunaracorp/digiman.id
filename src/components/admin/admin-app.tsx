@@ -30,7 +30,7 @@ const TABS = [
 ] as const;
 
 /**
- * Panel Admin digiman.id — full-page view untuk hash #/admin.
+ * Panel Admin digiman.id — full-page view untuk hash #route-admin.
  * Tanpa props: cek sesi sendiri via GET /api/admin/auth.
  */
 export default function AdminApp() {
@@ -117,7 +117,7 @@ export default function AdminApp() {
               variant="outline"
               className="border-emerald-400/25 bg-white/[0.03] hover:border-gold/50 hover:bg-gold/10 hover:text-gold"
             >
-              <a href="/#/" target="_blank" rel="noopener noreferrer">
+              <a href="/#route-" target="_blank" rel="noopener noreferrer">
                 <ExternalLink className="h-4 w-4" aria-hidden="true" />
                 Lihat Situs
               </a>

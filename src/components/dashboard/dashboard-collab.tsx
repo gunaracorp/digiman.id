@@ -206,7 +206,7 @@ export function QuickActionsCard({
     { key: "dash.action.report", icon: FileDown, onSelect: onPrint },
     { key: "dash.action.meeting", icon: CalendarPlus, onSelect: onSchedule },
     { key: "dash.action.message", icon: MessageSquare, onSelect: onMessage },
-    { key: "dash.action.os", icon: Boxes, href: "#/os" },
+    { key: "dash.action.os", icon: Boxes, href: "#route-os" },
     { key: "dash.action.support", icon: LifeBuoy, onSelect: onSupport },
     { key: "dash.action.print", icon: Printer, onSelect: onPrint },
   ];
