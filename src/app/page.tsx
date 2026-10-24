@@ -4,7 +4,7 @@
  * lalu dirender via AppRouter: landing multi-seksi + view hash (#/os, #/blog,
  * #/blog/{slug}, #/proposal, #/admin) dalam satu route "/".
  */
-import { getSiteData } from "@/lib/digiman-data";
+import { getSiteData } from "@/lib/digiman-site-data";
 import { db } from "@/lib/db";
 import { parseBlogCard } from "@/lib/blog-types";
 import type { BlogCardData } from "@/lib/blog-types";

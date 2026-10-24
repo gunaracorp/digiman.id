@@ -3,8 +3,6 @@
  * Membaca konten dari database (Prisma) dengan fallback aman ke data default,
  * sehingga website tetap tampil sempurna walau DB kosong / bermasalah.
  */
-import { db } from "@/lib/db";
-
 // ─────────────────────────── Types ───────────────────────────
 
 export interface SiteSettings {
@@ -599,60 +597,6 @@ export const WHY_US = [
     desc: "Kerangka perancangan transformasi digital khas Digiman — bisnis Anda naik lapis demi lapis secara terstruktur, bukan asal cepat.",
   },
 ];
-
-// ─────────────────────── Reader (DB + fallback) ───────────────────────
-
-export async function getSiteData(): Promise<SiteData> {
-  try {
-    const [serviceRows, testimonialRows, faqRows, officeRows] = await Promise.all([
-      db.service.findMany({ where: { visible: true }, orderBy: [{ order: "asc" }, { createdAt: "asc" }] }),
-      db.testimonial.findMany({ where: { visible: true }, orderBy: [{ order: "asc" }, { createdAt: "asc" }] }),
-      db.faq.findMany({ where: { visible: true }, orderBy: [{ order: "asc" }, { createdAt: "asc" }] }),
-      db.office.findMany({ orderBy: [{ order: "asc" }, { createdAt: "asc" }] }),
-    ]);
-
-    const services: ServiceItem[] = serviceRows.map((s) => {
-      let items: string[] = [];
-      try {
-        items = JSON.parse(s.features);
-      } catch {
-        items = [];
-      }
-      return {
-        slug: s.slug,
-        title: s.title,
-        desc: s.desc,
-        price: s.price,
-        items,
-        icon: s.icon,
-        category: s.category,
-        featured: s.featured,
-      };
-    });
-
-    return {
-      settings: DEFAULT_SETTINGS,
-      services: services.length > 0 ? services : DEFAULT_SERVICES,
-      testimonials:
-        testimonialRows.length > 0
-          ? testimonialRows.map((t) => ({ name: t.name, role: t.role, text: t.text, rating: t.rating }))
-          : DEFAULT_TESTIMONIALS,
-      faqs: faqRows.length > 0 ? faqRows.map((f) => ({ q: f.question, a: f.answer })) : DEFAULT_FAQS,
-      offices: officeRows.length > 0
-        ? officeRows.map((o) => ({ type: o.type, label: o.label, address: o.address }))
-        : DEFAULT_OFFICES,
-    };
-  } catch (e) {
-    console.error("getSiteData fallback ke data default:", e);
-    return {
-      settings: DEFAULT_SETTINGS,
-      services: DEFAULT_SERVICES,
-      testimonials: DEFAULT_TESTIMONIALS,
-      faqs: DEFAULT_FAQS,
-      offices: DEFAULT_OFFICES,
-    };
-  }
-}
 
 /** Format Rupiah ringkas gaya Indonesia: Rp 7,5 jt / Rp 850 rb */
 export function fmtRp(v: number): string {
