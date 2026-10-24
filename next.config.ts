@@ -29,6 +29,18 @@ const SECURITY_HEADERS = [
 
 const nextConfig: NextConfig = {
   output: "standalone",
+  // ── DEV STABILITY (mencegah hydration mismatch di preview iframe) ──
+  // 1) allowedDevOrigins: origin preview platform diajukan sebagai origin
+  //    resmi untuk resource /_next/* — menghilangkan cross-origin warning
+  //    dan memastikan chunk dev selalu termuat mulus dari iframe preview.
+  // 2) devIndicators: false — badge indikator dev Next.js menyisipkan
+  //    elemen <next-dev-tools-indicator> ke DOM saat runtime. Pada koneksi
+  //    lambat, injeksinya bisa memenangkan race terhadap hydration React
+  //    sehingga menggeser posisi tree → seluruh ID useId Radix
+  //    (aria-controls/id) dianggap berbeda oleh React (hydration mismatch).
+  //    Overlay error dev TETAP aktif — hanya badge indikator yang dimatikan.
+  allowedDevOrigins: ["*.space-z.ai"],
+  devIndicators: false,
   async redirects() {
     return [
       // ── Migrasi slug layanan v3 (Task 20) — 301 dari URL lama → kanonik.

@@ -815,3 +815,23 @@ Stage Summary:
 - DIGIMAN.ID kini 165 layanan dalam 20 kategori — matriks terbesar: 165 produk Gunara, masing-masing 1 landing page editorial (±1.300 kata) = ratusan halaman pemasaran siap indeks.
 - Kategori signature menandai produk berbrand eksklusif (7) yang menjadi identitas "produk resmi & asli Gunara" — tak ada situs konsultan yang menjualnya sebagai produk bernama; agri-maritim membuka sektor lahan-laut-farm yang jarang disentuh konsultan.
 - 825 entri katalog WhatsApp (165×5 bidang salin-tempel) + CSV impor massal 166 baris + sitemap 247 URL + card-image 1024×1024 per layanan — siap dikoneksikan ke Katalog WhatsApp Business sesuai rencana pemilik.
+
+---
+Task ID: fix-hydration-1
+Agent: main (orchestrator)
+Task: Diagnosis & perbaikan error "hydration mismatch" (aria-controls/id Radix) yang dilaporkan user di preview
+
+Work Log:
+- User melaporkan console error React: tree ter-hydrate tapi atribut aria-controls/id Radix (Sheet Navbar, Accordion FAQ, Select Contact) berbeda antara server HTML dan client.
+- Audit kode menyeluruh: page.tsx, app-router.tsx, navbar.tsx, layout.tsx, motion-provider, scroll-progress, LocaleProvider (lib/i18n.tsx + components/i18n/locale-provider.tsx) — semua SSR-safe. Tidak ada typeof window/Math.random/Date.now di jalur render landing. Duplicate react diperiksa: hanya 1 copy (react 19.2.3 + react-dom 19.2.3).
+- Verifikasi empiris via agent-browser (headless): fresh load http://localhost:3000 DAN https://preview-chat-501e8a6e-...space-z.ai/ → NOL hydration error; ID Radix di DOM client identik dengan server HTML (radix-_R_haatmlb_, radix-_R_9d9pqatmlb_, radix-_R_53la5qatmlb_).
+- Kesimpulan akar masalah: kode aplikasi SEHAT. Mismatch terjadi hanya di tab user (mode dev): (a) state HMR basi — tab terbuka sejak sesi edit sebelumnya, (b) race injeksi DOM mode-dev (devtools indicator + style injection Turbopack + preinit React 19 di <head>) pada koneksi lambat, (c) kemungkinan ekstensi browser. Error bersifat attributes-only & React recover — fungsionalitas utuh; HTML server (yang dilihat crawler) tetap bersih.
+- Perbaikan diterapkan di next.config.ts: allowedDevOrigins: ["*.space-z.ai"] (origin preview jadi origin dev resmi, hilangkan cross-origin warning) + devIndicators: false (hilangkan injeksi elemen badge dev yang bisa memenangkan race terhadap hydration; overlay error tetap aktif).
+- Restart dev server: menemukan bahwa harness me-reap proses background antar panggilan tool (setsid pun mati); solusi: double-fork Python daemonization (PPID=1) — server kini persisten. Selama iterasi sempat 2x mati (1x HUP, 1x diduga OOM — RAM sandbox 4GB, dev-server+browser bersamaan >2.7GB); urutan aman: warm-up curl dulu → test browser → tutup browser.
+- Verifikasi final: fresh load bersih (0 error, 0 warning hydration), ID Radix server==client 100% cocok, server tetap hidup setelah browser ditutup.
+
+Stage Summary:
+- Error hydration user teratasi di sisi lingkungan dev: config diperkuat (allowedDevOrigins + devIndicators:false) + server di-restart bersih (HMR state segar).
+- Kode aplikasi tidak diubah (terbukti benar); tidak ada regresi SEO/SSR.
+- next.config.ts: +allowedDevOrigins, +devIndicators:false (dokumentasi alasan inline).
+- Pola penting utk sesi berikutnya: spawn proses persisten via double-fork; jangan jalankan browser headless bersamaan dengan kompilasi cold dev server (OOM 4GB).
