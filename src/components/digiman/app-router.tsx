@@ -116,13 +116,10 @@ function parsePathname(pathname: string): AppRoute {
 }
 
 function useHashRoute(): AppRoute {
-  const [route, setRoute] = useState<AppRoute>(() => {
-    if (typeof window === "undefined") return { view: "landing" };
-    const pathnameRoute = parsePathname(window.location.pathname);
-    return pathnameRoute.view === "landing"
-      ? parseHash(window.location.hash)
-      : pathnameRoute;
-  });
+  // Keep the first client render identical to SSR. Browser URL state is
+  // synchronized immediately after hydration to avoid rendering a different
+  // view before React attaches to the server HTML.
+  const [route, setRoute] = useState<AppRoute>({ view: "landing" });
 
   useEffect(() => {
     const sync = () => {

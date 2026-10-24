@@ -319,15 +319,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" suppressHydrationWarning>
-      <head>
+      <body
+        className={`${jakarta.variable} ${grotesk.variable} antialiased bg-background text-foreground`}
+      >
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON_LD_HTML }}
         />
-      </head>
-      <body
-        className={`${jakarta.variable} ${grotesk.variable} antialiased bg-background text-foreground`}
-      >
         {children}
         <Toaster />
       </body>
