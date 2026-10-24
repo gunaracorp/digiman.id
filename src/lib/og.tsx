@@ -13,6 +13,9 @@ import path from "path";
 export const OG_SIZE = { width: 1200, height: 630 };
 export const OG_CONTENT_TYPE = "image/png";
 
+/** Ukuran kartu persegi — untuk gambar produk Katalog WhatsApp Business (min 1024×1024) */
+export const CARD_SIZE = { width: 1024, height: 1024 };
+
 const NIGHT = "#050d0a";
 const GOLD = "#f2c14e";
 const GOLD_LIGHT = "#ffe9a8";
@@ -59,13 +62,22 @@ async function loadFonts(): Promise<OgFont[]> {
   return fonts;
 }
 
+type ImageResponseOptions = NonNullable<ConstructorParameters<typeof ImageResponse>[1]>;
+
 /** Render JSX → Response PNG 1200×630 */
 export async function renderOg(node: React.ReactNode): Promise<Response> {
   const fonts = await loadFonts();
-  return new ImageResponse(node as React.ReactElement, {
-    ...OG_SIZE,
-    ...(fonts.length > 0 ? { fonts } : {}),
-  });
+  const options: ImageResponseOptions = { ...OG_SIZE };
+  if (fonts.length > 0) options.fonts = fonts as NonNullable<ImageResponseOptions["fonts"]>;
+  return new ImageResponse(node as React.ReactElement, options);
+}
+
+/** Render JSX → Response PNG persegi 1024×1024 (Katalog WhatsApp / e-commerce) */
+export async function renderOgSquare(node: React.ReactNode): Promise<Response> {
+  const fonts = await loadFonts();
+  const options: ImageResponseOptions = { ...CARD_SIZE };
+  if (fonts.length > 0) options.fonts = fonts as NonNullable<ImageResponseOptions["fonts"]>;
+  return new ImageResponse(node as React.ReactElement, options);
 }
 
 /** Potong teks agar tidak meluber keluar kanvas */

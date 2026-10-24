@@ -8,6 +8,7 @@ import {
   korporasiContent,
   digitalContent,
 } from "./lainnya";
+import { digitalGrowthContent } from "./digital-growth";
 import { SERVICE_ENRICHMENT } from "./enrichment";
 
 export type { ServiceContent };
@@ -22,6 +23,7 @@ export const SERVICE_CONTENTS: ServiceContent[] = [
   ...ketenagakerjaanContent,
   ...korporasiContent,
   ...digitalContent,
+  ...digitalGrowthContent,
 ];
 
 const CONTENT_MAP = new Map(SERVICE_CONTENTS.map((c) => [c.slug, c]));

@@ -276,7 +276,7 @@ export const SERVICE_ENRICHMENT: Record<string, ServiceEnrichment> = {
     ],
   },
 
-  "domisili-vo": {
+  "virtual-office": {
     whoFor: [
       "Usaha online & freelancer yang butuh alamat usaha sah tanpa sewa kantor",
       "PT/CV baru yang butuh alamat untuk NIB, NPWP & dokumen bank",
@@ -774,6 +774,112 @@ export const SERVICE_ENRICHMENT: Record<string, ServiceEnrichment> = {
       "UU No. 27 Tahun 2022 (Pelindungan Data Pribadi)",
       "UU No. 11 Tahun 2008 jo. UU No. 1 Tahun 2024 (ITE)",
       "Surat Edaran Kominfo No. 9 Tahun 2023 (etika AI) & Stranas KA 2020–2045",
+    ],
+  },
+
+  /* ══════════════ DIGITAL GROWTH (4 layanan baru) ══════════════ */
+
+  "wa-business": {
+    whoFor: [
+      "Bisnis yang jualan & layanan pelanggan utamanya lewat WhatsApp",
+      "Tim yang kewalahan membalas chat dari satu ponsel bersama",
+      "Toko yang ingin katalog produk bisa dipesan langsung dari chat",
+      "Bisnis yang butuh broadcast promo aman dari risiko terblokir Meta",
+    ],
+    deliverables: [
+      "WhatsApp Business API aktif: nomor bisnis terverifikasi + profil lengkap",
+      "Katalog produk digital siap pakai — foto, deskripsi, harga, keranjang",
+      "Chatbot pemesanan & FAQ yang dilatih dari pertanyaan nyata bisnis Anda",
+      "Integrasi notifikasi pesanan ke CRM/spreadsheet + panduan operasional",
+    ],
+    costs: [
+      { item: "Jasa setup WABA & katalog DIGIMAN.ID", note: "mulai Rp 1,5 jt — sekali bayar" },
+      { item: "Biaya platform BSP", note: "ratusan ribu/bulan tergantung penyedia & fitur" },
+      { item: "Biaya percakapan Meta", note: "chat masuk 24 jam gratis; template keluar tarif per percakapan" },
+      { item: "Pengembangan chatbot lanjutan & integrasi", note: "menyesuaikan scope — tertulis di penawaran" },
+    ],
+    legalBasis: [
+      "Ketentuan WhatsApp Business Solution Meta Platform & kebijakan Commerce",
+      "UU No. 27 Tahun 2022 (Pelindungan Data Pribadi)",
+      "PP No. 80 Tahun 2019 (Perdagangan Melalui Sistem Elektronik)",
+    ],
+  },
+
+  "google-bisnisku": {
+    whoFor: [
+      "Bisnis lokal: klinik, restoran, bengkel, sekolah, salon, toko fisik",
+      "Usaha yang belum tampil di Google Maps atau profilnya masih kosong",
+      "Bisnis yang ratingnya rendah/balasan review tidak profesional",
+      "Multi-cabang yang butuh konsistensi profil semua lokasi",
+    ],
+    deliverables: [
+      "Profil Google Business terverifikasi & teroptimasi penuh (kategori, deskripsi, atribut)",
+      "Etalase foto & produk/layanan terkurasi + jam operasional akurat",
+      "Sistem review: template permintaan & balasan + penanganan review negatif",
+      "Laporan performa bulanan: tayangan, klik telepon, permintaan rute",
+    ],
+    costs: [
+      { item: "Jasa optimasi & pendampingan DIGIMAN.ID", note: "mulai Rp 750 rb (sekali bayar) / paket bulanan opsional" },
+      { item: "Verifikasi Google", note: "gratis — via pos/telepon/kamera sesuai metode Google" },
+      { item: "Foto lokasi & produk", note: "opsional — tersedia paket foto profesional" },
+      { item: "Pengelolaan multi-cabang", note: "menyesuaikan jumlah lokasi" },
+    ],
+    legalBasis: [
+      "Ketentuan Google Business Profile Policies & Guidelines",
+      "UU No. 8 Tahun 1999 (Perlindungan Konsumen — akurasi informasi usaha)",
+      "UU No. 11 Tahun 2008 jo. UU No. 1 Tahun 2024 (ITE)",
+    ],
+  },
+
+  "marketplace": {
+    whoFor: [
+      "Produsen/UMKM yang mau jualan di Shopee, Tokopedia, Lazada, TikTok Shop",
+      "Toko yang sudah buka tapi sepi order (listing lemah, tanpa strategi promo)",
+      "Brand yang mengincar badge toko resmi/Power Merchant",
+      "Bisnis yang mau masuk TikTok Shop + live selling & affiliate",
+    ],
+    deliverables: [
+      "Toko resmi terverifikasi di marketplace pilihan (badge bila layak)",
+      "Seluruh listing SEO: judul, deskripsi, foto standar platform, varian, stok",
+      "Etalase & program promo: voucher, flash sale, gratis ongkir yang menjaga margin",
+      "Pelatihan kelola pesanan + evaluasi performa minggu pertama",
+    ],
+    costs: [
+      { item: "Jasa setup & listing DIGIMAN.ID", note: "mulai Rp 1,25 jt per marketplace" },
+      { item: "Biaya toko resmi/Power Merchant", note: "sesuai tarif platform (disebutkan terbuka di penawaran)" },
+      { item: "Foto & video produk", note: "opsional — paket Branding & Konten Katalog" },
+      { item: "Pengelolaan toko bulanan", note: "opsional — sesuai jumlah order & platform" },
+    ],
+    legalBasis: [
+      "PP No. 80 Tahun 2019 (Perdagangan Melalui Sistem Elektronik)",
+      "Permendag No. 50 Tahun 2020 (ketentuan PMSE & pelaku usaha)",
+      "UU No. 8 Tahun 1999 (Perlindungan Konsumen)",
+    ],
+  },
+
+  "branding-katalog": {
+    whoFor: [
+      "Bisnis baru yang butuh identitas visual dari nol",
+      "Usaha dengan tampilan lama yang tidak lagi mencerminkan kualitasnya",
+      "Penjual marketplace/WA yang fotonya buram & katalognya tidak ada",
+      "Brand yang mau konsistensi visual di semua kanal jualan",
+    ],
+    deliverables: [
+      "Paket logo lengkap: file sumber, versi warna/hitam-putih, favicon & profil",
+      "Foto produk profesional terkurasi (atau mockup desain untuk layanan)",
+      "Katalog digital siap unggah ke Katalog WhatsApp Business & marketplace",
+      "Template konten sosmed + panduan brand sederhana yang bisa dipakai tim",
+    ],
+    costs: [
+      { item: "Jasa branding & desain DIGIMAN.ID", note: "mulai Rp 1,5 jt — sesuai cakupan (logo saja / paket penuh)" },
+      { item: "Foto studio produk", note: "sesuai jumlah produk — transparan di penawaran" },
+      { item: "Fotografer lapangan", note: "opsional untuk produk besar/makanan" },
+      { item: "Revisi desain", note: "2 putaran termasuk; putaran lanjutan dihitung jelas" },
+    ],
+    legalBasis: [
+      "UU No. 28 Tahun 2014 (Hak Cipta — karya desain & pemindahan hak pakai tertulis)",
+      "UU No. 20 Tahun 2016 (Merek & Indikasi Geografis — logo sebagai merek)",
+      "UU No. 24 Tahun 2019 (Ekonomi Kreatif)",
     ],
   },
 };

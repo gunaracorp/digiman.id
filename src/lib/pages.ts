@@ -17,6 +17,7 @@ export interface PageEntry {
 export const PAGES: PageEntry[] = [
   { path: "/layanan", title: "Semua Layanan", changeFrequency: "weekly", priority: 0.9, nav: true, footer: true },
   { path: "/paket-harga", title: "Paket & Harga", changeFrequency: "weekly", priority: 0.9, nav: true, footer: true },
+  { path: "/katalog-whatsapp", title: "Katalog WhatsApp", changeFrequency: "weekly", priority: 0.75, footer: true },
   { path: "/tentang-kami", title: "Tentang Kami", changeFrequency: "monthly", priority: 0.8, nav: true, footer: true },
   { path: "/blog", title: "Artikel & Panduan", changeFrequency: "weekly", priority: 0.8, nav: true, footer: true },
   { path: "/faq", title: "Pertanyaan Umum", changeFrequency: "monthly", priority: 0.7, footer: true },

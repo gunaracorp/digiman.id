@@ -2,6 +2,9 @@
  * Seed v2 — kantor (HQ + cabang), katalog layanan lengkap 8 kategori,
  * FAQ tambahan, dan backfill slug untuk terjemahan multi-bahasa.
  * Aman dijalankan berulang (upsert by slug / match by title lama).
+ *
+ * CATALOG diekspor — dipakai juga oleh scripts/migrate-services-v3.ts
+ * sebagai sumber kanonik data layanan (satu sumber, tidak ada dua kebenaran).
  */
 import { db } from "../src/lib/db";
 
@@ -35,7 +38,7 @@ const OFFICES = [
   },
 ];
 
-interface Svc {
+export interface Svc {
   slug: string;
   title: string;
   desc: string;
@@ -47,7 +50,7 @@ interface Svc {
   matchTitle?: string; // judul lama di DB utk di-update
 }
 
-const CATALOG: Svc[] = [
+export const CATALOG: Svc[] = [
   // ===== 1. PENDIRIAN BADAN USAHA =====
   {
     slug: "pendirian-pt", title: "Pendirian PT", icon: "Building2", category: "pendirian", featured: true,
@@ -112,10 +115,10 @@ const CATALOG: Svc[] = [
     features: ["Sertifikat Standar (SS)", "PKKPR & lingkungan", "Izin edar, SIUP, SLO", "Pendampingan audit lapangan"],
   },
   {
-    slug: "domisili-vo", title: "Domisili Usaha & Virtual Office", icon: "MapPin", category: "perizinan",
+    slug: "virtual-office", title: "Domisili Usaha & Virtual Office", icon: "MapPin", category: "perizinan",
     price: "Mulai Rp 500 rb",
     desc: "Alamat bisnis bergengsi tanpa biaya kantor fisik — SKDU/SKPPK lengkap untuk pendirian & perizinan.",
-    features: ["SKDU / SKPPK", "Virtual office premium", "Layanan terima surat", "P cocok untuk PT & PMA"],
+    features: ["SKDU / SKPPK", "Virtual office premium", "Layanan terima surat", "Cocok untuk PT & PMA"],
   },
   {
     slug: "legalisasi-apostille", title: "Legalisisasi, Apostille & Terjemahan", icon: "FileSignature", category: "perizinan",
@@ -237,6 +240,30 @@ const CATALOG: Svc[] = [
     desc: "Chatbot WhatsApp AI, iklan berperforma, dan konten yang bekerja 24 jam untuk penjualan Anda.",
     features: ["Chatbot & AI assistant", "Ads Meta/Google/TikTok", "Konten & social media", "Laporan performa bulanan"],
   },
+  {
+    slug: "wa-business", title: "WhatsApp Business API & Katalog", icon: "MessageCircle", category: "digital",
+    price: "Mulai Rp 1,5 jt",
+    desc: "WA Business API resmi, katalog produk digital, chatbot pemesanan — jualan langsung dari chat pelanggan.",
+    features: ["Pendaftaran WABA resmi Meta", "Katalog produk & keranjang", "Chatbot pemesanan 24 jam", "Integrasi CRM & notifikasi"],
+  },
+  {
+    slug: "google-bisnisku", title: "Google Business Profile & Local SEO", icon: "SearchCheck", category: "digital",
+    price: "Mulai Rp 750 rb",
+    desc: "Tampil pertama saat warga cari usaha Anda di Google Maps & pencarian lokal — profil dioptimalkan penuh.",
+    features: ["Profil Google diverifikasi", "Optimasi kategori & jasa", "Foto, produk & promo", "Review strategy & laporan"],
+  },
+  {
+    slug: "marketplace", title: "Marketplace & TikTok Shop", icon: "ShoppingBag", category: "digital",
+    price: "Mulai Rp 1,25 jt",
+    desc: "Toko resmi di Shopee, Tokopedia, Lazada & TikTok Shop — setup lengkap sampai pesanan pertama masuk.",
+    features: ["Toko resmi & verifikasi", "Listing produk SEO marketplace", "Flash sale & promo setup", "Live selling & affiliate setup"],
+  },
+  {
+    slug: "branding-katalog", title: "Branding & Konten Katalog", icon: "Palette", category: "digital",
+    price: "Mulai Rp 1,5 jt",
+    desc: "Logo, foto produk, desain katalog & konten sosial media — penampilan premium yang membangun kepercayaan.",
+    features: ["Logo & identitas visual", "Foto produk profesional", "Desain katalog & banner", "Template konten sosmed"],
+  },
 ];
 
 const NEW_FAQS = [
@@ -276,15 +303,17 @@ async function main() {
   }
   console.log(`Kantor OK (${OFFICES.length})`);
 
-  // 2. Alamat utama = HQ Tasikmalaya
-  await db.siteSetting.update({
-    where: { id: 1 },
-    data: {
-      addressShort: "Andalusia Garden Granada No.11, Tasikmalaya",
-      addressFull:
-        "Andalusia Garden Cluster Granada No.11, Mangkubumi, Mangkubumi, Tasikmalaya, 46181, Jawa Barat, Indonesia",
-    },
-  });
+  // 2. Alamat utama = HQ Tasikmalaya (kontrak key/value SiteSetting)
+  for (const [key, value] of [
+    ["addressShort", "Andalusia Garden Granada No.11, Tasikmalaya"],
+    ["addressFull", "Andalusia Garden Cluster Granada No.11, Mangkubumi, Mangkubumi, Tasikmalaya, 46181, Jawa Barat, Indonesia"],
+  ] as const) {
+    await db.siteSetting.upsert({
+      where: { key },
+      update: { value },
+      create: { key, value },
+    });
+  }
   console.log("SiteSetting alamat -> HQ Tasikmalaya");
 
   // 3. Katalog layanan
@@ -355,9 +384,11 @@ async function main() {
   console.log("TOTAL:", JSON.stringify(counts));
 }
 
-main()
-  .catch((e) => {
-    console.error(e);
-    process.exit(1);
-  })
-  .finally(() => process.exit(0));
+if (import.meta.main) {
+  main()
+    .catch((e) => {
+      console.error(e);
+      process.exit(1);
+    })
+    .finally(() => process.exit(0));
+}

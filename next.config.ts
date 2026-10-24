@@ -29,6 +29,23 @@ const SECURITY_HEADERS = [
 
 const nextConfig: NextConfig = {
   output: "standalone",
+  async redirects() {
+    return [
+      // ── Migrasi slug layanan v3 (Task 20) — 301 dari URL lama → kanonik.
+      // Asuransi murah: melindungi tautan lama yang mungkin sudah tersebar
+      // dan mencegah duplikasi konten saat mesin pencari memperbarui indeks.
+      { source: "/layanan/koperasi", destination: "/layanan/pendirian-koperasi", permanent: true },
+      { source: "/layanan/yayasan", destination: "/layanan/pendirian-yayasan", permanent: true },
+      { source: "/layanan/perkumpulan", destination: "/layanan/perkumpulan-asosiasi", permanent: true },
+      { source: "/layanan/izin-sektor", destination: "/layanan/izin-sektor-ss", permanent: true },
+      { source: "/layanan/apostille", destination: "/layanan/legalisasi-apostille", permanent: true },
+      { source: "/layanan/hak-cipta", destination: "/layanan/hak-cipta-paten", permanent: true },
+      { source: "/layanan/halal", destination: "/layanan/sertifikasi-halal", permanent: true },
+      { source: "/layanan/kitas-kitap", destination: "/layanan/kitas-rptka", permanent: true },
+      { source: "/layanan/likuidasi", destination: "/layanan/pembubaran", permanent: true },
+      { source: "/layanan/digitalisasi-ai", destination: "/layanan/otomasi-ai", permanent: true },
+    ];
+  },
   async headers() {
     return [
       {

@@ -51,8 +51,8 @@ function kbliHintsFor(city: CityProfile): string[] {
 const CORE_SLUGS = ["pendirian-pt", "nib-oss", "pendaftaran-merek"];
 const ROTATION = [
   "pt-pma", "pendirian-cv", "pt-perorangan",
-  "halal", "website-ecommerce", "npwp-pkp",
-  "bpom", "sni", "yayasan",
+  "sertifikasi-halal", "website-ecommerce", "npwp-pkp",
+  "bpom", "sni", "pendirian-yayasan",
   "bpjs", "virtual-office", "iso",
 ];
 

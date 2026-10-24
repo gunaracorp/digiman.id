@@ -10,10 +10,12 @@ import Breadcrumbs from "@/components/public/breadcrumbs";
 import WaCta from "@/components/public/wa-cta";
 
 export async function generateMetadata(): Promise<Metadata> {
+  const data = await getSiteData();
+  const n = data.services.filter((s) => s.slug).length;
   return buildMetadata({
-    title: "29 Layanan Legalitas & Digitalisasi Bisnis — DIGIMAN.ID",
+    title: `${n} Layanan Legalitas & Digitalisasi Bisnis — DIGIMAN.ID`,
     description:
-      "Seluruh layanan PT Digital Bisnis Manajemen: pendirian PT/CV/PMA, NIB OSS, merek, halal, BPOM, SNI, ISO, pajak, BPJS, hingga website & otomasi AI. Harga transparan, garansi di tangan.",
+      "Seluruh layanan PT Digital Bisnis Manajemen: pendirian PT/CV/PMA, NIB OSS, merek, halal, BPOM, SNI, ISO, pajak, BPJS, hingga website, WhatsApp Business API & otomasi AI. Harga transparan, garansi di tangan.",
     path: "/layanan",
     keywords: [
       "jasa legalitas usaha",
@@ -153,7 +155,6 @@ export default async function LayananPage({
                 <p className="mt-2 max-w-2xl text-sm leading-relaxed text-white/50">
                   {CATEGORY_DESC[cat]}
                 </p>
-
                 <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                   {services.map((s) => {
                     const content = s.slug ? getServiceContent(s.slug) : undefined;
@@ -192,6 +193,26 @@ export default async function LayananPage({
         <div className="mt-20">
           <WaCta context="layanan yang sedang saya butuhkan" />
         </div>
+
+        {/* Banner Katalog WhatsApp — permukaan konversi & internal link kuat */}
+        <section aria-labelledby="katalog-banner" className="mt-10">
+          <div className="flex flex-col items-start gap-4 rounded-2xl border border-emerald-500/20 bg-emerald-500/[0.06] p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+            <div>
+              <h2 id="katalog-banner" className="font-[family-name:var(--font-grotesk)] text-lg font-bold text-white sm:text-xl">
+                Jualan lewat WhatsApp? Ambil katalog siap pakainya.
+              </h2>
+              <p className="mt-1.5 max-w-xl text-sm leading-relaxed text-white/55">
+                Seluruh layanan di halaman ini sudah disiapkan sebagai entri Katalog WhatsApp Business — nama, deskripsi, harga, link, dan gambar 1024×1024. Salin per bidang atau unduh CSV.
+              </p>
+            </div>
+            <Link
+              href="/katalog-whatsapp"
+              className="inline-flex min-h-[44px] shrink-0 items-center gap-2 rounded-full bg-emerald-500 px-5 py-2.5 text-sm font-bold text-[#04120c] shadow-lg shadow-emerald-500/25 transition-transform hover:scale-[1.03] active:scale-95"
+            >
+              Buka Katalog WhatsApp →
+            </Link>
+          </div>
+        </section>
       </main>
 
       <PublicFooter />

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports -- skrip node mandiri (bukan bagian bundel Next) */
 /**
  * gen-idea-book.js — Idea-Book Monetisasi DIGIMAN.ID
  * Cover: Recipe R4 (Top Color Block) — palet DIGIMAN emerald-gold

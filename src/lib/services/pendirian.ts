@@ -162,7 +162,7 @@ export const pendirianContent: ServiceContent[] = [
       { q: "Apakah investor asing bisa 100% memiliki PT PMA?", a: "Pada mayoritas sektor ya — Daftar Positif Investasi membuka kepemilikan asing hingga 100%. Beberapa sektor sensitif (transportasi tertentu, media, kesehatan tertentu) menetapkan batas maksimal atau menuntut kemitraan. Kirimkan bidang usaha Anda, dan tim kami akan memberi jawaban pasti beserta dasar hukumnya." },
       { q: "Berapa lama investor asing bisa tinggal di Indonesia?", a: "Direksi dan karyawan asing PT PMA berhak atas KITAS (izin tinggal terbatas, umumnya 6–12 bulan per periode, dapat diperpanjang) dengan RPTKA yang terlebih dahulu disahkan. Untuk pemegang saham tertentu tersedia juga indeks visa investasi. Kami menangani seluruh rantai ini bersamaan dengan pendirian perusahaan." },
     ],
-    related: ["kitas-rptka", "npwp-pkp", "domisili-vo"],
+    related: ["kitas-rptka", "npwp-pkp", "virtual-office"],
   },
   {
     slug: "firma-ud",

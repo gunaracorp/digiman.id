@@ -139,22 +139,22 @@ export const DEFAULT_SERVICES: ServiceItem[] = [
     items: ["Akta pendirian", "Pengesahan legalitas", "NPWP & NIB", "Konsultasi tanggung jawab"],
   },
   {
-    slug: "koperasi", title: "Pendirian Koperasi", featured: false, icon: "Handshake", category: "pendirian",
-    desc: "Badan usaha beranggotakan warga — legalitas lengkap dari RAT hingga Kemenkop.",
+    slug: "pendirian-koperasi", title: "Pendirian Koperasi", featured: false, icon: "Handshake", category: "pendirian",
+    desc: "Koperasi konsumen, produsen, atau jasa — dari AD/ART hingga legalitas resmi Kemenkop.",
     price: "Mulai Rp 2,5 jt",
-    items: ["BADAN HUKUM Kemenkop", "AD/ART koperasi", "NPWP & NIB", "Pendampingan RAT"],
+    items: ["Rapat pendirian & AD/ART", "Pengesahan Kemenkop UKM", "NPWP & NIB koperasi", "Panduan SHU & RAT"],
   },
   {
-    slug: "yayasan", title: "Yayasan & Lembaga Nirlaba", featured: false, icon: "HeartHandshake", category: "pendirian",
-    desc: "Untuk kegiatan sosial, pendidikan, & kemanusiaan — badan hukum sah dengan struktur organ yang benar.",
+    slug: "pendirian-yayasan", title: "Yayasan & Lembaga Nirlaba", featured: false, icon: "HeartHandshake", category: "pendirian",
+    desc: "Berdiri untuk kebaikan sosial, pendidikan, atau keagamaan — legal penuh dengan struktur organ yang benar.",
     price: "Mulai Rp 3 jt",
-    items: ["Akta yayasan", "SK Kemenkumham", "NPWP & NIB", "Panduan kepatuhan"],
+    items: ["Akta yayasan + SK Kemenkumham", "Struktur pembina-pengurus-pengawas", "NPWP & NIB", "Konsultasi pajak nirlaba"],
   },
   {
-    slug: "perkumpulan", title: "Perkumpulan & Asosiasi", featured: false, icon: "Network", category: "pendirian",
-    desc: "Wadah profesional & komunitas — berbadan hukum resmi untuk kredibilitas maksimal.",
+    slug: "perkumpulan-asosiasi", title: "Perkumpulan & Asosiasi", featured: false, icon: "Network", category: "pendirian",
+    desc: "Asosiasi profesi atau industri dengan badan hukum — angkatan besar, kredibilitas tinggi.",
     price: "Mulai Rp 2,5 jt",
-    items: ["Akta perkumpulan", "Pengesahan kehakiman", "NPWP & NIB", "Konsultasi AD/ART"],
+    items: ["AD/ART perkumpulan", "SK Kemenkumham", "NPWP & NIB", "Panduan keanggotaan & iuran"],
   },
   {
     slug: "nib-oss", title: "NIB, OSS-RBA & Pemetaan KBLI", featured: true, icon: "Stamp", category: "perizinan",
@@ -163,10 +163,10 @@ export const DEFAULT_SERVICES: ServiceItem[] = [
     items: ["Registrasi OSS-RBA", "Analisis KBLI optimal", "NIB sama dengan izin dasar", "Revisi & penyesuaian data"],
   },
   {
-    slug: "izin-sektor", title: "Izin Usaha Sektor & Sertifikat Standar", featured: false, icon: "FileCheck2", category: "perizinan",
-    desc: "Izin sektor spesifik — kesehatan, logistik, makanan, pendidikan — dipetakan sampai SS & lisensi final.",
+    slug: "izin-sektor-ss", title: "Izin Usaha Sektor & Sertifikat Standar", featured: false, icon: "FileCheck2", category: "perizinan",
+    desc: "Perizinan spesifik sektor: kesehatan, makanan, logistik, konstruksi, pariwisata — sampai terbit.",
     price: "Mulai Rp 1 jt",
-    items: ["Analisis perizinan berusaha", "Perizinan tunggal", "Sertifikat standar", "Izin sektor instansi terkait"],
+    items: ["Sertifikat Standar (SS)", "PKKPR & lingkungan", "Izin edar, SIUP, SLO", "Pendampingan audit lapangan"],
   },
   {
     slug: "virtual-office", title: "Domisili Usaha & Virtual Office", featured: false, icon: "MapPin", category: "perizinan",
@@ -175,10 +175,10 @@ export const DEFAULT_SERVICES: ServiceItem[] = [
     items: ["SKDU / SKPPK", "Virtual office premium", "Layanan terima surat", "Cocok untuk PT & PMA"],
   },
   {
-    slug: "apostille", title: "Legalisisasi, Apostille & Terjemahan", featured: false, icon: "FileSignature", category: "perizinan",
-    desc: "Dokumen legal Anda diakui di luar negeri — apostille, legalisasi Kemenlu, & sworn translation.",
+    slug: "legalisasi-apostille", title: "Legalisisasi, Apostille & Terjemahan", featured: false, icon: "FileSignature", category: "perizinan",
+    desc: "Dokumen sah untuk dipakai luar negeri: apostille Kemenkumham, legalisasi KBRI, terjemahan tersumpah.",
     price: "Mulai Rp 350 rb/dok",
-    items: ["Apostille & legalisasi", "Terjemahan tersumpah", "Notarisasi dokumen", "Konsularisasi negara tujuan"],
+    items: ["Apostille dokumen resmi", "Legalisasi kedutaan", "Terjemahan tersumpah", "Notaris & e-KTA"],
   },
   {
     slug: "pendaftaran-merek", title: "Pendaftaran Merek", featured: true, icon: "Lightbulb", category: "ki",
@@ -187,10 +187,10 @@ export const DEFAULT_SERVICES: ServiceItem[] = [
     items: ["Pencarian & analisis merek", "Pengajuan kelas Nice", "Monitoring status", "Balasan argumen DJKI"],
   },
   {
-    slug: "hak-cipta", title: "Hak Cipta, Paten & Desain Industri", featured: false, icon: "Copyright", category: "ki",
-    desc: "Karya, inovasi, dan desain Anda tercatat resmi di DJKI — bukti kepemilikan yang kuat di pengadilan.",
+    slug: "hak-cipta-paten", title: "Hak Cipta, Paten & Desain Industri", featured: false, icon: "Copyright", category: "ki",
+    desc: "Karya, inovasi, dan desain adalah aset — daftarkan agar sah, bernilai, dan bisa dipertaruhkan.",
     price: "Mulai Rp 900 rb",
-    items: ["Hak cipta karya & aplikasi", "Paten & paten sederhana", "Desain industri", "Pendampingan klaim"],
+    items: ["Hak cipta karya & aplikasi", "Paten & paten sederhana", "Desain industri", "Sertifikat resmi DJKI"],
   },
   {
     slug: "franchise", title: "Lisensi Franchise (STPW)", featured: false, icon: "ScrollText", category: "ki",
@@ -199,10 +199,10 @@ export const DEFAULT_SERVICES: ServiceItem[] = [
     items: ["Pengajuan STPW", "Penyusunan perjanjian", "Prospektus & manual", "Wajib lapor terpenuhi"],
   },
   {
-    slug: "halal", title: "Sertifikasi Halal", featured: false, icon: "BadgeCheck", category: "sertifikasi",
-    desc: "Sertifikat halal resmi BPJPH — proses self-declare atau reguler, produk siap masuk pasar Muslim.",
+    slug: "sertifikasi-halal", title: "Sertifikasi Halal", featured: false, icon: "BadgeCheck", category: "sertifikasi",
+    desc: "Proses penuh di SIHALAL: dari SJPH, penyelia halal, hingga audit & keputusan fatwa — garansi halal.",
     price: "Mulai Rp 1,5 jt",
-    items: ["Pendampingan BPJPH", "Pemeriksaan LPH", "Fatwa & penetapan", "Label halal siap pakai"],
+    items: ["Pengajuan SIHALAL", "Pendampingan SJPH", "Penyelia halal terlatih", "Audit & sertifikat BPJPH"],
   },
   {
     slug: "bpom", title: "Izin Edar & Notifikasi BPOM", featured: false, icon: "ShieldCheck", category: "sertifikasi",
@@ -241,10 +241,10 @@ export const DEFAULT_SERVICES: ServiceItem[] = [
     items: ["Registrasi perusahaan", "Pendaftaran karyawan", "Mutasi & tagihan bulanan", "Klaim & dewan pengurus"],
   },
   {
-    slug: "kitas-kitap", title: "KITAS/KITAP & RPTKA", featured: false, icon: "Plane", category: "ketenagakerjaan",
-    desc: "Izin tinggal & kerja tenaga asing — RPTKA, VITAS, KITAS/KITAP diurus end-to-end.",
+    slug: "kitas-rptka", title: "KITAS/KITAP & RPTKA", featured: false, icon: "Plane", category: "ketenagakerjaan",
+    desc: "Pekerja asing & investor legal bekerja/tinggal: RPTKA, notification, VITAS-KITAS sampai KITAP.",
     price: "Mulai Rp 5 jt",
-    items: ["RPTKA & IMTA", "VITAS & KITAS", "KITAS keluarga & KITAP", "Perpanjangan & merger"],
+    items: ["RPTKA Kemenaker", "Notifikasi & telex VITAS", "KITAS investor & pekerja", "KITAP & MERP"],
   },
   {
     slug: "perubahan-akta", title: "Perubahan Akta & Struktur", featured: false, icon: "FileText", category: "korporasi",
@@ -253,10 +253,16 @@ export const DEFAULT_SERVICES: ServiceItem[] = [
     items: ["Perubahan AD/arta", "RUPS & akta perubahan", "Pengesahan Kemenkumham", "Update NIB & OSS"],
   },
   {
-    slug: "likuidasi", title: "Pembubaran & Likuidasi", featured: false, icon: "Archive", category: "korporasi",
-    desc: "Tutup badan usaha dengan benar — tanpa warisan kewajiban pajak & legal yang menghantui.",
+    slug: "pembubaran", title: "Pembubaran & Likuidasi", featured: false, icon: "Archive", category: "korporasi",
+    desc: "Tutup badan usaha dengan benar: RUPS pembubaran, pelunasan kewajiban, hingga penghapusan NIB.",
     price: "Mulai Rp 2,5 jt",
-    items: ["RUPS pembubaran", "Pelunasan kewajiban", "Penghapusan NPWP & NIB", "Pencabutan SK"],
+    items: ["RUPS & akta pembubaran", "Pemberitahuan kreditor", "Pelaporan pajak akhir", "Penghapusan NIB & NPWP"],
+  },
+  {
+    slug: "legal-drafting", title: "Legal Drafting & Due Diligence", featured: false, icon: "Scale", category: "korporasi",
+    desc: "Perjanjian bisnis yang menutup celah hukum, dan pemeriksaan legalitas mitra sebelum Anda menandatangani.",
+    price: "Mulai Rp 750 rb",
+    items: ["Perjanjian kerja sama", "Perjanjian kerja & kerahasiaan", "Legal due diligence mitra", "Review kontrak oleh pakar"],
   },
   {
     slug: "website-ecommerce", title: "Website & E-Commerce", featured: true, icon: "Rocket", category: "digital",
@@ -265,10 +271,34 @@ export const DEFAULT_SERVICES: ServiceItem[] = [
     items: ["Company profile premium", "Toko online & payment gateway", "SEO & Google Business", "Domain, hosting, email bisnis"],
   },
   {
-    slug: "digitalisasi-ai", title: "Otomasi & AI untuk Bisnis", featured: false, icon: "Sparkles", category: "digital",
-    desc: "Chatbot layanan pelanggan, otomasi marketing, integrasi AI — operasional jalan 24 jam tanpa lelah.",
-    price: "Mulai Rp 2,5 jt",
-    items: ["AI customer service", "Otomasi WhatsApp & CRM", "Dashboard & laporan otomatis", "Integrasi sistem internal"],
+    slug: "otomasi-ai", title: "Otomasi AI & Digital Marketing", featured: false, icon: "Sparkles", category: "digital",
+    desc: "Chatbot WhatsApp AI, iklan berperforma, dan konten yang bekerja 24 jam untuk penjualan Anda.",
+    price: "Mulai Rp 2,5 jt/bln",
+    items: ["Chatbot & AI assistant", "Ads Meta/Google/TikTok", "Konten & social media", "Laporan performa bulanan"],
+  },
+  {
+    slug: "wa-business", title: "WhatsApp Business API & Katalog", featured: false, icon: "MessageCircle", category: "digital",
+    desc: "WA Business API resmi, katalog produk digital, chatbot pemesanan — jualan langsung dari chat pelanggan.",
+    price: "Mulai Rp 1,5 jt",
+    items: ["Pendaftaran WABA resmi Meta", "Katalog produk & keranjang", "Chatbot pemesanan 24 jam", "Integrasi CRM & notifikasi"],
+  },
+  {
+    slug: "google-bisnisku", title: "Google Business Profile & Local SEO", featured: false, icon: "SearchCheck", category: "digital",
+    desc: "Tampil pertama saat warga cari usaha Anda di Google Maps & pencarian lokal — profil dioptimalkan penuh.",
+    price: "Mulai Rp 750 rb",
+    items: ["Profil Google diverifikasi", "Optimasi kategori & jasa", "Foto, produk & promo", "Review strategy & laporan"],
+  },
+  {
+    slug: "marketplace", title: "Marketplace & TikTok Shop", featured: false, icon: "ShoppingBag", category: "digital",
+    desc: "Toko resmi di Shopee, Tokopedia, Lazada & TikTok Shop — setup lengkap sampai pesanan pertama masuk.",
+    price: "Mulai Rp 1,25 jt",
+    items: ["Toko resmi & verifikasi", "Listing produk SEO marketplace", "Flash sale & promo setup", "Live selling & affiliate setup"],
+  },
+  {
+    slug: "branding-katalog", title: "Branding & Konten Katalog", featured: false, icon: "Palette", category: "digital",
+    desc: "Logo, foto produk, desain katalog & konten sosial media — penampilan premium yang membangun kepercayaan.",
+    price: "Mulai Rp 1,5 jt",
+    items: ["Logo & identitas visual", "Foto produk profesional", "Desain katalog & banner", "Template konten sosmed"],
   },
 ];
 

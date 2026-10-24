@@ -278,6 +278,7 @@ flowchart LR
 | 17 | 🏛 **LEGACY 17 TAHUN** — timeline "Legalitas Kami Muda. Keahlian Kami 17 Tahun.": McKinsey & Company 2009 → praktik independen 2013 → PT 2022 → era digiman.id; badge hero, stat 17+ tahun, JSON-LD foundingDate + bio pendiri, DigiAI cerdas sejarah | ✅ |
 | 18 | 🗑️ **Siap-GitHub Murni** — tombol unduh kode sumber dihapus dari footer (diganti badge resmi → repo GitHub), snapshot zip & script `zip:source` dihapus dari repo | ✅ |
 | 19 | 🏛 **GENESIS STAGE 1 — HOLDING MODE** — section **Arsitektur Holding** `#holding` (kartu induk + 4 pilar ekosistem + tata kelola, ID/EN), security headers, `ARCHITECTURE.md` · `SECURITY.md` · `CONTRIBUTING.md` · `CHANGELOG.md` · `LICENSE`, GitHub Actions CI (lint·typecheck·build), template PR & issue, Dependabot | ✅ |
+| 20 | 🟢 **KATALOG WHATSAPP BUSINESS & 33 LAYANAN** — migrasi slug v3 (10 slug diselaraskan dengan pustaka konten editorial → 11 layanan kembali kaya konten), 6 layanan baru (Legal Drafting, Aplikasi Sistem, **WhatsApp Business API**, **Google Business Profile**, **Marketplace & TikTok Shop**, **Branding Katalog**) + konten landing lengkap, halaman **`/katalog-whatsapp`** (165 tombol salin + CSV impor massal + gambar persegi 1024×1024 per layanan), redirect 301 slug lama | ✅ |
 
 ---
 

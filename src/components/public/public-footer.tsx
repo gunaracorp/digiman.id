@@ -11,7 +11,6 @@ export default function PublicFooter() {
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4">
         <div className="md:col-span-2">
           <div className="flex items-center gap-2.5">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/logo-emblem.png"
               alt="Logo DIGIMAN.ID"

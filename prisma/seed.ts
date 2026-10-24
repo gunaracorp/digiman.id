@@ -1,40 +1,14 @@
 /**
  * Seed database DIGIMAN.ID — layanan, testimoni, FAQ, kantor.
- * Idempotent: aman dijalankan berulang (skip jika data sudah ada).
+ * Idempotent: aman dijalankan berulang (upsert by slug).
+ *
+ * Katalog layanan diimpor dari scripts/seed-v2.ts (CATALOG kanonik) —
+ * satu sumber kebenaran untuk DB, fallback, dan pustaka konten editorial.
  */
 import { PrismaClient } from "@prisma/client";
+import { CATALOG } from "../scripts/seed-v2";
 
 const prisma = new PrismaClient();
-
-const SERVICES = [
-  ["pendirian-pt", "Pendirian PT", "Akta notaris, SK Kemenkumham, NPWP, NIB — paket lengkap PT resmi berdiri dalam hitungan hari.", "Mulai Rp 3,5 jt", ["Akta Notaris + SK Kemenkumham", "NPWP & NIB otomatis", "Domisili usaha", "Gratis konsultasi KBLI"], "Building2", "pendirian", true, 1],
-  ["pt-perorangan", "PT Perorangan (UUCK)", "Badan usaha resmi untuk usaha individu via OSS — tanpa notaris, NIB terbit langsung.", "Mulai Rp 850 rb", ["NIB sebagai legalitas pasti", "Tanpa akta notaris", "Kewajiban pajak ringan", "Cocok UMKM & freelancer"], "FileBadge", "pendirian", false, 2],
-  ["pendirian-cv", "Pendirian CV", "Pilihan ideal usaha keluarga & kemitraan. Cepat, murah, dan sah di mata hukum.", "Mulai Rp 1,8 jt", ["Akta notaris CV", "Pengesahan kehakiman", "NPWP & NIB", "Konsultasi struktur modal"], "Users", "pendirian", false, 3],
-  ["pt-pma", "PT PMA (Investasi Asing)", "Berinvestasi di Indonesia? Kami pegang seluruh regulasi BKPM & OSS untuk Anda.", "Mulai Rp 15 jt", ["Struktur saham asing", "Laporan BKPM/OSS", "Izin investasi", "Pendampingan DGT & Bank"], "Globe2", "pendirian", false, 4],
-  ["firma-ud", "Firma, UD & Persekutuan", "Bentuk badan usaha klasik untuk usaha dagang & kemitraan — berdiri cepat, biaya efisien.", "Mulai Rp 1,2 jt", ["Akta pendirian", "Pengesahan legalitas", "NPWP & NIB", "Konsultasi tanggung jawab"], "Store", "pendirian", false, 5],
-  ["koperasi", "Pendirian Koperasi", "Badan usaha beranggotakan warga — legalitas lengkap dari RAT hingga Kemenkop.", "Mulai Rp 2,5 jt", ["BADAN HUKUM Kemenkop", "AD/ART koperasi", "NPWP & NIB", "Pendampingan RAT"], "Handshake", "pendirian", false, 6],
-  ["yayasan", "Yayasan & Lembaga Nirlaba", "Untuk kegiatan sosial, pendidikan, & kemanusiaan — badan hukum sah dengan struktur organ yang benar.", "Mulai Rp 3 jt", ["Akta yayasan", "SK Kemenkumham", "NPWP & NIB", "Panduan kepatuhan"], "HeartHandshake", "pendirian", false, 7],
-  ["perkumpulan", "Perkumpulan & Asosiasi", "Wadah profesional & komunitas — berbadan hukum resmi untuk kredibilitas maksimal.", "Mulai Rp 2,5 jt", ["Akta perkumpulan", "Pengesahan kehakiman", "NPWP & NIB", "Konsultasi AD/ART"], "Network", "pendirian", false, 8],
-  ["nib-oss", "NIB, OSS-RBA & Pemetaan KBLI", "Nomor Induk Berusaha sebagai identitas utama bisnis Anda di sistem OSS-RBA — KBLI dipetakan presisi.", "Mulai Rp 750 rb", ["Registrasi OSS-RBA", "Analisis KBLI optimal", "NIB sama dengan izin dasar", "Revisi & penyesuaian data"], "Stamp", "perizinan", true, 9],
-  ["izin-sektor", "Izin Usaha Sektor & Sertifikat Standar", "Izin sektor spesifik — kesehatan, logistik, makanan, pendidikan — dipetakan sampai SS & lisensi final.", "Mulai Rp 1 jt", ["Analisis perizinan berusaha", "Perizinan tunggal", "Sertifikat standar", "Izin sektor instansi terkait"], "FileCheck2", "perizinan", false, 10],
-  ["virtual-office", "Domisili Usaha & Virtual Office", "Alamat bisnis bergengsi tanpa biaya kantor fisik — SKDU, terima surat, siap untuk PT & PMA.", "Mulai Rp 500 rb", ["SKDU / SKPPK", "Virtual office premium", "Layanan terima surat", "Cocok untuk PT & PMA"], "MapPin", "perizinan", false, 11],
-  ["apostille", "Legalisisasi, Apostille & Terjemahan", "Dokumen legal Anda diakui di luar negeri — apostille, legalisasi Kemenlu, & sworn translation.", "Mulai Rp 350 rb/dok", ["Apostille & legalisasi", "Terjemahan tersumpah", "Notarisasi dokumen", "Konsularisasi negara tujuan"], "FileSignature", "perizinan", false, 12],
-  ["pendaftaran-merek", "Pendaftaran Merek", "Amankan brand Anda sebelum orang lain. Cek ketersediaan + pengajuan ke DJKI.", "Mulai Rp 1,5 jt", ["Pencarian & analisis merek", "Pengajuan kelas Nice", "Monitoring status", "Balasan argumen DJKI"], "Lightbulb", "ki", true, 13],
-  ["hak-cipta", "Hak Cipta, Paten & Desain Industri", "Karya, inovasi, dan desain Anda tercatat resmi di DJKI — bukti kepemilikan yang kuat di pengadilan.", "Mulai Rp 900 rb", ["Hak cipta karya & aplikasi", "Paten & paten sederhana", "Desain industri", "Pendampingan klaim"], "Copyright", "ki", false, 14],
-  ["franchise", "Lisensi Franchise (STPW)", "Siap ekspansi waralaba? STPW sah dari Kemenperin supaya franchise Anda legal & terlindungi.", "Mulai Rp 2 jt", ["Pengajuan STPW", "Penyusunan perjanjian", "Prospektus & manual", "Wajib lapor terpenuhi"], "ScrollText", "ki", false, 15],
-  ["halal", "Sertifikasi Halal", "Sertifikat halal resmi BPJPH — proses self-declare atau reguler, produk siap masuk pasar Muslim.", "Mulai Rp 1,5 jt", ["Pendampingan BPJPH", "Pemeriksaan LPH", "Fatwa & penetapan", "Label halal siap pakai"], "BadgeCheck", "sertifikasi", false, 16],
-  ["bpom", "Izin Edar & Notifikasi BPOM", "MD, ML, dan notifikasi kosmetika — produk Anda legal beredar di seluruh Indonesia.", "Mulai Rp 2 jt", ["Izin edar MD/ML", "Notifikasi kosmetika", "Cek kemasan & label", "Pendampingan lab test"], "ShieldCheck", "sertifikasi", false, 17],
-  ["sni", "Sertifikat SNI", "Standar nasional Indonesia untuk produk Anda — jaminan mutu yang diwajibkan pasar & tender.", "Mulai Rp 2,5 jt", ["Audit pabrik LSPro", "Pengujian lab terakreditasi", "Sertifikat & logo SNI", "Pemantauan berkala"], "Award", "sertifikasi", false, 18],
-  ["iso", "Sertifikasi ISO", "ISO 9001, 14001, 22000, 27001 — standar internasional yang membuka pintu korporasi & ekspor.", "Mulai Rp 5 jt", ["Gap analysis", "Dokumentasi sistem mutu", "Audit sertifikasi", "Sertifikat berlaku internasional"], "Medal", "sertifikasi", false, 19],
-  ["npwp-pkp", "NPWP Badan & Pengukuhan PKP", "NPWP badan, pengukuhan PKP, hingga fasilitas pajak — kewajiban pajak Anda rapi sejak hari pertama.", "Mulai Rp 400 rb", ["NPWP badan", "Pengukuhan PKP", "Fasilitas PP 23/2018", "Konsultasi tarif optimal"], "Receipt", "pajak", false, 20],
-  ["pelaporan-pajak", "SPT, e-Faktur & Pelaporan Pajak", "SPT Tahunan & Masa, e-Faktur, buku besar — konsultan pajak bersertifikat menangani semuanya.", "Mulai Rp 500 rb/bln", ["SPT Tahunan badan/pribadi", "SPT Masa PPN/PPh", "e-Faktur & e-Bupot", "Restitusi & kompensasi"], "Calculator", "pajak", false, 21],
-  ["bpjs", "BPJS Kesehatan & Ketenagakerjaan", "Registrasi & administrasi BPJS untuk karyawan — patuh UU Ketenagakerjaan tanpa pusing.", "Mulai Rp 300 rb", ["Registrasi perusahaan", "Pendaftaran karyawan", "Mutasi & tagihan bulanan", "Klaim & dewan pengurus"], "HeartPulse", "ketenagakerjaan", false, 22],
-  ["kitas-kitap", "KITAS/KITAP & RPTKA", "Izin tinggal & kerja tenaga asing — RPTKA, VITAS, KITAS/KITAP diurus end-to-end.", "Mulai Rp 5 jt", ["RPTKA & IMTA", "VITAS & KITAS", "KITAS keluarga & KITAP", "Perpanjangan & merger"], "Plane", "ketenagakerjaan", false, 23],
-  ["perubahan-akta", "Perubahan Akta & Struktur", "Ganti nama, tambah modal, pindah alamat, masuk pemegang saham baru — akta & persetujuan beres rapi.", "Mulai Rp 1,5 jt", ["Perubahan AD/arta", "RUPS & akta perubahan", "Pengesahan Kemenkumham", "Update NIB & OSS"], "FileText", "korporasi", false, 24],
-  ["likuidasi", "Pembubaran & Likuidasi", "Tutup badan usaha dengan benar — tanpa warisan kewajiban pajak & legal yang menghantui.", "Mulai Rp 2,5 jt", ["RUPS pembubaran", "Pelunasan kewajiban", "Penghapusan NPWP & NIB", "Pencabutan SK"], "Archive", "korporasi", false, 25],
-  ["website-ecommerce", "Website & E-Commerce", "Website company profile sampai toko online — cepat, SEO-ready, dan meyakinkan pelanggan.", "Mulai Rp 3 jt", ["Company profile premium", "Toko online & payment gateway", "SEO & Google Business", "Domain, hosting, email bisnis"], "Rocket", "digital", true, 26],
-  ["digitalisasi-ai", "Otomasi & AI untuk Bisnis", "Chatbot layanan pelanggan, otomasi marketing, integrasi AI — operasional jalan 24 jam tanpa lelah.", "Mulai Rp 2,5 jt", ["AI customer service", "Otomasi WhatsApp & CRM", "Dashboard & laporan otomatis", "Integrasi sistem internal"], "Sparkles", "digital", false, 27],
-] as const;
 
 const TESTIMONIALS = [
   ["Rendra Wijaya", "Founder, Kopi Nusantara Rasa", "Dari NIB sampai sertifikasi halal, semua beres dalam 9 hari. Tim Digiman bahkan membantu saya memilih KBLI yang bikin saya dapat cuti pajak UMKM. Luar biasa detail.", 1],
@@ -68,14 +42,23 @@ const OFFICES = [
 async function main() {
   console.log("Seeding DIGIMAN.ID database...");
 
-  for (const [slug, title, desc, price, items, icon, category, featured, order] of SERVICES) {
+  for (const [i, s] of CATALOG.entries()) {
+    const order = (i + 1) * 10;
     await prisma.service.upsert({
-      where: { slug },
-      update: { title, desc, price, features: JSON.stringify(items), icon, category, featured, order },
-      create: { slug, title, desc, price, features: JSON.stringify(items), icon, category, featured, order },
+      where: { slug: s.slug },
+      update: {
+        title: s.title, desc: s.desc, price: s.price,
+        features: JSON.stringify(s.features), icon: s.icon,
+        category: s.category, featured: Boolean(s.featured), order,
+      },
+      create: {
+        slug: s.slug, title: s.title, desc: s.desc, price: s.price,
+        features: JSON.stringify(s.features), icon: s.icon,
+        category: s.category, featured: Boolean(s.featured), order,
+      },
     });
   }
-  console.log(`Services: ${SERVICES.length}`);
+  console.log(`Services: ${CATALOG.length}`);
 
   if ((await prisma.testimonial.count()) === 0) {
     for (const [name, role, text, order] of TESTIMONIALS) {

@@ -30,6 +30,7 @@ export async function GET() {
     lines.push(`- [${p.title}](${base}${p.path})`);
   }
   lines.push(`- [Beranda](${base}/)`);
+  lines.push(`- [Katalog WhatsApp Business — ${data.services.filter((s) => s.slug).length} layanan siap impor CSV](${base}/katalog-whatsapp)`);
   lines.push("");
 
   const byCategory = new Map<string, string[]>();

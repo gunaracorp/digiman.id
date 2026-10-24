@@ -21,9 +21,10 @@ import { BRAND } from "@/lib/brand";
  */
 const POPULER_LINKS: { label: string; href: string }[] = [
   { label: "Pendirian PT", href: "/layanan/pendirian-pt" },
+  { label: "WhatsApp Business", href: "/layanan/wa-business" },
   { label: "NIB & OSS", href: "/layanan/nib-oss" },
   { label: "Pendaftaran Merek", href: "/layanan/pendaftaran-merek" },
-  { label: "Sertifikasi Halal", href: "/layanan/halal" },
+  { label: "Sertifikasi Halal", href: "/layanan/sertifikasi-halal" },
   { label: "Website & AI", href: "/layanan/website-ecommerce" },
 ];
 

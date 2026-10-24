@@ -13,7 +13,6 @@ export default function PublicNav({ activePath }: { activePath: string }) {
         className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6"
       >
         <Link href="/" className="flex shrink-0 items-center gap-2.5" aria-label="DIGIMAN.ID — Beranda">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/logo-emblem.png"
             alt="Logo DIGIMAN.ID"

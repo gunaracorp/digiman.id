@@ -579,3 +579,29 @@ Stage Summary:
 - Semua halaman punya canonical, OG, Twitter, JSON-LD, breadcrumb; fresh signal via lastmod.
 - Database kini konsisten dengan kode (7 model ditambal); admin panel dapat diakses (login gunara/gunara165 — wajib ganti).
 - Catatan utang bawaan repo (di luar scope SEO): API admin (backup/hero/analytics) masih memakai pola SiteSetting id-based & session-null — perlu refactor terpisah.
+
+---
+Task ID: 20
+Agent: main (orchestrator) — WhatsApp Catalog & Service Pages Session
+Task: Pastikan setiap layanan punya halaman & landing page sendiri (siap Katalog WhatsApp Business) + buat layanan yang belum ada
+
+Work Log:
+- AUDIT KRITIS: DB (seed lama prisma/seed.ts) memakai 10 slug berbeda dari pustaka konten editorial src/lib/services/* — akibatnya 11 layanan jatuh ke fallback generik (koperasi, yayasan, perkumpulan, izin-sektor, apostille, hak-cipta, halal, kitas-kitap, likuidasi, digitalisasi-ai) dan 2 layanan (legal-drafting, aplikasi-sistem) sama sekali tidak ada di DB → tidak muncul di hub/sitemap.
+- scripts/seed-v2.ts dijadikan KATALOG KANONIK (diekspor): rename domisili-vo→virtual-office (slug query ber-volume tertinggi), +4 layanan baru digital (wa-business, google-bisnisku, marketplace, branding-katalog), guard import.meta.main, perbaikan SiteSetting key/value.
+- scripts/migrate-services-v3.ts: rename 10 slug lama→kanonik, sinkron 33 entri dari CATALOG, insert 6 layanan, rapikan order (indeks katalog ×10). DB kini 33 layanan slug-identik dengan pustaka konten. db:backup dijalankan ulang (db/backup.json segar).
+- prisma/seed.ts direfactor: impor CATALOG dari seed-v2 (satu sumber kebenaran). src/lib/digiman-data.ts DEFAULT_SERVICES disinkronkan (33 layanan).
+- KONTEN BARU src/lib/services/digital-growth.ts: 4 layanan dengan konten landing penuh (tagline, intro 3 paragraf, 5 benefit, 4 proses, syarat, 3 FAQ, related) + enrichment.ts (whoFor, deliverables, costs, legalBasis — regulasi riil: Meta/WA policy, Permendag 50/2020, PP 80/2019, UU PDPL, UU Hak Cipta).
+- Rename domisili-vo→virtual-office di seluruh codebase (perizinan.ts, pendirian.ts, enrichment.ts, dict-id/en, 8 locale JSON).
+- HALAMAN /katalog-whatsapp (server component): kit katalog WhatsApp Business — per layanan: Nama (≤100), Harga, Deskripsi (≤1000, dibangun dari heroSub+fitur+garansi+CTA), Link landing, Gambar 1024×1024; 165 tombol salin (33×5, client component catalog-copy.tsx dengan fallback clipboard), 4 langkah cara pakai, FAQ 4 pertanyaan, JSON-LD CollectionPage+ItemList+FAQPage+Breadcrumb, metadata buildMetadata.
+- CSV /katalog-whatsapp/download (route handler): UTF-8 BOM, kolom name,description,price,link,image_link,category (pola Commerce Manager), dibangun dari DB via src/lib/wa-catalog.ts.
+- GAMBAR PERSEGI: lib/og.tsx +renderOgSquare (1024×1024, CARD_SIZE); route src/app/layanan/[slug]/card-image/route.tsx (awalnya .tsx salah .ts→TS1005, lalu file konvensi statis card-image.tsx tidak dirouting Next→pindah ke Route Handler) — 33 kartu produk PNG otomatis, cache 1j+SWR.
+- SEO: redirect 301/308 slug lama→baru di next.config.ts (10 URL); /layanan hub metadata jumlah dinamis + banner Katalog WhatsApp; PAGES +katalog-whatsapp (footer + sitemap otomatis, total sitemap kini 115 URL); footer landing +link WhatsApp Business; llms.txt +baris katalog; legalitas/[kota] ROTATION slug baru.
+- FIX KUALITAS: og.tsx ImageResponse options diberi tipe eksplisit (TS2322 fonts); lint exit 0 (disable-directive tidak terpakai dihapus, gen-idea-book *.js diberi header eslint-disable); layanan/page.tsx section tag belum ditutup diperbaiki.
+- VERIFIKASI: tsc 0 error pada semua file baru/ubah (error tersisa = utang bawaan repo lama di admin dashboard legacy & api/admin — di luar scope, terdokumentasi); lint exit 0; 33 rute /layanan/[slug] = 200; /katalog-whatsapp 200; CSV 34 baris (header+33); card-image 200 image/png; redirect /layanan/halal→/layanan/sertifikasi-halal 308→200; sitemap 115 URL (33 layanan + katalog); agent-browser E2E: title/H1/CSV button/165 tombol Salin/klik→"Tersalin!"/JSON-LD lengkap/banner hub/banner mobile 390px tanpa overflow/admin #/panel layanan tampil/0 error console; screenshot /tmp/katalog-wa-top.png, /tmp/katalog-mobile.png, /tmp/katalog-entry.png, /tmp/layanan-wa.png.
+- Dev server: proses background mati tiap akhir perintah bash (sandbox) — verifikasi dilakukan dalam satu sesi bash per batch (setsid + wait loop).
+
+Stage Summary:
+- SELURUH 33 layanan kini punya landing page sendiri dengan konten editorial penuh (nol fallback generik) — masing-masing dengan harga, CTA WhatsApp berisi pesan otomatis, FAQ schema, dasar hukum, dan gambar katalog persegi.
+- /katalog-whatsapp = jembatan langsung ke Katalog WhatsApp Business user: salin 5 bidang per layanan (165 tombol) atau unduh CSV; gambar 1024×1024 tersedia di /layanan/[slug]/card-image sesuai standar WA (persegi ≥1024px).
+- Satu sumber kebenaran katalog: seed-v2 CATALOG → DB → fallback → konten editorial → katalog WA → CSV → sitemap; perubahan harga/layanan di Panel Admin otomatis mengalir ke seluruh permukaan.
+- Catatan lanjut (utang bawaan repo, di luar scope): admin dashboard legacy (src/app/admin/(dashboard)) & api/admin masih memakai pola lama — admin aktif tetap #/admin (hash panel).

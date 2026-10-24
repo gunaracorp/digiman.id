@@ -38,7 +38,7 @@ export const perizinanContent: ServiceContent[] = [
       { q: "Bisakah saya menambah KBLI nanti setelah NIB terbit?", a: "Bisa. Perubahan KBLI dilakukan melalui penyesuaian data OSS — kami melayani penambahan KBLI kapan pun usaha Anda berkembang. Catatan: penambahan KBLI tertentu memicu kewajiban izin sektor baru, jadi selalu konsultasikan dulu agar tidak ada kewajiban yang terlewat." },
       { q: "Saya sudah daftar OSS sendiri tapi datanya berantakan. Bisa diperbaiki?", a: "Bisa — ini salah satu kasus paling sering kami tangani. Data yang tidak konsisten (KBLI salah, alamat beda, modal tidak logis) dapat menghambat izin sektor dan kredit bank. Kami audit, perbaiki, dan rapikan seluruh data OSS hingga konsisten dengan dokumen legal Anda." },
     ],
-    related: ["izin-sektor-ss", "pendirian-pt", "domisili-vo"],
+    related: ["izin-sektor-ss", "pendirian-pt", "virtual-office"],
   },
   {
     slug: "izin-sektor-ss",
@@ -80,7 +80,7 @@ export const perizinanContent: ServiceContent[] = [
     related: ["nib-oss", "sertifikasi-halal", "bpom"],
   },
   {
-    slug: "domisili-vo",
+    slug: "virtual-office",
     tagline: "Alamat bergengsi tanpa harga sewa kantor — kehadiran usaha naik kelas.",
     heroSub:
       "Pengurusan surat keterangan domisili usaha dan sewa virtual office di alamat premium, termasuk kesiapan untuk PT PMA.",

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports -- skrip node mandiri (bukan bagian bundel Next) */
 /**
  * gen-idea-book.js — perakit dokumen Idea-Book Monetisasi DIGIMAN.ID
  * Struktur: Cover R4 → Daftar Isi (tanpa nomor) → Isi (Arab mulai 1)
