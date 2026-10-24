@@ -6,7 +6,7 @@
  * Rute:
  *   #/              → landing (semua seksi premium)
  *   #/dashboard     → Portal Klien / Client Dashboard (30 fitur premium)
- *   #/os            → Gunara OS Explorer (165 dokumen)
+ *   /gunara-os      → Gunara OS Explorer (165 dokumen)
  *   #/blog          → indeks artikel
  *   #/blog/{slug}   → pembaca artikel
  *   #/proposal      → Proposal Studio (generator penawaran)
@@ -102,14 +102,40 @@ export type RouterProps = {
 };
 
 /** Hook rute hash — SSR-safe (render awal selalu landing, lalu sinkron di effect). */
+function parsePathname(pathname: string): AppRoute {
+  const path = pathname.replace(/\/$/, "") || "/";
+  if (path === "/gunara-os") return { view: "os" };
+  if (path === "/dashboard") return { view: "dashboard" };
+  if (path === "/blog") return { view: "blog" };
+  if (path.startsWith("/blog/")) {
+    return { view: "blog-post", slug: decodeURIComponent(path.slice("/blog/".length)) };
+  }
+  if (path === "/proposal") return { view: "proposal" };
+  if (path === "/admin") return { view: "admin" };
+  return { view: "landing" };
+}
+
 function useHashRoute(): AppRoute {
-  const [route, setRoute] = useState<AppRoute>({ view: "landing" });
+  const [route, setRoute] = useState<AppRoute>(() => {
+    if (typeof window === "undefined") return { view: "landing" };
+    const pathnameRoute = parsePathname(window.location.pathname);
+    return pathnameRoute.view === "landing"
+      ? parseHash(window.location.hash)
+      : pathnameRoute;
+  });
 
   useEffect(() => {
-    const sync = () => setRoute(parseHash(window.location.hash));
+    const sync = () => {
+      const pathnameRoute = parsePathname(window.location.pathname);
+      setRoute(pathnameRoute.view === "landing" ? parseHash(window.location.hash) : pathnameRoute);
+    };
     sync();
     window.addEventListener("hashchange", sync);
-    return () => window.removeEventListener("hashchange", sync);
+    window.addEventListener("popstate", sync);
+    return () => {
+      window.removeEventListener("hashchange", sync);
+      window.removeEventListener("popstate", sync);
+    };
   }, []);
 
   return route;

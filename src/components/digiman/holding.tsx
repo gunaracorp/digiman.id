@@ -57,7 +57,7 @@ const PILLARS: Pillar[] = [
     nameKey: "holding.p2Name",
     descKey: "holding.p2Desc",
     icon: BookOpenCheck,
-    href: "#route-os",
+    href: "/gunara-os",
     external: false,
     gold: false,
   },
