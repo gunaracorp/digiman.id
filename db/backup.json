@@ -1,0 +1,2200 @@
+{
+ "meta": {
+  "version": 1,
+  "exportedAt": "2026-10-20T14:18:49.144Z",
+  "app": "digiman.id",
+  "note": "Backup seluruh tabel. Pemulihan: bun run db:restore",
+  "counts": {
+   "service": 0,
+   "testimonial": 0,
+   "faq": 0,
+   "office": 0,
+   "contactMessage": 0,
+   "chatLog": 0,
+   "pgaDomain": 20,
+   "pgaDocument": 165,
+   "gunaraPackage": 5,
+   "blogPost": 6,
+   "proposal": 0,
+   "siteSetting": 3,
+   "clientProject": 1,
+   "invoice": 5,
+   "activityEvent": 8,
+   "meeting": 4
+  }
+ },
+ "data": {
+  "service": [],
+  "testimonial": [],
+  "faq": [],
+  "office": [],
+  "contactMessage": [],
+  "chatLog": [],
+  "pgaDomain": [
+   {
+    "id": "cmvgr713p0000rf1wd1phth0v",
+    "number": 1,
+    "name": "Identitas dan Jiwa Perusahaan",
+    "tagline": "Fondasi jati diri grup: siapa kita, dari mana kita, ke mana kita pergi",
+    "description": "Domain dua puluh menutup sistem PGA-165 dengan benteng hukum final. Di sinilah seluruh pertahanan dirangkai: desain sistem legal grup, tangga penyelesaian sengketa, protokol interaksi dengan aparat, kovenan pendiri tentang interpretasi AD/ART, mekanisme aduan klien dan dewan etika, klausul anti-korupsi yang tidak bisa dinegosiasi, serta atlas kepatuhan induk yang merangkum KBLI, OSS, kalender pajak, UU PDP, dan aturan kerja alih daya. Integritas dikodifikasi di sini bukan untuk pajangan, melainkan agar hak untuk terus tumbuh tidak pernah dipertaruhkan demi jalan pintas musiman. ---"
+   },
+   {
+    "id": "cmvgr713r0001rf1wwy24052x",
+    "number": 2,
+    "name": "Strategi dan Arah",
+    "tagline": "Kompas pergerakan: ke mana kami melangkah dan bagaimana cara memenangkan medan",
+    "description": "Domain dua puluh menutup sistem PGA-165 dengan benteng hukum final. Di sinilah seluruh pertahanan dirangkai: desain sistem legal grup, tangga penyelesaian sengketa, protokol interaksi dengan aparat, kovenan pendiri tentang interpretasi AD/ART, mekanisme aduan klien dan dewan etika, klausul anti-korupsi yang tidak bisa dinegosiasi, serta atlas kepatuhan induk yang merangkum KBLI, OSS, kalender pajak, UU PDP, dan aturan kerja alih daya. Integritas dikodifikasi di sini bukan untuk pajangan, melainkan agar hak untuk terus tumbuh tidak pernah dipertaruhkan demi jalan pintas musiman. ---"
+   },
+   {
+    "id": "cmvgr713r0002rf1ww5q79l5a",
+    "number": 3,
+    "name": "Tata Kelola dan Hukum Grup",
+    "tagline": "Aturan main internal dan pagar legal agar kecepatan tidak menusuk diri sendiri",
+    "description": "Domain dua puluh menutup sistem PGA-165 dengan benteng hukum final. Di sinilah seluruh pertahanan dirangkai: desain sistem legal grup, tangga penyelesaian sengketa, protokol interaksi dengan aparat, kovenan pendiri tentang interpretasi AD/ART, mekanisme aduan klien dan dewan etika, klausul anti-korupsi yang tidak bisa dinegosiasi, serta atlas kepatuhan induk yang merangkum KBLI, OSS, kalender pajak, UU PDP, dan aturan kerja alih daya. Integritas dikodifikasi di sini bukan untuk pajangan, melainkan agar hak untuk terus tumbuh tidak pernah dipertaruhkan demi jalan pintas musiman. ---"
+   },
+   {
+    "id": "cmvgr713s0003rf1wv7x6miv2",
+    "number": 4,
+    "name": "Arsitektur Layanan dan Produk",
+    "tagline": "Papan etalase grup: apa yang kami jual, bagi siapa, dengan standar mutu apa",
+    "description": "Domain dua puluh menutup sistem PGA-165 dengan benteng hukum final. Di sinilah seluruh pertahanan dirangkai: desain sistem legal grup, tangga penyelesaian sengketa, protokol interaksi dengan aparat, kovenan pendiri tentang interpretasi AD/ART, mekanisme aduan klien dan dewan etika, klausul anti-korupsi yang tidak bisa dinegosiasi, serta atlas kepatuhan induk yang merangkum KBLI, OSS, kalender pajak, UU PDP, dan aturan kerja alih daya. Integritas dikodifikasi di sini bukan untuk pajangan, melainkan agar hak untuk terus tumbuh tidak pernah dipertaruhkan demi jalan pintas musiman. ---"
+   },
+   {
+    "id": "cmvgr713t0004rf1wkx8qdtht",
+    "number": 5,
+    "name": "Operasional dan Delivery",
+    "tagline": "Mesin eksekusi harian: dari tepuk tangan deal hingga serah terima yang diaplaudi",
+    "description": "Domain dua puluh menutup sistem PGA-165 dengan benteng hukum final. Di sinilah seluruh pertahanan dirangkai: desain sistem legal grup, tangga penyelesaian sengketa, protokol interaksi dengan aparat, kovenan pendiri tentang interpretasi AD/ART, mekanisme aduan klien dan dewan etika, klausul anti-korupsi yang tidak bisa dinegosiasi, serta atlas kepatuhan induk yang merangkum KBLI, OSS, kalender pajak, UU PDP, dan aturan kerja alih daya. Integritas dikodifikasi di sini bukan untuk pajangan, melainkan agar hak untuk terus tumbuh tidak pernah dipertaruhkan demi jalan pintas musiman. ---"
+   },
+   {
+    "id": "cmvgr713t0005rf1w4jakogz9",
+    "number": 6,
+    "name": "Keuangan, Risiko dan Kendali",
+    "tagline": "Nadi grup: uang masuk, uang keluar, risiko terpetakan, kendali menyala",
+    "description": "Domain dua puluh menutup sistem PGA-165 dengan benteng hukum final. Di sinilah seluruh pertahanan dirangkai: desain sistem legal grup, tangga penyelesaian sengketa, protokol interaksi dengan aparat, kovenan pendiri tentang interpretasi AD/ART, mekanisme aduan klien dan dewan etika, klausul anti-korupsi yang tidak bisa dinegosiasi, serta atlas kepatuhan induk yang merangkum KBLI, OSS, kalender pajak, UU PDP, dan aturan kerja alih daya. Integritas dikodifikasi di sini bukan untuk pajangan, melainkan agar hak untuk terus tumbuh tidak pernah dipertaruhkan demi jalan pintas musiman. ---"
+   },
+   {
+    "id": "cmvgr713u0006rf1w7lpf4q9c",
+    "number": 7,
+    "name": "Talenta, Budaya dan Kepemimpinan",
+    "tagline": "Manusia grup: satu kepala hari ini, sebuah tim garis depan kelak",
+    "description": "Domain dua puluh menutup sistem PGA-165 dengan benteng hukum final. Di sinilah seluruh pertahanan dirangkai: desain sistem legal grup, tangga penyelesaian sengketa, protokol interaksi dengan aparat, kovenan pendiri tentang interpretasi AD/ART, mekanisme aduan klien dan dewan etika, klausul anti-korupsi yang tidak bisa dinegosiasi, serta atlas kepatuhan induk yang merangkum KBLI, OSS, kalender pajak, UU PDP, dan aturan kerja alih daya. Integritas dikodifikasi di sini bukan untuk pajangan, melainkan agar hak untuk terus tumbuh tidak pernah dipertaruhkan demi jalan pintas musiman. ---"
+   },
+   {
+    "id": "cmvgr713v0007rf1wiotfabqp",
+    "number": 8,
+    "name": "Merek, Pertumbuhan dan Pemangku Kepentingan",
+    "tagline": "Mesin pasar: cerita yang menjual, jejaring yang menjaga, reputasi yang berdiri sendiri",
+    "description": "Domain dua puluh menutup sistem PGA-165 dengan benteng hukum final. Di sinilah seluruh pertahanan dirangkai: desain sistem legal grup, tangga penyelesaian sengketa, protokol interaksi dengan aparat, kovenan pendiri tentang interpretasi AD/ART, mekanisme aduan klien dan dewan etika, klausul anti-korupsi yang tidak bisa dinegosiasi, serta atlas kepatuhan induk yang merangkum KBLI, OSS, kalender pajak, UU PDP, dan aturan kerja alih daya. Integritas dikodifikasi di sini bukan untuk pajangan, melainkan agar hak untuk terus tumbuh tidak pernah dipertaruhkan demi jalan pintas musiman. ---"
+   },
+   {
+    "id": "cmvgr713w0008rf1wxiwhkulq",
+    "number": 9,
+    "name": "Data, Intelijen dan Warisan",
+    "tagline": "Sistem saraf grup: data tertata, intelijen tajam, warisan tercatat",
+    "description": "Domain dua puluh menutup sistem PGA-165 dengan benteng hukum final. Di sinilah seluruh pertahanan dirangkai: desain sistem legal grup, tangga penyelesaian sengketa, protokol interaksi dengan aparat, kovenan pendiri tentang interpretasi AD/ART, mekanisme aduan klien dan dewan etika, klausul anti-korupsi yang tidak bisa dinegosiasi, serta atlas kepatuhan induk yang merangkum KBLI, OSS, kalender pajak, UU PDP, dan aturan kerja alih daya. Integritas dikodifikasi di sini bukan untuk pajangan, melainkan agar hak untuk terus tumbuh tidak pernah dipertaruhkan demi jalan pintas musiman. ---"
+   },
+   {
+    "id": "cmvgr713x0009rf1w7w59c5a9",
+    "number": 10,
+    "name": "Kemitraan Global dan Ekspansi",
+    "tagline": "Jembatan internasional: dari Surabaya ke ASEAN menuju meja dunia",
+    "description": "Domain dua puluh menutup sistem PGA-165 dengan benteng hukum final. Di sinilah seluruh pertahanan dirangkai: desain sistem legal grup, tangga penyelesaian sengketa, protokol interaksi dengan aparat, kovenan pendiri tentang interpretasi AD/ART, mekanisme aduan klien dan dewan etika, klausul anti-korupsi yang tidak bisa dinegosiasi, serta atlas kepatuhan induk yang merangkum KBLI, OSS, kalender pajak, UU PDP, dan aturan kerja alih daya. Integritas dikodifikasi di sini bukan untuk pajangan, melainkan agar hak untuk terus tumbuh tidak pernah dipertaruhkan demi jalan pintas musiman. ---"
+   },
+   {
+    "id": "cmvgr713x000arf1wwxavl1wy",
+    "number": 11,
+    "name": "Ekonomi Syariah dan Pendanaan Etis",
+    "tagline": "Pertumbuhan yang halal, bersih, dan memberi manfaat melampaui laba",
+    "description": "Domain dua puluh menutup sistem PGA-165 dengan benteng hukum final. Di sinilah seluruh pertahanan dirangkai: desain sistem legal grup, tangga penyelesaian sengketa, protokol interaksi dengan aparat, kovenan pendiri tentang interpretasi AD/ART, mekanisme aduan klien dan dewan etika, klausul anti-korupsi yang tidak bisa dinegosiasi, serta atlas kepatuhan induk yang merangkum KBLI, OSS, kalender pajak, UU PDP, dan aturan kerja alih daya. Integritas dikodifikasi di sini bukan untuk pajangan, melainkan agar hak untuk terus tumbuh tidak pernah dipertaruhkan demi jalan pintas musiman. ---"
+   },
+   {
+    "id": "cmvgr713y000brf1wkti8kp6s",
+    "number": 12,
+    "name": "Dampak Sosial dan Inklusi",
+    "tagline": "Keuntungan yang menular: pertumbuhan firma mengangkat mereka yang biasanya tertinggal",
+    "description": "Domain dua puluh menutup sistem PGA-165 dengan benteng hukum final. Di sinilah seluruh pertahanan dirangkai: desain sistem legal grup, tangga penyelesaian sengketa, protokol interaksi dengan aparat, kovenan pendiri tentang interpretasi AD/ART, mekanisme aduan klien dan dewan etika, klausul anti-korupsi yang tidak bisa dinegosiasi, serta atlas kepatuhan induk yang merangkum KBLI, OSS, kalender pajak, UU PDP, dan aturan kerja alih daya. Integritas dikodifikasi di sini bukan untuk pajangan, melainkan agar hak untuk terus tumbuh tidak pernah dipertaruhkan demi jalan pintas musiman. ---"
+   },
+   {
+    "id": "cmvgr713z000crf1wf6d531ue",
+    "number": 13,
+    "name": "Frontier dan Praktik Masa Depan",
+    "tagline": "Dua belas dokumen jendela masa depan: teknologi yang akan menata ulang industri konsultasi",
+    "description": "Domain dua puluh menutup sistem PGA-165 dengan benteng hukum final. Di sinilah seluruh pertahanan dirangkai: desain sistem legal grup, tangga penyelesaian sengketa, protokol interaksi dengan aparat, kovenan pendiri tentang interpretasi AD/ART, mekanisme aduan klien dan dewan etika, klausul anti-korupsi yang tidak bisa dinegosiasi, serta atlas kepatuhan induk yang merangkum KBLI, OSS, kalender pajak, UU PDP, dan aturan kerja alih daya. Integritas dikodifikasi di sini bukan untuk pajangan, melainkan agar hak untuk terus tumbuh tidak pernah dipertaruhkan demi jalan pintas musiman. ---"
+   },
+   {
+    "id": "cmvgr7140000drf1wwx1klyx7",
+    "number": 14,
+    "name": "Keamanan, Ketahanan dan Krisis",
+    "tagline": "Perisai grup: akun, reputasi, dan nyawa usaha dilindungi secara sistematis",
+    "description": "Domain dua puluh menutup sistem PGA-165 dengan benteng hukum final. Di sinilah seluruh pertahanan dirangkai: desain sistem legal grup, tangga penyelesaian sengketa, protokol interaksi dengan aparat, kovenan pendiri tentang interpretasi AD/ART, mekanisme aduan klien dan dewan etika, klausul anti-korupsi yang tidak bisa dinegosiasi, serta atlas kepatuhan induk yang merangkum KBLI, OSS, kalender pajak, UU PDP, dan aturan kerja alih daya. Integritas dikodifikasi di sini bukan untuk pajangan, melainkan agar hak untuk terus tumbuh tidak pernah dipertaruhkan demi jalan pintas musiman. ---"
+   },
+   {
+    "id": "cmvgr7140000erf1w5a8akm6k",
+    "number": 15,
+    "name": "Teknologi, Inovasi dan Kedaulatan Digital",
+    "tagline": "Turbin internal: stack milik sendiri, otomasi yang menghasilkan, kemandirian yang dijaga",
+    "description": "Domain dua puluh menutup sistem PGA-165 dengan benteng hukum final. Di sinilah seluruh pertahanan dirangkai: desain sistem legal grup, tangga penyelesaian sengketa, protokol interaksi dengan aparat, kovenan pendiri tentang interpretasi AD/ART, mekanisme aduan klien dan dewan etika, klausul anti-korupsi yang tidak bisa dinegosiasi, serta atlas kepatuhan induk yang merangkum KBLI, OSS, kalender pajak, UU PDP, dan aturan kerja alih daya. Integritas dikodifikasi di sini bukan untuk pajangan, melainkan agar hak untuk terus tumbuh tidak pernah dipertaruhkan demi jalan pintas musiman. ---"
+   },
+   {
+    "id": "cmvgr7141000frf1wfbbkxci2",
+    "number": 16,
+    "name": "Media, Narasi dan Komunikasi",
+    "tagline": "Amplifier grup: setiap pesan yang keluar dibangun untuk meyakinkan dan bertahan",
+    "description": "Domain dua puluh menutup sistem PGA-165 dengan benteng hukum final. Di sinilah seluruh pertahanan dirangkai: desain sistem legal grup, tangga penyelesaian sengketa, protokol interaksi dengan aparat, kovenan pendiri tentang interpretasi AD/ART, mekanisme aduan klien dan dewan etika, klausul anti-korupsi yang tidak bisa dinegosiasi, serta atlas kepatuhan induk yang merangkum KBLI, OSS, kalender pajak, UU PDP, dan aturan kerja alih daya. Integritas dikodifikasi di sini bukan untuk pajangan, melainkan agar hak untuk terus tumbuh tidak pernah dipertaruhkan demi jalan pintas musiman. ---"
+   },
+   {
+    "id": "cmvgr7141000grf1whvgdu4vt",
+    "number": 17,
+    "name": "Edukasi, Riset dan Produksi Pengetahuan",
+    "tagline": "Hulu kehidupan grup: akademi yang menumbuhkan talenta dan pengetahuan yang membedakan",
+    "description": "Domain dua puluh menutup sistem PGA-165 dengan benteng hukum final. Di sinilah seluruh pertahanan dirangkai: desain sistem legal grup, tangga penyelesaian sengketa, protokol interaksi dengan aparat, kovenan pendiri tentang interpretasi AD/ART, mekanisme aduan klien dan dewan etika, klausul anti-korupsi yang tidak bisa dinegosiasi, serta atlas kepatuhan induk yang merangkum KBLI, OSS, kalender pajak, UU PDP, dan aturan kerja alih daya. Integritas dikodifikasi di sini bukan untuk pajangan, melainkan agar hak untuk terus tumbuh tidak pernah dipertaruhkan demi jalan pintas musiman. ---"
+   },
+   {
+    "id": "cmvgr7142000hrf1wn2iik89u",
+    "number": 18,
+    "name": "Kesejahteraan dan Ketahanan Manusia",
+    "tagline": "Mesin paling penting grup adalah dirimu: protokol agar founder bertahan sehat",
+    "description": "Domain dua puluh menutup sistem PGA-165 dengan benteng hukum final. Di sinilah seluruh pertahanan dirangkai: desain sistem legal grup, tangga penyelesaian sengketa, protokol interaksi dengan aparat, kovenan pendiri tentang interpretasi AD/ART, mekanisme aduan klien dan dewan etika, klausul anti-korupsi yang tidak bisa dinegosiasi, serta atlas kepatuhan induk yang merangkum KBLI, OSS, kalender pajak, UU PDP, dan aturan kerja alih daya. Integritas dikodifikasi di sini bukan untuk pajangan, melainkan agar hak untuk terus tumbuh tidak pernah dipertaruhkan demi jalan pintas musiman. ---"
+   },
+   {
+    "id": "cmvgr7144000irf1wxkgi5ip5",
+    "number": 19,
+    "name": "Infrastruktur Operasional dan Digital",
+    "tagline": "Tulang punggung fisik-digital grup: kecil, tangguh, murah, selalu menyala",
+    "description": "Domain dua puluh menutup sistem PGA-165 dengan benteng hukum final. Di sinilah seluruh pertahanan dirangkai: desain sistem legal grup, tangga penyelesaian sengketa, protokol interaksi dengan aparat, kovenan pendiri tentang interpretasi AD/ART, mekanisme aduan klien dan dewan etika, klausul anti-korupsi yang tidak bisa dinegosiasi, serta atlas kepatuhan induk yang merangkum KBLI, OSS, kalender pajak, UU PDP, dan aturan kerja alih daya. Integritas dikodifikasi di sini bukan untuk pajangan, melainkan agar hak untuk terus tumbuh tidak pernah dipertaruhkan demi jalan pintas musiman. ---"
+   },
+   {
+    "id": "cmvgr7145000jrf1wrzqx32vj",
+    "number": 20,
+    "name": "Benteng Hukum Final dan Compliance Atlas",
+    "tagline": "Penutup sistem: hukum sebagai tameng, integritas sebagai fondasi yang tak tergoyahkan",
+    "description": "Domain dua puluh menutup sistem PGA-165 dengan benteng hukum final. Di sinilah seluruh pertahanan dirangkai: desain sistem legal grup, tangga penyelesaian sengketa, protokol interaksi dengan aparat, kovenan pendiri tentang interpretasi AD/ART, mekanisme aduan klien dan dewan etika, klausul anti-korupsi yang tidak bisa dinegosiasi, serta atlas kepatuhan induk yang merangkum KBLI, OSS, kalender pajak, UU PDP, dan aturan kerja alih daya. Integritas dikodifikasi di sini bukan untuk pajangan, melainkan agar hak untuk terus tumbuh tidak pernah dipertaruhkan demi jalan pintas musiman. ---"
+   }
+  ],
+  "pgaDocument": [
+   {
+    "id": "cmvgr7146000lrf1wgkehjntg",
+    "code": "PGA-01",
+    "number": 1,
+    "title": "Vision Statement",
+    "tier": "P0 Navigasi",
+    "owner": "Bersama Grup",
+    "points": "[\"Visi satu kalimat: menjadi konsultan transformasi digital berbasis AI nomor satu Asia Tenggara untuk UKM dan mid-market\",\"Visi paragraf: setiap usaha kecil-menengah punya akses standar korporasi atas biaya terjangkau lewat metodologi TOP Manajemen\",\"Prinsip non-negotiable: tanpa hasil terukur tidak ada invoice lanjutan, transparansi penuh pada laporan progres\",\"Tiga metrik visi: jumlah klien dengan hasil terdokumentasi, nilai kontrak rata-rata tahunan, sitasi framework oleh pihak ketiga\",\"Visi bertingkat empat fase: dominasi niche nasional, pemimpin regional ASEAN, otoritas global lewat publikasi, institusi seabad\"]",
+    "domainNumber": 1
+   },
+   {
+    "id": "cmvgr7147000nrf1wbkp1jrc1",
+    "code": "PGA-02",
+    "number": 2,
+    "title": "Mission Statement",
+    "tier": "P0 Navigasi",
+    "owner": "Bersama Grup",
+    "points": "[\"Misi utama: melipatgandakan laba klien lewat otomasi AI yang dieksekusi dalam hitungan minggu bukan tahun\",\"Lima misi prioritas: jasa implementasi cepat, akademi talenta, produk template, riset framework, komunitas praktisi\",\"Keterkaitan misi-visi: tiap misi mengisi salah satu simpul rantai nilai hulu hingga hilir\",\"Metrik misi per mesin: waktu serah-terima proyek, tingkat penyelesaian kursus, komisi afiliasi bulanan\",\"Narasi misi untuk proposal: kami datang membawa peta, bukan sekadar tangan kerja tambahan\"]",
+    "domainNumber": 1
+   },
+   {
+    "id": "cmvgr7148000prf1wkepa6uy7",
+    "code": "PGA-03",
+    "number": 3,
+    "title": "Founders Philosophy & Guiding Principles",
+    "tier": "P2 Perluasan",
+    "owner": "Bersama Grup",
+    "points": "[\"Filosofi pendiri: amanah atas setiap rupiah titipan klien karena pengalaman hidup merasakan sisi pemberi kerja\",\"Sembilan prinsip panduan ringkas dipinjam dari sembilan pilar keluarga besar PGA asli namun direkontekstualisasi\",\"Akar historis-filosofis: semangat gotong royong Nusantara digabung presisi metode konsultasi Barat\",\"Implementasi harian: aturan delapan puluh persen diskusi tentang masalah klien, dua puluh persen tentang internal\",\"Warisan bagi generasi: dokumen filsafat diperbarui tiap lima tahun bersama para pemimpin baru\"]",
+    "domainNumber": 1
+   },
+   {
+    "id": "cmvgr7148000rrf1wahrrypmu",
+    "code": "PGA-04",
+    "number": 4,
+    "title": "Story of Origin / Narrative of Origin",
+    "tier": "P3 Warisan",
+    "owner": "Bersama Grup",
+    "points": "[\"Kisah pendirian jujur: kelahiran kedua dari abu beban utang dan pengalaman melayani klien lintas industri\",\"Konteks masa lahir: era AI generatif yang memangkas biaya produksi layanan profesional hingga sepuluh kali lipat\",\"Tokoh kunci dan mitra awal kontraktor pertama serta klien pendampingnya yang berani percaya\",\"Titik balik: keputusan jalur ganda pemulihan-pertumbuhan pada bab satu dokumen ini sebagai babak origin resmi\",\"Legenda internal: satu hari satu klien, mantra disiplin fase penyelamatan yang dikisahkan turun temurun tim\"]",
+    "domainNumber": 1
+   },
+   {
+    "id": "cmvgr7149000trf1wdpk7k9pg",
+    "code": "PGA-05",
+    "number": 5,
+    "title": "Core Values Charter",
+    "tier": "P1 Pertumbuhan",
+    "owner": "Bersama Grup",
+    "points": "[\"Sembilan pilar inti disaring menjadi lima operasional: Amanah, Bukti-Kerja, Sederhana, Tumbuh-Bersama, Bermartabat\",\"Definisi perilaku tiap pilar diterjemahkan menjadi contoh lakuku ya dan lakukan bila\",\"Metrik kepatuhan nilai: survei suasana hati klien pasca proyek dan audit sampel chat dukungan tiap kuartal\",\"Studi kasus pelanggaran nyata dianonimkan dimasukkan saat tersedia sebagai alat onboarding kontraktor\",\"Charter ditandatangani setiap mitra dan kontraktor sebelum tiket kerja pertama dibuka\"]",
+    "domainNumber": 1
+   },
+   {
+    "id": "cmvgr714a000vrf1w0jb113js",
+    "code": "PGA-06",
+    "number": 6,
+    "title": "Identity & Positioning Paper",
+    "tier": "P0 Navigasi",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Positioning resmi: TOP Manajemen adalah boutique AI-native consultancy, bukan agensi desain murah bukan bod besar lambat\",\"Diferensiasi tiga lapis: kecepatan mingguan dengan AI co-pilot, harga terukur per outcome, dokumentasi sovereign-grade\",\"Persona organisasi: arsitek tenang yang bicara angka dan roadmap, bukan salesman yang janji muluk\",\"Voice and tone: bahasa Indonesia lugas di kanal lokal, Inggris profesional di kanal regional, humor sebatas remah roti\",\"Identitas visual merek: palet biru kristal, tipografi tegas, pola grid ikonik di semua materai materi komunikasi\"]",
+    "domainNumber": 1
+   },
+   {
+    "id": "cmvgr714b000xrf1wrdrcuu1t",
+    "code": "PGA-07",
+    "number": 7,
+    "title": "Manifesto / Declaration of Purpose",
+    "tier": "P2 Perluasan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Manifesto sebelas kalimat bergaya deklaratif untuk dinding situs dan bukaan akademi\",\"Tiga komitmen publik: angka yang kami laporkan bisa diaudit, tool AI hanya percepatan bukan pengganti nalar\",\"Ajakan pemangku kepentingan: klien mitra, kontraktor, alumni kursus dipersilakan mengutip manifesto\",\"Format terbit satu halaman poster plus versi teks panjang di blog digiman.id\",\"Call to action penutup: ajukan audit digital gratis tiga puluh menit bagi sepuluh UKM tiap kuartal\"]",
+    "domainNumber": 1
+   },
+   {
+    "id": "cmvgr714c000zrf1w74xyt39l",
+    "code": "PGA-08",
+    "number": 8,
+    "title": "Whitepaper / Concept Paper",
+    "tier": "P1 Pertumbuhan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Ringkasan eksekutif konsep firma konsultan AI-native satu orang plus jaringan kontraktor\",\"Problem statement: UKM Indonesia kagap pasar jasa digital mahal dan opaq ghaib dari vendor tradisional\",\"Solusi: metodologi audit-heal-grow tiga minggu yang distandardkan lengkap dengan deliverable baku\",\"Model bisnis dan proyeksi ringkas merujuk tabel financial model domain 6\",\"Roadmap dua tahunan selaras kurva aktivasi PGA-165 pada gambar tiga bab empat\"]",
+    "domainNumber": 1
+   },
+   {
+    "id": "cmvgr714c0011rf1wg75tstlz",
+    "code": "PGA-09",
+    "number": 9,
+    "title": "Strategic Masterplan 3-10 Years",
+    "tier": "P0 Navigasi",
+    "owner": "Bersama Grup",
+    "points": "[\"Analisis situasi ringkas SWOT memperhatikan kas minus, piutang tua, dua PT aktif, dan aset domain hosting\",\"Objektif tiga horizon: bertahan sembilan puluh hari, stabil dua belas bulan, memimpin niche tiga tahun\",\"Empat inisiatif strategis menautkan langsung ke mesin M1 sampai M4 playbook kesembilan puluh hari\",\"Alokasi sumber daya: enam puluh persen waktu produksi, dua puluh lima prosen marketing, sisanya administrasi\",\"Risiko induk dan mitigasi besar tertaut ke risk register PGA-45 tanpa duplikasi isi\"]",
+    "domainNumber": 2
+   },
+   {
+    "id": "cmvgr714d0013rf1wz44l2hod",
+    "code": "PGA-10",
+    "number": 10,
+    "title": "Business Model & Value Architecture",
+    "tier": "P0 Navigasi",
+    "owner": "Bersama Grup",
+    "points": "[\"Business model canvas grup satu lembar mencakup kedua entitas dan payung merek\",\"Proposisi nilai per segmen: UKM butuh cepat-murah-jelas, korporasi butuh rekam jejak-dokumen-perawatan\",\"Aliran pendapatan lapisan: fee jasa, retainer bulanan, produk digital, komisi afiliasi, lisensi framework\",\"Struktur biaya ramping: hosting, langganan AI, meterai-konsultasi pajak, iklan mikro terukur ROI\",\"Unit ekonomi tiap aliran dirinci ulang di PGA-42 agar canvas tetap ringkas\"]",
+    "domainNumber": 2
+   },
+   {
+    "id": "cmvgr714d0015rf1wtof08bkw",
+    "code": "PGA-11",
+    "number": 11,
+    "title": "Market Landscape & Industry Map",
+    "tier": "P1 Pertumbuhan",
+    "owner": "PT Top Konsultan Internasional",
+    "points": "[\"Ukuran pasar jasa digital dan konsultasi SME Indonesia plus tren adopsi AI 2025-2027\",\"Peta kompetitor empat kuadran: agency lokal besar, freelancer platform, boutique studio, guru solopreneur\",\"Regulasi sentuhan: OSS RBA KBLI digital, UU PDP perlindungan data, tren kebijakan pemerintah smart nation\",\"Kartografi teknologi: tools AI populer pasar dan celah integrasi yang belum dilayani lokal\",\"Peluang menyudut: kertas kerja_audit_awal dan otomasi dokumen untuk birokrasi UKM masih kosong relatif\"]",
+    "domainNumber": 2
+   },
+   {
+    "id": "cmvgr714e0017rf1wx6xf8oap",
+    "code": "PGA-12",
+    "number": 12,
+    "title": "Go-To-Market Strategy",
+    "tier": "P0 Navigasi",
+    "owner": "PT Top Konsultan Internasional",
+    "points": "[\"Target segmen awal tiga lingkaran: UKM ritel-makanan, praktisi profesional, sekolah-kursus privat\",\"Proposisi per segmen dicocokkan painpoint spesifik dan bukti portofolio relevan\",\"Harga masuk daring: paket fixed-scope starter agar keputusan klien tak membutuhkan rapat\",\"Saluran distribusi: outbound WhatsApp rapi, LinkedIn organik, komunitas bisnis daerah, marketplace jasa\",\"Metrik GTM: rasio respons reply rate, perjalanan lead hingga invoice pertama, biaya akuisisi per segmen\"]",
+    "domainNumber": 2
+   },
+   {
+    "id": "cmvgr714f0019rf1wrrcmfdr2",
+    "code": "PGA-13",
+    "number": 13,
+    "title": "Ecosystem Strategy",
+    "tier": "P1 Pertumbuhan",
+    "owner": "PT Top Konsultan Internasional",
+    "points": "[\"Peta ekosistem mitra: hoster lokal, agensi partner non-kompetitif, komunitas founder, kursus offline\",\"Skema kemitraan referral fee standar sepuluh persen tahun pertama kontrak hasil rujukan\",\"Strategi platform: digiman.id sebagai rumah konten, marketplace jasa sebagai corong pasif\",\"Efek jejaring: alumni akademi menjadi ambassade menumbuhkan permintaan jasa audit\",\"Governance ekosistem: SOP onboarding mitra satu halaman plus MoU template siap pakai\"]",
+    "domainNumber": 2
+   },
+   {
+    "id": "cmvgr714g001brf1woly021z6",
+    "code": "PGA-14",
+    "number": 14,
+    "title": "Expansion / International Strategy",
+    "tier": "P2 Perluasan",
+    "owner": "Bersama Grup",
+    "points": "[\"Prioritas negara tiga gelombang: Malaysia-Singapura, Timor Leste-Madinah komunitas, kemudian MENA anglofon\",\"Mode masuk pertama: white-label delivery untuk agensi tuan rumah sebelum menajakan merek sendiri\",\"Frame lokalisasi: adjust mata uang, waktu meeting, sensitivitas regulasi dan budaya pitch\",\"Compliance lintas batas dasar: fiskal reziden, perjanjian hindari pajak rangkap, invoice dua bahasa\",\"Gerbang kesiapan: revenue bulanan stabil dan kapasitas delivery dua kali lipat permintaan domestik\"]",
+    "domainNumber": 2
+   },
+   {
+    "id": "cmvgr714i001drf1w3oqra1iz",
+    "code": "PGA-15",
+    "number": 15,
+    "title": "Competitive Moat & Advantage Paper",
+    "tier": "P1 Pertumbuhan",
+    "owner": "Bersama Grup",
+    "points": "[\"Empat parit kompetitif yang didambang: aset template proprietary, database benchmark klien, brand documentation, community flywheel\",\"Biaya perpindahan klien naik lewat integration lock-in sopan ke sistem operasional mereka\",\"Barier masuk cerdas: publikasi framework membuat kompetitor mengutip bukan menyaingi\",\"Perlindungan brand: pencatatan merek DJKI kelas 35, 41, 42 dan penjagaan nama TOP Manajemen di media sosial\",\"Postur defensif tahunan review moat tiap awal tahun fiskal bersama audit dokumen PGA-72\"]",
+    "domainNumber": 2
+   },
+   {
+    "id": "cmvgr714j001frf1wubw3jrzl",
+    "code": "PGA-16",
+    "number": 16,
+    "title": "Scenario Planning & Strategic Options",
+    "tier": "P1 Pertumbuhan",
+    "owner": "Bersama Grup",
+    "points": "[\"Tiga skenario indikator tunggal: burn down cash, close rate bulanan, jumlah lead masuk\",\"Skenario badai: target minimal jasa fixed-scope, patok biaya, deferral konten premium\",\"Skenario tenang normal: jalankan roadmap standar sesuai playbook sembilan puluh hari\",\"Skenario angin kencang: hiring kontraktor lebih awal, naikan harga lapisan premium, buka antrian\",\"Trigger pemicu dan response play tertulis agar keputusan penting tak tergantung suasana hati\"]",
+    "domainNumber": 2
+   },
+   {
+    "id": "cmvgr714k001hrf1w18krm649",
+    "code": "PGA-17",
+    "number": 17,
+    "title": "Governance Charter",
+    "tier": "P1 Pertumbuhan",
+    "owner": "Bersama Grup",
+    "points": "[\"Charter ringkas mendefinisikan direktur tunggal dual role di dua PT sebagai dua topi resmi berbeda\",\"Forum keputusan harian: catatan keputusan tercatat dalam log harian meski peserta cuma satu orang\",\"Batasan wewenang transaksi atas batas nominal memicu konsultasi narasumber hukum-pajak\",\"Aturan benturan kepentingan antar dua entitas dan perusahaan lama selama periode transisi\",\"Reviu charter tiap enam bulan paralel dengan reviu AD/ART masing-masing PT\"]",
+    "domainNumber": 3
+   },
+   {
+    "id": "cmvgr714l001jrf1wqdfzopt4",
+    "code": "PGA-18",
+    "number": 18,
+    "title": "Organizational Structure",
+    "tier": "P1 Pertumbuhan",
+    "owner": "Bersama Grup",
+    "points": "[\"Organogram stage-nol: CEO, Chief of Delivery, Marketing Ops, Finance Ops semuanya topi satu kepala plus kontraktor\",\"Posisi desain tahap-tahap pertumbuhan: kontraktor delivery pertama saat backlog dua minggu berturut\",\"Garis pelaporan virtual untuk kontraktor via kanal proyek tunggal dan rapat mingguan lima belas menit\",\"Standar deskripsi peran template siap tempel untuk lima posisi paling awal\",\"Diagram organisasi diperbarui setiap perekrutan baru dan disimpan di register PGA-72\"]",
+    "domainNumber": 3
+   },
+   {
+    "id": "cmvgr714m001lrf1w5xvdx9xi",
+    "code": "PGA-19",
+    "number": 19,
+    "title": "Role & Authority Matrix (RACI)",
+    "tier": "P1 Pertumbuhan",
+    "owner": "Bersama Grup",
+    "points": "[\"Matriks RACI delapan alur kerja inti: sales, discovery, delivery, QA, billing, pajak, konten, komunitas\",\"Aturan emas solo-stage: peran Residual atau Akuntable tak boleh disembunyikan dari log keputusan\",\"Ambang otorisasi: diskon, scope creep gratis, refund punya koridor jelas tercantum di tabel\",\"Vertikal kewenangan kontraktor: modul apa saja boleh diputus mandiri, mana wajib eskalasi\",\"Versi cetak A4 ditempel area kerja dan revisinya tercatat tanggal per tanggal\"]",
+    "domainNumber": 3
+   },
+   {
+    "id": "cmvgr714m001nrf1w26z9pmxp",
+    "code": "PGA-20",
+    "number": 20,
+    "title": "Decision-Making Protocol",
+    "tier": "P1 Pertumbuhan",
+    "owner": "Bersama Grup",
+    "points": "[\"Protokol dua tingkat: keputusan reversible lampu kuning diambil cepat, irreversible lampu merah wajib tinjauan 48 jam\",\"Template satu halaman dec memo: masalah, opsi, biaya-benefit, keputusan, batas evaluasi kembali\",\"Arsip keputusan bernomor urut supaya pengajaran retroaktif mudah dilacak\",\"Quorum pribadi ganda: side-step bias dengan diskusi singkat bersama mentor atau peer konsultan\",\"Integrasi dengan risk register: keputusan berdampak besar mencatat residual risk barunya\"]",
+    "domainNumber": 3
+   },
+   {
+    "id": "cmvgr714n001prf1wbow38z97",
+    "code": "PGA-21",
+    "number": 21,
+    "title": "Legal Compliance Pack",
+    "tier": "P0 Navigasi",
+    "owner": "Bersama Grup",
+    "points": "[\"Checklist OSS RBA: verifikasi KBLI kedua PT pada aktivitas konsultan dan platform digital aktual\",\"NIB, izin kesesuaian kegiatan usaha, dan penyesuaian saat menambah layanan baru\",\"Kalender kewajiban: pajak bulanan, tahunan, pelaporan humas ketebusan jika relevan\",\"Perizinan konten akademi: hak cipta materi, ketentuan haki font-gambar musik latihan\",\"Penugasan penasehat hukum regular mode retainer mini dua jam per kuartal\"]",
+    "domainNumber": 3
+   },
+   {
+    "id": "cmvgr714n001rrf1w56endkmv",
+    "code": "PGA-22",
+    "number": 22,
+    "title": "Constitutional Documents (AD/ART)",
+    "tier": "P2 Perluasan",
+    "owner": "Bersama Grup",
+    "points": "[\"Review AD dan ART dua PT terhadap kebutuhan perluasan ruang lingkup kegiatan usaha\",\"Persiapan perubahan maksud tujuan bila garis syariah atau edutech ditambah ke objek usaha\",\"Sinkronisasi komposisi pengurus dan korespondensi kantor tercatat resmi\",\"Arsip dokumen perubahan terdigitalisasi satu folder kronologis tervalidasi\",\"Kaitan covenant pendiri: makna interpretasi landasan tercermin di PGA-160 domain 20\"]",
+    "domainNumber": 3
+   },
+   {
+    "id": "cmvgr714o001trf1w58m8t3ww",
+    "code": "PGA-23",
+    "number": 23,
+    "title": "Contracting Framework",
+    "tier": "P0 Navigasi",
+    "owner": "PT Top Konsultan Internasional",
+    "points": "[\"Keluarga template kontrak: SOW per proyek, Perjanjian Jasa Berkelanjutan retainer, NDA dua arah, LOI pintar\",\"Klausul esensial baku: ruang lingkup mutlak, jadwal pembayaran DP-termin, IP ownership ke klien final file\",\"Klausul pelindung firma: late payment interest moderat, force majeure AI-outage, mediasi dahulu sebelum gugatan\",\"Proses tanda tangan elektronik valid dan penyimpanan dokumen bergaris waktu\",\"Anjakan versi menandai revisi kontrak minor mayor dengan changelog internal\"]",
+    "domainNumber": 3
+   },
+   {
+    "id": "cmvgr714p001vrf1wqjtct9tq",
+    "code": "PGA-24",
+    "number": 24,
+    "title": "Policy Register & Legal Tracker",
+    "tier": "P2 Perluasan",
+    "owner": "Bersama Grup",
+    "points": "[\"Daftar induk seluruh kebijakan grup beserta status, pemilik, tanggal efektif, tanggal reviu\",\"Tracker kewajiban kontrak klien: tenggat SLA, tanggal perpanjangan retainer, sisa termin\",\"Checker regulatory update kuartalan: UU PDP, PP pajak digital, ketentuan OSS baru\",\"Arsip amandel somasi dan dispute historis termasuk dari entitas lama untuk pembelajaran\",\"Integrasi ke master index PGA-72 agar tracker legal menjadi sub-tab register utama\"]",
+    "domainNumber": 3
+   },
+   {
+    "id": "cmvgr714p001xrf1w54l8zdza",
+    "code": "PGA-25",
+    "number": 25,
+    "title": "Product/Service Architecture",
+    "tier": "P0 Navigasi",
+    "owner": "Bersama Grup",
+    "points": "[\"Peta tiga lapis: entry fixed-scope, growth retainer, transformation project dengan gerbang promosi antar lapis\",\"Katalog TKI: landing page AI, company profile, otomasi dokumen, workshop intrakursus, advisory bulanan\",\"Katalog DBM: course akademi, template pack, membership komunitas, program afiliasi white-label\",\"Konfigurator paket baku memastikan estistima konsisten tanpa menimbang ulang tiap peluang\",\"Peta migrasi produk: matikan atau gabung SKU tiap kuartal dari data profitabilitas riil\"]",
+    "domainNumber": 4
+   },
+   {
+    "id": "cmvgr714q001zrf1wldth4g1r",
+    "code": "PGA-26",
+    "number": 26,
+    "title": "Product Requirement Document (PRD)",
+    "tier": "P1 Pertumbuhan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Template PRD ten lines: persona, jobs to be done, fitur must should wont, metrik sukses\",\"Contoh terisi lengkap untuk dua produk flagship akademi sebagai acuan gaya penulisan\",\"Proses godok PRD dua jam terfasilitasi AI dari interview calon user\",\"PRD sebagai kontrak internal dengan kontraktor build agar tidak ada miskomunikasi scope\",\"Version control PRD sama disiplin dengan kode di repositori git\"]",
+    "domainNumber": 4
+   },
+   {
+    "id": "cmvgr714r0021rf1woynwdhys",
+    "code": "PGA-27",
+    "number": 27,
+    "title": "Product Strategy & Roadmap",
+    "tier": "P1 Pertumbuhan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Roadmap dua kuartal produk akademi: dari mini course tunggal ke learning path tiga sertifikat mikro\",\"Prinsip launch-learn-loop: rilis MVP ke cohort kecil, ukur completion rate, iterasi tiap siklus\",\"Prioritisasi fitur skor dampak x usaha dipublikasi di dashboard internal\",\"Cross-sell path dari course menuju jasa konsultasi dan sebaliknya dirancang eksplisit\",\"Sunset policy produk tak performa selama dua kuartal berturut tanpa sentimentalisme\"]",
+    "domainNumber": 4
+   },
+   {
+    "id": "cmvgr714s0023rf1wqaa9vy41",
+    "code": "PGA-28",
+    "number": 28,
+    "title": "System Architecture / Service Blueprint",
+    "tier": "P1 Pertumbuhan",
+    "owner": "Bersama Grup",
+    "points": "[\"Service blueprint end-to-end dari first touch sampai after-sales touchpoint\",\"Backstage automations: CRM ringan sheets, auto invoice, reminder jatuh tempo via bot\",\"Tool stack standar untuk tiap blueprint step beserta biaya bulanan dan alternative fallback\",\"Blueprint perlayanan baku ditandai titik gagal umum dan guardrail masing-masing\",\"Evolution plan migrasi tool gratis ke berbayar saat ambang volume tercapai\"]",
+    "domainNumber": 4
+   },
+   {
+    "id": "cmvgr714s0025rf1wiq6exper",
+    "code": "PGA-29",
+    "number": 29,
+    "title": "Customer Journey Map",
+    "tier": "P1 Pertumbuhan",
+    "owner": "PT Top Konsultan Internasional",
+    "points": "[\"Peta emosi dan artefak tiap tahap: sadar, banding, mantau, beli, dan deter, muhasabah, refer\",\"Moments of truth kritis: jam pertama setelah DP masuk dan handover final drive share\",\"Playbook momen kejut positif: surprise audit mini, laporan kejut di bulan retainer ganjil\",\"Desain anti-jeda: SLA respons pertama dua jam kerja, update progress tiap Selasa-Jumat\",\"Skala pengukuran NPS micro survey tiga pertanyaan max di dua titik lifecycle\"]",
+    "domainNumber": 4
+   },
+   {
+    "id": "cmvgr714t0027rf1w9g306igx",
+    "code": "PGA-30",
+    "number": 30,
+    "title": "Quality Standard & Acceptance Criteria",
+    "tier": "P0 Navigasi",
+    "owner": "PT Top Konsultan Internasional",
+    "points": "[\"Definition of done per deliverable: checklist kriteria objetif terlihat-jelas-terverifikasi\",\"Gate QC dua kaki: self check pemilik kerja plus cold eyes reviewer kontraktor senior\",\"Rubrik QA visual-audit function security dasar untuk website-based deliverables\",\"Acceptance window kontrak jelas: reversi request di luar scope pakai change order PGA-32\",\"Scorecard mutu pasca-proyek dibanding antar klien sebagai basis improvement backlog\"]",
+    "domainNumber": 4
+   },
+   {
+    "id": "cmvgr714u0029rf1wusojpevu",
+    "code": "PGA-31",
+    "number": 31,
+    "title": "Innovation Pipeline",
+    "tier": "P2 Perluasan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Corong ide empat reservoir: pain point klien, tren tools AI, request komunitas, instink sektor\",\"Filter tiga saringan: feasibility solo-founder, market pull sinyal, margin min threshold\",\"Budget eksperimen dua puluh persen slot weekly untuk prototipe petualangan terkendali\",\"Kill criteria jujur agar pipeline tidak menumpuk zombie projects\",\"Stage gate from idea sheet to pilot offer to productized service dsb\"]",
+    "domainNumber": 4
+   },
+   {
+    "id": "cmvgr714v002brf1wd5mwjrsk",
+    "code": "PGA-32",
+    "number": 32,
+    "title": "Change Request & Version Governance",
+    "tier": "P1 Pertumbuhan",
+    "owner": "Bersama Grup",
+    "points": "[\"Form CR satu halaman diisi klien maupun internal untuk pergantian scope apapun\",\"Impact analysis baku: efek harga, timeline, kualitas dan siapa bayar tambahannya\",\"Approval matrix kecil: yang di bawah ambang hari-effort diapprove direktur, di atas itera kembali estimasi\",\"Log version governance dokumen PGA: semver manual style v1.x.y dengan catatan changelog\",\"Pembelajaran pasca-CR masuk knowledge base weekly notes menjadi bahan roadmap produk\"]",
+    "domainNumber": 4
+   },
+   {
+    "id": "cmvgr714w002drf1wk9smh5vn",
+    "code": "PGA-33",
+    "number": 33,
+    "title": "Master Operational SOP",
+    "tier": "P0 Navigasi",
+    "owner": "PT Top Konsultan Internasional",
+    "points": "[\"Indeks SOP induk merujuk semua prosedur turunan dengan status versi dan pemilik\",\"SOP kunci mingguan: kickoff meeting baku, update progress Selasa-Jumat, retro pasca proyek\",\"Template SOP kosong seperempat halaman agar menulis SOP tidak pernah alasan menunda\",\"Aturan umur SOP: belum dipakai enam bulan direviu diarsipkan atau dilebur\",\"Kepatuhan SOP dinilai ringan via sampling retrospective tanpa birokrasi tebal\"]",
+    "domainNumber": 5
+   },
+   {
+    "id": "cmvgr714x002frf1w70gb8p0o",
+    "code": "PGA-34",
+    "number": 34,
+    "title": "Process Map End-to-End",
+    "tier": "P0 Navigasi",
+    "owner": "PT Top Konsultan Internasional",
+    "points": "[\"Peta proses delapan gerbang: inbound lead, discovery call, proposal, penandatanganan, kickoff, sprint loop, handover, aftercare\",\"SLO antar gerbang: maksimal dua puluh empat jam dari inquiry ke slot discovery dikonfirmasi\",\"Checklist gate exit tiap gerbang dengan artefak wajib yang dihasilkan\",\"Hand-off antar peran topi ganda sama rapi dengan hand-off ke kontraktor eksternal\",\"Peta bottleneck bulanan melihat data waktu tunggu antar gerbang dan memicu aksi\"]",
+    "domainNumber": 5
+   },
+   {
+    "id": "cmvgr714y002hrf1wf8we0j9m",
+    "code": "PGA-35",
+    "number": 35,
+    "title": "Service Delivery Manual",
+    "tier": "P0 Navigasi",
+    "owner": "PT Top Konsultan Internasional",
+    "points": "[\"Manual playbook proyek standar: tahapan minggu satu sampai selesai untuk tiap jenis katalog layanan\",\"Standar komunikasi klien: kanal resmi, gaya pesan, eskalasi waktu respons, larangan chat tengah malam\",\"Toolchain deliverable: template project workspace, struktur folder naming convention standar\",\"Protokol serah terima: file utuh, credential handover aman, video walkthrough lima menit sebagai nilai plus premium\",\"Post-project ritual: minta testimoni tepat setelah wow moment, offer maintenance paket\"]",
+    "domainNumber": 5
+   },
+   {
+    "id": "cmvgr714z002jrf1wzk1evrwi",
+    "code": "PGA-36",
+    "number": 36,
+    "title": "Procurement & Vendor Playbook",
+    "tier": "P2 Perluasan",
+    "owner": "Bersama Grup",
+    "points": "[\"Daftar putih vendor langganan tools AI hosting fonts stock dengan harga verifikasi ulang kuartalan\",\"Aturan belanja: fitur gratis dahulu, trial penuh coba, baru bayar jika ROI dalam sembilan puluh hari\",\"Negosiasi ringan dasar: bundling tahunan, edu discount, agency license untuk tools rutin\",\"Vendor risk catatan: jangan single point of failure pada tool genting untuk delivery klien aktif\",\"Audit langganan tiap kuartal memburu zombie subscription beserta sisa trial yang terlupakan\"]",
+    "domainNumber": 5
+   },
+   {
+    "id": "cmvgr7150002lrf1wsvxf7qnm",
+    "code": "PGA-37",
+    "number": 37,
+    "title": "Partnership Playbook",
+    "tier": "P2 Perluasan",
+    "owner": "PT Top Konsultan Internasional",
+    "points": "[\"Tipe kemitraan tiga arketipe: referral mutual, white-label delivery, co-branded content\",\"Due diligence mini partner: track record, kompatibilitas nilai, health check finansial ringkas\",\"MoU vs kerja sama definitif: kapan cukup handshake digital, kapan perlu paper bertanda tangan\",\"Skema revenue split transparan bermatrai persentase pembagian sesuai kontribusi riil\",\"Exit protocol kemitraan: notice period, pembagian aset bersama, pengumuman ke klien bersama\"]",
+    "domainNumber": 5
+   },
+   {
+    "id": "cmvgr7150002nrf1wvclr0a5y",
+    "code": "PGA-38",
+    "number": 38,
+    "title": "Incident & Escalation SOP",
+    "tier": "P1 Pertumbuhan",
+    "owner": "PT Top Konsultan Internasional",
+    "points": "[\"Definisi insiden tiga level: kacau-balau internal, sakit-meningkat klien terdampak, darurat reputasi-publik\",\"Timer tanggap level dua: acknowledgement satu jam, update pertama empat jam meski belum solusi\",\"Rundown komunikasi insiden pada klien: jujur-tak-ngeles, timeline fix, pampasan proporsional\",\"Blameless postmortem singkat post-insiden mencatat akar masalah dan guardrail baru\",\"Daftar kontak darurat teknis dan legal termasuk hoster support SLA contact\"]",
+    "domainNumber": 5
+   },
+   {
+    "id": "cmvgr7151002prf1wfd5tvc57",
+    "code": "PGA-39",
+    "number": 39,
+    "title": "Business Continuity & Disaster Recovery Plan",
+    "tier": "P2 Perluasan",
+    "owner": "Bersama Grup",
+    "points": "[\"Analisis fungsi genting: email domain, file drive, CRM sederhana, akun invoice adalah nyawa operasi\",\"RTO boleh rasa pragmatic: backup hosting staging 48 jam, DNS failover tujuh hari\",\"DR scenario latihan tahunan ringan mencoba restore backup penuh sekali setahun sungguhan\",\"Founder-down continuity: satu dokumen dead man switch terenkripsi berisi credential map dan instruksi keluarga\",\"Mitigasi piutang bila operasi lambat: runway mapping ke rekening pemulihan cadangan tertentu\"]",
+    "domainNumber": 5
+   },
+   {
+    "id": "cmvgr7152002rrf1wrydgjkqm",
+    "code": "PGA-40",
+    "number": 40,
+    "title": "Field / Remote Deployment SOP",
+    "tier": "P2 Perluasan",
+    "owner": "PT Top Konsultan Internasional",
+    "points": "[\"SOP kunjungan on-site klien daerah: agenda survey cetakan checklist inventory sistem existing\",\"Etika perwakilan: dress code longgar tapi rapi, sensitivitas budaya lokal, larangan promosi murahan\",\"Kit digital perjalanan: offline copies dokumen, hotspot cadangan, powerbank kebijakan print minimal\",\"Remote deployment standard: premis pelanggan environment testing before prod, rollback plan mandatory\",\"Catatan biaya perjalanan standar reimbursement rute menghitung di estimasi proyek offsite\"]",
+    "domainNumber": 5
+   },
+   {
+    "id": "cmvgr7153002trf1wvba3xh3j",
+    "code": "PGA-41",
+    "number": 41,
+    "title": "Financial Model / Projection",
+    "tier": "P0 Navigasi",
+    "owner": "Bersama Grup",
+    "points": "[\"Model tiga skenario bulanan kedua entitas: badai, dasar, angin kencang hingga dua tahun\",\"Asumsi terbuka disatukan tabula: close rate, nilai rata-rata kontrak, churn retainer, siklus kas\",\"Proyeksi konservatif target seribu pertama tranche sembilan puluh hari jaga runway minimum\",\"Break-even analysis per lapis paket layanan memberitahu kombinasi mana yang menyelamatkan bulan\",\"Review aktual-vs-model tiap akhir bulan mendasarkan keputusan pivoting katalog\"]",
+    "domainNumber": 6
+   },
+   {
+    "id": "cmvgr7153002vrf1w09vq2pl4",
+    "code": "PGA-42",
+    "number": 42,
+    "title": "Unit Economics",
+    "tier": "P0 Navigasi",
+    "owner": "Bersama Grup",
+    "points": "[\"Perhitungan rate harian efektif konsultan principal: harga kotor minus biaya variabel dan slot non-billing\",\"Contribution margin tiap SKU katalog dirangkum tabel warna hijau kuning merah\",\"CAC per channel track record dari GTM experiments menolong niat iklan berikutnya\",\"LTV proxy retainer rata-rata durasi x margin membuktikan kenapa retainer itu mahal artinya\",\"Hukum margin floor: tidak ada deal di bawah ambang kecuali strategis tooling value barter tercatat\"]",
+    "domainNumber": 6
+   },
+   {
+    "id": "cmvgr7154002xrf1wkiolpuu1",
+    "code": "PGA-43",
+    "number": 43,
+    "title": "Budgeting & Cash Control SOP",
+    "tier": "P0 Navigasi",
+    "owner": "Bersama Grup",
+    "points": "[\"Struktur tiga rekening: operasional, pajak-kewajiban, growth-reserve dengan persentase pembagian otomatis tiap masuk\",\"Aturan pembayaran prioritas mingguan bergaya agua sort: survival cost, tax due, growth bet tersortir\",\"Cash calendar: tanggal-tanggal kuning jatuh tempo tagihan listrik hosting langganan esensial cicilan\",\"Mingguan cash ritual fifteen minutes hitung saldo nyata, forecast dua puluh satu hari, tulis keputusan\",\"Jembatan kas pinjam pribadi-perusahaan dicatat jujur untuk menghindari percampuran silang ilegal\"]",
+    "domainNumber": 6
+   },
+   {
+    "id": "cmvgr7155002zrf1w4cgfzz1j",
+    "code": "PGA-44",
+    "number": 44,
+    "title": "Revenue Model & Monetization Playbook",
+    "tier": "P0 Navigasi",
+    "owner": "Bersama Grup",
+    "points": "[\"Empat mesin monetize M1-M4 sequenced dari playbook dengan gate aktivasi berbasis metrik\",\"Playbook upsell-crooshell entry package naik ke retainer lewat audit report sebagai trojan horse\",\"Afiliase stack Hostinger, tools AI program commission calc + estimasi monthly passive curve\",\"Digital product ladder DBM: freebie magnet, tripwire pack, flagship course, membership tier\",\"Forbidden radar: flow asset management utk instrumen kerumitan atau binary trading promises off-limits selamanya\"]",
+    "domainNumber": 6
+   },
+   {
+    "id": "cmvgr71550031rf1wv4y44b4p",
+    "code": "PGA-45",
+    "number": 45,
+    "title": "Risk Register & Mitigation Plan",
+    "tier": "P0 Navigasi",
+    "owner": "Bersama Grup",
+    "points": "[\"Register delapan risiko inti: keyman illness, platform ban, collection delay, FX minor, cyber breach, legal dispute, talent dependency, burnout founder\",\"Score impact x likelihood scale tiga tingkat dengan heat coloring log sederhana\",\"Mitigasi specific actionable bukan kalimat motivasi: misal keyman = insurance quote + documentation depth PGA-39\",\"Risk owner satu nama jelas walau organisasi masih satu orang dua topi\",\"Review triage register di tiap weekly cash ritual sehingga risiko dilihat sebelum menggigit\"]",
+    "domainNumber": 6
+   },
+   {
+    "id": "cmvgr71560033rf1wlzlss67x",
+    "code": "PGA-46",
+    "number": 46,
+    "title": "Audit & Internal Control Framework",
+    "tier": "P2 Perluasan",
+    "owner": "Bersama Grup",
+    "points": "[\"Kendali dasar pencatatan: semua transaksi ledger tunggal, struk foto langsung upload cloud folder bulanan\",\"Segregation of duty workaround solo stage: self review checklist plus spot check oleh rekan akuntan\",\"Reconcile bank-book bulanan sama persis signature check sebelum tutup periode\",\"Audit trail dokumen kontrak-invoice-payment chain terikat nomor referensi satu-satu\",\"Annual independent light audit oleh jasa akuntan publik mini membangun credibility bagi investor masa depan\"]",
+    "domainNumber": 6
+   },
+   {
+    "id": "cmvgr71570035rf1woh2iyvmp",
+    "code": "PGA-47",
+    "number": 47,
+    "title": "Investment / Capital / Funding Memorandum",
+    "tier": "P2 Perluasan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Opini putus funding path ranking: bootstrapped dulu, profit-based loan bank mikro lokal, kemudian venture hanya bila skala regional terbukti\",\"Memorandum ringkas 12-15 slide beserta appendix data unit economics untuk dialog investor serious\",\"Kriteria tak tertawar: tetap kontrol pendirian founder majority, valuation realistis multiple rev mitenya\",\"Alternative instrument: SAFE nota simple, revenue based financing dianggap jika margin stabil dua kuartal\",\"Warna spesial: dana dari saudara dikelola dengan kontrak formal juga demi menjaga ikatan keluarga\"]",
+    "domainNumber": 6
+   },
+   {
+    "id": "cmvgr71570037rf1wkxbmbxbw",
+    "code": "PGA-48",
+    "number": 48,
+    "title": "Treasury / Asset / Reserve Policy",
+    "tier": "P1 Pertumbuhan",
+    "owner": "Bersama Grup",
+    "points": "[\"Reserve policy: minimum tiga bulan fixed cost sebagai garis anti-mati, penuh sebelum growth spending besar\",\"Waterfall surplus kas bulanan: isi reserve, pelunasan utang berbunga tertinggi, investasi aset produktif\",\"Asset register company assets: laptop lisensi nama domain merek dihitung sebagai aset immaterial pencatatan\",\"Debt intergration guidance: urutan settle private credit card high interest lalu bank installment lalu soft loan keluarga\",\"Household-business firewall: gaji founder ditetapkan modest fix bulanan sehingga kas perusahaan punya batas pasti\"]",
+    "domainNumber": 6
+   },
+   {
+    "id": "cmvgr71580039rf1wvq3fgox9",
+    "code": "PGA-49",
+    "number": 49,
+    "title": "Talent & Recruitment Framework",
+    "tier": "P2 Perluasan",
+    "owner": "Bersama Grup",
+    "points": "[\"Framework kontraktor-first: hire skill spesifik project basis dulu, fulltime hanya setelah beban stabil delapan puluh persen capacity\",\"Pool sourcing tiga kanal: alumni akademi terbaik, komunitas dev lokal, marketplace profesional niche\",\"Trial task paid micro-scenario dua jam evaluasi kualitas output komunikasi deadline mentah\",\"Onboarding kit kontraktor:kses SOP PGA-33, brand voice, security rules PGA-110, payment terms gamblang\",\"Succession substitute pool tiap fungsi genting punya cadangan minimal satu nama hangat\"]",
+    "domainNumber": 7
+   },
+   {
+    "id": "cmvgr7159003brf1wdg325isn",
+    "code": "PGA-50",
+    "number": 50,
+    "title": "Leadership Model",
+    "tier": "P2 Perluasan",
+    "owner": "Bersama Grup",
+    "points": "[\"Model servant-sherpa: pemimpin yang bebani diri paling berat di awal namun membangun jalan bagi orang lain menaiki puncak\",\"Lead without title practices: negara tujuan first before instruction, konteks sebelum komando\",\"Ritual kepemimpinan mingguan: one praise one push feedback ke tiap kontraktor aktif\",\"Decision delegation ladder level satu sampai lima dari do exactly to decide and inform later\",\"Self leadership protocol founder: no-meeting deep work mornings, energy management over time management\"]",
+    "domainNumber": 7
+   },
+   {
+    "id": "cmvgr7159003drf1wjnlhfwzf",
+    "code": "PGA-51",
+    "number": 51,
+    "title": "HR Operating Manual (Kontraktor Edition)",
+    "tier": "P2 Perluasan",
+    "owner": "Bersama Grup",
+    "points": "[\"Manual hubungan kontraktor: perjanjian kerja alih daya bukan PKWT agar status hukum jelas konsekuensi pajak tepat\",\"Payment cycle baku: invoice semi-monthly net 14 tanpa drama dengan late fee reciprocal fairness\",\"Intellectual property assignment clause default: work product milik klien final invoice lunas\",\"Code of conduct versi ringkas: confidentiality, no poaching klien, communication etiquette representasi brand\",\"Dispute handling internal dua langkah: bilik obrolan lurus dahulu, arbiter netral kedua, bukti chat sebagai rekaman\"]",
+    "domainNumber": 7
+   },
+   {
+    "id": "cmvgr715a003frf1wtn4a6u6c",
+    "code": "PGA-52",
+    "number": 52,
+    "title": "Performance Management System",
+    "tier": "P3 Warisan",
+    "owner": "Bersama Grup",
+    "points": "[\"Three lens per quarter: output quality scorecard, client pulse rating, growth trajectory personal\",\"Goals cascade sederhana OKR mini at most three objectives per person per quarter\",\"Feedback format SBI situation-behavior-impact dilatih lewat contoh skenario nyata anonim\",\"Reward mix: bonus outcome-based, learning stipend, equity phantom virtual points for long tenure future convertibility\",\"Underperformance stairs: coach first twice documented, scope narrowing third, graceful offboard fourth\"]",
+    "domainNumber": 7
+   },
+   {
+    "id": "cmvgr715b003hrf1wqc08ke27",
+    "code": "PGA-53",
+    "number": 53,
+    "title": "Training & Certification Framework",
+    "tier": "P2 Perluasan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Dual purpose design: kurikulum Akademi AI produk publik menjadi internal L&D material identik\",\"Micro-certification paths tiga jalur: AI Web Builder, Automation Ops, Client Communication Craft\",\"Assessment praktik portofolio riil instead of multiple guess quizzes\",\"Certification badge digital verifiable posted LinkedIn sebagai marketing simultan gratis\",\"CPD continuous professional development points syarat renewals tiap dua belas bulan\"]",
+    "domainNumber": 7
+   },
+   {
+    "id": "cmvgr715b003jrf1wv8rry6lu",
+    "code": "PGA-54",
+    "number": 54,
+    "title": "Culture Code",
+    "tier": "P2 Perluasan",
+    "owner": "Bersama Grup",
+    "points": "[\"Ten cultural tenets versi tepercetakan A4 dibagikan every onboarding: contoh bias harimau-jalan perlahan bawa gunung\",\"Behavioral examples ya-versus-belum table yang membuat abstraksi jadi gamblang\",\"Culture signals measured: response tone audit sample, retention kontraktor, testimonies spontan dari klien\",\"Anti-patterns declared openly: suka salahkan tools, reply tetikus only, promise oversell\",\"Culture evolution cadence annual review together with values charter PGA-05 consistency check\"]",
+    "domainNumber": 7
+   },
+   {
+    "id": "cmvgr715c003lrf1w6ity08ou",
+    "code": "PGA-55",
+    "number": 55,
+    "title": "Ethics & Conduct Code",
+    "tier": "P1 Pertumbuhan",
+    "owner": "Bersama Grup",
+    "points": "[\"Zero tolerance list: data klien diekspos, hasil palsu klaim benchmark dusta, gratifikasi lembut menyaru diskon\",\"AI usage ethics: disclose generative assistance where contractually relevant, no fabricated references citations\",\"Conflict interest disclosure form satu halaman mandatory yearly by all including founder\",\"Whistleblowing safe channel mail alias independen reviewed founder plus external mentor\",\"Violation ladder warning suspension termination with right to respond written statement\"]",
+    "domainNumber": 7
+   },
+   {
+    "id": "cmvgr715d003nrf1wv9r1lp98",
+    "code": "PGA-56",
+    "number": 56,
+    "title": "Succession & Continuity Plan",
+    "tier": "P3 Warisan",
+    "owner": "Bersama Grup",
+    "points": "[\"Keyman scenarios documented what happens if founder unavailable 30-90-365 days\",\"Digital estate vault instructions encrypted access procedure for trusted next-of-kin plus counsel\",\"Internal successor cultivation path senior kontraktor exposure gradual ke client relationship governance\",\"Legal instruments ready: durable power of attorney business affairs draft reviewed notaris\",\"Review succession annually like fire drill so it stays alive document not dusty artifact\"]",
+    "domainNumber": 7
+   },
+   {
+    "id": "cmvgr715d003prf1wlhkxmd99",
+    "code": "PGA-57",
+    "number": 57,
+    "title": "Brand & Communication Guideline",
+    "tier": "P0 Navigasi",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Brand book ringkas dua belas halaman: logo lockups, palet biru kristal, tipografi grid pola watermark\",\"Rules aplikasi antar kanal website proposal deck invoice template presentasi webinar background\",\"Naming hierarchy: TOP Manajemen sebagai consumer face, PT names legal fine print saja\",\"Sub-brand rules: akademi, research, events menggunakan suffix keluarga logo coherent\",\"Do-not list: emoji berlebih di formal docs, klaim superlatif tanpa data, asosiasi politik partais\"]",
+    "domainNumber": 8
+   },
+   {
+    "id": "cmvgr715e003rrf1w0u1ef3d9",
+    "code": "PGA-58",
+    "number": 58,
+    "title": "Narrative & Messaging Matrix",
+    "tier": "P0 Navigasi",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Matrix audien x tahap: UKM owner cold-warm-hot punya three sentence versions respectively\",\"Master narrative spine: dari rental mind space ke owned digital asset transformed by disciplined execution\",\"Proof points library: metrics screenshots testimonials retros yang dipergunakan rotating fashion\",\"Handling hard question scripts: tentang perusahaan lama jawab satu kalimat elegan pivot forward clean entity\",\"Bahasa Indonesia natural tone primary English secondary for international deck mirror version\"]",
+    "domainNumber": 8
+   },
+   {
+    "id": "cmvgr715f003trf1wbctxznu8",
+    "code": "PGA-59",
+    "number": 59,
+    "title": "Community & Engagement Strategy",
+    "tier": "P1 Pertumbuhan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Flywheel community: content journey free group live session cohort membership alumni ambassador referral\",\"Programming rhythm: weekly open clinic, monthly masterclass, quarterly showcase client wins\",\"Moderation guidelines jelas zero spam policy plus welcome rituals new members\",\"Metrics community health: active ratio posting quality sentiment not vanity member count alone\",\"Monetization boundary ethics: community is trust engine first sales second never reverse order\"]",
+    "domainNumber": 8
+   },
+   {
+    "id": "cmvgr715g003vrf1wfdxj38ry",
+    "code": "PGA-60",
+    "number": 60,
+    "title": "Stakeholder Map",
+    "tier": "P1 Pertumbuhan",
+    "owner": "Bersama Grup",
+    "points": "[\"Map quadrant influence-interest kategori: klien inti, referrers, regulator idn, banks, mentors, vendors critical\",\"Engagement cadence per quadrant so nobody important hears news too late\",\"Dossier fields per stakeholder: preference history notes prior commitments subtle details memory bank\",\"Relationship goals annual: convert referrer menjadi case study co-author dsb.\",\"Family stakeholder section honest: spouse alignment meetings monthly regarding risk runway sacrifices\"]",
+    "domainNumber": 8
+   },
+   {
+    "id": "cmvgr715h003xrf1wwrfzc9ms",
+    "code": "PGA-61",
+    "number": 61,
+    "title": "Sales / Acquisition Playbook",
+    "tier": "P0 Navigasi",
+    "owner": "PT Top Konsultan Internasional",
+    "points": "[\"Pipeline stages definition exact crm sheet minimal fields agar forecast bisa dipercaya\",\"Cold outreach sequence respectful whatsapp-first two-touch then linkedin voice note variation script ready\",\"Discovery call framework SPIN adapted 30 minutes ending always dengan clear next step booked\",\"Proposal template modular pricing tiers objections pre-handled inside faq annex\",\"Follow-up discipline ruler: no proposal dies silently seven day touch rule until explicit no\"]",
+    "domainNumber": 8
+   },
+   {
+    "id": "cmvgr715i003zrf1wwrt9u5ym",
+    "code": "PGA-62",
+    "number": 62,
+    "title": "Public Affairs / Government Relations Framework",
+    "tier": "P3 Warisan",
+    "owner": "Bersama Grup",
+    "points": "[\"Compliance posture first: e-commerce OSS updating correct taxpayer standing association memberships relevant\",\"E-katalog LKPP eligibility exploration mid-term untuk serving government SME programs legitimately\",\"Program participation strategy: Kadin associations hipmi communities attend contribute speak occasional\",\"Policy watch digest quarterly summary relevant SME digital regulations changes implications\",\"Absolute integrity line: no facilitation payments ever any shade whatsoever documented stance\"]",
+    "domainNumber": 8
+   },
+   {
+    "id": "cmvgr715j0041rf1wnckbarpn",
+    "code": "PGA-63",
+    "number": 63,
+    "title": "Investor / Donor / Partner Deck",
+    "tier": "P2 Perluasan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Deck structure thirteen slides adapted sebastian junger rule short numbers loud story\",\"Traction slide honesty: early data shown with context methodology transparency builds credibility\",\"Ask slide precise: use of funds allocation with milestones gates attached\",\"Appendix bunker deep data ready if asked deeper diligence follow-ups\",\"Donor variant untuk social programs grants aligned D12 impact initiatives separate tailored deck\"]",
+    "domainNumber": 8
+   },
+   {
+    "id": "cmvgr715k0043rf1wegy10yr2",
+    "code": "PGA-64",
+    "number": 64,
+    "title": "Media & Crisis Communication SOP",
+    "tier": "P1 Pertumbuhan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Crisis classification matrix four severity levels trigger definitions dan owners\",\"Holding statements pre-written templates data breach service outage defamation rumor complaint viral\",\"Spokesperson policy: founder only unless delegated written approval otherwise silence is official\",\"Monitoring routine daily mention sweep google alerts social listening lite manual page save receipts\",\"Post-crisis debrief narrative repair plan published changelog public trust rebuild actions\"]",
+    "domainNumber": 8
+   },
+   {
+    "id": "cmvgr715k0045rf1wtq0nkq1a",
+    "code": "PGA-65",
+    "number": 65,
+    "title": "Data Governance & Privacy Policy",
+    "tier": "P0 Navigasi",
+    "owner": "Bersama Grup",
+    "points": "[\"Klasifikasi data empat tingkat: publik, internal, rahasia klien, personal sensitif\",\"Prinsip minimalisasi: kumpulkan hanya yang dibutuhkan deliverable simpan selama kontraktual saja lalu hapus\",\"Prosedur permintaan hapus data subjek UU PDP timeline respons baku tujuh hari kerja\",\"Akses matrix siapa boleh apa vault credentials shared folder per-project isolated\",\"Incident data breach protocol tied ke PGA-64 communications plus regulator notification readiness\"]",
+    "domainNumber": 9
+   },
+   {
+    "id": "cmvgr715l0047rf1wt3ztx6lm",
+    "code": "PGA-66",
+    "number": 66,
+    "title": "Security & Cyber Compliance Framework",
+    "tier": "P1 Pertumbuhan",
+    "owner": "Bersama Grup",
+    "points": "[\"Baseline controls: password manager wajib 2FA semua akun bisnis tanpa kecuali\",\"Device hygiene: disk encryption update patching cadangan otomatis policy laptop pribadi dipakai kerja\",\"Vendor security check quick rubric sebelum integrasi tools baru handling client data\",\"ISO 27001 awareness lite mapping optional future sertifikasi saat korporasi enterprise approach\",\"Annual penetration self-check checklist simple plus external review kalau budget memungkinkan\"]",
+    "domainNumber": 9
+   },
+   {
+    "id": "cmvgr71660049rf1wrpgo4bvn",
+    "code": "PGA-67",
+    "number": 67,
+    "title": "KPI Dashboard & North Star Metrics",
+    "tier": "P0 Navigasi",
+    "owner": "Bersama Grup",
+    "points": "[\"North star single metric dipilih: monthly delivered value revenue realized bukan vanity followers\",\"Lima KPI sekunder: pipeline value, delivery cycle time, collection days, margin %, churn retainer\",\"Dashboard mingguan sederhana spreadsheet-google looker studio hybrid updated cash ritual time\",\"Leading vs lagging balance supaya tak selalu menoleh belakang kapal saja\",\"Alert thresholds pre-decided triggering scenario plays from PGA-16 automation of reaction\"]",
+    "domainNumber": 9
+   },
+   {
+    "id": "cmvgr7167004brf1wb3pzso1b",
+    "code": "PGA-68",
+    "number": 68,
+    "title": "Knowledge Management & Documentation SOP",
+    "tier": "P1 Pertumbuhan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Struktur knowledge base tiga simpanan: notas harian keputusan, wikis prosedur, arsip artefak proyek\",\"Capture rituals retro-proyek dalam 72 jam sebelum memori pudar sensemaking notes template\",\"Search-first convention penamaan file standar tanggal-klien-artefak-versi eliminasi guesswork\",\"AI-assisted summarization weekly digests keeping knowledge alive accessible\",\"Retention schedule cleanup kuartalan agar base tetap ramping terkurasi bukan landfill digital\"]",
+    "domainNumber": 9
+   },
+   {
+    "id": "cmvgr7167004drf1wg2e9hk13",
+    "code": "PGA-69",
+    "number": 69,
+    "title": "Research, Benchmark & Intelligence Register",
+    "tier": "P2 Perluasan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Register entri riset: pertanyaan, metode ringkas, temuan, implikasi tindakan, tanggal validitas\",\"Benchmark rate market konsultan regional dipantau semesteran feeds pricing decision PGA-12/42\",\"Competitive intelligence ethics: hanya sumber publik no shady tactics documented code\",\"Trend radar tools AI landscape quarterly briefs generated half automated half judgment\",\"Open research outputs selectively published strengthening thought leadership PGA-130 funnel\"]",
+    "domainNumber": 9
+   },
+   {
+    "id": "cmvgr7168004frf1w4d39ujtb",
+    "code": "PGA-70",
+    "number": 70,
+    "title": "ESG / Sustainability / Impact Framework",
+    "tier": "P3 Warisan",
+    "owner": "Bersama Grup",
+    "points": "[\"ESG small-firm edition: paperless ops default, green hosting consideration, fair pay policy pledge\",\"Social impact targets tertaut domain dua belas programs measured annually\",\"Governance traits already embedded via PGA charter references avoid duplicate frameworks\",\"Impact reporting mini one-pager yearly sharing stakeholders builds moral brand equity\",\"Supplier preference note: mitra lokal dan prinsip ekonomi sirkular unggulkan bila mutu setara\"]",
+    "domainNumber": 9
+   },
+   {
+    "id": "cmvgr7169004hrf1wmtxjs4lo",
+    "code": "PGA-71",
+    "number": 71,
+    "title": "Legacy / 100-Year Covenant / Foundational Commitments",
+    "tier": "P3 Warisan",
+    "owner": "Bersama Grup",
+    "points": "[\"Covenant seabad versi firma boutique: promises to clients employees society written timeless language\",\"Foundational commitments unchangeable core amendment supermajority ritual imaginary board of guardians\",\"Time capsule tradition every five years letter to future leadership team\",\"Institutional memory safeguarding archives migration plan media formats evolution-proofing\",\"Link forward ke PGA-108 benteng konstitusional sebagai pasangan operasional covenant ini\"]",
+    "domainNumber": 9
+   },
+   {
+    "id": "cmvgr7169004jrf1w1kbo7vil",
+    "code": "PGA-72",
+    "number": 72,
+    "title": "Master Index & Document Control Register",
+    "tier": "P0 Navigasi",
+    "owner": "Bersama Grup",
+    "points": "[\"Register induk seluruh 165 dokumen: kode, judul, tier, pemilik, status draft-active-sunset, versi, lokasi\",\"Naming dan storage canonical tree folder structure mirrors domains numbering exactly\",\"Version control conventions aligned seragam dgn change governance PGA-32 supaya satu bahasa\",\"Quarterly document health audit doc umur, stale content flags orphan detection\",\"Access rights summary public internal restricted tiers mapping security levels PGA-65\"]",
+    "domainNumber": 9
+   },
+   {
+    "id": "cmvgr716a004lrf1wrua25p9r",
+    "code": "PGA-73",
+    "number": 73,
+    "title": "Bilateral Cooperation Framework",
+    "tier": "P3 Warisan",
+    "owner": "PT Top Konsultan Internasional",
+    "points": "[\"Framework kerja sama antar firma konsultan regional Malaysia Singapura Vietnam capacity exchange\",\"Mutual delivery support agreement template bagi beban proyek cross-border seasonal peaks\",\"Revenue share fairness formula transparent computation annex example case walk-through\",\"Cultural briefing pack tiap negara partner etiquette do-dont communication styles compact\",\"Termination and wind-down clause preserving relationships even when partnerships end\"]",
+    "domainNumber": 10
+   },
+   {
+    "id": "cmvgr716a004nrf1ww5g8tcd9",
+    "code": "PGA-74",
+    "number": 74,
+    "title": "International Arbitration Protocol",
+    "tier": "P3 Warisan",
+    "owner": "PT Top Konsultan Internasional",
+    "points": "[\"Default arbitration ladder pada kontrak internasional: mediasi dahulu, lalu BANI domestik atau lembaga arbitrase regional seperti SIAC dan KI\",\"Seat law currency clauses bahasan memilih hukum mana berlaku invoice mata uang konversi siapa menanggung\",\"Enforcement awareness new york convention recognition path foreign awards\",\"Cost estimates realistic arbitration fees compared litigation membuat pilihan rasional bukan emosional\",\"Template clause library bilingual reviewed oleh kuasa hukum sebelum dipakai aktif\"]",
+    "domainNumber": 10
+   },
+   {
+    "id": "cmvgr716b004prf1w1ebl9d6i",
+    "code": "PGA-75",
+    "number": 75,
+    "title": "Cross-Border Contracting & Mobility Manual",
+    "tier": "P2 Perluasan",
+    "owner": "PT Top Konsultan Internasional",
+    "points": "[\"Manual kontrak lintas batas pekerja remote: status pajak residensi menghindari permanent establishment trap\",\"Invoice standards multi-currency VAT/GST reverse charge awareness dasar tiap pasar target\",\"Travel-for-work rules visa business vs meeting-only assumptions kesehatan asuransi overseas coverage\",\"Data transfer compliance shadowing PGA-65 ketika client data crosses borders PDPA GDPR touchpoints\",\"Timezone choreography SOP scheduling rotation fairness tidak selalu begadang pihak satu\"]",
+    "domainNumber": 10
+   },
+   {
+    "id": "cmvgr716b004rrf1wb85kl3hm",
+    "code": "PGA-76",
+    "number": 76,
+    "title": "International Institution Engagement Strategy",
+    "tier": "P3 Warisan",
+    "owner": "Bersama Grup",
+    "points": "[\"Registry entry roadmap: UN Global Marketplace vendor registration steps requirements realistic timeline\",\"ADB World Bank SME consultancy windows monitoring tender alerts relevant niches only\",\"Certification groundwork collection: ISO paths, financial statements audited prerequisites planning\",\"Partnership broker strategy teaming dengan firma bersertifikat existing bagian sub-contract untuk credential building\",\"Engagement budget guardrail jangan bakar waktu pursue tenders besar sebelum kapasitas delivery sanggup menang\"]",
+    "domainNumber": 10
+   },
+   {
+    "id": "cmvgr716c004trf1wgattntb7",
+    "code": "PGA-77",
+    "number": 77,
+    "title": "South-South / ASEAN Expansion Doctrine",
+    "tier": "P2 Perluasan",
+    "owner": "Bersama Grup",
+    "points": "[\"Doctrine bertahap gelombang: voice build Indonesia foundation dulu then Malay-speaking markets expansion kecil\",\"Localized offer playbook pricing psychological adjustment purchasing power parity chart\",\"Market-entry scorecard criteria scoring sebelum commit resources city by city approach\",\"Local ally recruitment cham ambassador komunitas bisnis indonesia diaspora di ibu kota target\",\"Doctrine review semi-annual learning logs kepemimpinan pasar momentum adjustments\"]",
+    "domainNumber": 10
+   },
+   {
+    "id": "cmvgr716d004vrf1w7foslf7n",
+    "code": "PGA-78",
+    "number": 78,
+    "title": "Diaspora & Remote Client Acquisition",
+    "tier": "P2 Perluasan",
+    "owner": "PT Top Konsultan Internasional",
+    "points": "[\"Program diaspora connector: profesional indonesia overseas sebagai intro bridge referral commissions formalized\",\"Remote-first service packaging timezone friendly demos async video proposals killing distance objections\",\"Payment rails comparison wise/paypal/bank wire fees speed reconciliation notes feeding treasury PGA-48\",\"Trust signals untuk buyer asing: testimonials international english linkedin presence visible public proof stack\",\"Compliance note investasi dari luar payment documentation proper fheadline revenue recognition honest bookkeeping\"]",
+    "domainNumber": 10
+   },
+   {
+    "id": "cmvgr716e004xrf1wg22kt9dh",
+    "code": "PGA-79",
+    "number": 79,
+    "title": "Geopolitical Risk Radar",
+    "tier": "P3 Warisan",
+    "owner": "Bersama Grup",
+    "points": "[\"Radar sederhana kuartalan focusing variables touching us: fx swings trade disputes platform bans data laws shifts\",\"Scenario hooks integrated ke masterplan scenarios section crossref neat tanpa duplikasi konten\",\"Supply chain concentration check tools-vendor country exposure diversification options mapped\",\"Client-base concentration geographically alert threshold fifty percent satu negara triggers mitigation plan\",\"Monitoring sources list curated hati-hati noise filter daily digest manual scan sepuluh menit rule\"]",
+    "domainNumber": 10
+   },
+   {
+    "id": "cmvgr716f004zrf1wdq5r9hbf",
+    "code": "PGA-80",
+    "number": 80,
+    "title": "Sanctions & Trade Compliance Screening Atlas",
+    "tier": "P3 Warisan",
+    "owner": "Bersama Grup",
+    "points": "[\"Atlas screening entitas counterparty checks against sanctions lists sebelum kontrak signifikan internasional\",\"Payment route due diligence no third-party mystery payer entities red flag escalation\",\"Export control basics mengenai software teknologi dual-use awareness level cukup gali specialist bila menyentuh\",\"Record-keeping screening results evidence file timestamped selesai audit trail fashion\",\"Escalation path external counsel engagement trigger defined objectively bukan tebak-tebakan panik\"]",
+    "domainNumber": 10
+   },
+   {
+    "id": "cmvgr716f0051rf1w5jasl3jg",
+    "code": "PGA-81",
+    "number": 81,
+    "title": "Syariah Compliance Framework (Garis Layanan)",
+    "tier": "P2 Perluasan",
+    "owner": "PT Top Konsultan Internasional",
+    "points": "[\"Framework layanan syariah: struktur honorarium jasa clear fee-based bukan bagi hasil spekulatif\",\"Produk advisory murabahah-markup bijasih akad jelas, musyarakah joint venture grading risk transparency\",\"Non-halal industry exclusion list nyata horeka gambling conventional riba banks niche segments declined\",\"Documentation standards akad terms disclosed plainly avoiding gharar excess ambiguity\",\"Sharia review annual oleh ahli pakar fiqh muamalah independen honest findings recorded improvements\"]",
+    "domainNumber": 11
+   },
+   {
+    "id": "cmvgr716i0053rf1wbo112gna",
+    "code": "PGA-82",
+    "number": 82,
+    "title": "Dewan Pengawas Syariah Charter (Bila Garis Aktif)",
+    "tier": "P3 Warisan",
+    "owner": "Bersama Grup",
+    "points": "[\"Charter DPS aktivasi condition only bila revenue syariah line material exceeds ambang diputus nanti\",\"Komposisi minimal satu advisor kompeten muamalah sessions berkala bukan sekadar nama hiasan\",\"Audit findings workflow convert into corrective actions tracked register integration PGA-24\",\"Independence safeguardsadvisor tidak bisa dipecat karena opini beda dengan manajemen protection explicit\",\"Publik disclosure statementFatwa basis ringkasan published website transparency trust signal halal segment\"]",
+    "domainNumber": 11
+   },
+   {
+    "id": "cmvgr716j0055rf1wzpd1krya",
+    "code": "PGA-83",
+    "number": 83,
+    "title": "Zakat & Infaq Management Policy",
+    "tier": "P2 Perluasan",
+    "owner": "Bersama Grup",
+    "points": "[\"Corporate zakat computation policy net profit based 2.5% mauled through accounting simplicity framework\",\"Disbursement channel list verified amil institutions direct asnaf cases both allowed recorded\",\"Infaq earmark program education sponsorships seats courses pilihan alignment mission PGA-02\",\"Transparency annual recap numbers shared internally family stakeholders honestly including pending years\",\"Integration payroll-like line item cash calendar so charity never forgotten within crisis months\"]",
+    "domainNumber": 11
+   },
+   {
+    "id": "cmvgr716k0057rf1wl57ct5ql",
+    "code": "PGA-84",
+    "number": 84,
+    "title": "Wakaf Produktif Endowment Model",
+    "tier": "P3 Warisan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Endowment konsep fase matang: aset produktif hasilnya mendanai beasiswa talenta digital abadi\",\"Instrument exploration cash waqf linked sukuk CWLS understanding study before any commitment\",\"Governance nazhir responsibilities separation assets from operating company strictly legally clean\",\"Roadmap trigger definable multiple profit milestones protecting survival-first sequencing principle\",\"Legacy narrative tie-in ke covenant PGA-71 making endowment its living embodiment later chapters\"]",
+    "domainNumber": 11
+   },
+   {
+    "id": "cmvgr716k0059rf1w8riue3uq",
+    "code": "PGA-85",
+    "number": 85,
+    "title": "Ethical Fundraising Alternatives (Awal Sekarang)",
+    "tier": "P3 Warisan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Posisi sekarang jujur sukuk issuance irrelevant scale kita tahap ini ditulis sebagai peta masa depan sahaja\",\"Halal alternatives ranking mudarabah community investors musyarakah project-specific qard hasan keluarga kontrak\",\"Screening filter semua funding sources melawan riba elements maysir gharar basic test checkboxes\",\"Legal documentation requirements each instrument realistic effort notes notarization needs\",\"Decision gate criteria when each becomes sensible sizing maturity capital needs table practical\"]",
+    "domainNumber": 11
+   },
+   {
+    "id": "cmvgr716l005brf1w5rbqewsi",
+    "code": "PGA-86",
+    "number": 86,
+    "title": "Vertical: Koperasi & UMKM Berdaya (Practice Line)",
+    "tier": "P2 Perluasan",
+    "owner": "PT Top Konsultan Internasional",
+    "points": "[\"Vertical definition: transformation services khusus koperasi BUMDes pawnshop alternative finance local heroes\",\"Service packages standardized diagnostic implement training subscription mirroring main catalog pricing adjusted\",\"Distribution alliances kanal kementerian koperasi events associations koperasi staff certification co-branded options\",\"Case study factory setiap klien vertical dokumen transformasi storytelling feed marketing engine PGA-129\",\"Success metrics beyond profit: jobs enabled members served economies digitized index koperasi impact ledger\"]",
+    "domainNumber": 11
+   },
+   {
+    "id": "cmvgr716m005drf1ws0foahv6",
+    "code": "PGA-87",
+    "number": 87,
+    "title": "Vertical: Energi & Ketahanan Pangan Digital",
+    "tier": "P3 Warisan",
+    "owner": "PT Top Konsultan Internasional",
+    "points": "[\"Vertical prospectus: digitizing energy cooperatives solar PV communities urban farming ventures revenue models\",\"Baseline solutions catalog monitoring dashboards inventory systems grant reporting templates reusable stacks\",\"Partner ecosystem developers NGOs government programs leverage aliansi delivery capability not own EPC\",\"Regulatory landscape ringkas PLN quota permits farmer group legal forms implications straightforward guide\",\"Go no-go gates technology access cost feasibility studied pilot-by-pilot documentation feeding decide later loop\"]",
+    "domainNumber": 11
+   },
+   {
+    "id": "cmvgr716m005frf1wogp6qm0m",
+    "code": "PGA-88",
+    "number": 88,
+    "title": "Agri-Food Value Chain Advisory Framework",
+    "tier": "P3 Warisan",
+    "owner": "PT Top Konsultan Internasional",
+    "points": "[\"Framework advisory agrifood value chains traceability middleman pain points digital marketplace onboarding\",\"Intervention templates cold chain tracking price transparency cooperative aggregation models digestible playbooks\",\"Data practice respecting farmers privacy literacy levels consent design human-centered principle enforcement\",\"Monetization structure donor-funded consulting grants subsidy blended commercial rates tiered schemes\",\"Knowledge capture field notes translated into publishable insights differentiating our firm rural-tech depth\"]",
+    "domainNumber": 11
+   },
+   {
+    "id": "cmvgr716n005hrf1w5t1ui2zq",
+    "code": "PGA-89",
+    "number": 89,
+    "title": "Women's Economic Empowerment Charter",
+    "tier": "P2 Perluasan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Charter quota konkret: minimum empat puluh persen scholarship seats program batch women-focused targeting\",\"Flexible work by design asynchronous defaults membuat ibu tunggal kontraktor bisa peak-performance tanpa guilt\",\"Women-led business discount tier program offering structured eligibility clear renewal conditions\",\"Mentorship circle pairing senior alumni guiding newcomers structured six-week arcs measurable outcomes\",\"Reporting annual gender metrics unpublished inside honest review kekuatan kelemahan without theater\"]",
+    "domainNumber": 12
+   },
+   {
+    "id": "cmvgr716n005jrf1wqgv6aprg",
+    "code": "PGA-90",
+    "number": 90,
+    "title": "Youth Digital Talent Constitution",
+    "tier": "P2 Perluasan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Constitution youth pathway: siswa smk mahasiswa early-career track into cohort kelas micro-internships paid fairly\",\"Campus club partnerships standing MoUs sekolah vokasi universitiesjek speaking slots curriculum input exchanges\",\"Skill verification badges workforce-ready signaling employers looking hiring partners network benefits\",\"Guardrails exploitation prevention: unpaid trial limits enforced compensation floors dignity always\",\"Alumni progression map mentor assistants instructors someday eventually junior consultants career ladders visible\"]",
+    "domainNumber": 12
+   },
+   {
+    "id": "cmvgr716o005lrf1w1t1jnj5h",
+    "code": "PGA-91",
+    "number": 91,
+    "title": "Disability & Universal Access Policy",
+    "tier": "P2 Perluasan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Policy universal design: semua produk web deliverables lolos WCAG baseline checks accessibility conformance\",\"Hiring inclusion statement disabled talent welcomed accommodations discussed openly without pity framing\",\"Content accessibility alt-text captions transcripts standard production checklist embedded QA PGA-30\",\"Assistive tech compatibility testing budget line small but consistent meaningful not tokenistic\",\"Feedback channel disabled users dedicated contact actively invited improve products continuously\"]",
+    "domainNumber": 12
+   },
+   {
+    "id": "cmvgr716p005nrf1wbboptoh9",
+    "code": "PGA-92",
+    "number": 92,
+    "title": "Local Knowledge & Community Wisdom Protection",
+    "tier": "P3 Warisan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Protection stance saat bekerja dengan komunitas adat lokal wisdom content attribution consent protocols\",\"Benefit-sharing framework kalau insight komunitas jadi produk komersial mekanisme balik nilai fair negotiating\",\"Cultural sensitivity review checklist sebelum publish materials touching sacred sensitive traditions\",\"IP boundaries respect traditional knowledge not appropriated misrepresented authored claims honesty\",\"Long-term relationship ethos bukan ekstraksi sekali jalan partnership continuity commitments documented\"]",
+    "domainNumber": 12
+   },
+   {
+    "id": "cmvgr716q005prf1wakj0jlcg",
+    "code": "PGA-93",
+    "number": 93,
+    "title": "Child Protection & Safeguarding (EduTech Context)",
+    "tier": "P1 Pertumbuhan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Safeguarding policy akademi peserta di bawah umur parental consent verifikasi age-gating flows implemented\",\"Communications standards instructors-students minors appropriate channels visibility parents informed\",\"Data minimance strictest tier children accounts limited analytics no behavioral profiling ads ever\",\"Incident reporting duty all staff kontraktors trained recognizing responding abuse signals mandatory escalations\",\"Platform safety tech features moderated comments keyword filters human oversight layered defenses\"]",
+    "domainNumber": 12
+   },
+   {
+    "id": "cmvgr716q005rrf1w2ew3d9ew",
+    "code": "PGA-94",
+    "number": 94,
+    "title": "Climate Responsibility & Adaptation Notes",
+    "tier": "P3 Warisan",
+    "owner": "Bersama Grup",
+    "points": "[\"Firm footprint honest tiny calculator emissions estimate travel energy devices annual confession style\",\"Reduction actions practical cloud efficiency choices green hosting preference refill culture office-less anyway\",\"Client-facing angle climate risk screeners offered add-on assessments for vulnerable sectors businesses\",\"Adaptation notes operational continuity heat floods outage patterns increasingly relevant infrastructure planning\",\"Disclosure annual short report included ESG one-pager PGA-70 linkage keeping coherence single source\"]",
+    "domainNumber": 12
+   },
+   {
+    "id": "cmvgr716r005trf1wj1mkk4q3",
+    "code": "PGA-95",
+    "number": 95,
+    "title": "Digital Talent Placement & Migrant Skills Bridge",
+    "tier": "P3 Warisan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Bridge program design graduating cohorts connected ke employers network placement facilitation services\",\"Migrant workers angle returning TKI upskilling digital freelancing pathways dignity-centered narratives\",\"Employer side matching guarantees replaced-with-training promise realistic expectations both directions managed\",\"Fee model ethical: placement charged ke employers bukan jobseekers exploitation prevention structural choice\",\"Outcome tracking database placements retained six-months salaries progression feeding impact reports honest\"]",
+    "domainNumber": 12
+   },
+   {
+    "id": "cmvgr716s005vrf1w4p5k300g",
+    "code": "PGA-96",
+    "number": 96,
+    "title": "Manifesto Dampak (Impact Manifesto)",
+    "tier": "P3 Warisan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Manifesto dampak singkat statement: growth gives meaning only when it widens tables not just deepens pockets\",\"Public commitments numbered five items measurable dated accountable signatures founder witnesses mentor\",\"Integration links semua program D12 summarized visually infographic posters classroom walls inspire cohorts\",\"Anti-greenwashing rule claims must carry receipts data stories methodology open inspection ready\",\"Renewal ceremony annual recommitment reviewed failures admitted publicly kaizen spirit embodies PGA values\"]",
+    "domainNumber": 12
+   },
+   {
+    "id": "cmvgr716t005xrf1wgephsqvl",
+    "code": "PGA-97",
+    "number": 97,
+    "title": "AI Ethics & Algorithmic Sovereignty Framework",
+    "tier": "P1 Pertumbuhan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Framework etika AI operasional: transparansi penggunaan AI kepada klien dan larangan otomasi keputusan diskriminatif\",\"Prinsip human-in-the-loop untuk keluaran yang memikul tanggung jawab hukum seperti konten publikasi dan rekomendasi finansial\",\"Checklist audit bias ringkas bagi solusi automasi klien sebelum go-live, dengan bukti uji tersimpan\",\"Kedaulatan algoritmik versi firma: pahami lisensi model, risiko kenaikan harga API vendor, dan strategi multi-vendor\",\"Posisi publik ditulis sebagai artikel fondasi untuk menaikkan otoritas pikiran firma sejak dini\"]",
+    "domainNumber": 13
+   },
+   {
+    "id": "cmvgr716t005zrf1wl430iior",
+    "code": "PGA-98",
+    "number": 98,
+    "title": "Quantum Readiness Notes",
+    "tier": "P3 Warisan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Catatan kesiapan quantum yang praktis: ancaman kriptografi pasca-quantum terhadap arsip sensitif klien jangka panjang\",\"Pembahasan timeline Q-day dibingkai edukatif tanpa hype maupun panik yang tidak produktif\",\"Inventaris arsip sensitif yang kelak butuh migrasi kriptografi tangkas dalam horizon lima tahun\",\"Daftar pantau vendor enkripsi quantum-safe beserta penilaian kematangan yang jujur\",\"Kerangka awal garis layanan advisory premium niche masa depan, masih berbentuk kerangka kasar\"]",
+    "domainNumber": 13
+   },
+   {
+    "id": "cmvgr716u0061rf1w6j2c6i4y",
+    "code": "PGA-99",
+    "number": 99,
+    "title": "Space & Satellite Economy Watch Brief",
+    "tier": "P3 Warisan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Watch brief ekonomi satelit dari sisi relevansi konsultan digital: implikasi konektivitas pedesaan bagi klien daerah\",\"Data observasi bumi untuk pertanian dan logistik dipetakan sebagai benih vertical masa depan\",\"Sudut pandang partisipasi Indonesia: ekosistem antariksa nasional dan startup luar angkasa dipantau minimalis\",\"Pernyataan jujur tanpa aksi saat ini: sekadar pemindaian horizon tanpa anggaran sampai ada sinyal kuat\",\"Istilah pemutakhiran tahunan satu paragraf agar dokumen tetap hidup tanpa membakar waktu kerja\"]",
+    "domainNumber": 13
+   },
+   {
+    "id": "cmvgr716v0063rf1we0sik0u2",
+    "code": "PGA-100",
+    "number": 100,
+    "title": "Health & Bio-Data Practice Pre-Design",
+    "tier": "P3 Warisan",
+    "owner": "PT Top Konsultan Internasional",
+    "points": "[\"Pradesain garis layanan informatika kesehatan: sistem klinik, laboratorium, janji temu, dan etika rekam medis\",\"Peta regulasi Kemenkes dan telemedicine, kategori data sensitif pasien diperlakukan istimewa sesuai UU PDP\",\"Syarat mitra pembatas keras: validasi klinis dan dewan penasihat bila menyentuh wilayah klaim diagnosis\",\"Pemindaian pasar gelombang pendanaan healthtech Indonesia untuk menghitung timing masuk yang realistis\",\"Gerbang keputusan go: surat permintaan nyata dari tiga calon klien sebelum investasi spesialisasi serius\"]",
+    "domainNumber": 13
+   },
+   {
+    "id": "cmvgr716v0065rf1wigvqvvx2",
+    "code": "PGA-101",
+    "number": 101,
+    "title": "Open Source & Digital Commons Strategy",
+    "tier": "P2 Perluasan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Strategi open source sebagai senjata pemasaran dua arah: toolkit dan template dipublikasikan di GitHub secara gratis namun terkurasi\",\"Panduan pemilihan lisensi aset firma dengan tabel alasan proteksi MIT versus attribution-sharealike\",\"Kebijakan kontribusi komunitas bagi kontraktor, termasuk cadangan waktu sepuluh persen untuk tooling terbuka\",\"Mekanika corong lead generation: bintang repo, readme menuju halaman layanan, konversi diukur jujur\",\"Catatan keberlanjutan pemelihara repo supaya proyek terbuka tidak mati atau menyusahkan pengguna\"]",
+    "domainNumber": 13
+   },
+   {
+    "id": "cmvgr716w0067rf1weif904m3",
+    "code": "PGA-102",
+    "number": 102,
+    "title": "Genomic & Sensitive Bio-Data Policy (Internal)",
+    "tier": "P3 Warisan",
+    "owner": "Bersama Grup",
+    "points": "[\"Kebijakan internal data bio skala genomik: dinyatakan di luar lingkup untuk mencegah engagement yang tidak terkendali\",\"Gerbang masa depan bila suatu hari disentuh: advokat spesialis wajib dan rezim persetujuan yang diperkuat\",\"Batas program wellness pegawai: data medis tidak boleh bercampur analitik pemasaran dalam kondisi apa pun\",\"Kesadaran tren diskriminasi asuransi berbasis DNA dicatat sebagai posisi advokasi fair-use firmawan\",\"Pemicu reviu tahunan ketika adopsi teknologi biometrik klien mulai mendekati batas lingkup kami\"]",
+    "domainNumber": 13
+   },
+   {
+    "id": "cmvgr716x0069rf1wj7lls9zw",
+    "code": "PGA-103",
+    "number": 103,
+    "title": "Blue Economy & Coastal Digital Watch",
+    "tier": "P3 Warisan",
+    "owner": "PT Top Konsultan Internasional",
+    "points": "[\"Watch brief ekonomi biru: digitalisasi nelayan, traceability hasil laut, dan kepatuhan ekspor negeri kepulauan\",\"Jangkar layanan potensial: aplikasi dokumentasi tangkapan, sertifikasi kepercayaan pembeli, koperasi nelayan skala kecil\",\"Peta pendanaan donor konservasi laut berbasis teknologi serta jendela peluang musiman\",\"Kejujuran risiko: kompleksitas operasional tinggi sehingga pendekatan kemitraan berat menjadi wajib\",\"Klasifikasi horizon sama dengan PGA-99 tanpa belanja, disegarkan tahunan dengan disiplin\"]",
+    "domainNumber": 13
+   },
+   {
+    "id": "cmvgr716x006brf1wazvwrewi",
+    "code": "PGA-104",
+    "number": 104,
+    "title": "Circular Economy Service Blueprint (Lite)",
+    "tier": "P3 Warisan",
+    "owner": "PT Top Konsultan Internasional",
+    "points": "[\"Blueprint ringan untuk klien ekonomi sirkular: bank sampah, usaha daur ulang, dan digitalisasi ekonomi perbaikan\",\"Gudang modul ide: marketplace barang bekas layak pakai, dashboard dampak, template pelaporan donor siap pakai\",\"Sudut cerita nilai narasi lapangan kerja hijau yang menarik funder maupun program pemerintah sekaligus\",\"Peta lanskap sertifikasi ISO circularity dengan posisi menjalin partner rujukan alih-alih mengklaim mandiri palsu\",\"Pemicu masuk melalui pilot dari corong vertikal koperasi domain sebelas dengan alur cross-sell terdokumentasi\"]",
+    "domainNumber": 13
+   },
+   {
+    "id": "cmvgr716y006drf1wldle9vq5",
+    "code": "PGA-105",
+    "number": 105,
+    "title": "Carbon Market & Environmental Reporting Primer",
+    "tier": "P3 Warisan",
+    "owner": "PT Top Konsultan Internasional",
+    "points": "[\"Primer pasar karbon untuk UKM Indonesia: membedakan skema karbon legal dari jebakan greenwashing\",\"Sekilas kerangka pelaporan ESG standar internasional agar percakapan advisory tetap kredibel\",\"Batas layanan etis: kami mengukur dan mengedukasi, bukan menengahi jual-beli offset demi bebas konflik kepentingan\",\"Profil klien cocok: eksportir menengah yang tertekan kewajiban pengungkapan negara pembeli, sizing revenue moderat\",\"Daftar pendek mitra riset akademik dan LSM tervalidasi sebelum komitmen engagement publik mana pun\"]",
+    "domainNumber": 13
+   },
+   {
+    "id": "cmvgr716z006frf1wcm15qsfc",
+    "code": "PGA-106",
+    "number": 106,
+    "title": "Crisis Simulation War-Gaming Protocol",
+    "tier": "P2 Perluasan",
+    "owner": "Bersama Grup",
+    "points": "[\"Protokol war-gaming tahunan satu hari mensimulasikan trio skenario terburuk: bocor siber, founder hilang akses, klien utama pamit\",\"Peran digilir walau tim seorang: pendukung iblis memerankan regulator, media, dan klien marah secara realistis\",\"Format fasilitasi setengah hari dengan injeksi skenario terjadwal, keputusan dicatat dan diadu ke SOP existing\",\"Keluaran berupa backlog perbaikan yang merevisi checklist banyak domain pada pekan yang sama\",\"Repetisi desktop drill lima belas menit tiap kuartal menjaga ingatan otot tanpa menguras energi\"]",
+    "domainNumber": 13
+   },
+   {
+    "id": "cmvgr716z006hrf1wqg901w4w",
+    "code": "PGA-107",
+    "number": 107,
+    "title": "Interoperability Standards Atlas",
+    "tier": "P2 Perluasan",
+    "owner": "Bersama Grup",
+    "points": "[\"Atlas standar interoperabilitas yang disentuh pekerjaan kita: OAuth, API pembayaran, format dokumen, schema.org, web vitals\",\"Pemetaan pola integrasi umum per industri ritel logistik pendidikan kesehatan untuk diturunkan konektor reusable\",\"Daftar pantau lembaga standar internasional dan nasional yang berdampak pada deliverable serta guidance future-proof klien\",\"Playbook migrasi warisan sistem SME: langkah extract-transform-load dan jebakan klasik terdokumentasi dari kisah nyata\",\"Posisi advokasi open standards anti lock-in menjadi materi proposisi teknis yang menaikkan kredibilitas proposal\"]",
+    "domainNumber": 13
+   },
+   {
+    "id": "cmvgr7170006jrf1wz4ennnoc",
+    "code": "PGA-108",
+    "number": 108,
+    "title": "Benteng Konstitusional Seabad (IP Fortress)",
+    "tier": "P3 Warisan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Rencana benteng aset intelektual abadi: nama framework, metodologi, merek, hak cipta, hingga paten bila relevan bertahap\",\"Strategi ekspansi teritorial pendaftaran selaras gelombang roadmap PGA-14 agar biaya tidak mendahului pendapatan\",\"Tangga penegakan: teguran sopan, cease-desist, mediasi, litigasi terakhir dengan checklist biaya-manfaat dan martabat terjaga\",\"Perencanaan struktur pemegang IP lintas generasi termasuk opsi lisensi antar entitas yang efisien dan sah\",\"Klausul evolusi tiap dua puluh lima tahun meninjau adaptasi semangat covenant tanpa membekukan hurufnya selamanya\"]",
+    "domainNumber": 13
+   },
+   {
+    "id": "cmvgr7171006lrf1wc93gu95l",
+    "code": "PGA-109",
+    "number": 109,
+    "title": "Corporate Security Doctrine",
+    "tier": "P1 Pertumbuhan",
+    "owner": "Bersama Grup",
+    "points": "[\"Doktrin need-to-know: data proyek satu klien terisolasi dari klien lain dengan information barrier sederhana\",\"Inventaris perangkat dan akun master terenkripsi yang diperbarui setiap ada perubahan\",\"Kerendahhatian insider risk di era solo: pendiri adalah vektor terbesar sehingga disiplin opsec personal diperlakukan serius\",\"Catatan keamanan fisik kantor rumah: lemari dokumen, penghancur kertas, kebijakan tamu yang pragmatis\",\"Aturan akses pihak ketiga: kredensial kontraktor dibatasi scope, kedaluwarsa otomatis, dicabut ritual pasca proyek\"]",
+    "domainNumber": 14
+   },
+   {
+    "id": "cmvgr7172006nrf1wkvwwn0b9",
+    "code": "PGA-110",
+    "number": 110,
+    "title": "Cybersecurity Master Plan",
+    "tier": "P0 Navigasi",
+    "owner": "Bersama Grup",
+    "points": "[\"Master plan pencegahan murah namun ampuh: 2FA universal, password manager, simulasi phishing bulanan singkat\",\"Aturan backup 3-2-1 dijalankan sungguhan: tiga salinan, dua medium, satu offsite, dengan tes restore berkala tercatat\",\"Checklist hardening situs: SSL, update, whitelist plugin, higienitas jalur staging menuju produksi\",\"Mini-runbook respons insiden tersambung ke PGA-38 termasuk langkah awal menjaga bukti seperti log dan tangkapan layar\",\"Anggaran keamanan bulanan realistis mencakup langganan proteksi dan kajian asuransi siber pada fase korporasi\"]",
+    "domainNumber": 14
+   },
+   {
+    "id": "cmvgr7172006prf1wj1oqsqks",
+    "code": "PGA-111",
+    "number": 111,
+    "title": "Counter-Fraud & Competitive Intelligence Ethics Protocol",
+    "tier": "P1 Pertumbuhan",
+    "owner": "Bersama Grup",
+    "points": "[\"Pertahanan anti-penipuan: edukasi klien soal spoofing invoice dan impersonation lewat seri konten protektif\",\"Rutinitas verifikasi: setiap pergantian detail pembayaran dikonfirmasi lewat panggilan balik ke kontak yang sudah dikenal\",\"Etika intelijen kompetitor tercodifikasi: hanya sumber publik, metodologi riset didokumentasikan jujur\",\"Pemantauan impersonation brand: sapuan akun palsu bulanan beserta formulir pelaporan takedown tiap platform\",\"Pengetahuan dasar jalur aduan siber nasional dan tata cara penyimpanan bukti secara tertib kronologis\"]",
+    "domainNumber": 14
+   },
+   {
+    "id": "cmvgr7173006rrf1wrspdn1u9",
+    "code": "PGA-112",
+    "number": 112,
+    "title": "Emergency Response Framework",
+    "tier": "P1 Pertumbuhan",
+    "owner": "Bersama Grup",
+    "points": "[\"Kerangka darurat personal-keluarga-usaha: definisi tingkatan respon telah disepakati sebelum kejadian\",\"Protokol jam-jam pertama: urutan pemberitaan, pesan template transparan kepada klien tentang penundaan pekerjaan\",\"Kartu delegasi-darurat: rekan terpercaya preselected dengan kewenangan dan plafon keputusan tertulis\",\"Pohon kontak darurat keluarga, notaris, akuntan, hoster; versi dompet kartu dan brankas cloud tersinkron\",\"Debrief pasca darurat menangkap pelajaran dan memutakhirkan register tepat waktu\"]",
+    "domainNumber": 14
+   },
+   {
+    "id": "cmvgr7174006trf1wczizxwxp",
+    "code": "PGA-113",
+    "number": 113,
+    "title": "Disaster Management Protocol (Operational)",
+    "tier": "P2 Perluasan",
+    "owner": "Bersama Grup",
+    "points": "[\"Kesiapsiagaan bencana alam konteks Indonesia: banjir dan gempa dengan checklist musiman yang pragmatis\",\"Mode operasi terdegradasi: daftar prioritas pekerjaan kritikal klien bila listrik atau internet menyala sebagian\",\"Alternatif komunikasi saat jalur utama mati: SMS fallback, kanal cadangan, nomor mirror di dua telepon\",\"Perlindungan aset: inventaris berfoto, nilai pertanggungan, struk tersimpan brankas cloud dan direviu tahunan\",\"Fase pemulihan hari ke-1, ke-3, ke-7, ke-30 dengan checkpoint urutan bangkit kembali yang telah ditentukan\"]",
+    "domainNumber": 14
+   },
+   {
+    "id": "cmvgr7174006vrf1wnvpu65pd",
+    "code": "PGA-114",
+    "number": 114,
+    "title": "Business Continuity Plan",
+    "tier": "P1 Pertumbuhan",
+    "owner": "Bersama Grup",
+    "points": "[\"BCP ramping firma boutique: minimum viable operations ditetapkan mesin pendapatan dahulu sisanya antre tertib\",\"Skenario runway kas dikaitkan model PGA-41 dengan garis picu aksi dini yang tegas tanpa ruang interpretasi\",\"Kapasitas delivery gelombang tinggi: perjanjian standby dengan jejaring kontraktor dan mitra saling menolong\",\"Template komunikasi kesiapan: keterlambatan dijelaskan jujur dengan nada menenangkan yang sudah direviu\",\"Kalender uji tahunan tabletop plus drill restore nyata dengan catatan bukti tertaut ke PGA-39\"]",
+    "domainNumber": 14
+   },
+   {
+    "id": "cmvgr7175006xrf1w1b8c0p0t",
+    "code": "PGA-115",
+    "number": 115,
+    "title": "Crisis Communication Protocol",
+    "tier": "P0 Navigasi",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Matriks aktivasi krisis empat tingkat dengan definisi pemicu dan pemilik keputusan yang tunggal\",\"Cetak biru jam keemasan: pola acknowledge-hold-continue karena transparensi selalu mengalahkan spin\",\"Strategi kanal: telepon pribadi ke klien inti, halaman status situs, keterangan singkat sosial media dengan urutan terkoordinasi\",\"Struktur message house: pesan inti, bukti, empati, aksi, komitmen dilengkapi lembar kerja pra-isi\",\"Kadens pasca krisis: janji update ditepati meski kabarnya datar, konsistensi menabung kepercayaan jangka panjang\"]",
+    "domainNumber": 14
+   },
+   {
+    "id": "cmvgr7176006zrf1w9xmv9pqf",
+    "code": "PGA-116",
+    "number": 116,
+    "title": "Resilience & Adaptation Framework",
+    "tier": "P2 Perluasan",
+    "owner": "Bersama Grup",
+    "points": "[\"Metrik kapasitas resiliensi: indeks diversifikasi pendapatan, konsentrasi klien, platform, geografi dipantau per kuartal\",\"Baterai stress-test tahunan: perang harga, banned platform, sakit panjang, penagihan utang disimulasikan dan dinilai jujur\",\"Loop adaptif: reviu strategi dipicu alert, bukan kalender semata, demikian sinyal kesakitan pasar cepat dipanen\",\"Eksperimen antifragile: taruhan kecil yang sengaja mengekspos usaha pada tekanan terkontrol untuk belajar opsi baru\",\"Budaya tenang: skrip respons yang dilatih termasuk manajemen emosi founder sebagai elemen tak ternegosiasi\"]",
+    "domainNumber": 14
+   },
+   {
+    "id": "cmvgr71770071rf1wha2b27ba",
+    "code": "PGA-117",
+    "number": 117,
+    "title": "Digital Transformation Roadmap (Internal)",
+    "tier": "P0 Navigasi",
+    "owner": "Bersama Grup",
+    "points": "[\"Roadmap internal tiga gelombang: stabilisasi akun dan dokumen, otomasi penjualan-delivery, analitik terpadu\",\"Baseline audit kondisi kini: tumpukan tools, pembayaran, invoice, komunikasi, file dimurnikan angkanya\",\"Katalog quick wins berperingkat effort x impact untuk memandu sprint weekend yang jelas targetnya\",\"Ledger kandidat automasi: pemicu, aksi, tools, biaya, manfaat, tersimpan sebagai rujukan pusat yang hidup\",\"Metrik transformasi itu sendiri: jam hemat mingguan, tingkat galat turun, revenue per jam produktif naik\"]",
+    "domainNumber": 15
+   },
+   {
+    "id": "cmvgr71780073rf1wbi11jijr",
+    "code": "PGA-118",
+    "number": 118,
+    "title": "AI & Automation Strategy",
+    "tier": "P0 Navigasi",
+    "owner": "Bersama Grup",
+    "points": "[\"Penjenjangan use case AI: draft assistant, reviewer mutu, dan automasi tatap muka klien diberi batas label berbeda\",\"Prompt library terorganisir per folder use case dengan contoh output emas dan rubrik penilaian\",\"Guidance pemilihan model: segitiga biaya-mutu-latensi dan matriks keputusan per jenis tugas disegarkan kuartalan\",\"Gerbang reviu manusia wajib untuk kategori legal, finansial, klaim publik, dan identitas klien\",\"Metrik penangkapan nilai dilaporkan bulanan agar strategi tetap membumi bukan slide cantik saja\"]",
+    "domainNumber": 15
+   },
+   {
+    "id": "cmvgr717a0075rf1w807f4wd7",
+    "code": "PGA-119",
+    "number": 119,
+    "title": "Blockchain & Decentralized Systems Position Paper",
+    "tier": "P3 Warisan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Position paper berpenilaian setia jujur: use case blockchain yang relevan dibatasi legit dan sempit\",\"Pedoman menyikapi permintaan klien soal smart contract: edukasi baseline, bukan janji spekulatif\",\"Kebijakan pembayaran crypto: putusan diterima atau tidak dicatat rasionalnya, termasuk volatilitas dan akuntansinya\",\"Catatan pantau identitas desentralisasi dan evolusi login standar dengan postur pasif ringan\",\"Satu artikel publik demistifikasi topik sebagai senjata SEO otoritas pikiran jangka panjang\"]",
+    "domainNumber": 15
+   },
+   {
+    "id": "cmvgr717b0077rf1wt0u0o6yb",
+    "code": "PGA-120",
+    "number": 120,
+    "title": "Cloud Infrastructure Policy",
+    "tier": "P0 Navigasi",
+    "owner": "Bersama Grup",
+    "points": "[\"Realitas dual-cloud terdokumentasi: IDCloudHost produksi utama, Hostinger staging-demo dipisahkan disiplin\",\"Hierarki akun, alert tagihan, plafon belanja, dan alias email tertata rapi dalam satu dokumen master\",\"Doktrin exit path: format ekspor, snapshot reguler, pilihan stack portabel, upaya hindari lock-in dalam dievaluasi\",\"Peta DNS dan registrasi digiman.id: zona, record, tabel otoritatif dimirror ke vault\",\"Pemicu upgrade kapasitas berbasis ambang sumber daya dengan proyeksi headroom anggaran\"]",
+    "domainNumber": 15
+   },
+   {
+    "id": "cmvgr717c0079rf1wybae4gfu",
+    "code": "PGA-121",
+    "number": 121,
+    "title": "Software Development Standards",
+    "tier": "P1 Pertumbuhan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Standar dev walau solo: konvensi branch git, pesan commit semantik, dan ritual self-review PR tetap dijaga\",\"Style guide html css js php dengan struktur penamaan konsisten demi kebaikan diri-sendiri masa depan\",\"Documentation-as-code: README wajib, scaffold starter kit standar mempercepat onboarding kolaborator baru\",\"Testing pragmatis smoke test jalur kritikal plus skrip QA manual bergaya checklist regresi\",\"Pipeline deployment cPanel dan FTP alternatif modern: staged promotion, rollback plan, checklist anti-lupa\"]",
+    "domainNumber": 15
+   },
+   {
+    "id": "cmvgr717c007brf1wv4ssv8ha",
+    "code": "PGA-122",
+    "number": 122,
+    "title": "Data Privacy & Protection Implementation",
+    "tier": "P0 Navigasi",
+    "owner": "Bersama Grup",
+    "points": "[\"Implementasi teknis-administratif dari PGA-65: roster kendali konkret, pemilik, tenggat pertanggungjawaban\",\"Mekanisme capture consent formulir dengan bahasa sederhana, arsip retrievable, stempel waktu auditable\",\"Jadwal retensi dan hapus data: automasi bila bisa, prompt manual terkonfirmasi bila belum, jejak lengkap\",\"Register subprocessor: semua tools yang menyentuh data pribadi terpetakan aliran dan ditinjau semesteran\",\"Alur permintaan hak subjek: akses, koreksi, hapus, portabilitas dengan SLA tiket dan konfirmasi loop tertutup\"]",
+    "domainNumber": 15
+   },
+   {
+    "id": "cmvgr717d007drf1wvr18tndf",
+    "code": "PGA-123",
+    "number": 123,
+    "title": "Technology Acquisition Framework",
+    "tier": "P2 Perluasan",
+    "owner": "Bersama Grup",
+    "points": "[\"Scorecard evaluasi pembelian technology: fitur, harga, dukungan, feasibilitas exit dibobot jujur dan diarsip\",\"Disiplin trial: sandbox time-boxed dengan vonis tercatat supaya tidak ada pilot abadi yang memakan tenaga\",\"Persiapan negosiasi: kutipan alternatif setara sebagai leverage fakta dan penghormatan reciprocal kepada vendor\",\"Ambang approval selaras RACI PGA-19 disesuaikan praktikalitas dan direviu tahunan\",\"Lifecycle onboarding-offboarding lisensi: kredensial, pemberitahuan tim, transfer tercatat mulus\"]",
+    "domainNumber": 15
+   },
+   {
+    "id": "cmvgr717e007frf1ws2mlqult",
+    "code": "PGA-124",
+    "number": 124,
+    "title": "Innovation Pipeline Management",
+    "tier": "P2 Perluasan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Ritme pipeline: triase ide mingguan, demo prototipe bulanan, reviu pembunuhan kejam kuartalan untuk zombie project\",\"Stage-gate ala lean startup skala mikro dengan kriteria progres terukur yang disepakati di awal\",\"Plafon sumber daya inovasi dilindungi persentase kecil namun sakral agar delivery tetap utama\",\"Radar eksternal: hackathon, komunitas, hibah; hasilnya menyuburkan gagasan internal rutin\",\"Neraca portofolio eksplorasi versus eksploitasi direviu sengaja mengikuti suhu pasar\"]",
+    "domainNumber": 15
+   },
+   {
+    "id": "cmvgr717f007hrf1wvojl78ln",
+    "code": "PGA-125",
+    "number": 125,
+    "title": "Media Relations Strategy",
+    "tier": "P2 Perluasan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Peta target media niche: podcast bisnis, portal digital, kolom kampus dengan prioritas peluang bicara\",\"Craft pitch: sudut berita layak tayang, hook data lokal, isu musiman, survei orisinal sebagai penguat peluang\",\"Press kit esensial: bio, foto, logo, fact sheet, boilerplate, arsip cerita dalam satu hub yang diperbarui kuartalan\",\"Modul persiapan wawancara: disiplin pesan, teknik bridging, cara memarkir pertanyaan sensitif dengan anggun\",\"Kultivasi relasi wartawan posisi sumber-helpful walaupun tidak sedang terbit liputan, murah hati berbunga lampau\"]",
+    "domainNumber": 16
+   },
+   {
+    "id": "cmvgr717g007jrf1w5j6kzbio",
+    "code": "PGA-126",
+    "number": 126,
+    "title": "Internal Communications Master Plan",
+    "tier": "P2 Perluasan",
+    "owner": "Bersama Grup",
+    "points": "[\"Komunikasi internal tetap ada walau tim anda-plus-dua: memo mingguan berisi keputusan beserta alasannya\",\"Higienitas rapat: agenda, outcome, timebox, default asynchronous terlebih dahulu, rekaman dan ringkasan searchable\",\"Feedback loop dua arah: kotak usulan psikologis-aman dengan acknowledgments responsif yang dirayakan\",\"Playbook komunikasi perubahan: upgrade sistem, penyesuaian harga, kemitraan baru disampaikan berurutan elegan anti-rumor\",\"Konsistensi nada antara chat santai dan dokumen formal dijembatani gaya register-switching yang dilatih contoh\"]",
+    "domainNumber": 16
+   },
+   {
+    "id": "cmvgr717h007lrf1w4pky8ibj",
+    "code": "PGA-127",
+    "number": 127,
+    "title": "Social Media & Digital Presence Playbook",
+    "tier": "P0 Navigasi",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Seleksi kanal tanpa ampun: LinkedIn untuk kedalaman profesional, TikTok untuk snips edukatif, YouTube longform sebagai aset majemuk\",\"Empat pillar konten berputar: expertise, proof, process, personality dengan rasio menu bulanan terjadwal\",\"Kadens posting realistis dan berkelanjutan: produksi batch hari Minggu, scheduler diandalkan, kualitas di atas volume\",\"Protokol engagement: jendela balasan, strategi hashtag niche riset dulu, penolakan kelebihan tag dengan rapi\",\"Pengukuran funnel attention-profile-inquiry dengan UTM jujur, noise diakui, hipotesis diuji bergilir\"]",
+    "domainNumber": 16
+   },
+   {
+    "id": "cmvgr717i007nrf1wb552b4pr",
+    "code": "PGA-128",
+    "number": 128,
+    "title": "Reputation Management Framework",
+    "tier": "P0 Navigasi",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Arsitektur isolasi reputasi: disclosure entitas lama diminimalkan dan dominasi SERP dilakukan organik oleh konten fresh\",\"Mesin akuisisi review: momen delight dipanen lewat script permintaan dan tautan frictionless google-maps dsb\",\"Protokol jawab review: positif disyukuri spesifik, negatif diselesaikan tenang-solusi, troll dipertelagakan tenaga seminimal mungkin\",\"Stack monitoring: alerts nama-varian dan typo-squat, pendaftaran handle defensif preemptive semurah kopi\",\"Pengetahuan recourse hukum pencemaran nama baik ambang-buktinya dan momen tepat eskalasi kepada konselor\"]",
+    "domainNumber": 16
+   },
+   {
+    "id": "cmvgr717i007prf1wp5ckgdm8",
+    "code": "PGA-129",
+    "number": 129,
+    "title": "Content Strategy & Production Engine",
+    "tier": "P0 Navigasi",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Assembly-line konten: insight mining pertanyaan klien diajawang publik menjadi judul blog yang tak pernah kering\",\"Matrix repurposing: satu piece induk diturunkan delapan derivat format sehingga usaha berlipat hasilnya\",\"Editorial calendar tema kuartalan arcs kampanye diluncurkan sinkron multikanal harmonik\",\"SOP produksi: draft berbantuan AI disunting manusia, foto stok diganti templat branded, checklist SEO meta alt-text internal link\",\"Reviu performa bulanan: digandakan pemenangnya, pensiunkan yang flopping, komentar ditambang sebagai kompas audiens\"]",
+    "domainNumber": 16
+   },
+   {
+    "id": "cmvgr717j007rrf1ww22wrigi",
+    "code": "PGA-130",
+    "number": 130,
+    "title": "Thought Leadership Program",
+    "tier": "P2 Perluasan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Tangga kepemimpinan pikiran: webinar lokal, konferensi nasional, guest lecture regional hingga internasional bertahap layak earned\",\"Kepengarangan signature framework metodologi TOP-Manajemen dipublikasikan sehingga orang lain mengutip kosakata kita\",\"Ambisi riset orisinal: survei tahunan digitalisasi UKM sebagai magnet sitasi jurnalis dan diferensiator permanen\",\"Konstelasi kolaborasi tulisan bersama akademisi praktisi mantan rival yang ramah memperluas jejaring dan halo kredibilitas\",\"Perjalanan bilingual: publikasi Inggris bertahap investasi kualitas sebagai gerbang sirkuit regional-global\"]",
+    "domainNumber": 16
+   },
+   {
+    "id": "cmvgr717k007trf1webnn5v19",
+    "code": "PGA-131",
+    "number": 131,
+    "title": "Policy Watch & Public Affairs Comms",
+    "tier": "P3 Warisan",
+    "owner": "Bersama Grup",
+    "points": "[\"Digest policy watch kuartalan regulasi-relevan-SME dalam bahasa sederhana dengan sikap terkonstruktif bukan mengeluh\",\"Partisipasi konsultasi publik: komentar tertulis pendengaran kementerian berbasis bukti sebagai kontribusi sungguhan\",\"Amplifikasi asosiasi industri: posisi kolektif memberikan gigitan yang mustahil dicapai aktor tunggal kecil\",\"Non-partisanships clad iron di musim pemilu: pesan kontinuitas layanan disusun jauh hari sebelum iklim gaduh\",\"Pernyataan integritas no-lobbying Gelap tercatat sebagai vaksin insinuasi dan perisai calon penjelek\"]",
+    "domainNumber": 16
+   },
+   {
+    "id": "cmvgr717l007vrf1wwpv1xwj6",
+    "code": "PGA-132",
+    "number": 132,
+    "title": "Narrative Defense & Counter-Misinformation",
+    "tier": "P2 Perluasan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Threat-model misinformasi: eks-asosiasi kecewa, bisikan kompetitor, viral salah paham diklasifikasi peluang-dampak\",\"Kit kebenaran cepat: paket bukti, kronologi, dashboard fakta siap deploy hitungan jam bukan pekan\",\"Prinsip counter-narrative: koreksi tanpa amplifikasi, keheningan strategis, rebuttal terkalibrasi, validator pihak ketiga lebih berbobot\",\"Jalur eskalasi platform: fact-checker, form takedown, laporan defamasi dengan checklist prosedural dan ego yang didinginkan\",\"Imunitas organisasi: briefing sekutu-juru-bicara-keluarga holding-lines dilatih komunitas pendukung disiapkan lebih dulu\"]",
+    "domainNumber": 16
+   },
+   {
+    "id": "cmvgr717m007xrf1w1os4gx9k",
+    "code": "PGA-133",
+    "number": 133,
+    "title": "Akademi Master Plan",
+    "tier": "P0 Navigasi",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Master plan akademi tiga fase: mini course tunggal, learning path mikro-sertifikat, institusi penuh berkomunitas berbayar\",\"Kurikulum project-based: setiap modul menghasilkan artefak portofolio siswa alih-alih kuis hafalan tanpa jejak\",\"Struktur harga bertingkat merujuk benchmark pasar playbook sembilan puluh hari dengan posisi value-for-money jelas\",\"Saluran distribusi empat lapis: SEO blog digiman.id, komunitas gratis, afiliasi content creator, kerja sama sekolah dan kampus\",\"Metrik utama akademi: completion rate, testimoni berbasis hasil, konversi alumni menuju layanan jasa atau membership\"]",
+    "domainNumber": 17
+   },
+   {
+    "id": "cmvgr717n007zrf1wj3xy8z6j",
+    "code": "PGA-134",
+    "number": 134,
+    "title": "R&D Framework",
+    "tier": "P1 Pertumbuhan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Kerangka riset dua jalur: riset aplikatif untuk delivery serta riset pembanding untuk pricing dan roadmap\",\"Format studi cepat tujuh hari: pertanyaan, metode, data, temuan, implikasi, disimpan di register PGA-69\",\"Anggaran nol-tambahan memanfaatkan data proyek nyata teranonimkan agar biaya tetap rendah di fase awal\",\"Output wajib satu insight card per riset supaya mudah dibaca ulang enam bulan kemudian tanpa dekodifikasi\",\"Etika riset: persetujuan klien, anonimisasi default, larangan publikasi angka sensitif dalam bentuk mentah\"]",
+    "domainNumber": 17
+   },
+   {
+    "id": "cmvgr717n0081rf1wvkopg2xe",
+    "code": "PGA-135",
+    "number": 135,
+    "title": "Academy Institution Governance",
+    "tier": "P2 Perluasan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Tata kelola akademi: kurikulum board mini menjaga mutu materi sebelum setiap batch dirilis\",\"Jalur instruktur dari alumni terbaik: asisten lalu co-instructor dengan pembagian royalti tertulis sejak awal\",\"Standar perangkat kelas: live direkam, captioned, diarsipkan, akses lifetime bagi cohort yang membayar tertib\",\"Kebijakan refund adil: garansi bersyarat dalam jendela tujuh hari dengan bukti ikut proses sungguh-sungguh\",\"Kalender akademik tahunan: ritme batch, ritual graduation, sertifikat digital fisik kebanggaan yang konsisten\"]",
+    "domainNumber": 17
+   },
+   {
+    "id": "cmvgr717p0083rf1wwuj19xfj",
+    "code": "PGA-136",
+    "number": 136,
+    "title": "Knowledge Production & Publishing",
+    "tier": "P2 Perluasan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Pipeline penerbitan: artikel blog, ebook, manifesto, framework paper dengan kalender dua tulisan substantif per bulan\",\"Repurposing satu naskah induk menjadi thread, carousel, newsletter, video script sesuai matrix konten PGA-129\",\"House style guide bahasa Indonesia lugas, istilah teknis diterjemahkan konsisten, glosarium internal dipelihara hidup\",\"Publikasi domain sendiri dahulu, satelit medium linkedin menyusul empat puluh delapan jam demi kekuatan SEO rumah utama\",\"Monetisasi tak langsung terukur: lead magnet dinilai dari konversi email list karena itu mata uang pemasaran jangka panjang\"]",
+    "domainNumber": 17
+   },
+   {
+    "id": "cmvgr717s0085rf1wircmqdqy",
+    "code": "PGA-137",
+    "number": 137,
+    "title": "Think Tank Lite: Digiman Research",
+    "tier": "P3 Warisan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Label Digiman Research think tank mini: satu studi flagship tahunan tentang digitalisasi UKM Indonesia dipublikasikan gratis\",\"Metode survei kolaboratif komunitas akademi dengan sampel jujur beserta pengakuan keterbatasannya secara transparan\",\"Anggaran dialokasi dari profit growth reserve, tidak menyentuh kas operasional sesuai disiplin PGA-48\",\"Distribusi hasil: webinar peluncuran, press release niche, podcast undangan, pembahasan kebijakan daerah bila pintunya terbuka\",\"Arsip permanen halaman research digiman.id menjadi bukti kedalaman saat korporasi besar melakukan due diligence\"]",
+    "domainNumber": 17
+   },
+   {
+    "id": "cmvgr717t0087rf1wt95ea2nx",
+    "code": "PGA-138",
+    "number": 138,
+    "title": "Intellectual Property Strategy",
+    "tier": "P1 Pertumbuhan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Peta aset intelektual: nama merek logo framework metodologi template konten kode beserta status proteksi masing-masing\",\"Pendaftaran merek DJKI kelas 35 41 42 diprioritaskan begitu kas pertama longgar sebagai garis belanja reservasi\",\"Copyright notice dan lisensi produk digital dibedakan rapi antara pakai personal versus komersial\",\"Disiplin naming metodologi: digunakan konsisten di seluruh dokumen supaya klaim kepemilikan semakin kuat\",\"Tangga respons pelanggaran dimulai pesan ramah hingga cease-desist selaras PGA-108 dengan rujukan silang\"]",
+    "domainNumber": 17
+   },
+   {
+    "id": "cmvgr717u0089rf1wsiv727gw",
+    "code": "PGA-139",
+    "number": 139,
+    "title": "Academic Partnerships & Collaborations",
+    "tier": "P3 Warisan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Menu kerja sama kampus: guest lecture, program MBKM, internship pipeline, kolaborasi skripsi tema digitalisasi UKM\",\"Value exchange dua arah: kami memberi kelas industri, mereka memberi pipeline talenta dan kredibilitas institusional\",\"MoU universitas sederhana: titik kontak, aktivitas, durasi, evaluasi, ketentuan renewal tertulis tanpa birokrasi tebal\",\"Target prioritas politeknik dan universitas swasta program SI informatika manajemen yang responsif pada kemitraan industri\",\"Pelacakan hasil semesteran: mahasiswa terlibat, yang direkrut, jumlah referral, sebagai dasar lanjut-batal berbasis data\"]",
+    "domainNumber": 17
+   },
+   {
+    "id": "cmvgr717v008brf1wi6scnni4",
+    "code": "PGA-140",
+    "number": 140,
+    "title": "Library & Knowledge Base Architecture",
+    "tier": "P2 Perluasan",
+    "owner": "PT Digital Bisnis Manajemen",
+    "points": "[\"Arsitektur knowledge base empat rak: SOP, playbooks, templates, case files dengan penamaan seragam lintas tools\",\"Tingkat akses bertingkat internal, kontraktor aktif, alumni premium, publik freebie dengan izin tercatat di index\",\"Ritme kurasi bulanan: pin best-of, arsip mati, tautan rusak diperbaiki, dokumen usang dipensiunkan dengan riwayat versi\",\"Optimasi pencarian internal: tag kata kunci dwibahasa judul deskripsi sehingga retrieval selalu di bawah lima menit\",\"Backup snapshot mingguan knowledge base masuk lingkup BCP PGA-114 sebagai jaminan kontinuitas intelijen korporat\"]",
+    "domainNumber": 17
+   },
+   {
+    "id": "cmvgr717v008drf1wy9a858a0",
+    "code": "PGA-141",
+    "number": 141,
+    "title": "Founder Mental Health Protocol",
+    "tier": "P0 Navigasi",
+    "owner": "Founder (pribadi)",
+    "points": "[\"Protokol dasar: jam tidur minimum tujuh dijaga seperti janji kepada klien premium karena otak lelah memutus mahal salah\",\"Checklist early warning burnout sembilan gejala ditimbang setiap Minggu malam, skor tinggi memicu agenda dipaksa turun\",\"Batas kerja struktural sesuai kapasitas nyata tiga-delapan jam dari playbook, bukan heroisme dua puluh jam yang gagal berantai\",\"Sistem dukungan: satu orang terpercaya check-in dua pekan sekali plus opsi konseling online ketika indikator menyala\",\"Filosofi jangka panjang: bisnis maraton dengan sprint strategis, bukan sprint abadi yang membunuh pelari terbaiknya\"]",
+    "domainNumber": 18
+   },
+   {
+    "id": "cmvgr717w008frf1wj4nbjng1",
+    "code": "PGA-142",
+    "number": 142,
+    "title": "Wellbeing & Anti-Burnout Rituals",
+    "tier": "P0 Navigasi",
+    "owner": "Founder (pribadi)",
+    "points": "[\"Ritual pagi open-my-day sepuluh menit menetapkan tiga must-win hari ini, fokus terjaga sebelum dunia berebut perhatian\",\"Deep work dua blok sehari dengan notifikasi senyap, multitasking dikurangi karena biaya switching seseorang mahal\",\"Ritual sore shutdown: catat handover esok supaya otak boleh istirahat dan lingkaran cemas malam terputus\",\"Weekly offline penuh satu hari tanpa laptop, istirahat terjadwal mencegah breakdown yang tidak terjadwal\",\"Micro-recovery antar sesi: regangan, air minum, jalan lima menit; energi manusia bukan garis produksi robot\"]",
+    "domainNumber": 18
+   },
+   {
+    "id": "cmvgr717x008hrf1w6yyu7p28",
+    "code": "PGA-143",
+    "number": 143,
+    "title": "Personal Safety Net Plan",
+    "tier": "P1 Pertumbuhan",
+    "owner": "Founder (pribadi)",
+    "points": "[\"Urutan net keselamatan: dana darurat encer tiga bulan kebutuhan pas minimum dahulu, baru instrumen lain disentuh\",\"Prioritas asuransi: kesehatan rawat inap lebih dahulu, lalu jiwa dan pendapatan bila cicilan muat kalender kas\",\"Perlindungan hukum keluarga: surat wasiat sederhana dan informasi akses rekening darurat disimpan amanah\",\"Gaji founder modest tapi pasti sebagai pos tetap, martabat belanja pribadi terjadwal tanpa merampok kas operasi\",\"Rencana penanganan utang personal terintegrasi: negosiasi restrukturisasi profesional dengan jadwal dan dokumentasi, merujuk panduan playbook sembilan puluh hari\"]",
+    "domainNumber": 18
+   },
+   {
+    "id": "cmvgr717x008jrf1wt0j3b548",
+    "code": "PGA-144",
+    "number": 144,
+    "title": "Base Operations & Housing Stability",
+    "tier": "P1 Pertumbuhan",
+    "owner": "Founder (pribadi)",
+    "points": "[\"Stabilitas base camp: hunian layak, wifi cadangan, meja ergonomis, cahaya cukup diperlakukan sebagai aset operasional grup\",\"Zonasi ruang minimal dua mode: fokus produksi dan admin ringan, pergantian mode memberi sinyal psikologis bagi otak\",\"Redundansi internet versi rumahan: tethering smartpon dan hotspot alternatif tercantum dalam BCP dan sudah diuji\",\"Proporsi pemakaian rumah sebagai kantor dicatat jujur untuk keperluan pajak proporsional bila relevan suatu saat\",\"Kriteria pindah hunian berbasis kerangka keputusan terukur, bukan impuls yang ditularkan oleh stres sesaat\"]",
+    "domainNumber": 18
+   },
+   {
+    "id": "cmvgr717y008lrf1wyvy2qyny",
+    "code": "PGA-145",
+    "number": 145,
+    "title": "Nutrition & Energy Budget",
+    "tier": "P2 Perluasan",
+    "owner": "Founder (pribadi)",
+    "points": "[\"Pos nutrisi masuk cash calendar resmi, bukan sisa-sisa; masa krisis pun harga martabat makan sehat dipertahankan\",\"Meal prep akhir pekan sederhana menghemat waktu tengah hari dan menstabilkan energi sehingga sore tak ambruk\",\"Kebijakan hidrasi dan tenggat kafein pukul 15.00 demi melindungi kualitas tidur, saling mengunci dengan protokol PGA-141\",\"Suplemen hanya yang lumrah terbukti dan termuat anggaran; skeptis terhadap ajakan multilevel berbaju kesehatan\",\"Anggaran makan bersama klien atau jejaring dikategorikan pengembangan bisnis agar pembukuan jujur dan belajar alokasi\"]",
+    "domainNumber": 18
+   },
+   {
+    "id": "cmvgr717z008nrf1w1bduo67z",
+    "code": "PGA-146",
+    "number": 146,
+    "title": "Family Obligations Integration Charter",
+    "tier": "P1 Pertumbuhan",
+    "owner": "Founder (pribadi)",
+    "points": "[\"Charter keluarga: kewajiban nyata kepada orang tua saudara anak dipetakan nominal dan tanggalnya masuk cash calendar\",\"Komunikasi ekspektasi: pertemuan bulanan bersama pasangan dan keluarga inti soal progres honest alignment mengurangi tekanan siluman\",\"Blok waktu ritual keluarga misal Jumat malam non-negotiable dikalendarikan, hanya tingkat satu darurat boleh menembus\",\"Kebijakan pinjam-kasih uang keluarga pradiputuskan formula hadiah versus pinjaman terdokumentasi agar tidak merusak relasi\",\"Perayaan kemenangan kecil besar dibagikan sebagai praktik syukur yang menambatkan makna kerja di atas pengejaran angka\"]",
+    "domainNumber": 18
+   },
+   {
+    "id": "cmvgr7180008prf1wi13hnffd",
+    "code": "PGA-147",
+    "number": 147,
+    "title": "Physical Vitality Routine",
+    "tier": "P2 Perluasan",
+    "owner": "Founder (pribadi)",
+    "points": "[\"Routine minimal viable: jalan cepat tiga puluh menit lima hari plus latihan kekuatan sederhana dua sesi di rumah tanpa alasan gym\",\"Perawatan postur: reviu ergonomi meja bulanan, laptop raiser, keyboard eksternal, aturan mata dua puluh dua puluh dua puluh\",\"Higienitas tidur: jam bangun sama walau akhir pekan, cut-off kopi terikat protokol, investasi pemulihan dibunganya produktivitas\",\"Medical check-up tahunan dasar dikalenderkan preventif karena deteksi dini selalu lebih murah daripada penyesalan terlambat\",\"Audit energi kuartalan: aktivitas menguras versus mengisi dipetakan, delegasi kandidat teridentifikasi, jam emas dilindungi\"]",
+    "domainNumber": 18
+   },
+   {
+    "id": "cmvgr7180008rrf1werbsy77f",
+    "code": "PGA-148",
+    "number": 148,
+    "title": "Recreation & Meaning Renewal",
+    "tier": "P3 Warisan",
+    "owner": "Founder (pribadi)",
+    "points": "[\"Rekreasi mendapat kursi resmi: slot hobi mingguan non-produktif yang murni menyegarkan sumur motivasi\",\"Dosis alam minimal bulanan: wisata sehari hemat memanfaatkan murah hatinya alam Indonesia sebagai pemulihan termurah terbaik\",\"Ibadah dan komunitas sosial-spiritual dijaga ritmenya sebagai tabungan modal makna yang dicairkan waktu badai datang\",\"Sudut belajar-senang: segala hal tidak wajib monetisasi dipelajari demi rasa ingin tahu agar mesin semangat tak berkarat\",\"Surat tahunan untuk-diri-sendiri dibaca ulang perkembangan disaksikan, makna direvitalisasi, api kecil dijaga tetap menyala\"]",
+    "domainNumber": 18
+   },
+   {
+    "id": "cmvgr7181008trf1w63iwwth6",
+    "code": "PGA-149",
+    "number": 149,
+    "title": "Infrastructure Master Plan (Micro-Firm Edition)",
+    "tier": "P1 Pertumbuhan",
+    "owner": "Bersama Grup",
+    "points": "[\"Senarai lengkap aset fisik digital umur pakai, pemicu penggantian, dan anggaran siklus tahunan\",\"Prinsip lean-but-redundant: komponen kritikal punya jalur cadangan, sisanya tunggal saja demi efisiensi remote-first\",\"Capacity planning kuartalan menyiasati storage bandwidth seat collaboration sebelum permintaan mencapai batas\",\"Peta vendor dan saling ketergantungan dengan analisis blast-radius bila satu penyedia tumbang\",\"Gerbelanja capital expenditure di atas ambang wajib justifikasi ROI dan pencatatan penyusutan sederhana\"]",
+    "domainNumber": 19
+   },
+   {
+    "id": "cmvgr7182008vrf1wshd3t3vu",
+    "code": "PGA-150",
+    "number": 150,
+    "title": "Workspace Zoning & Ergonomics Standard",
+    "tier": "P2 Perluasan",
+    "owner": "Founder (pribadi)",
+    "points": "[\"Standard zonasi workspace: area fokus, area admin, area rekaman dengan background neutral konsisten untuk panggilan video\",\"Baseline ergonomi diperiksa bulanan: tinggi kursi, monitor sejajar mata, sudut pergelangan, pencegahan cedera kronis murah\",\"Panduan akustik-cahaya rekaman: cahaya alami dari depan, panel murah efektif, resep teruji yang bisa direplikasi di mana pun\",\"Keamanan ruang kerja: lemari dokumen sensitif, kebijakan tamu, rutinitas kecil yang dijalankan disiplin\",\"Kit mobile-work siap-grab: kabel adaptor headset portable setup supaya produktif dari mana saja termasuk rumah klien\"]",
+    "domainNumber": 19
+   },
+   {
+    "id": "cmvgr7183008xrf1ww1h5ow6k",
+    "code": "PGA-151",
+    "number": 151,
+    "title": "Mobility & Field Kit SOP",
+    "tier": "P3 Warisan",
+    "owner": "Bersama Grup",
+    "points": "[\"SOP kunjungan klien on-site: agenda survey, checklist inventaris sistem existing, standar laporan hasil kunjungan\",\"Kebijakan transport biaya-hemat: ride-hailing lokal, ekonomi pesawat panjang, aturan billable travel pre-approved transparan\",\"Paket offline: presentasi ter-cache, salinan dokumen kunci, hotspot cadangan karena konektivitas tidak pernah dijanjikan\",\"Prosedur keselamatan dasar: status perjalanan dibagikan ke kontak terpercaya, catatan log sederhana, kewaspadaan malam hari\",\"Disiplin capture biaya harian: foto struk langsung upload, log kilometer, memanusiakan proses finance PGA-46\"]",
+    "domainNumber": 19
+   },
+   {
+    "id": "cmvgr7184008zrf1wuw5jjdug",
+    "code": "PGA-152",
+    "number": 152,
+    "title": "Power & Connectivity Resilience",
+    "tier": "P2 Perluasan",
+    "owner": "Bersama Grup",
+    "points": "[\"Arsenal resiliensi listrik-jaringan: powerbank besar, UPS router mini, daftar lokasi coworking cadangan terpetakan\",\"Redundansi ISP dua provider bila wilayah memungkinkan, plus drill fallback hotspot sesekali agar benar-benar berfungsi\",\"Manajemen kuota data: alert separuh pemakaian, prioritas buffer, rasionalisasi streaming saat periode genting\",\"Jendela update dijadwalkan di luar jam kerja dengan pengumuman template kepada klien jika menyangkut layanan mereka\",\"Tracker downtime aktual dan tren musiman menjadi bahan perbaikan kontrak ISP maupun keputusan perangkat\"]",
+    "domainNumber": 19
+   },
+   {
+    "id": "cmvgr71850091rf1wcwg692d7",
+    "code": "PGA-153",
+    "number": 153,
+    "title": "Digital Infrastructure Core: DNS Email Backup",
+    "tier": "P0 Navigasi",
+    "owner": "Bersama Grup",
+    "points": "[\"Arsitektur DNS digiman.id: nameserver sekunder, ekspor zona snapshot berkala, migrasi digeneralisasi di staging dulu\",\"Deliverability email: SPF DKIM DMARC terkonfigurasi benar dan reputasi sender dipantau mingguan lewat dashboard\",\"Doktrin backup 3-2-1 konkret: situs database file tersalin Drive-laptop-object storage dengan drill restore berevidence\",\"Inventaris portofolio domain termasuk varian defensif prioritas, auto-renew didanai reserve agar tak ada kisah horor lapse\",\"Setiap perubahan config dicatat tanggal alasannya dan jalur rollback menjadi sumber belajar saling ujar terima kasih ke diri lampau\"]",
+    "domainNumber": 19
+   },
+   {
+    "id": "cmvgr71860093rf1wcxvh5760",
+    "code": "PGA-154",
+    "number": 154,
+    "title": "Subscription & Digital Hygiene Audit",
+    "tier": "P0 Navigasi",
+    "owner": "Bersama Grup",
+    "points": "[\"Audit langganan triwulanan: master spreadsheet renewals, harga, owner, putusan keep-kill dilakukan bareng cash ritual\",\"Heuristik deteksi zombie: flag tak-terpakai-60-hari diverifikasi data screen-time kecil sebelum vonis dilembutkan atau dijalankan\",\"Konsolidasi duplikasi: fitur overlap dipetakan, biaya-per-seat dihitung, biaya migrasi difaktorkan dua belas bulan ke depan\",\"Sapuan higienitas keamanan: rotasi password berbasis event, verifikasi 2FA, cabut akses aplikasi yatim, alert kebocoran kredensial\",\"Upacara purge tahunan berkas dingin diarsipkan dihapus disaksikan catatan, performa pencarian membaik terukur dan dirayakan\"]",
+    "domainNumber": 19
+   },
+   {
+    "id": "cmvgr71870095rf1w0d8n7jsx",
+    "code": "PGA-155",
+    "number": 155,
+    "title": "Waste & Environmental Services (Digital Edition)",
+    "tier": "P3 Warisan",
+    "owner": "Bersama Grup",
+    "points": "[\"Limbah digital dikelola: folder duplikat dan bloat diarsipkan dibersihkan triwulanan menjaga biaya storage tetap ramping\",\"Higienitas inbox: unsubscribe galak newsletter mati, filter promosi, sprint triase harian enam puluh detik menjaga fokus\",\"Kesadaran jejak cloud: preferensi hosting ramah lingkaran bila mutu setara sebagai bentuk voting rupiah untuk pasar hijau\",\"Limbah elektronik tanggung jawab: perangkat tua dihapus-datanya dibersihkan disertifikasi lalu disalurkan ke recycler resmi\",\"Default paperless: e-signature embraced, cetak hanya darurat, kertas daur ulang bila terpaksa, estetika minimFungsional\"]",
+    "domainNumber": 19
+   },
+   {
+    "id": "cmvgr71870097rf1wbgib730e",
+    "code": "PGA-156",
+    "number": 156,
+    "title": "Shared Resources & Community Facilities",
+    "tier": "P3 Warisan",
+    "owner": "Bersama Grup",
+    "points": "[\"Berbagi barang mahal jarang-pakai: kamera proyektor drill dalam lingkar kepercayaan berledger ringan anti gesekan\",\"Coworking fleksibel: paket hari saja alih-alih membership penuh, overflow ke kantor teman founder lewat barter visibilitas\",\"Fasilitas publik optimalisasi: ruang rapat perpustakaan, program dukungan UMKM pemerintah daerah dieksplorasi terdokumentasi\",\"Inisiatif hardware-library someday: laptop surplus direfresh disumbangkan beasiswa mentari digital terekam dampaknya\",\"Kontribusi knowledge-commons: jawaban forum, tutorial berbahasa Indonesia, playlist YouTube gratis sebagai perlambatan kepompong\"]",
+    "domainNumber": 19
+   },
+   {
+    "id": "cmvgr71880099rf1wwj57fwv3",
+    "code": "PGA-157",
+    "number": 157,
+    "title": "Legal System Design untuk Grup",
+    "tier": "P1 Pertumbuhan",
+    "owner": "Bersama Grup",
+    "points": "[\"Desain sistem legal satu halaman: entitas mana memegang jenis dokumen apa, penanda tangan siapa, custodian arsip siapa\",\"Hierarki instrumen: tier konstitusi AD ART covenant, tier kontrak SOW MoU, tier operasi SOP; saling merujuk tanpa tumpang tindih\",\"Lifecycle dokumen lima status: drafted, reviewed, signed, active, amended-retired dengan transisi explicit dan jejak audit append-only\",\"Heat-map risiko hukum tahunan: tiap jenis kontras dibaca skenario terburuk sungguhan, daftar pendek kuasa hukum disiapkan sebelum krisis\",\"Aturan besi founder-understands-everything-he-signs: tidak pernah ada tanda tangan blanko dalam kondisi apa pun sejarah-pun mengajar\"]",
+    "domainNumber": 20
+   },
+   {
+    "id": "cmvgr7189009brf1wxt9eh75r",
+    "code": "PGA-158",
+    "number": 158,
+    "title": "Dispute Handling Ladder",
+    "tier": "P1 Pertumbuhan",
+    "owner": "PT Top Konsultan Internasional",
+    "points": "[\"Empat anak tangga: percakapan lurus terdokumentasi, mediasi netral berita-acara, arbitrase BANI, pengadilan pamungkas\",\"Estimasi biaya-waktu-emosi per rung disiapkan di muka sebagai tali jangkar ketika emosi sedang menaik\",\"Protokol preservasi bukti: chat transaksi file proyek disnapshot segera setelah sinyal sengketa terdeteksi\",\"Aturan komunikasi perselisihan: tanpa mandi media sosial, nada profesional terkunci, martabat dibiayai kesabaran\",\"Matriks kewenangan settlement: ambang nominal keputusan mandiri versus wajib konsultasi, plus jeda pendinginan 24 jam\"]",
+    "domainNumber": 20
+   },
+   {
+    "id": "cmvgr7189009drf1w2koyiafr",
+    "code": "PGA-159",
+    "number": 159,
+    "title": "Interaction Protocols (Aparat & Regulator)",
+    "tier": "P1 Pertumbuhan",
+    "owner": "Bersama Grup",
+    "points": "[\"Interaksi aparat selalu hormat-transparan dengan pendamping bila materi material; setiap interaksi direkap bertanggal\",\"Folder siap-audit grab-and-go: lisensi, korespondensi, jawaban temuan lampau terindeks kronologis dan disegarkan kuartalan\",\"Permintaan informasi dijawab maksimal tujuh hari lengkap tanpa setengah-setengah; ketidakmampuan dinyatakan jujur bukan dielak\",\"Garis integritas absolut: facilitation payment ditolak segala ukuran dengan skrip sopan dan pencatatan insiden\",\"Relasi legitimate diurus jalur sah: seminar, asosiasi, edukasi; pintu terbuka lewat reputasi bukan lewat celah gelap\"]",
+    "domainNumber": 20
+   },
+   {
+    "id": "cmvgr718a009frf1w5qdhnw8b",
+    "code": "PGA-160",
+    "number": 160,
+    "title": "Founder Covenant & AD/ART Interpretation Guide",
+    "tier": "P2 Perluasan",
+    "owner": "Bersama Grup",
+    "points": "[\"Founder covenant dokumen personal-prinsipi: kenapa firma ini ada dan nilai yang tidak dijual pada kondisi apa pun\",\"Guide interpretasi AD/ART bahasa manusia: klause penting diringkas tabel, FAQ what-if menjawab kebingungan umum\",\"Prosedur amandemen formalitas dihormati meski era solo: quorum simbolik membentuk otot tata kelola untuk era banyak orang\",\"Covenant lintas entitas DBM-TKI: prinsip arm-length transfer pricing, waterfall laba pradefinisi, resolusi konflik dua-topi\",\"Konsep penjaga covenant: tiga mentor-tepercaya dipercayai konteks untuk masa depan, diperbarui tiap milestone kehidupan\"]",
+    "domainNumber": 20
+   },
+   {
+    "id": "cmvgr718b009hrf1wekpoaoqb",
+    "code": "PGA-161",
+    "number": 161,
+    "title": "Ethics Advisory Circle & Grievance Board",
+    "tier": "P3 Warisan",
+    "owner": "Bersama Grup",
+    "points": "[\"Ethics circle ringan: advisor sebaya mentor senior observator hukum berkumpul kuartalan konsultasi dapat tanpa drama\",\"Dewan pengaduan stakeholder-balanced: perwakilan klien kontraktor ketua independen diputar tahunan prosedurnya bernomor\",\"Penanganan kasus minimum-standard: kedua pihak didengar, dokumentasi penuh, recusal bila konflik kepentingan, keputusan tertulis\",\"Edukasi preventif: workshop skenario dilemma semi-tahunan dengan difficulty berjenjang dan fasilitator rotasi\",\"Proteksi independensi: anggaran dewan dimitri khusus, bar pemecatan tinggi, keberanian berbicara dihargai formal\"]",
+    "domainNumber": 20
+   },
+   {
+    "id": "cmvgr718c009jrf1wslikfew4",
+    "code": "PGA-162",
+    "number": 162,
+    "title": "Client Complaint & Ombudsman Mechanism",
+    "tier": "P1 Pertumbuhan",
+    "owner": "PT Top Konsultan Internasional",
+    "points": "[\"Saluran aduan multi-door: email khusus WhatsApp business formulir web diumumkan dengan sikap complainer-is-gift\",\"Intake-triage empat tingkat severitas janji waktu respons bertingkat eskalasi dipetakan di dinding ops\",\"Taksonomi root cause kode aduan ditambang kuartalan, theme berulang jadi backlog perbaikan sistemik berprioritas\",\"Peran ombudsman independen mendengar kasus tak terselesaikan merekomendasikan perbaikan dan memverifikasi penutupan loop\",\"Laporan agregat kuartalan metrik aduan berkalau tren membaik dirayakan jujur termasuk cerita kegagalan yang mengubah sistem\"]",
+    "domainNumber": 20
+   },
+   {
+    "id": "cmvgr718c009lrf1wnd54exs2",
+    "code": "PGA-163",
+    "number": 163,
+    "title": "Anti-Corruption & Clean Business Covenant",
+    "tier": "P0 Navigasi",
+    "owner": "Bersama Grup",
+    "points": "[\"Kovenan bersih absolut: suap dan gratifikasi ditolak segala ukuran, bingkai adat dalam ambang tertulis dicatat register\",\"Integritas procurement dua arah: kriteria seleksi terdokumentasi, skor objektif, wariska lowball berflag risiko deliverability\",\"Kontrak berhadapan pemerintah distandarkan pemeriksaan ketat: proses tender dihormati, kolusi dihindari, walk-away-power dirawat\",\"Pelatihan dan komitmen tertulis semua pihak termasuk kontraktor: modul skenario abu-abu, quiz attestation tahunan\",\"Due diligence pihak ketiga: referensi dicek, checkpoint sanctions selaras PGA-80, clause flowdown anti-graft di setiap MoU\"]",
+    "domainNumber": 20
+   },
+   {
+    "id": "cmvgr718d009nrf1w1ls0mrk8",
+    "code": "PGA-164",
+    "number": 164,
+    "title": "Arbitration & ADR Master Framework",
+    "tier": "P2 Perluasan",
+    "owner": "PT Top Konsultan Internasional",
+    "points": "[\"Filosofi ADR: hubungan bisnis dijaga dulu, mediasi ditempuh sebelum arbitrase, litigasi pamungkas hitung rugi-jelas\",\"Sophistikasi draft clause: escabeau escalating, pilihan seat dan bahasa, ketentuan currency, enforceability maksimal\",\"Playbook mediasi: seleksi mediator kredibilitas-netral, analisis BATNA-WATNA honest, window settlement tepat waktu\",\"Kesiapan arbitrase lahir dari disiplin dokumentasi tahunan: records contemporaneous, exhibits tabulated, witness prep cerdas\",\"Loop data pasca kasus: durasi biaya outcome dicatat prediksi berikutnya tajam, shields kontrat baru dievolusikan\"]",
+    "domainNumber": 20
+   },
+   {
+    "id": "cmvgr718e009prf1wjtwije6p",
+    "code": "PGA-165",
+    "number": 165,
+    "title": "Master Compliance & Regulatory Atlas",
+    "tier": "P0 Navigasi",
+    "owner": "Bersama Grup",
+    "points": "[\"Atlas induk kepatuhan: NIB KBLI OSS risk-based, kewajiban pajak per entitas, UU PDP, aturan tenaga kerja alih daya\",\"Kalender kepatuhan ritmis bulanan-kuartal-anual berwarna-buffered reminder berlapis penanggung jawab bernama\",\"Monitor perubahan regulasi digest dua-pekanan portal OSS asosiasi newsletter kuasa hukum dipilih-pilih dan ditindaklanjuti\",\"Sinkronisasi lintas-domain: atlaser menghubungkan PGA-21 pack PGA-24 register PGA-72 index dalam satu sumber kebenaran\",\"Halaman executive one-glance hijau-kuning-merah postur kepatuhan yang membuat due diligence investor mudah dan cepat\"]",
+    "domainNumber": 20
+   }
+  ],
+  "gunaraPackage": [
+   {
+    "id": "cmvgr718f009qrf1w1yilt15i",
+    "code": "PGA-39",
+    "name": "Gunara OS Core",
+    "tagline": "Fondasi kendali perusahaan",
+    "description": "39 dokumen navigasi inti untuk melindungi identitas, arah, tata kelola, dan kendali operasional perusahaan. Titik mulai wajib setiap organisasi serius — satu sumber kebenaran untuk seluruh tim.",
+    "docCount": 39,
+    "price": 39000000,
+    "durationWeeks": "6–8",
+    "features": "[\"39 dokumen P0 Navigasi terpilih\",\"Kickoff workshop 1 hari + wawancara founder\",\"Drafting oleh dewan pakar + 2x revisi\",\"Workshop serah terima & adopsi tim\",\"Akses Gunara OS digital 12 bulan\"]",
+    "documentCodes": "[\"PGA-01\",\"PGA-02\",\"PGA-06\",\"PGA-09\",\"PGA-10\",\"PGA-12\",\"PGA-21\",\"PGA-23\",\"PGA-25\",\"PGA-30\",\"PGA-33\",\"PGA-34\",\"PGA-35\",\"PGA-41\",\"PGA-42\",\"PGA-43\",\"PGA-44\",\"PGA-45\",\"PGA-57\",\"PGA-58\",\"PGA-61\",\"PGA-65\",\"PGA-67\",\"PGA-110\",\"PGA-115\",\"PGA-117\",\"PGA-118\",\"PGA-120\",\"PGA-122\",\"PGA-127\",\"PGA-128\",\"PGA-129\",\"PGA-133\",\"PGA-141\",\"PGA-142\",\"PGA-153\",\"PGA-154\",\"PGA-163\",\"PGA-165\"]",
+    "highlight": false,
+    "active": true,
+    "order": 1
+   },
+   {
+    "id": "cmvgr7191009rrf1whihho28q",
+    "code": "PGA-45",
+    "name": "Gunara OS Bisnis",
+    "tagline": "Fondasi + mesin pertumbuhan awal",
+    "description": "Semua dokumen Core ditambah 6 dokumen pertumbuhan paling vital: charter nilai, whitepaper, peta pasar, playbook penjualan, sistem kinerja, dan kode budaya. Perusahaan mulai berjalan dan tumbuh dengan sistem.",
+    "docCount": 45,
+    "price": 45000000,
+    "durationWeeks": "7–9",
+    "features": "[\"Semua isi paket Core (39 dokumen)\",\"6 dokumen P1 Pertumbuhan esensial\",\"Sesi strategi go-to-market 1x\",\"Peta KPI awal untuk tim inti\",\"Akses Gunara OS digital 18 bulan\"]",
+    "documentCodes": "[\"PGA-01\",\"PGA-02\",\"PGA-05\",\"PGA-06\",\"PGA-08\",\"PGA-09\",\"PGA-10\",\"PGA-11\",\"PGA-12\",\"PGA-13\",\"PGA-15\",\"PGA-16\",\"PGA-21\",\"PGA-23\",\"PGA-25\",\"PGA-30\",\"PGA-33\",\"PGA-34\",\"PGA-35\",\"PGA-41\",\"PGA-42\",\"PGA-43\",\"PGA-44\",\"PGA-45\",\"PGA-57\",\"PGA-58\",\"PGA-61\",\"PGA-65\",\"PGA-67\",\"PGA-110\",\"PGA-115\",\"PGA-117\",\"PGA-118\",\"PGA-120\",\"PGA-122\",\"PGA-127\",\"PGA-128\",\"PGA-129\",\"PGA-133\",\"PGA-141\",\"PGA-142\",\"PGA-153\",\"PGA-154\",\"PGA-163\",\"PGA-165\"]",
+    "highlight": false,
+    "active": true,
+    "order": 2
+   },
+   {
+    "id": "cmvgr7192009srf1wkh4374z3",
+    "code": "PGA-72",
+    "name": "Gunara OS Pro",
+    "tagline": "Sistem operasi lengkap skala menengah",
+    "description": "Seluruh lapisan navigasi ditambah 32 dokumen pertumbuhan: strategi, layanan, operasional, keuangan, talenta, merek, dan data. Standar firma konsultan korporat — kini milik bisnis Anda.",
+    "docCount": 72,
+    "price": 72000000,
+    "durationWeeks": "10–14",
+    "features": "[\"40 dokumen P0 + 32 dokumen P1 terpilih\",\"Semua benefit paket Bisnis\",\"Peta kompetisi & unit economics\",\"SOP delivery + risk register\",\"Akses Gunara OS digital 24 bulan\"]",
+    "documentCodes": "[\"PGA-01\",\"PGA-02\",\"PGA-05\",\"PGA-06\",\"PGA-08\",\"PGA-09\",\"PGA-10\",\"PGA-11\",\"PGA-12\",\"PGA-13\",\"PGA-15\",\"PGA-16\",\"PGA-17\",\"PGA-18\",\"PGA-19\",\"PGA-20\",\"PGA-21\",\"PGA-23\",\"PGA-25\",\"PGA-26\",\"PGA-27\",\"PGA-28\",\"PGA-29\",\"PGA-30\",\"PGA-32\",\"PGA-33\",\"PGA-34\",\"PGA-35\",\"PGA-38\",\"PGA-41\",\"PGA-42\",\"PGA-43\",\"PGA-44\",\"PGA-45\",\"PGA-48\",\"PGA-55\",\"PGA-57\",\"PGA-58\",\"PGA-59\",\"PGA-60\",\"PGA-61\",\"PGA-64\",\"PGA-65\",\"PGA-66\",\"PGA-67\",\"PGA-68\",\"PGA-93\",\"PGA-97\",\"PGA-109\",\"PGA-110\",\"PGA-111\",\"PGA-112\",\"PGA-114\",\"PGA-115\",\"PGA-117\",\"PGA-118\",\"PGA-120\",\"PGA-121\",\"PGA-122\",\"PGA-127\",\"PGA-128\",\"PGA-129\",\"PGA-133\",\"PGA-134\",\"PGA-138\",\"PGA-141\",\"PGA-142\",\"PGA-143\",\"PGA-153\",\"PGA-154\",\"PGA-163\",\"PGA-165\"]",
+    "highlight": true,
+    "active": true,
+    "order": 3
+   },
+   {
+    "id": "cmvgr7193009trf1w85f0c5x0",
+    "code": "PGA-120",
+    "name": "Gunara OS Skala",
+    "tagline": "Ekspansi multi-unit & kemitraan",
+    "description": "72 dokumen Pro diperluas ke arah perluasan: kemitraan global, ekonomi syariah, dampak sosial, teknologi masa depan, dan ketahanan krisis. Untuk grup usaha yang menyiapkan gelombang ekspansi berikutnya.",
+    "docCount": 120,
+    "price": 120000000,
+    "durationWeeks": "16–22",
+    "features": "[\"P0 (40) + P1 (40) + 40 dokumen P2 terpilih\",\"Semua benefit paket Pro\",\"Dokumen ekspansi & kemitraan global\",\"Framework teknologi & kedaulatan digital\",\"Akses Gunara OS digital 36 bulan\"]",
+    "documentCodes": "[\"PGA-01\",\"PGA-02\",\"PGA-03\",\"PGA-05\",\"PGA-06\",\"PGA-07\",\"PGA-08\",\"PGA-09\",\"PGA-10\",\"PGA-11\",\"PGA-12\",\"PGA-13\",\"PGA-14\",\"PGA-15\",\"PGA-16\",\"PGA-17\",\"PGA-18\",\"PGA-19\",\"PGA-20\",\"PGA-21\",\"PGA-22\",\"PGA-23\",\"PGA-24\",\"PGA-25\",\"PGA-26\",\"PGA-27\",\"PGA-28\",\"PGA-29\",\"PGA-30\",\"PGA-31\",\"PGA-32\",\"PGA-33\",\"PGA-34\",\"PGA-35\",\"PGA-36\",\"PGA-37\",\"PGA-38\",\"PGA-39\",\"PGA-40\",\"PGA-41\",\"PGA-42\",\"PGA-43\",\"PGA-44\",\"PGA-45\",\"PGA-46\",\"PGA-47\",\"PGA-48\",\"PGA-49\",\"PGA-50\",\"PGA-51\",\"PGA-53\",\"PGA-54\",\"PGA-55\",\"PGA-57\",\"PGA-58\",\"PGA-59\",\"PGA-60\",\"PGA-61\",\"PGA-63\",\"PGA-64\",\"PGA-65\",\"PGA-66\",\"PGA-67\",\"PGA-68\",\"PGA-69\",\"PGA-75\",\"PGA-77\",\"PGA-78\",\"PGA-81\",\"PGA-83\",\"PGA-86\",\"PGA-89\",\"PGA-90\",\"PGA-91\",\"PGA-93\",\"PGA-97\",\"PGA-101\",\"PGA-106\",\"PGA-107\",\"PGA-109\",\"PGA-110\",\"PGA-111\",\"PGA-112\",\"PGA-113\",\"PGA-114\",\"PGA-115\",\"PGA-116\",\"PGA-117\",\"PGA-118\",\"PGA-120\",\"PGA-121\",\"PGA-122\",\"PGA-123\",\"PGA-124\",\"PGA-125\",\"PGA-126\",\"PGA-127\",\"PGA-128\",\"PGA-129\",\"PGA-130\",\"PGA-132\",\"PGA-133\",\"PGA-134\",\"PGA-135\",\"PGA-136\",\"PGA-138\",\"PGA-141\",\"PGA-142\",\"PGA-143\",\"PGA-144\",\"PGA-146\",\"PGA-149\",\"PGA-153\",\"PGA-154\",\"PGA-157\",\"PGA-158\",\"PGA-159\",\"PGA-162\",\"PGA-163\",\"PGA-165\"]",
+    "highlight": false,
+    "active": true,
+    "order": 4
+   },
+   {
+    "id": "cmvgr7194009urf1w7xpftofo",
+    "code": "PGA-165",
+    "name": "Gunara OS Super Organisasi",
+    "tagline": "Arsitektur penuh 165 dokumen + warisan seabad",
+    "description": "Seluruh 165 dokumen lintas 20 domain — dari jiwa perusahaan hingga benteng hukum final. Paket warisan untuk membangun institusi yang bertahan seabad: lengkap, terukur, dan siap diaudit siapa pun.",
+    "docCount": 165,
+    "price": 165000000,
+    "durationWeeks": "20–28",
+    "features": "[\"Seluruh 165 dokumen lintas 20 domain\",\"Semua benefit paket Skala\",\"Dokumen warisan & covenant seabad\",\"Review berkala arsitektur dokumen 1x/tahun\",\"Akses Gunara OS digital seumur paket + prioritas dewan pakar\"]",
+    "documentCodes": "[\"PGA-01\",\"PGA-02\",\"PGA-03\",\"PGA-04\",\"PGA-05\",\"PGA-06\",\"PGA-07\",\"PGA-08\",\"PGA-09\",\"PGA-10\",\"PGA-11\",\"PGA-12\",\"PGA-13\",\"PGA-14\",\"PGA-15\",\"PGA-16\",\"PGA-17\",\"PGA-18\",\"PGA-19\",\"PGA-20\",\"PGA-21\",\"PGA-22\",\"PGA-23\",\"PGA-24\",\"PGA-25\",\"PGA-26\",\"PGA-27\",\"PGA-28\",\"PGA-29\",\"PGA-30\",\"PGA-31\",\"PGA-32\",\"PGA-33\",\"PGA-34\",\"PGA-35\",\"PGA-36\",\"PGA-37\",\"PGA-38\",\"PGA-39\",\"PGA-40\",\"PGA-41\",\"PGA-42\",\"PGA-43\",\"PGA-44\",\"PGA-45\",\"PGA-46\",\"PGA-47\",\"PGA-48\",\"PGA-49\",\"PGA-50\",\"PGA-51\",\"PGA-52\",\"PGA-53\",\"PGA-54\",\"PGA-55\",\"PGA-56\",\"PGA-57\",\"PGA-58\",\"PGA-59\",\"PGA-60\",\"PGA-61\",\"PGA-62\",\"PGA-63\",\"PGA-64\",\"PGA-65\",\"PGA-66\",\"PGA-67\",\"PGA-68\",\"PGA-69\",\"PGA-70\",\"PGA-71\",\"PGA-72\",\"PGA-73\",\"PGA-74\",\"PGA-75\",\"PGA-76\",\"PGA-77\",\"PGA-78\",\"PGA-79\",\"PGA-80\",\"PGA-81\",\"PGA-82\",\"PGA-83\",\"PGA-84\",\"PGA-85\",\"PGA-86\",\"PGA-87\",\"PGA-88\",\"PGA-89\",\"PGA-90\",\"PGA-91\",\"PGA-92\",\"PGA-93\",\"PGA-94\",\"PGA-95\",\"PGA-96\",\"PGA-97\",\"PGA-98\",\"PGA-99\",\"PGA-100\",\"PGA-101\",\"PGA-102\",\"PGA-103\",\"PGA-104\",\"PGA-105\",\"PGA-106\",\"PGA-107\",\"PGA-108\",\"PGA-109\",\"PGA-110\",\"PGA-111\",\"PGA-112\",\"PGA-113\",\"PGA-114\",\"PGA-115\",\"PGA-116\",\"PGA-117\",\"PGA-118\",\"PGA-119\",\"PGA-120\",\"PGA-121\",\"PGA-122\",\"PGA-123\",\"PGA-124\",\"PGA-125\",\"PGA-126\",\"PGA-127\",\"PGA-128\",\"PGA-129\",\"PGA-130\",\"PGA-131\",\"PGA-132\",\"PGA-133\",\"PGA-134\",\"PGA-135\",\"PGA-136\",\"PGA-137\",\"PGA-138\",\"PGA-139\",\"PGA-140\",\"PGA-141\",\"PGA-142\",\"PGA-143\",\"PGA-144\",\"PGA-145\",\"PGA-146\",\"PGA-147\",\"PGA-148\",\"PGA-149\",\"PGA-150\",\"PGA-151\",\"PGA-152\",\"PGA-153\",\"PGA-154\",\"PGA-155\",\"PGA-156\",\"PGA-157\",\"PGA-158\",\"PGA-159\",\"PGA-160\",\"PGA-161\",\"PGA-162\",\"PGA-163\",\"PGA-164\",\"PGA-165\"]",
+    "highlight": false,
+    "active": true,
+    "order": 5
+   }
+  ],
+  "blogPost": [
+   {
+    "id": "cmvgr7195009vrf1wg9uvw6x9",
+    "slug": "gunara-os-165-dokumen-super-organisasi",
+    "title": "Gunara OS: 165 Dokumen yang Mengubah Bisnis Anda Jadi Super Organisasi",
+    "excerpt": "Kebanyakan bisnis mati bukan karena kekurangan ide, tapi karena keputusan penting hanya hidup di kepala pendirinya. Gunara OS mengubahnya menjadi arsitektur 165 dokumen yang hidup, terukur, dan bisa diwariskan.",
+    "content": "## Kenapa bisnis butuh \"sistem operasi\"?\n\nBayangkan komputer tanpa sistem operasi: hardware mahal, aplikasi canggih, tapi tidak ada yang mengatur kapan program berjalan, siapa yang boleh mengakses file, dan bagaimana memori dibagi. Bisnis tanpa dokumen arsitektural persis seperti itu — energi besar, hasil tidak stabil.\n\n**Gunara OS** adalah standardisasi arsitektur dokumen perusahaan yang kami kembangkan dari pengalaman mendampingi 2.500+ pemilik bisnis: **20 domain, 165 dokumen**, disusun dalam empat lapis prioritas:\n\n- **P0 Navigasi (40 dokumen)** — peta kendali: visi, misi, tata kelola, SOP inti. Tanpa lapisan ini, perusahaan jalan tanpa kompas.\n- **P1 Pertumbuhan (40 dokumen)** — mesin penjualan, merek, talenta, dan keuangan yang membuat organisasi naik kelas.\n- **P2 Perluasan (48 dokumen)** — kemitraan global, ekspansi ASEAN, teknologi masa depan, dan ketahanan krisis.\n- **P3 Warisan (37 dokumen)** — dokumen seabad: covenant, legacy, dan benteng hukum final.\n\n## Bukan tumpukan template, tapi sistem yang hidup\n\nSetiap dokumen di Gunara OS punya tiga ciri:\n\n1. **Satu pemilik jelas** — tidak ada dokumen \"milik semua orang\" (artinya milik tidak ada).\n2. **Terhubung antar dokumen** — visi terhubung ke strategi, strategi ke SOP, SOP ke KPI.\n3. **Ada ritual pembaruan** — dokumen yang tidak pernah direvisi adalah dokumen mati.\n\n## Mulai dari mana?\n\nKami menstandardisasi lima paket: **PGA-39 (Core), PGA-45 (Bisnis), PGA-72 (Pro), PGA-120 (Skala), dan PGA-165 (Super Organisasi)**. Rumus harganya sederhana dan transparan: *jumlah dokumen × Rp 1 juta*. Tidak ada biaya siluman.\n\n> Aturan praktisnya: jika sebuah keputusan penting tidak tertulis di dokumen mana pun, maka organisasi Anda belum memiliki keputusan itu — hanya kebetulan-kebetulan.\n\nBicara dengan tim kami lewat WhatsApp atau buka **Proposal Studio** — dalam 5 menit Anda mendapat penawaran resmi lengkap dengan rincian dokumen per domain.",
+    "category": "Gunara OS",
+    "tags": "[\"Gunara OS\",\"PGA-165\",\"Super Organisasi\",\"SOP\"]",
+    "readMinutes": 8,
+    "views": 0,
+    "published": true,
+    "publishedAt": "2026-10-20T14:03:19.193Z",
+    "createdAt": "2026-10-20T14:03:19.194Z",
+    "updatedAt": "2026-10-20T14:03:19.194Z"
+   },
+   {
+    "id": "cmvgr7197009wrf1wy654xjmm",
+    "slug": "tujuh-lapis-langit-legalitas-peta-lengkap",
+    "title": "7 Lapis Langit Legalitas: Peta Lengkap dari NIB sampai Kategori Atas",
+    "excerpt": "Legalitas bukan satu dokumen, tapi tujuh lapis yang saling menopang. Ini peta lengkapnya — dan cara melewatinya tanpa drama.",
+    "content": "## Lapis demi lapis, bukan sekadar \"punya PT\"\n\nBanyak pemilik bisnis berhenti di SK Kemenkumham dan merasa \"sudah legal\". Padahal legalitas punya tujuh lapis, dan setiap lapis membuka pintu yang berbeda:\n\n1. **Identitas Hukum** — badan usaha resmi berdiri (PT, CV, PT Perorangan).\n2. **Identitas Pajak** — NPWP badan, pengukuhan PKP, fasilitas yang tepat.\n3. **Izin Berusaha** — NIB via OSS-RBA dan pemetaan KBLI yang benar.\n4. **Izin Sektor** — sertifikat standar & lisensi sektor (kesehatan, makanan, logistik).\n5. **Kekayaan Intelektual** — merek, hak cipta, desain industri di DJKI.\n6. **Sertifikasi Pasar** — halal, BPOM, SNI, ISO.\n7. **Langit Ketujuh: Ekosistem Digital** — website, otomasi, sistem manajemen yang membuat legalitas Anda menghasilkan uang.\n\n## Kesalahan paling mahal\n\nTiga kesalahan yang paling sering kami temui (dan paling mahal diperbaiki):\n\n- **KBLI asal lengkap** — KBLI yang salah memblokir izin sektor di kemudian hari.\n- **Merek didaftarkan belakangan** — begitu brand naik, orang lain mengajukannya lebih dulu.\n- **Pajak dipikirkan terakhir** — restrukturisasi di tengah jalan selalu lebih mahal daripada menyusunnya di awal.\n\n## Cara efisien melewatinya\n\nUrutan yang benar menghemat waktu dan biaya: bentuk badan usaha → NPWP → NIB + KBLI → izin sektor → merek → sertifikasi → ekosistem digital. Setiap lapisan kami kerjakan paralel bila memungkinkan — klien kami rata-rata selesai 3–7 hari kerja untuk lapisan dasar.\n\nIngin peta yang disesuaikan dengan bisnis Anda? Gunakan **kalkulator legalitas** di halaman ini — gratis, tanpa komitmen.",
+    "category": "Legalitas",
+    "tags": "[\"Legalitas\",\"NIB\",\"PT\",\"Perizinan\"]",
+    "readMinutes": 7,
+    "views": 0,
+    "published": true,
+    "publishedAt": "2026-10-20T14:03:19.194Z",
+    "createdAt": "2026-10-20T14:03:19.195Z",
+    "updatedAt": "2026-10-20T14:03:19.195Z"
+   },
+   {
+    "id": "cmvgr7197009xrf1w494l172r",
+    "slug": "ai-untuk-ukm-indonesia-5-otomasi",
+    "title": "AI untuk UKM Indonesia: 5 Otomasi yang Bisa Dimulai Hari Ini",
+    "excerpt": "Teknologi AI bukan lagi mainan korporasi besar. Lima otomasi ini bisa dipasang di bisnis kecil dalam hitungan hari, bukan bulan.",
+    "content": "## AI kini terjangkau untuk bisnis kecil\n\nDulu hanya korporasi yang mampu *customer service* 24 jam. Sekarang chatbot AI + WhatsApp menyelesaikan 70% pertanyaan berulang — tanpa menambah satu pun karyawan.\n\n## Lima otomasi dengan ROI tercepat\n\n1. **AI Customer Service di WhatsApp** — jawab pertanyaan harga, status, dan FAQ otomatis. Biaya mulai Rp 2,5 jt, pasang dalam 5 hari.\n2. **Otomasi Follow-up Penawaran** — 80% penawaran mati bukan karena ditolak, tapi karena lupa di-follow-up. Otomasi ini menyelamatkannya.\n3. **Generator Konten Marketing** — kalender konten 30 hari dihasilkan dari satu brief produk.\n4. **Dashboard Laporan Otomatis** — penjualan, kas, dan stok tampil setiap pagi tanpa rekap manual.\n5. **Penyaring Lead Cerdas** — AI menilai lead mana yang layak dikejar lebih dulu berdasarkan perilaku dan profil.\n\n## Prinsip yang kami pegang\n\nOtomasi harus menghemat waktu yang sudah terukur. Karena itu setiap proyek AI di digiman.id diawali pemetaan SOP (lihat: Gunara OS) — proses yang kacau tidak bisa diautomasi, hanya bisa dipercepat kekacauannya.\n\nMulai dari satu otomasi, ukur hasilnya selama 30 hari, lalu scale. Itu cara yang benar.",
+    "category": "Digital",
+    "tags": "[\"AI\",\"Otomasi\",\"UKM\",\"Chatbot\"]",
+    "readMinutes": 6,
+    "views": 0,
+    "published": true,
+    "publishedAt": "2026-10-20T14:03:19.195Z",
+    "createdAt": "2026-10-20T14:03:19.196Z",
+    "updatedAt": "2026-10-20T14:03:19.196Z"
+   },
+   {
+    "id": "cmvgr7198009yrf1wnn3ke8eh",
+    "slug": "studi-kasus-dari-cv-ke-pt-28-hari",
+    "title": "Studi Kasus: Dari CV Keluarga ke PT Bersertifikat dalam 28 Hari",
+    "excerpt": "Perjalanan nyata CV Sinar Teknik: restrukturisasi CV ke PT, merek terdaftar, dan sertifikasi halal — selesai sebelum kontrak besar datang.",
+    "content": "## Titik awal: kontrak besar mengetuk pintu\n\nCV Sinar Teknik — usaha keluarga komponen manufaktur di Bandung — mendapat undangan tender dari produsen alat kesehatan. Syaratnya tegas: berbadan hukum PT, merek terdaftar, dan sertifikasi produk. Batas waktu: 30 hari.\n\n## Peta jalan 28 hari\n\n- **Hari 1–3**: analisis KBLI & struktur modal; penyusunan akta PT.\n- **Hari 4–7**: SK Kemenkumham, NPWP badan, NIB via OSS.\n- **Hari 8–14**: pendaftaran merek di DJKI (pengajuan cepat sejak hari ke-8 — waktu berlaku bagi yang duluan mengajukan).\n- **Hari 15–24**: persiapan dokumen sertifikasi halal + audit kecil produksi.\n- **Hari 25–28**: finalisasi company profile, dokumen tender, dan file legal lengkap.\n\n## Hasilnya\n\nKontrak tender diperoleh. Tapi yang lebih penting: struktur yang benar menghemat pajak mereka ~18% per tahun dibanding skenario CV yang semula direncanakan.\n\n**Pelajaran**: legalitas yang disusun *sebelum* dibutuhkan adalah investasi; legalitas yang dikejar *saat* dibutuhkan adalah tebusan.",
+    "category": "Studi Kasus",
+    "tags": "[\"Studi Kasus\",\"CV\",\"PT\",\"Sertifikasi\"]",
+    "readMinutes": 5,
+    "views": 0,
+    "published": true,
+    "publishedAt": "2026-10-20T14:03:19.196Z",
+    "createdAt": "2026-10-20T14:03:19.196Z",
+    "updatedAt": "2026-10-20T14:03:19.196Z"
+   },
+   {
+    "id": "cmvgr7199009zrf1wrt1tdf4t",
+    "slug": "memahami-tier-p0-p1-p2-p3-gunara-os",
+    "title": "P0, P1, P2, P3: Dokumen Mana yang Harus Didahulukan?",
+    "excerpt": "Tidak semua dokumen lahir sama. Empat tier prioritas Gunara OS menjawab pertanyaan klasik: mulai dari mana saat waktunya terbatas?",
+    "content": "## Analogi rumah\n\nMembangun dokumen perusahaan seperti membangun rumah:\n\n- **P0 Navigasi = fondasi & kerangka.** 40 dokumen: visi, misi, charter tata kelola, struktur organisasi, SOP inti, model keuangan dasar. Jika fondasi salah, lantai mahal tidak menyelamatkan.\n- **P1 Pertumbuhan = ruang yang menghasilkan.** 40 dokumen: strategi go-to-market, playbook penjualan, sistem kinerja, kode budaya. Di sinilah mesin pendapatan dirakit.\n- **P2 Perluasan = lantai tambahan.** 48 dokumen: kemitraan global, ekspansi, teknologi frontier, ketahanan krisis. Diambil saat fondasi kuat.\n- **P3 Warisan = arsitektur seabad.** 37 dokumen: covenant, legacy plan, benteng hukum final. Yang membuat institusi bertahan jauh melampaui pendirinya.\n\n## Aturan prioritas praktis\n\n1. Perusahaan baru (0–2 tahun): 90% energi ke P0.\n2. Perusahaan tumbuh (2–5 tahun): P0 dirapikan sambil mengeksekusi P1.\n3. Perusahaan skala (5+ tahun): P2 jadi fokus, P0 diaudit tiap kuartal.\n4. Siapa pun yang memikirkan suksesi: P3 tidak boleh menunggu \"sudah sukses\".\n\nDi setiap paket Gunara OS, distribusi tier ini sudah kami susun agar tidak ada lompatan yang berbahaya.",
+    "category": "Gunara OS",
+    "tags": "[\"Gunara OS\",\"Prioritas\",\"Dokumentasi\"]",
+    "readMinutes": 6,
+    "views": 0,
+    "published": true,
+    "publishedAt": "2026-10-20T14:03:19.196Z",
+    "createdAt": "2026-10-20T14:03:19.197Z",
+    "updatedAt": "2026-10-20T14:03:19.197Z"
+   },
+   {
+    "id": "cmvgr719900a0rf1wfkkpkucq",
+    "slug": "kalkulator-legalitas-biaya-pendirian-2025",
+    "title": "Kalkulator Legalitas: Cara Menghitung Biaya Pendirian Badan Usaha 2025",
+    "excerpt": "Berapa sebenarnya biaya mendirikan PT, CV, atau PT Perorangan? Ini rinciannya per komponen — plus cara memakai kalkulator di situs ini dengan benar.",
+    "content": "## Komponen biaya yang sering disembunyikan\n\nBanyak pemasok jasa mengiklankan \"pendirian PT 1 juta\" lalu menagih ekstra di tengah jalan. Biaya jujur terdiri dari:\n\n1. **Honor notaris & akta** — bervariasi sesuai modal dasar.\n2. **Resmi pemerintah** — PNBP Kemenkumham untuk pengesahan.\n3. **NPWP & administrasi pajak awal** — termasuk pengukuhan PKP bila diperlukan.\n4. **NIB & pemetaan KBLI** — di OSS-RBA.\n5. **Domisili usaha** — SKDU atau virtual office bila tidak punya alamat kantor.\n6. **Jasa pendampingan** — konsultasi, penyusunan dokumen, komunikasi instansi.\n\n## Cara memakai kalkulator kami\n\nDi bagian **Paket & Kalkulator** halaman ini:\n\n1. Pilih bentuk badan usaha — PT, CV, PT Perorangan, Yayasan, PMA, dll.\n2. Tambahkan kebutuhan opsional (merek, halal, website, virtual office).\n3. Estimasi biaya (rentang jujur, bukan angka umpan) langsung muncul — beserta estimasi hari kerja.\n4. Klik \"Kirim Estimasi via WhatsApp\" — pesan sudah terisi otomatis, tim kami membalas dalam 1×24 jam.\n\n## Prinsip transparansi kami\n\nAngka yang kami tampilkan adalah rentang realistis: komponen pemerintah fixed, komponen notaris bervariasi. Jika ada kebutuhan di luar scope, kami konfirmasi *sebelum* melanjutkan — bukan sesudah. Itu alasan 2.500+ klien tetap kembali.",
+    "category": "Panduan",
+    "tags": "[\"Biaya\",\"Kalkulator\",\"Pendirian\",\"2025\"]",
+    "readMinutes": 5,
+    "views": 0,
+    "published": true,
+    "publishedAt": "2026-10-20T14:03:19.197Z",
+    "createdAt": "2026-10-20T14:03:19.198Z",
+    "updatedAt": "2026-10-20T14:03:19.198Z"
+   }
+  ],
+  "proposal": [],
+  "siteSetting": [
+   {
+    "key": "gunaraOsHeadline",
+    "value": "Sistem Operasi Super Organisasi"
+   },
+   {
+    "key": "gunaraOsSub",
+    "value": "20 domain, 165 dokumen, 4 tier prioritas — arsitektur lengkap yang mengubah perusahaan menjadi institusi."
+   },
+   {
+    "key": "adminPassword",
+    "value": "gunara165"
+   }
+  ],
+  "clientProject": [
+   {
+    "id": "cmvgr71bl0000rf2a0fho3nk8",
+    "code": "PRJ-2026-001",
+    "clientName": "Andi Wijaya",
+    "company": "PT Maju Bersama Sejahtera",
+    "email": "andi@majubersama.id",
+    "phone": "+62 812-3456-7890",
+    "packageCode": "PGA-72",
+    "packageName": "PGA-72 — Pertumbuhan Terpadu",
+    "price": 72000000,
+    "docTotal": 165,
+    "docCompleted": 97,
+    "docInReview": 14,
+    "status": "ON_TRACK",
+    "healthScore": 87,
+    "startedAt": "2026-06-30T02:00:00.000Z",
+    "targetDoneAt": "2026-12-15T02:00:00.000Z",
+    "extras": "{\"legalitas\":[{\"name\":\"NIB (OSS-RBA)\",\"status\":\"DONE\",\"detail\":\"Terbit — 1203000261842\"},{\"name\":\"Pengesahan Kemenkumham\",\"status\":\"DONE\",\"detail\":\"SK AHU-0048321\"},{\"name\":\"NPWP & Konfirmasi PKP\",\"status\":\"IN_REVIEW\",\"detail\":\"Nadhir file diajukan\"},{\"name\":\"Sertifikat Standar KBLI 63122\",\"status\":\"IN_REVIEW\",\"detail\":\"Menunggu verifikasi OSS\"},{\"name\":\"Izin Komersial & Hak Cipta\",\"status\":\"PENDING\",\"detail\":\"Setelah PKP terbit\"}],\"digitalisasi\":[{\"name\":\"Website Company Profile\",\"progress\":100},{\"name\":\"SEO & Google Business Profile\",\"progress\":80},{\"name\":\"Sistem CRM Internal\",\"progress\":45},{\"name\":\"Aplikasi Mobile (PWA)\",\"progress\":15}],\"goals\":[{\"title\":\"Selesaikan 120 dokumen (P0+P1)\",\"current\":97,\"target\":120,\"unit\":\"dok\"},{\"title\":\"Legalitas perusahaan lengkap\",\"current\":3,\"target\":5,\"unit\":\"izin\"},{\"title\":\"Skor SEO ≥ 90\",\"current\":80,\"target\":90,\"unit\":\"skor\"},{\"title\":\"Go-live CRM internal\",\"current\":45,\"target\":100,\"unit\":\"%\"},{\"title\":\"Tim inti tersertifikasi\",\"current\":2,\"target\":4,\"unit\":\"orang\"}],\"team\":[{\"name\":\"Gugun Gunara\",\"role\":\"Lead Konsultan\",\"initials\":\"GG\"},{\"name\":\"Muhammad Lutfi Azmi\",\"role\":\"Arsitek Digital\",\"initials\":\"ML\"},{\"name\":\"Rani Kusumawati\",\"role\":\"Analis Legalitas\",\"initials\":\"RK\"},{\"name\":\"Bimo Prasetyo\",\"role\":\"Project Manager\",\"initials\":\"BP\"}],\"files\":[{\"name\":\"PGA-72 Master Plan.pdf\",\"size\":\"4.2 MB\",\"type\":\"pdf\",\"date\":\"2026-10-18T02:00:00.000Z\"},{\"name\":\"NIB-OSS-1203000261842.pdf\",\"size\":\"1.1 MB\",\"type\":\"pdf\",\"date\":\"2026-10-11T02:00:00.000Z\"},{\"name\":\"Akta-Pendirian-SK-Kemenkumham.pdf\",\"size\":\"2.6 MB\",\"type\":\"pdf\",\"date\":\"2026-10-04T02:00:00.000Z\"},{\"name\":\"Brand-Guidelines-v2.zip\",\"size\":\"18.4 MB\",\"type\":\"zip\",\"date\":\"2026-09-29T02:00:00.000Z\"},{\"name\":\"Website-Handover-Report.docx\",\"size\":\"840 KB\",\"type\":\"doc\",\"date\":\"2026-09-23T02:00:00.000Z\"},{\"name\":\"Laporan-Bulanan-Oktober.xlsx\",\"size\":\"320 KB\",\"type\":\"xls\",\"date\":\"2026-10-19T02:00:00.000Z\"}],\"achievements\":[{\"id\":\"kickoff\",\"title\":\"Kickoff Megah\",\"desc\":\"Rapat perdana & penandatanganan kontrak\",\"icon\":\"rocket\",\"unlocked\":true},{\"id\":\"nib\",\"title\":\"NIB Terbit\",\"desc\":\"Legalitas dasar perusahaan resmi\",\"icon\":\"shield\",\"unlocked\":true},{\"id\":\"d25\",\"title\":\"25 Dokumen\",\"desc\":\"Kuartal pertama arsitektur selesai\",\"icon\":\"file\",\"unlocked\":true},{\"id\":\"d50\",\"title\":\"50 Dokumen\",\"desc\":\"Setengah jalan tier P1\",\"icon\":\"file\",\"unlocked\":true},{\"id\":\"web\",\"title\":\"Website Live\",\"desc\":\"Company profile tayang & terindeks\",\"icon\":\"globe\",\"unlocked\":true},{\"id\":\"pay1\",\"title\":\"Pembayaran Tepat\",\"desc\":\"Invoice pertama dilunasi\",\"icon\":\"wallet\",\"unlocked\":true},{\"id\":\"d97\",\"title\":\"97 Dokumen\",\"desc\":\"Memasuki fase P2 Perluasan\",\"icon\":\"trending\",\"unlocked\":true},{\"id\":\"d165\",\"title\":\"PGA-72 Selesai\",\"desc\":\"Seluruh 72 dokumen diserahterimakan\",\"icon\":\"crown\",\"unlocked\":false}],\"notifications\":[{\"id\":\"n1\",\"title\":\"3 dokumen menunggu persetujuan Anda\",\"body\":\"PGA-98, PGA-99, PGA-100 sudah masuk tahap review klien.\",\"time\":\"2026-10-20T01:00:00.000Z\",\"read\":false,\"level\":\"info\"},{\"id\":\"n2\",\"title\":\"Invoice INV-…-03 jatuh tempo 5 hari\",\"body\":\"Sebesar Rp 18.000.000 — termin pembangunan 3.\",\"time\":\"2026-10-20T00:00:00.000Z\",\"read\":false,\"level\":\"warning\"},{\"id\":\"n3\",\"title\":\"Rapat progres mingguan beserta agenda\",\"body\":\"Setiap Jumat 10.00 WIB bersama Bimo Prasetyo.\",\"time\":\"2026-10-19T09:00:00.000Z\",\"read\":true,\"level\":\"info\"},{\"id\":\"n4\",\"title\":\"Sertifikat Standar masuk tahap verifikasi\",\"body\":\"Estimasi selesai 3-5 hari kerja.\",\"time\":\"2026-10-18T04:00:00.000Z\",\"read\":true,\"level\":\"success\"},{\"id\":\"n5\",\"title\":\"Laporan SEO bulanan tersedia\",\"body\":\"Skor naik 72 → 80. Unduh di File Center.\",\"time\":\"2026-10-17T02:00:00.000Z\",\"read\":true,\"level\":\"success\"}],\"messages\":[{\"id\":\"m1\",\"from\":\"team\",\"sender\":\"Bimo Prasetyo\",\"text\":\"Pagi Pak Andi! Dokumen PGA-98 s/d 100 sudah kami unggah untuk review 🙌\",\"time\":\"2026-10-20T01:12:00.000Z\"},{\"id\":\"m2\",\"from\":\"me\",\"sender\":\"Andi Wijaya\",\"text\":\"Pagi juga. Saya review siang ini ya, terima kasih.\",\"time\":\"2026-10-20T01:40:00.000Z\"},{\"id\":\"m3\",\"from\":\"team\",\"sender\":\"Rani Kusumawati\",\"text\":\"Update PKP: file nadhir sudah masuk, estimasi 3 hari kerja.\",\"time\":\"2026-10-20T02:05:00.000Z\"},{\"id\":\"m4\",\"from\":\"me\",\"sender\":\"Andi Wijaya\",\"text\":\"Mantap. Kalau sudah terbit tolong kabari.\",\"time\":\"2026-10-20T02:30:00.000Z\"},{\"id\":\"m5\",\"from\":\"team\",\"sender\":\"Gugun Gunara\",\"text\":\"Skor SEO bulan ini naik ke 80 — roadmap ke 90 sudah kami siapkan.\",\"time\":\"2026-10-19T07:20:00.000Z\"},{\"id\":\"m6\",\"from\":\"team\",\"sender\":\"Muhammad Lutfi Azmi\",\"text\":\"Draft PWA sudah 15% — arsitektur modul CRM dipakai ulang, hemat 2 minggu.\",\"time\":\"2026-10-19T08:45:00.000Z\"}]}",
+    "createdAt": "2026-10-20T14:03:19.282Z",
+    "updatedAt": "2026-10-20T14:03:19.282Z"
+   }
+  ],
+  "invoice": [
+   {
+    "id": "cmvgr71bo0002rf2arbarf2mx",
+    "projectId": "cmvgr71bl0000rf2a0fho3nk8",
+    "number": "INV-PRJ-2026-001-01",
+    "label": "Termin 1 — Kickoff & Legalitas Dasar",
+    "amount": 18000000,
+    "dueDate": "2026-07-14T02:00:00.000Z",
+    "paidAt": "2026-07-17T02:00:00.000Z",
+    "status": "PAID",
+    "order": 1
+   },
+   {
+    "id": "cmvgr71bp0004rf2alxmggghh",
+    "projectId": "cmvgr71bl0000rf2a0fho3nk8",
+    "number": "INV-PRJ-2026-001-02",
+    "label": "Termin 2 — Arsitektur Dokumen P0",
+    "amount": 18000000,
+    "dueDate": "2026-08-17T02:00:00.000Z",
+    "paidAt": "2026-08-19T02:00:00.000Z",
+    "status": "PAID",
+    "order": 2
+   },
+   {
+    "id": "cmvgr71bp0006rf2a29vgjtal",
+    "projectId": "cmvgr71bl0000rf2a0fho3nk8",
+    "number": "INV-PRJ-2026-001-03",
+    "label": "Termin 3 — Dokumen P1 & Website",
+    "amount": 18000000,
+    "dueDate": "2026-10-25T02:00:00.000Z",
+    "paidAt": null,
+    "status": "PENDING",
+    "order": 3
+   },
+   {
+    "id": "cmvgr71bq0008rf2axgib1j57",
+    "projectId": "cmvgr71bl0000rf2a0fho3nk8",
+    "number": "INV-PRJ-2026-001-04",
+    "label": "Termin 4 — CRM & Integrasi",
+    "amount": 12000000,
+    "dueDate": "2026-11-19T02:00:00.000Z",
+    "paidAt": null,
+    "status": "SCHEDULED",
+    "order": 4
+   },
+   {
+    "id": "cmvgr71br000arf2a0nwtjsuu",
+    "projectId": "cmvgr71bl0000rf2a0fho3nk8",
+    "number": "INV-PRJ-2026-001-05",
+    "label": "Termin 5 — Serah Terima Akhir",
+    "amount": 6000000,
+    "dueDate": "2026-12-13T02:00:00.000Z",
+    "paidAt": null,
+    "status": "SCHEDULED",
+    "order": 5
+   }
+  ],
+  "activityEvent": [
+   {
+    "id": "cmvgr71bt000brf2axi38sxcf",
+    "projectId": "cmvgr71bl0000rf2a0fho3nk8",
+    "type": "DOC_APPROVED",
+    "title": "PGA-100 disetujui klien",
+    "description": "Dokumen SOP Pemasaran Digital ditandatangani.",
+    "createdAt": "2026-10-20T00:30:00.000Z"
+   },
+   {
+    "id": "cmvgr71bt000crf2aezytvcnc",
+    "projectId": "cmvgr71bl0000rf2a0fho3nk8",
+    "type": "PAYMENT",
+    "title": "Pengingat invoice termin 3",
+    "description": "INV-…-03 jatuh tempo dalam 5 hari.",
+    "createdAt": "2026-10-20T00:00:00.000Z"
+   },
+   {
+    "id": "cmvgr71bt000drf2ap96nvus4",
+    "projectId": "cmvgr71bl0000rf2a0fho3nk8",
+    "type": "DOC_REVIEW",
+    "title": "3 dokumen masuk review klien",
+    "description": "PGA-98, PGA-99, PGA-100 menunggu persetujuan Anda.",
+    "createdAt": "2026-10-19T03:00:00.000Z"
+   },
+   {
+    "id": "cmvgr71bt000erf2af9f96xa3",
+    "projectId": "cmvgr71bl0000rf2a0fho3nk8",
+    "type": "MILESTONE",
+    "title": "Milestone P1 Pertumbuhan 100%",
+    "description": "Seluruh 40 dokumen P1 selesai & diserahkan.",
+    "createdAt": "2026-10-17T08:00:00.000Z"
+   },
+   {
+    "id": "cmvgr71bt000frf2a9vnqq9vk",
+    "projectId": "cmvgr71bl0000rf2a0fho3nk8",
+    "type": "MEETING",
+    "title": "Rapat progres mingguan",
+    "description": "Notulen terkirim ke seluruh stakeholder.",
+    "createdAt": "2026-10-16T04:00:00.000Z"
+   },
+   {
+    "id": "cmvgr71bt000grf2azzuj3n8t",
+    "projectId": "cmvgr71bl0000rf2a0fho3nk8",
+    "type": "DOC_APPROVED",
+    "title": "PGA-85 s/d PGA-90 disetujui",
+    "description": "Batch SOP Operasional lulus review.",
+    "createdAt": "2026-10-14T06:30:00.000Z"
+   },
+   {
+    "id": "cmvgr71bt000hrf2ayexhvz9a",
+    "projectId": "cmvgr71bl0000rf2a0fho3nk8",
+    "type": "SYSTEM",
+    "title": "Laporan SEO bulanan tersedia",
+    "description": "Skor 72 → 80. Detail di File Center.",
+    "createdAt": "2026-10-13T02:00:00.000Z"
+   },
+   {
+    "id": "cmvgr71bt000irf2anx8ggow1",
+    "projectId": "cmvgr71bl0000rf2a0fho3nk8",
+    "type": "MILESTONE",
+    "title": "Website company profile live",
+    "description": "Terindeks Google, Core Web Vitals hijau.",
+    "createdAt": "2026-10-08T09:00:00.000Z"
+   }
+  ],
+  "meeting": [
+   {
+    "id": "cmvgr71bv000jrf2aq780o7tn",
+    "projectId": "cmvgr71bl0000rf2a0fho3nk8",
+    "title": "Review Dokumen P2 Perluasan",
+    "agenda": "PGA-101 s/d PGA-110 — SOP keuangan & SDM",
+    "host": "Bimo Prasetyo",
+    "scheduledAt": "2026-10-21T03:00:00.000Z",
+    "durationMin": 60,
+    "status": "UPCOMING"
+   },
+   {
+    "id": "cmvgr71bv000krf2ao4ofsauv",
+    "projectId": "cmvgr71bl0000rf2a0fho3nk8",
+    "title": "Workshop CRM Internal",
+    "agenda": "Pemetaan alur penjualan & pipeline",
+    "host": "Muhammad Lutfi Azmi",
+    "scheduledAt": "2026-10-24T06:00:00.000Z",
+    "durationMin": 90,
+    "status": "UPCOMING"
+   },
+   {
+    "id": "cmvgr71bv000lrf2agezr8168",
+    "projectId": "cmvgr71bl0000rf2a0fho3nk8",
+    "title": "Rapat Progres Mingguan",
+    "agenda": "Health score, blokir, rencana minggu depan",
+    "host": "Bimo Prasetyo",
+    "scheduledAt": "2026-10-26T03:00:00.000Z",
+    "durationMin": 45,
+    "status": "UPCOMING"
+   },
+   {
+    "id": "cmvgr71bv000mrf2aslcxcybh",
+    "projectId": "cmvgr71bl0000rf2a0fho3nk8",
+    "title": "Rapat Progres Mingguan",
+    "agenda": "Evaluasi milestone P1",
+    "host": "Bimo Prasetyo",
+    "scheduledAt": "2026-10-16T03:00:00.000Z",
+    "durationMin": 45,
+    "status": "DONE"
+   }
+  ]
+ }
+}

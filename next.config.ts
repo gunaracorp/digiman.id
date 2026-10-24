@@ -1,0 +1,64 @@
+import type { NextConfig } from "next";
+
+/**
+ * Security headers (Genesis §20 — security minimum) + SEO headers.
+ *
+ * CATATAN PENTING: header `X-Frame-Options` SENGAJA TIDAK dipasang.
+ * Panel preview platform (dan beberapa alat embed) memuat situs ini
+ * dalam iframe lintas-domain — X-Frame-Options: SAMEORIGIN akan
+ * memblokirnya ("refused to connect"). Pengerasan framing dilakukan
+ * nanti di produksi via CSP `frame-ancestors` dengan daftar origin
+ * yang diketahui (lihat ARCHITECTURE.md §8).
+ *
+ * CSP penuh juga belum dipasang karena next/og + JSON-LD inline —
+ * naikkan bertahap saat deployment produksi terverifikasi.
+ */
+const SECURITY_HEADERS = [
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  {
+    key: "Permissions-Policy",
+    value: "camera=(), microphone=(), geolocation=(), browsing-topics=()",
+  },
+  // HTTPS-only — sinyal kepercayaan & prasyarat ranking modern
+  {
+    key: "Strict-Transport-Security",
+    value: "max-age=63072000; includeSubDomains; preload",
+  },
+];
+
+const nextConfig: NextConfig = {
+  output: "standalone",
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: SECURITY_HEADERS,
+      },
+      {
+        // Area privat TIDAK boleh diindeks meski terekspos URL
+        source: "/(admin|api)/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" }],
+      },
+      {
+        // Aset font & statis brand — cache panjang, aman berubah via build
+        source: "/fonts/:path*",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+      {
+        source: "/(logo-.*|favicon-.*|hero-artwork|cta-artwork)\\.png",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=604800, stale-while-revalidate=2592000" },
+        ],
+      },
+    ];
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  reactStrictMode: false,
+};
+
+export default nextConfig;

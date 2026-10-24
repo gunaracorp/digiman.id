@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Pertanyaan umum / konsultasi bisnis
+    url: https://digiman.id
+    about: Gunakan formulir kontak atau WhatsApp resmi di digiman.id — bukan issue GitHub.
+  - name: 🔐 Melaporkan kerentanan keamanan
+    url: https://github.com/prabudanling/digiman.id/blob/main/SECURITY.md
+    about: JANGAN buka issue publik — ikuti prosedur di SECURITY.md.

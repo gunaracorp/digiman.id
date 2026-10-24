@@ -1,2 +1,87 @@
-skills/
-node_modules/
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+!.env.example
+
+# vercel
+.vercel
+
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+local-*
+.claude
+.z-ai-config
+*.log
+dev.log
+dev.out.log
+test
+prompt
+
+server.log
+# Skills directory
+/skills/
+# === Task 14: repo hygiene (GitHub-ready) ===
+# database binary — regenerasi via: bun run db:push && bun run scripts/seed-gunara.ts
+*.db
+*.db-journal
+# sandbox/internal artifacts — jangan di-push
+.initial_snapshot.json
+/tool-results/
+/.zscripts/
+/agent-ctx/
+/upload/
+/download/
+/mini-services/
+# kerangka sandbox (demo websocket & shell runtime) — bukan bagian aplikasi
+/examples/
+/tests/
+
+# Local runtime and database
+.zscripts/dev.pid
+db/custom.db
+
+# Private legal and identity documents
+**/AKTA PENDIRIAN  PERTAMA  PT DIGITAL BISNIS MANAJEMEN.pdf
+**/KEMENKUMHAM  PT DIGITAL BISNIS MANAJEMEN ke - 1.pdf
+**/KEMENKUMHAM ke - 1.pdf
+**/KTP DAN NPWP GUGUN GUNARA (2).pdf
+**/NIB BERBASIS RESIKO PT DIGITAL BISNIS MANAJEMEN ke - 1.pdf
+**/NPWP PT DIGITAL BISNIS MANAJEMEN 622397297423000.jpg
+**/Pasted Content_1789176941505.txt
+
+# Local scaffolding
+examples/
+tests/

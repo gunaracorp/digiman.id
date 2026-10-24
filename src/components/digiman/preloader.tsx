@@ -1,0 +1,96 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { m, AnimatePresence } from "framer-motion";
+
+const letters = "DIGIMAN.ID".split("");
+
+export default function Preloader({ logoUrl }: { logoUrl?: string | null }) {
+  const [progress, setProgress] = useState(0);
+  const [done, setDone] = useState(false);
+
+  useEffect(() => {
+    const start = performance.now();
+    // Brand-flash super singkat: premium tanpa mengorbankan kecepatan
+    // (benchmark situs terbaik dunia tidak pernah menahan konten > 0.5 detik)
+    const dur = 400;
+    let raf: number;
+    const tick = (t: number) => {
+      const p = Math.min(100, Math.round(((t - start) / dur) * 100));
+      setProgress(p);
+      if (p < 100) {
+        raf = requestAnimationFrame(tick);
+      } else {
+        setTimeout(() => setDone(true), 100);
+      }
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
+  return (
+    <AnimatePresence>
+      {!done && (
+        <m.div
+          key="preloader"
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#050d0a]"
+          exit={{ y: "-100%", transition: { duration: 0.45, ease: [0.76, 0, 0.24, 1] } }}
+        >
+          <div className="absolute inset-0 starfield opacity-60" />
+          <m.div
+            className="absolute h-72 w-72 rounded-full bg-emerald-500/15 blur-[90px]"
+            animate={{ scale: [1, 1.4, 1], opacity: [0.5, 0.9, 0.5] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          />
+
+          <m.div
+            className="relative mb-6"
+            initial={{ opacity: 0, scale: 0.6, rotate: -12 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          >
+            { }
+            <img
+              src={logoUrl || "/logo-emblem.png"}
+              alt="Logo PT Digital Bisnis Manajemen"
+              className="animate-floaty h-24 w-24 object-contain drop-shadow-[0_0_30px_rgba(242,193,78,0.55)]"
+            />
+          </m.div>
+
+          <div className="relative flex items-end overflow-hidden">
+            {letters.map((l, i) => (
+              <m.span
+                key={i}
+                initial={{ y: 70, opacity: 0, rotateX: -90 }}
+                animate={{ y: 0, opacity: 1, rotateX: 0 }}
+                transition={{ delay: 0.03 + i * 0.02, duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                className={`font-display text-4xl font-bold tracking-tight sm:text-6xl ${
+                  i >= 8 ? "text-gold" : "text-emerald-300"
+                }`}
+              >
+                {l}
+              </m.span>
+            ))}
+          </div>
+
+          <m.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="mt-3 text-[11px] font-medium uppercase tracking-[0.5em] text-emerald-100/50"
+          >
+            Digital Bisnis Manajemen
+          </m.p>
+
+          <div className="relative mt-10 h-[3px] w-56 overflow-hidden rounded-full bg-emerald-950">
+            <m.div
+              className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-emerald-400 to-yellow-300"
+              style={{ width: `${progress}%` }}
+            />
+          </div>
+          <span className="mt-3 font-display text-sm text-gold-light/80 tabular-nums">{progress}%</span>
+        </m.div>
+      )}
+    </AnimatePresence>
+  );
+}

@@ -1,0 +1,329 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Konten publik (di-seed, bisa diubah admin) ───
+
+model Service {
+  id        String   @id @default(cuid())
+  slug      String?  @unique
+  title     String
+  desc      String
+  price     String
+  features  String // JSON array of strings
+  icon      String
+  category  String
+  featured  Boolean  @default(false)
+  visible   Boolean  @default(true)
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Testimonial {
+  id        String   @id @default(cuid())
+  slug      String?  @unique
+  name      String
+  role      String
+  text      String
+  rating    Int      @default(5)
+  visible   Boolean  @default(true)
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+model Faq {
+  id        String   @id @default(cuid())
+  slug      String?  @unique
+  question  String
+  answer    String
+  visible   Boolean  @default(true)
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+model Office {
+  id        String   @id @default(cuid())
+  type      String // "HEAD" | "BRANCH"
+  label     String
+  address   String
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+// ─── Interaksi pengunjung ───
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String
+  service   String?
+  message   String
+  handled   Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model ChatLog {
+  id        String   @id @default(cuid())
+  sessionId String
+  role      String // "user" | "assistant"
+  content   String
+  createdAt DateTime @default(now())
+}
+
+// ─── GUNARA OS — arsitektur dokumen PGA-165 ───
+
+model PgaDomain {
+  id          String        @id @default(cuid())
+  number      Int           @unique
+  name        String
+  tagline     String
+  description String
+  docs        PgaDocument[]
+}
+
+model PgaDocument {
+  id           String    @id @default(cuid())
+  code         String    @unique // PGA-01 .. PGA-165
+  number       Int
+  title        String
+  tier         String // P0 Navigasi | P1 Pertumbuhan | P2 Perluasan | P3 Warisan
+  owner        String
+  points       String // JSON array of strings
+  domainNumber Int
+  domain       PgaDomain @relation(fields: [domainNumber], references: [number])
+
+  @@index([domainNumber])
+  @@index([tier])
+}
+
+model GunaraPackage {
+  id            String   @id @default(cuid())
+  code          String   @unique // PGA-39, PGA-45, PGA-72, PGA-120, PGA-165
+  name          String
+  tagline       String
+  description   String
+  docCount      Int
+  price         Int // rupiah (formula: docCount x 1.000.000)
+  durationWeeks String // "6–8"
+  features      String // JSON array of strings
+  documentCodes String // JSON array of PGA-XX codes
+  highlight     Boolean  @default(false)
+  active        Boolean  @default(true)
+  order         Int      @default(0)
+}
+
+// ─── Blog ───
+
+model BlogPost {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  title       String
+  excerpt     String
+  content     String // markdown
+  category    String
+  tags        String // JSON array
+  readMinutes Int       @default(5)
+  views       Int       @default(0)
+  published   Boolean   @default(true)
+  publishedAt DateTime? 
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+// ─── Penawaran (Proposal Studio) ───
+
+model Proposal {
+  id            String   @id @default(cuid())
+  code          String   @unique // PNW-20251204-XYZ
+  clientName    String
+  clientCompany String
+  clientEmail   String
+  clientWa      String
+  packageCode   String // PGA-39/45/72/120/165 atau "CUSTOM"
+  documentCodes String // JSON array
+  addons        String // JSON array of {title, price}
+  items         String // JSON line items
+  subtotal      Int
+  discount      Int
+  total         Int
+  durationWeeks String
+  notes         String
+  status        String   @default("DRAFT") // DRAFT | SENT | NEGOTIATION | WON | LOST
+  validUntil    DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+// ─── Pengaturan situs & admin ───
+
+model SiteSetting {
+  key   String @id
+  value String
+}
+
+model AdminSession {
+  token     String   @id
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+}
+
+// ─── Client Dashboard — portal klien futuristik ───
+
+model ClientProject {
+  id           String          @id @default(cuid())
+  code         String          @unique // PRJ-2026-001
+  clientName   String
+  company      String
+  email        String
+  phone        String
+  packageCode  String // PGA-39/45/72/120/165
+  packageName  String
+  price        Int // total nilai kontrak (rupiah)
+  docTotal     Int             @default(165)
+  docCompleted Int             @default(0)
+  docInReview  Int             @default(0)
+  status       String          @default("ON_TRACK") // ON_TRACK | ATTENTION | AT_RISK | DONE
+  healthScore  Int             @default(80) // 0–100
+  startedAt    DateTime
+  targetDoneAt DateTime
+  extras       String          @default("{}") // JSON: legalitas, digitalisasi, goals, team, files, achievements, notifications, messages
+  invoices     Invoice[]
+  activities   ActivityEvent[]
+  meetings     Meeting[]
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+}
+
+model Invoice {
+  id        String        @id @default(cuid())
+  projectId String
+  project   ClientProject @relation(fields: [projectId], references: [id])
+  number    String        @unique // INV-PRJ-2026-001-01
+  label     String
+  amount    Int
+  dueDate   DateTime
+  paidAt    DateTime?
+  status    String        @default("PENDING") // PAID | PENDING | SCHEDULED
+  order     Int           @default(0)
+
+  @@index([projectId])
+}
+
+model ActivityEvent {
+  id          String        @id @default(cuid())
+  projectId   String
+  project     ClientProject @relation(fields: [projectId], references: [id])
+  type        String // DOC_APPROVED | DOC_REVIEW | PAYMENT | MEETING | MILESTONE | SYSTEM
+  title       String
+  description String
+  createdAt   DateTime
+
+  @@index([projectId])
+}
+
+model Meeting {
+  id          String        @id @default(cuid())
+  projectId   String
+  project     ClientProject @relation(fields: [projectId], references: [id])
+  title       String
+  agenda      String
+  host        String
+  scheduledAt DateTime
+  durationMin Int           @default(60)
+  status      String        @default("UPCOMING") // UPCOMING | DONE
+
+  @@index([projectId])
+}
+
+/// Struktur perusahaan — dikelola via Panel Admin (/admin/struktur),
+/// dirender di section Struktur Perusahaan landing (team-structure.tsx).
+model TeamMember {
+  id        String   @id @default(cuid())
+  name      String
+  role      String
+  division  String?
+  photo     String?
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+/// Konfigurasi urutan & visibilitas section beranda (site-data + /admin/tampilan).
+model SectionConfig {
+  key     String  @id
+  label   String
+  enabled Boolean @default(true)
+  order   Int     @default(0)
+}
+
+/// Akun admin Panel Admin (login /admin/login).
+model AdminUser {
+  id           String    @id @default(cuid())
+  username     String    @unique
+  passwordHash String
+  name         String    @default("Admin")
+  role         String    @default("SUPERADMIN")
+  lastLoginAt  DateTime?
+  createdAt    DateTime  @default(now())
+}
+
+/// Analitik kunjungan halaman publik (API /api/track).
+model PageView {
+  id        String   @id @default(cuid())
+  path      String
+  referrer  String   @default("")
+  device    String   @default("")
+  createdAt DateTime @default(now())
+
+  @@index([path])
+  @@index([createdAt])
+}
+
+/// Perpustakaan media Panel Admin (data URL base64).
+model MediaAsset {
+  id        String   @id @default(cuid())
+  name      String
+  mime      String   @default("image/png")
+  dataUrl   String
+  width     Int      @default(0)
+  height    Int      @default(0)
+  size      Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+/// Jejak aktivitas admin (audit log Panel Admin).
+model ActivityLog {
+  id        String   @id @default(cuid())
+  username  String
+  action    String
+  detail    String
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}
+
+/// Artikel blog Panel Admin (blog-data.ts + /api/admin/posts).
+model Post {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  excerpt     String   @default("")
+  content     String   @default("")
+  author      String   @default("Dewan Pakar DIGIMAN.ID")
+  tags        String   @default("")
+  readMinutes Int      @default(5)
+  views       Int      @default(0)
+  published   Boolean  @default(false)
+  date        DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([published, date])
+}
