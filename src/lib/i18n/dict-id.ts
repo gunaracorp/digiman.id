@@ -94,7 +94,7 @@ const id: Dictionary = {
   },
   services: {
     kicker: "Katalog Lengkap",
-    headingA: "144 Layanan",
+    headingA: "165 Layanan",
     headingB: "Satu Pintu",
     sub: "Dari pendirian badan usaha, perizinan, pajak, sertifikasi, sampai digitalisasi — tidak ada yang perlu Anda cari di tempat lain.",
     all: "Semua",
@@ -117,6 +117,8 @@ const id: Dictionary = {
       properti: "Properti & Infrastruktur",
       "sdm-organisasi": "SDM & Organisasi",
       resiliensi: "Resiliensi & Perlindungan",
+      signature: "Layanan Istimewa Gunara",
+      "agri-maritim": "Agribisnis, Peternakan & Maritim",
     },
     consult: "Konsultasi Layanan Ini",
     featured: "Paling Populer",

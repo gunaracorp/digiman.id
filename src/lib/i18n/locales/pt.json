@@ -189,7 +189,7 @@
   },
   "services": {
     "kicker": "Catálogo Completo",
-    "headingA": "144 Serviços",
+    "headingA": "165 Serviços",
     "headingB": "Uma Porta Única",
     "sub": "Da constituição de empresas, licenciamentos, tributação, certificação até a digitalização — nada mais precisa buscar em outro lugar.",
     "all": "Todos",
@@ -211,7 +211,9 @@
       "pangan-kesehatan": "Alimentos, Saúde e Farmácia",
       "properti": "Imóveis e Infraestrutura",
       "sdm-organisasi": "RH e Organização",
-      "resiliensi": "Resiliência e Proteção"
+      "resiliensi": "Resiliência e Proteção",
+      "signature": "Serviços Exclusivos Gunara",
+      "agri-maritim": "Agronegócio, Pecuária & Marítimo"
     },
     "consult": "Consultoria sobre Este Serviço",
     "featured": "Mais Popular"

@@ -94,7 +94,7 @@ const en: Dictionary = {
   },
   services: {
     kicker: "The Complete Catalog",
-    headingA: "29 Services,",
+    headingA: "165 Services,",
     headingB: "One Single Door",
     sub: "From entity establishment, licensing, tax, certification, to digitalization — you never need to look elsewhere.",
     all: "All",
@@ -117,6 +117,8 @@ const en: Dictionary = {
       properti: "Property & Infrastructure",
       "sdm-organisasi": "HR & Organization",
       resiliensi: "Resilience & Protection",
+      signature: "Gunara Signature Services",
+      "agri-maritim": "Agribusiness, Livestock & Maritime",
     },
     consult: "Consult This Service",
     featured: "Most Popular",

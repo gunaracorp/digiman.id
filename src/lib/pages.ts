@@ -46,6 +46,8 @@ export const CATEGORY_LABEL: Record<string, string> = {
   properti: "Properti & Infrastruktur",
   "sdm-organisasi": "SDM & Organisasi",
   resiliensi: "Resiliensi & Perlindungan",
+  signature: "Layanan Istimewa Gunara",
+  "agri-maritim": "Agribisnis, Peternakan & Maritim",
 };
 
 export const CATEGORY_DESC: Record<string, string> = {
@@ -84,4 +86,8 @@ export const CATEGORY_DESC: Record<string, string> = {
     "Job grading, audit payroll, PKWT, magang terkelola, outsourcing, PHK terkelola, ISO 37001, hingga kebijakan hybrid — SDM tertata dari akar.",
   resiliensi:
     "Asuransi bisnis, forensik digital, protokol krisis, BCP, pencegahan fraud, ERM, mediasi, piutang macet, hingga reputasi daring — bisnis yang tak mudah runtuh.",
+  signature:
+    "Produk eksklusif Gunara yang tidak dijual konsultan mana pun: Business DNA™, LaunchPad 30, Compliance Shield™, Deal Desk, Exit Ready™, TenderReady™, dan Founder Shield™ — metodologi berbrand dengan hasil terukur.",
+  "agri-maritim":
+    "ISPO/RSPO sawit, perikanan SIKPI, PVT varietas tanaman, peternakan & pakan, kemitraan plasma, SIPA air tanah, hingga RIPH hortikultura — legalitas lahan, laut, dan farm.",
 };

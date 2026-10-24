@@ -189,7 +189,7 @@
   },
   "services": {
     "kicker": "完整目录",
-    "headingA": "144项服务",
+    "headingA": "165项服务",
     "headingB": "一站式服务",
     "sub": "从公司成立、许可、税务、认证到数字化转型—您无需在其他地方寻找任何服务。",
     "all": "全部",
@@ -211,7 +211,9 @@
       "pangan-kesehatan": "食品、健康与制药",
       "properti": "房地产与基础设施",
       "sdm-organisasi": "人力资源与组织",
-      "resiliensi": "韧性与保护"
+      "resiliensi": "韧性与保护",
+      "signature": "Gunara 特色服务",
+      "agri-maritim": "农业、畜牧与海事"
     },
     "consult": "咨询此服务",
     "featured": "最受欢迎"

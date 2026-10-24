@@ -22,6 +22,9 @@ import { panganKesehatanContent } from "./pangan-kesehatan";
 import { propertiContent } from "./properti-infrastruktur";
 import { sdmOrganisasiContent } from "./sdm-organisasi";
 import { resiliensiContent } from "./resiliensi-bisnis";
+import { signatureContent } from "./signature-istimewa";
+import { agriMaritimContent } from "./agri-maritim";
+import { ekspansi165Content } from "./ekspansi-165";
 import { SERVICE_ENRICHMENT } from "./enrichment";
 
 export type { ServiceContent };
@@ -50,6 +53,9 @@ export const SERVICE_CONTENTS: ServiceContent[] = [
   ...propertiContent,
   ...sdmOrganisasiContent,
   ...resiliensiContent,
+  ...signatureContent,
+  ...agriMaritimContent,
+  ...ekspansi165Content,
 ];
 
 const CONTENT_MAP = new Map(SERVICE_CONTENTS.map((c) => [c.slug, c]));

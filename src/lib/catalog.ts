@@ -42,6 +42,8 @@ export const CATEGORY_LABELS: Record<string, string> = {
   properti: "Properti & Infrastruktur",
   "sdm-organisasi": "SDM & Organisasi",
   resiliensi: "Resiliensi & Perlindungan",
+  signature: "Layanan Istimewa Gunara",
+  "agri-maritim": "Agribisnis, Peternakan & Maritim",
 };
 
 export const CATALOG: Svc[] = [
@@ -943,5 +945,137 @@ export const CATALOG: Svc[] = [
     price: "Mulai Rp 3,5 jt/bln",
     desc: "Halaman pertama Google mencerminkan bisnis Anda — pemantauan, penanganan review negatif, dan konten positif.",
     features: ["Audit hasil pencarian & ulasan", "Protokol respons review", "Strategi konten positif", "Laporan reputasi bulanan"],
+  },
+
+  // ===== 19. LAYANAN ISTIMEWA GUNARA (PRODUK SIGNATURE) =====
+  {
+    slug: "dna-bisnis-360", title: "Gunara Business DNA™ — Audit Legal 360°", icon: "Fingerprint", category: "signature", featured: true,
+    price: "Mulai Rp 4,9 jt",
+    desc: "Audit kesehatan legal-kepatuhan bisnis menyeluruh: skor DNA dari 100, peta celah berperingkat risiko, dan roadmap penutupan 12 bulan.",
+    features: ["Audit 8 dimensi legal & kepatuhan", "Skor kesehatan DNA bisnis", "Roadmap penutupan celah 12 bulan", "Estimasi biaya & prioritas risiko"],
+  },
+  {
+    slug: "launchpad-30-hari", title: "Gunara LaunchPad 30 — Ide ke Bisnis Resmi 30 Hari", icon: "Rocket", category: "signature", featured: true,
+    price: "Mulai Rp 9,9 jt",
+    desc: "Program terstruktur 30 hari: badan usaha, merek, katalog WhatsApp, landing page, dan kepatuhan awal — hari ke-30 bisnis sah dan siap jualan.",
+    features: ["4 fase mingguan terpandu", "Badan usaha + NIB + merek", "Katalog WA & landing page jadi", "Checklist kepatuhan awal"],
+  },
+  {
+    slug: "shield-kepatuhan-tahunan", title: "Gunara Compliance Shield™ — Langganan Penjaga Kewajiban", icon: "CalendarCheck", category: "signature",
+    price: "Mulai Rp 2,9 jt/bln",
+    desc: "Kalender kewajiban personal + pengingat WhatsApp + eksekusi administratif bulanan — izin kedaluwarsa dan laporan terlewat jadi sejarah.",
+    features: ["Kalender kewajiban personal", "Pengingat WA H-90/60/30", "Eksekusi administratif dalam kuota", "Dashboard status kewajiban"],
+  },
+  {
+    slug: "deal-room-negosiasi", title: "Gunara Deal Desk — Pendampingan Negosiasi Investasi", icon: "MessagesSquare", category: "signature",
+    price: "Mulai Rp 12,5 jt",
+    desc: "Saat term sheet investor atau penawaran akuisisi datang: pembongkaran klausul, koordinasi due diligence, dan pendamping negosiasi sampai closing.",
+    features: ["Analisis & bongkar term sheet", "Koordinasi due diligence", "Strategi & pendampingan negosiasi", "Closing + kewajiban pasca-closing"],
+  },
+  {
+    slug: "exit-ready-valuation", title: "Gunara Exit Ready™ — Program Kesiapan Dijual & Suksesi", icon: "PackageCheck", category: "signature",
+    price: "Mulai Rp 15 jt",
+    desc: "Program 6–12 bulan menyiapkan bisnis agar layak dibeli dengan harga premium: 7 pilar kesiapan, skor Exit-Ready, rencana kerja kuartalan.",
+    features: ["Audit 7 pilar kesiapan jual", "Skor Exit-Ready per pilar", "Rencana kerja kuartalan", "Evaluasi progres berkala"],
+  },
+  {
+    slug: "tender-ready-program", title: "Gunara TenderReady™ — Kesiapan Dokumen Lelang & Tender", icon: "Trophy", category: "signature",
+    price: "Mulai Rp 6,5 jt",
+    desc: "Kualifikasi legal, personel bersertifikat, dokumen administratif LPSE, dan registrasi vendor — tidak gugur di babak administrasi lagi.",
+    features: ["Pemetaan kualifikasi bidang", "Dokumen administratif LPSE", "Registrasi vendor & portal supplier", "Simulasi evaluasi administrasi"],
+  },
+  {
+    slug: "pendiri-pribadi-shield", title: "Gunara Founder Shield™ — Proteksi Pribadi di Balik Bisnis", icon: "LifeBuoy", category: "signature",
+    price: "Mulai Rp 7,5 jt",
+    desc: "Pisahkan nasib pribadi dari risiko perusahaan: pemetaan tanggung jawab pribadi, pemisahan aset, wasiat, kuasa khusus, dan asuransi kunci.",
+    features: ["Peta tanggung jawab pribadi", "Pemisahan aset & rekening", "Wasiat & kuasa khusus pendiri", "Asuransi jiwa kunci & tanggung jawab"],
+  },
+
+  // ===== 20. AGRIBISNIS, PETERNAKAN & MARITIM =====
+  {
+    slug: "ispo-rspo-sawit", title: "Sertifikasi Sawit Berkelanjutan ISPO/RSPO", icon: "Leaf", category: "agri-maritim",
+    price: "Mulai Rp 25 jt",
+    desc: "ISPO wajib hukum, RSPO tiket pasar Eropa — gap analysis, penyiapan dokumen & SOP, audit bodi sertifikasi, sampai izin logo.",
+    features: ["Gap analysis prinsip-kriteria ISPO/RSPO", "Penyiapan dokumen & SOP kebun", "Pendampingan audit sertifikasi", "Izin penggunaan logo"],
+  },
+  {
+    slug: "izin-perikanan-sikpi", title: "Legalitas Usaha Perikanan (SIKPI, SIUP & SIPI)", icon: "Fish", category: "agri-maritim",
+    price: "Mulai Rp 3,5 jt",
+    desc: "SIUP, SIPI, SIKL, izin budidaya, dan pendaftaran nelayan via PPIP KKP — kapal melaut tanpa risiko ditahan, tangkapan sah diekspor.",
+    features: ["SIUP/SIPI/SIKL kapal perikanan", "Izin budidaya ikan & rumput laut", "Pendaftaran nelayan & alat tangkap", "Sertifikat asal ikan ekspor"],
+  },
+  {
+    slug: "pvt-varietas-tanaman", title: "Perlindungan Varietas Tanaman (PVT)", icon: "Sprout", category: "agri-maritim",
+    price: "Mulai Rp 4,5 jt",
+    desc: "Paten-nya dunia tanaman: hak eksklusif pemulia atas varietas baru — pengajuan PPV, pemeriksaan DUS, hingga lisensi komersial.",
+    features: ["Pengajuan PVT ke PPV Kementan", "Pendampingan uji DUS", "Hak eksklusif & lisensi varietas", "Strategi benih & pengecualian petani"],
+  },
+  {
+    slug: "izin-peternakan-nak", title: "Legalitas Peternakan, Pakan & Obat Hewan", icon: "Beef", category: "agri-maritim",
+    price: "Mulai Rp 2,5 jt",
+    desc: "NIB peternakan, rekomendasi dinas, CPB ternak, izin edar pakan (HPA) dan obat hewan — farm beroperasi patuh dari bibit sampai panen.",
+    features: ["NIB & rekomendasi teknis dinas", "Sertifikat CPB ternak", "Izin edar pakan HPA & obat hewan", "Pengangkutan ternak & NVK"],
+  },
+  {
+    slug: "plasma-perkebunan-kemitraan", title: "Kemitraan Plasma Inti Rakyat (PIR)", icon: "Trees", category: "agri-maritim",
+    price: "Mulai Rp 8,5 jt",
+    desc: "Wajib 20% lahan untuk petani — desain skema plasma, perjanjian kemitraan, FPIC, dan dokumentasi perizinan yang bebas sengketa.",
+    features: ["Desain skema plasma kelola/modal", "Perjanjian kemitraan KUD/tani", "Kepatuhan FPIC & konsultasi", "Audit kemitraan berkala"],
+  },
+  {
+    slug: "izin-air-tanah-sipa", title: "Pemanfaatan Air Tanah & Sumber Daya Air (SIPA)", icon: "Droplets", category: "agri-maritim",
+    price: "Mulai Rp 5,5 jt",
+    desc: "Pabrik, hotel, gedung yang bor air tanah wajib SIPA — survei hidrogeologi, pengajuan izin, retribusi, dan laporan berkala tertib.",
+    features: ["Survei hidrogeologi bersertifikat", "Pengajuan SIPA e-perizinan", "Retribusi & meter air tertib", "Laporan pengambilan berkala"],
+  },
+  {
+    slug: "riph-impor-hortikultura", title: "RIPH — Rekomendasi Impor Hortikultura", icon: "Apple", category: "agri-maritim",
+    price: "Mulai Rp 3,9 jt",
+    desc: "Bawang, kentang, apel tidak boleh berlayar tanpa RIPH — perhitungan kuota semester, pengajuan Kementan, dan pelaporan realisasi.",
+    features: ["Hitung rencana impor semester", "Pengajuan RIPH Kementan", "Sinkron API-U/UP & PIB", "Pelaporan realisasi & kuota"],
+  },
+
+  // ===== 21 LAYANAN BARU SEBAR KATEGORI (Task 23) =====
+  {
+    slug: "kitap-pasangan-investor", title: "KITAP — Izin Tinggal Tetap", icon: "Luggage", category: "ketenagakerjaan",
+    price: "Mulai Rp 4,5 jt",
+    desc: "Izin tinggal tetap 5 tahun: KITAP pasangan WNI, investor/eksekutif PMA, dan pensiun — dari VTT sampai e-POA tanpa drama.",
+    features: ["KITAP pasangan WNI", "KITAP investor & eksekutif PMA", "KITAP pensiun 55+", "e-POA & perpanjangan"],
+  },
+  {
+    slug: "skb-relief-pajak-treaty", title: "SKB & Tax Relief Pajak Luar Negeri (P3B)", icon: "Landmark", category: "pajak",
+    price: "Mulai Rp 3,5 jt",
+    desc: "Hentikan pemotongan yang tidak seharusnya: SKB PPh 4(2)/23, tarif P3B via DGT-1/DGT-2, dan refund kelebihan potong lintas negara.",
+    features: ["SKB PPh 4(2) & PPh 23", "Pengurangan tarif P3B (DGT-1/DGT-2)", "Relief bunga & dividen luar negeri", "Refund kelebihan potong"],
+  },
+  {
+    slug: "keberatan-banding-pajak", title: "Keberatan, Banding & Sengketa Pajak", icon: "Scale", category: "pajak",
+    price: "Mulai Rp 5 jt",
+    desc: "Melawan SPHP/SKP kurang bayar dengan strategi benar: keberatan DJP, banding Pengadilan Pajak, dan penundaan penagihan.",
+    features: ["Analisis SPHP & temuan pemeriksaan", "Keberatan ke DJP 30 hari", "Banding ke Pengadilan Pajak", "Penundaan penagihan (stelsel)"],
+  },
+  {
+    slug: "indikasi-geografis-sttig", title: "Indikasi Geografis & Sertifikat STTIG", icon: "MapPinned", category: "ki",
+    price: "Mulai Rp 8 jt",
+    desc: "Kopi Gayo, batik, asam jawa Ponorogo layak dilindungi: pendaftaran IG ke DGIP, penetapan, dan STTIG per produsen untuk harga premium.",
+    features: ["Penyusunan buku syarat & peta wilayah", "Pendaftaran IG ke DGIP", "Fasilitasi komite IG", "STTIG per produsen"],
+  },
+  {
+    slug: "bujp-jasa-keamanan", title: "Izin Usaha Jasa Keamanan (BUJP)", icon: "Siren", category: "perizinan",
+    price: "Mulai Rp 4,5 jt",
+    desc: "Berdiri & beroperasi sebagai perusahaan security yang sah: badan usaha, personel Gada bersertifikat, dan registrasi Polri.",
+    features: ["Badan usaha & KBLI jasa keamanan", "Sertifikasi personel Gada", "Registrasi & laporan Polri", "SOP operasional & kontrak personel"],
+  },
+  {
+    slug: "izin-limbah-b3", title: "Persetujuan & Pengelolaan Limbah B3 (LB3)", icon: "Biohazard", category: "esg",
+    price: "Mulai Rp 6,5 jt",
+    desc: "Generator limbah B3 patuh penuh: TPS berstandar, manifest elektronik SIPN, kontrak pengolah berizin, dan laporan LAPB3.",
+    features: ["Klasifikasi & kode limbah B3", "Persetujuan teknis TPS LB3", "Manifest elektronik (SIPN)", "Laporan berkala LAPB3"],
+  },
+  {
+    slug: "skttk-personel-konstruksi", title: "SKTTK & SKA/SKT Personel Konstruksi", icon: "HardHat", category: "properti",
+    price: "Mulai Rp 1,5 jt/personel",
+    desc: "Personel proyek wajib terdaftar LPJK: SKA, SKT, TDK dari uji kelayakan, lalu SKTTK — individual maupun paket tim korporasi.",
+    features: ["Uji kelayakan SKA/SKT/TDK", "Penerbitan SKTTK LPJK", "Paket tim sesuai kualifikasi SBU", "Pembaruan & penyesuaian aturan"],
   },
 ];

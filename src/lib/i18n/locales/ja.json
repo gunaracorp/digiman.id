@@ -189,7 +189,7 @@
   },
   "services": {
     "kicker": "カタログ一覧",
-    "headingA": "144のサービス",
+    "headingA": "165のサービス",
     "headingB": "ワンストップソリューション",
     "sub": "会社設立、許認可、税務、認証、デジタル化まで—他に探す必要はありません。",
     "all": "すべて",
@@ -211,7 +211,9 @@
       "pangan-kesehatan": "食品・健康・製薬",
       "properti": "不動産・インフラ",
       "sdm-organisasi": "人事・組織",
-      "resiliensi": "レジリエンス・保護"
+      "resiliensi": "レジリエンス・保護",
+      "signature": "Gunaraシグネチャーサービス",
+      "agri-maritim": "アグリ・畜産・マリタイム"
     },
     "consult": "このサービスに関する相談",
     "featured": "人気"

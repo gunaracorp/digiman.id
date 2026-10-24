@@ -25,6 +25,9 @@ import { panganKesehatanEnrichment } from "./pangan-kesehatan";
 import { propertiEnrichment } from "./properti-infrastruktur";
 import { sdmOrganisasiEnrichment } from "./sdm-organisasi";
 import { resiliensiEnrichment } from "./resiliensi-bisnis";
+import { signatureEnrichment } from "./signature-istimewa";
+import { agriMaritimEnrichment } from "./agri-maritim";
+import { ekspansi165Enrichment } from "./ekspansi-165";
 
 const CORE_ENRICHMENT: Record<string, ServiceEnrichment> = {
   /* ══════════════ PENDIRIAN BADAN USAHA ══════════════ */
@@ -1175,7 +1178,7 @@ const CORE_ENRICHMENT: Record<string, ServiceEnrichment> = {
   },
 };
 
-/** Gabungan pengayaan inti (44 layanan) + 10 kategori ekspansi (100 layanan) */
+/** Gabungan pengayaan inti (44 layanan) + 10 kategori ekspansi (100) + Task 23 (21) */
 export const SERVICE_ENRICHMENT: Record<string, ServiceEnrichment> = {
   ...CORE_ENRICHMENT,
   ...esgEnrichment,
@@ -1188,4 +1191,7 @@ export const SERVICE_ENRICHMENT: Record<string, ServiceEnrichment> = {
   ...propertiEnrichment,
   ...sdmOrganisasiEnrichment,
   ...resiliensiEnrichment,
+  ...signatureEnrichment,
+  ...agriMaritimEnrichment,
+  ...ekspansi165Enrichment,
 };

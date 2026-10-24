@@ -189,7 +189,7 @@
   },
   "services": {
     "kicker": "Catalogue Complet",
-    "headingA": "144 Services",
+    "headingA": "165 Services",
     "headingB": "Un Seul Point d'Entrée",
     "sub": "De la création d'entreprise, aux licences, fiscalité, certifications et transformation numérique — vous n'avez besoin de chercher nulle part ailleurs.",
     "all": "Tous",
@@ -211,7 +211,9 @@
       "pangan-kesehatan": "Alimentation, Santé et Pharmacie",
       "properti": "Immobilier et Infrastructure",
       "sdm-organisasi": "RH et Organisation",
-      "resiliensi": "Résilience et Protection"
+      "resiliensi": "Résilience et Protection",
+      "signature": "Services Signature Gunara",
+      "agri-maritim": "Agrobusiness, Élevage & Maritime"
     },
     "consult": "Consulter Ces Services",
     "featured": "Plus Populaire"

@@ -46,6 +46,8 @@ const CATEGORY_ORDER = [
   "properti",
   "sdm-organisasi",
   "resiliensi",
+  "signature",
+  "agri-maritim",
 ];
 
 export default async function LayananPage({
