@@ -126,6 +126,36 @@ export const CATALOG: Svc[] = [
     desc: "Dokumen sah untuk dipakai luar negeri: apostille Kemenkumham, legalisasi KBRI, terjemahan tersumpah.",
     features: ["Apostille documents resmi", "Legalisasi kedutaan", "Terjemahan tersumpah", "Notaris & e-KTA"],
   },
+  {
+    slug: "izin-lingkungan", title: "Persetujuan Lingkungan & AMDAL", icon: "Leaf", category: "perizinan",
+    price: "Mulai Rp 2,5 jt",
+    desc: "UKL-UPL atau AMDAL sesuai skala risiko usaha — pintu wajib sebelum izin sektor terbit.",
+    features: ["Saringan risiko & jenis dokumen", "UKL-UPL / AMDAL lengkap", "Panduan persetujuan DPMPTSP", "Sosialisasi & partisipasi publik"],
+  },
+  {
+    slug: "pbg-slf", title: "PBG & Sertifikat Laik Fungsi", icon: "Building", category: "perizinan",
+    price: "Mulai Rp 1,5 jt",
+    desc: "Persetujuan Bangunan Gedung pengganti IMB dan SLF — gedung Anda sah dibangun, sah dipakai.",
+    features: ["PBG baru & perubahan", "SLF gedung eksisting", "Cek gambar teknis & lokasi", "Konsultasi tarif retribusi"],
+  },
+  {
+    slug: "sbu-konstruksi", title: "SBU Konstruksi & Sertifikat Kompetensi", icon: "HardHat", category: "perizinan",
+    price: "Mulai Rp 2 jt",
+    desc: "Sertifikat Badan Usaha jasa konstruksi via LPJK — kualifikasi & subkualifikasi sesuai bidang Anda.",
+    features: ["Registrasi SBU LPJK", "Sertifikat teknis & ahli", "Kualifikasi Madya & Utama", "Perpanjangan & peningkatan"],
+  },
+  {
+    slug: "api-bea-cukai", title: "API-U/API-P & Registrasi Bea Cukai", icon: "Ship", category: "perizinan",
+    price: "Mulai Rp 1,5 jt",
+    desc: "Angka Pengenal Impor dan nomor registrasi bea cukai — pintu legal impor-ekspor untuk bisnis Anda.",
+    features: ["API-U / API-P di OSS", "Nomor registrasi bea cukai", "Konfigurasi KBLI impor", "Panduan HS Code & lartas"],
+  },
+  {
+    slug: "izin-distribusi", title: "Izin Distribusi & Fasilitas Pemasaran", icon: "Truck", category: "perizinan",
+    price: "Mulai Rp 1,5 jt",
+    desc: "Izin usaha distribusi, penjualan langsung, sampai fasilitas pemasaran (Warsek) — barang beredar legal.",
+    features: ["Izin distribusi (IDT)", "Fasilitas pemasaran & gudang", "Surat jalan & wajib lapor", "Untuk produsen & distributor"],
+  },
 
   // ===== 3. KEKAYAAN INTELEKTUAL =====
   {
@@ -139,6 +169,12 @@ export const CATALOG: Svc[] = [
     price: "Mulai Rp 900 rb",
     desc: "Karya, inovasi, dan desain adalah aset — daftarkan agar sah, bernilai, dan bisa dipertaruhkan.",
     features: ["Hak cipta karya & aplikasi", "Paten & paten sederhana", "Desain industri", "Sertifikat resmi DJKI"],
+  },
+  {
+    slug: "merek-internasional", title: "Merek Internasional (Protokol Madrid)", icon: "Flag", category: "ki",
+    price: "Mulai Rp 12 jt",
+    desc: "Satu pengajuan, banyak negara — daftarkan merek Anda ke 100+ negara lewat Protokol Madrid via DJKI.",
+    features: ["Aplikasi Madrid via DJKI", "Seleksi negara tujuan", "Riset kelas Nice & risk check", "Monitoring pendaftaran"],
   },
   {
     slug: "franchise", title: "Lisensi Franchise (STPW)", icon: "ScrollText", category: "ki",
@@ -172,6 +208,12 @@ export const CATALOG: Svc[] = [
     desc: "ISO 9001, 14001, 22000, 27001 — naikkan kredibilitas tender & kepercayaan mitra internasional.",
     features: ["Gap analysis awal", "Penyusunan dokumen SMM", "Pendampingan audit sertifikasi", "Sertifikat dari badan akreditasi"],
   },
+  {
+    slug: "higiene-sanitasi", title: "Sertifikat Laik Higiene & Sanitasi", icon: "UtensilsCrossed", category: "sertifikasi",
+    price: "Mulai Rp 900 rb",
+    desc: "Restoran, katering, pabrik pangan sah operasional — SLHS dari Dinkes agar inspeksi tidak menghentikan usaha.",
+    features: ["Audit pra-inspeksi Dinkes", "Checklist higiene & sanitasi", "Pengujian lab & swab OK", "Sertifikat & pemutakhiran"],
+  },
 
   // ===== 5. PERPAJAKAN =====
   {
@@ -200,6 +242,24 @@ export const CATALOG: Svc[] = [
     desc: "Pekerja asing & investor asing legal bekerja/tinggal: RPTKA, notification, VITAS-KITAS sampai KITAP.",
     features: ["RPTKA Kemenaker", "Notifikasi & telex VITAS", "KITAS investor & pekerja", "KITAP & MERP"],
   },
+  {
+    slug: "kitas-investor", title: "KITAS Investor & Direksi PMA", icon: "UserCheck", category: "ketenagakerjaan",
+    price: "Mulai Rp 7 jt",
+    desc: "Tinggal & mengurus bisnis di Indonesia tanpa RPTKA — jalur indeks D2 untuk investor & direksi PMA.",
+    features: ["E-Visa indeks D2", "KITAS investor 1–2 tahun", "Tanpa DPKK & RPTKA", "MERP & multiple exit"],
+  },
+  {
+    slug: "smk3", title: "SMK3 & Ahli K3 Kemnaker", icon: "ShieldPlus", category: "ketenagakerjaan",
+    price: "Mulai Rp 3 jt",
+    desc: "Sertifikasi Sistem Manajemen K3 wajib untuk perusahaan berisiko tinggi/100+ pekerja — dari audit sampai terbit.",
+    features: ["Gap audit & perencanaan", "Dokumen SMK3 (5 kriteria)", "Audit eksternal Kemnaker", "Ahli K3 umum & khusus"],
+  },
+  {
+    slug: "bnsp", title: "Sertifikasi Kompetensi BNSP", icon: "GraduationCap", category: "ketenagakerjaan",
+    price: "Mulai Rp 750 rb",
+    desc: "Sertifikat kompetensi personel & pekerja — syarat seleksi kerja, tender, dan perizinan sektor.",
+    features: ["Skema sesuai jabatan", "Pendampingan uji kompetensi", "TUK terdekat & fleksibel", "Sertifikat resmi BNSP"],
+  },
 
   // ===== 7. KORPORASI & LEGAL =====
   {
@@ -219,6 +279,12 @@ export const CATALOG: Svc[] = [
     price: "Mulai Rp 750 rb",
     desc: "Perjanjian bisnis yang menutup celah hukum, dan pemeriksaan legalitas mitra sebelum Anda menandatangani.",
     features: ["Perjanjian kerja sama", "Perjanjian kerja & confidential", "Legal due diligence mitra", "Review kontrak oleh pakar"],
+  },
+  {
+    slug: "lkpm", title: "LKPM & Kepatuhan OSS", icon: "ClipboardCheck", category: "korporasi",
+    price: "Mulai Rp 400 rb/lapor",
+    desc: "Laporan Kegiatan Penanaman Modal tepat waktu — hindari sanksi, penahanan perizinan, sampai pencabutan NIB.",
+    features: ["LKPM bulanan/triwulan", "Susunan laporan & data", "Validasi di OSS-RBA", "Audit kepatuhan OSS penuh"],
   },
 
   // ===== 8. DIGITALISASI =====

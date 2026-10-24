@@ -882,4 +882,285 @@ export const SERVICE_ENRICHMENT: Record<string, ServiceEnrichment> = {
       "UU No. 24 Tahun 2019 (Ekonomi Kreatif)",
     ],
   },
+
+  /* ══════════════ EKSPANSI PERIZINAN ══════════════ */
+  "izin-lingkungan": {
+    whoFor: [
+      "Pabrik & industri dengan emisi/limbah (produksi, tekstil, pengolahan)",
+      "Usaha perluasan kapasitas atau ganti lokasi yang memicu dokumen lingkungan baru",
+      "Investor yang pengajuan izin sektornya tertahan menunggu persetujuan lingkungan",
+      "Usaha di dalam kawasan industri yang ingin memakai rintisan kawasan (hemat biaya)",
+    ],
+    deliverables: [
+      "Saringan risiko tertulis: jenis dokumen yang wajib (Pernyataan Kesanggupan/UKL-UPL/AMDAL) + alasannya",
+      "Dokumen lingkungan lengkap siap diajukan (sesuai jalur yang ditetapkan)",
+      "Persetujuan lingkungan terbit & tercatat di OSS-RBA",
+      "Rencana Pengelolaan Lingkungan (RPL-RPL) yang realistis + panduan kepatuhan pasca-terbit",
+    ],
+    costs: [
+      { item: "Jasa penyusunan & pendampingan", note: "mulai Rp 2,5 jt untuk UKL-UPL — AMDAL disesuaikan kompleksitas" },
+      { item: "Biaya penyusun/laboratorium", note: "pengambilan contoh & uji lab bila diperlukan — transparan di penawaran" },
+      { item: "Retribusi daerah", note: "tarif peraturan daerah setempat — kami hitung di awal" },
+      { item: "Hemat rintisan kawasan", note: "usaha di kawasan industri ber-AMDAL bisa jauh lebih murah — dianalisis di konsultasi" },
+    ],
+    legalBasis: [
+      "UU No. 32 Tahun 2009 tentang Perlindungan & Pengelolaan Lingkungan Hidup",
+      "PP No. 22 Tahun 2021 (Penyelenggaraan PPLH — AMDAL, UKL-UPL, SPPL)",
+      "Permen LHK No. 4 Tahun 2021 (tata cara penyusunan dokumen lingkungan)",
+    ],
+  },
+  "pbg-slf": {
+    whoFor: [
+      "Pemilik yang akan membangun/merenovasi rumah, ruko, gudang, atau gedung",
+      "Pemilik gedung yang belum punya SLF dan butuh untuk jual/gadai/buka usaha",
+      "Pengusaha yang pengajuan izin usahanya tertahan karena dokumen bangunan",
+      "Pembeli properti komersial yang memeriksa kelengkapan dokumen gedung",
+    ],
+    deliverables: [
+      "PBG / SLF terbit resmi dengan QR verifikasi dari SIMBG",
+      "Gambar teknis tersusun/perbaikan (arsitektur, struktur, MEP)",
+      "Kelengkapan lahan disinkronkan (RTRW/PKKPR, peta situasi, koordinat)",
+      "Panduan kewajiban lanjutan: pemeliharaan, perubahan fungsi, masa berlaku",
+    ],
+    costs: [
+      { item: "Jasa pengurusan & pendampingan", note: "mulai Rp 1,5 jt — tergantung kelas bangunan & kompleksitas" },
+      { item: "Penyusunan gambar teknis", note: "bila belum ada — dihitung per bangunan, transparan" },
+      { item: "Retribusi daerah (tarif PBG)", note: "dihitung sistem sesuai kelas & luas — kami simulasikan di awal" },
+      { item: "Jasa pendamping tersertifikasi", note: "untuk gedung yang mewajibkan pendamping — termasuk koordinasi" },
+    ],
+    legalBasis: [
+      "UU No. 28 Tahun 2002 tentang Bangunan Gedung",
+      "PP No. 16 Tahun 2021 (Penyelenggaraan Bangunan Gedung — PBG & SLF menggantikan IMB)",
+      "Permen PUPR terkait standar teknis & SIMBG",
+    ],
+  },
+  "sbu-konstruksi": {
+    whoFor: [
+      "Perusahaan konstruksi baru yang akan ikut tender pemerintah/BUMN",
+      "Kontraktor dengan SBU kecil yang ingin naik ke Madya/Utama",
+      "Perusahaan yang menambah bidang/subkualifikasi (mekanikal, elektrikal, dsb.)",
+      "Firma/CV yang bertransformasi ke PT untuk kualifikasi lebih tinggi",
+    ],
+    deliverables: [
+      "SBU terbit & aktif di sistem LPJK",
+      "Kualifikasi/subkualifikasi sesuai bidang & target proyek",
+      "Personel teknis bersertifikat (SKA/SKT/BNSP) sesuai syarat kualifikasi",
+      "Roadmap peningkatan kualifikasi + panduan mempertahankan status",
+    ],
+    costs: [
+      { item: "Jasa pengurusan SBU", note: "mulai Rp 2 jt — tergantung kualifikasi & subkualifikasi" },
+      { item: "Biaya registrasi resmi LPJK", note: "sesuai ketentuan — tercantum di penawaran" },
+      { item: "Sertifikasi personel", note: "bila belum bersertifikat — dihitung per personel" },
+      { item: "Peningkatan kualifikasi", note: "harga terpisah, disesuaikan tambahan personel & pengalaman yang dibutuhkan" },
+    ],
+    legalBasis: [
+      "UU No. 2 Tahun 2017 tentang Jasa Konstruksi",
+      "PP No. 22 Tahun 2020 (peraturan pelaksanaan jasa konstruksi)",
+      "Permen PUPR No. 10 Tahun 2021 (SBU via sistem LPJK)",
+    ],
+  },
+  "api-bea-cukai": {
+    whoFor: [
+      "Toko online & trader yang mulai impor stok sendiri",
+      "Pabrikan yang butuh bahan baku impor (API-P)",
+      "Perusahaan yang diminta supplier luar negeri untuk transaksi legal",
+      "Eksporter yang butuh kelengkapan dokumen pabean atas nama sendiri",
+    ],
+    deliverables: [
+      "API-U/API-P aktif di OSS-RBA atas nama perusahaan",
+      "Nomor registrasi bea cukai siap untuk PIB/PEB di CEISA",
+      "Peta HS Code barang + identifikasi lartas + simulasi biaya pabean",
+      "Panduan alur impor/ekspor pertama (dokumen supplier, PIB/PEB, pungutan)",
+    ],
+    costs: [
+      { item: "Jasa pengurusan API & registrasi", note: "mulai Rp 1,5 jt — termasuk pemetaan HS Code" },
+      { item: "Penyesuaian kegiatan di OSS", note: "termasuk bila NIB perlu ditambah kegiatan impor" },
+      { item: "Pendampingan lartas barang", note: "diestimasi terpisah sesuai izin yang diminta jenis barangnya" },
+      { item: "Biaya pabean berjalan", note: "bea masuk/PPN/PPh 22 per transaksi — disimulasikan, bukan dikira-kira" },
+    ],
+    legalBasis: [
+      "UU No. 17 Tahun 2006 (Kepabeanan) beserta perubahannya",
+      "Permendag No. 36 Tahun 2021 (API-U/API-P & perizinan perdagangan)",
+      "NIB berlaku sebagai nomor registrasi bea cukai per skema OSS-RBA (PP No. 5 Tahun 2021)",
+    ],
+  },
+  "izin-distribusi": {
+    whoFor: [
+      "Produsen yang membangun jaringan agen/reseller lintas daerah",
+      "Distributor yang diaudit legalitas oleh principal/retail modern",
+      "Perusahaan yang memakai gudang di beberapa wilayah penyaluran",
+      "Toko online yang berkembang ke jaringan stok & penyaluran fisik",
+    ],
+    deliverables: [
+      "Izin usaha distribusi / fasilitas pemasaran aktif atas nama perusahaan",
+      "KBLI & kegiatan OSS konsisten dengan kegiatan penyaluran",
+      "Kelengkapan operasional: format surat jalan, dokumen gudang, kewajiban lapor",
+      "Panduan kepatuhan penyaluran + dukungan perluasan wilayah",
+    ],
+    costs: [
+      { item: "Jasa pengurusan izin distribusi", note: "mulai Rp 1,5 jt — sesuai struktur yang dipilih" },
+      { item: "Penyesuaian KBLI & izin OSS", note: "termasuk dalam paket" },
+      { item: "Fasilitas pemasaran/Warsek", note: "biaya terpisah bila skala menuntut — dievaluasi di konsultasi" },
+      { item: "Pendampingan vendor onboarding", note: "opsional — kelengkapan dokumen untuk principal besar" },
+    ],
+    legalBasis: [
+      "PP No. 29 Tahun 2021 (Penyelenggaraan Bidang Perdagangan)",
+      "Permendag terkait izin berusaha perdagangan & fasilitas pemasaran",
+      "PP No. 5 Tahun 2021 (perizinan berusaha berbasis risiko — OSS-RBA)",
+    ],
+  },
+
+  /* ══════════════ EKSPANSI SDM & KETENAGAKERJAAN ══════════════ */
+  "kitas-investor": {
+    whoFor: [
+      "Pemegang saham & komisaris PT PMA yang mengurus bisnis di Indonesia",
+      "Direksi PMA yang butuh tinggal jangka panjang tanpa status karyawan",
+      "Investor asing yang membangun bisnis baru di Indonesia",
+      "Pemilik bisnis luar negeri yang rutin bolak-balik dan butuh MERP",
+    ],
+    deliverables: [
+      "E-Visa indeks D2 + KITAS 1–2 tahun atas nama Anda",
+      "MERP (izin keluar-masuk berkali-kali) selama masa berlaku",
+      "Dokumen perusahaan disinkronkan (modal, akta, struktur) sebelum pengajuan",
+      "Panduan batas tinggal, perpanjangan, dan jalur KITAP di masa depan",
+    ],
+    costs: [
+      { item: "Jasa pengurusan lengkap", note: "mulai Rp 7 jt — termasuk e-visa & pendampingan imigrasi" },
+      { item: "Biaya resmi imigrasi", note: "PNBP visa/ITAS sesuai durasi — tercantum transparan" },
+      { item: "Untuk keluarga (dependent)", note: "dihitung per anggota — istri & anak bisa sekalian" },
+      { item: "Perpanjangan tahunan", note: "harga khusus pelanggan lama — diingatkan sebelum jatuh tempo" },
+    ],
+    legalBasis: [
+      "UU No. 6 Tahun 2011 (Keimigrasian) & perubahannya",
+      "Perpres No. 10 Tahun 2021 (bidang usaha penanaman modal) beserta perubahannya",
+      "Regulasi Kemenkumham/Imigrasi terkait visa indeks investor (D2) & ITAS",
+    ],
+  },
+  "smk3": {
+    whoFor: [
+      "Perusahaan dengan pekerja 100 orang atau lebih (wajib sertifikasi)",
+      "Perusahaan berpotensi bahaya tinggi: konstruksi, manufaktur, kimia, energi",
+      "Perusahaan yang diminta sertifikat SMK3 dalam syarat tender",
+      "Manajemen yang ingin sistem K3 hidup — bukan dokumen untuk lewat audit saja",
+    ],
+    deliverables: [
+      "Gap analysis terhadap 5 kriteria PP 50/2012 + rencana kerja tertulis",
+      "Sistem dokumen SMK3 lengkap (kebijakan, IDHL, perencanaan, prosedur, pemantauan)",
+      "Tim internal terlatih menjalankan sistem tanpa bergantung kami",
+      "Sertifikat SMK3 terbit dari Kemnaker + kalender kewajiban tindak lanjutnya",
+    ],
+    costs: [
+      { item: "Jasa konsultansi SMK3", note: "mulai Rp 3 jt — sesuai skala & kesiapan perusahaan" },
+      { item: "Biaya audit eksternal Kemnaker", note: "sesuai ketentuan & jumlah auditor yang ditugaskan" },
+      { item: "Sertifikasi Ahli K3 (bila perlu)", note: "per personel — umum & khusus sesuai kebutuhan industri" },
+      { item: "Pelatihan internal", note: "termasuk dalam paket pendampingan penuh" },
+    ],
+    legalBasis: [
+      "UU No. 1 Tahun 1970 tentang Keselamatan Kerja",
+      "PP No. 50 Tahun 2012 (penerapan SMK3 — wajib sertifikasi)",
+      "Permenaker No. 26/MEN/2014 (penyelenggaraan audit eksternal SMK3)",
+    ],
+  },
+  "bnsp": {
+    whoFor: [
+      "Pekerja profesional yang butuh sertifikat untuk seleksi kerja/karier",
+      "Personel teknis yang disyaratkan SBU konstruksi (SKA/SKT)",
+      "Perusahaan yang perlu mensertifikasi banyak pegawai untuk tender/perizinan",
+      "Lulusan pelatihan vokasi yang butuh pengakuan kompetensi resmi",
+    ],
+    deliverables: [
+      "Sertifikat Kompetensi BNSP resmi per peserta (masa berlaku 3 tahun)",
+      "Skema yang tepat sesuai jabatan & unit kompetensi yang dinilai",
+      "Portofolio bukti kerja yang disusun kuat bersama kami",
+      "Untuk perusahaan: laporan massal seluruh peserta + jadwal perpanjangan",
+    ],
+    costs: [
+      { item: "Jasa pendampingan", note: "mulai Rp 750 rb per peserta — termasuk persiapan portofolio" },
+      { item: "Biaya uji & sertifikasi LSP", note: "sesuai skema — tercantum transparan di penawaran" },
+      { item: "Pelatihan pra-uji", note: "opsional — untuk skema yang membutuhkan" },
+      { item: "Program massal perusahaan", note: "tarif per peserta lebih efisien — dihitung dari jumlah & skema" },
+    ],
+    legalBasis: [
+      "UU No. 13 Tahun 2003 (Ketenagakerjaan — kompetensi & sertifikasi)",
+      "Perpres No. 23 Tahun 2004 (BNSP sebagai lembaga nasional kompetensi)",
+      "UU No. 8 Tahun 2019 (perlindungan pekerja & perkembangan kompetensi)",
+    ],
+  },
+
+  /* ══════════════ EKSPANSI LAINNYA ══════════════ */
+  "lkpm": {
+    whoFor: [
+      "Semua pelaku usaha ber-NIB yang wajib lapor periodik (kecil/menengah/besar)",
+      "PT PMA dengan kewajiban LKPM & tekanan kepatuhan dari BKPM",
+      "Perusahaan yang menunggak lama dan ingin memulihkan riwayat laporan",
+      "Perusahaan yang menyiapkan due diligence investor / pengajuan kredit bank",
+    ],
+    deliverables: [
+      "Kalender kepatuhan: periode & tenggat LKPM sesuai skala usaha Anda",
+      "LKPM tersusun & terunggah di OSS-RBA tiap periode + bukti terarsip",
+      "Template data 10 menit untuk tim keuangan Anda",
+      "Bila menunggak: pemulihan backlog sampai riwayat laporan bersih",
+    ],
+    costs: [
+      { item: "Langganan per periode laporan", note: "mulai Rp 400 rb/laporan — sesuai skala usaha" },
+      { item: "Pemulihan tunggakan (backlog)", note: "dihitung dari jumlah periode yang tertunggak" },
+      { item: "Konsultasi kepatuhan OSS", note: "termasuk — status perizinan diperiksa sekalian" },
+      { item: "Tanggapan teguran", note: "bila muncul — kami susun jawabannya" },
+    ],
+    legalBasis: [
+      "UU No. 25 Tahun 2007 (Penanaman Modal — kewajiban laporan Pasal 17)",
+      "Peraturan BKPM No. 5 Tahun 2021 (LKPM & ketentuan laporannya)",
+      "Sanksi administratif per UU 25/2007 Pasal 39 (teguran s.d. pencabutan NIB)",
+    ],
+  },
+  "higiene-sanitasi": {
+    whoFor: [
+      "Restoran, kafe, katering, kantin & usaha jasaboga baru/bekerja",
+      "Pabrik & rumah produksi makanan yang memproses pangan untuk konsumen",
+      "Usaha yang diminta SLHS oleh platform/retail untuk onboarding",
+      "Pemilik yang inspeksi Dinkes mendekat dan ingin lolos di kunjungan pertama",
+    ],
+    deliverables: [
+      "Audit pra-inspeksi dengan checklist penuh permenkes + daftar perbaikan berprioritas",
+      "Pemeriksaan kesehatan pekerja diatur (lab kerja sama) — dokumen lengkap",
+      "SLHS terbit dari Dinas Kesehatan atas nama usaha",
+      "Panduan pemeliharaan harian untuk staf — kelayakan tetap terjaga",
+    ],
+    costs: [
+      { item: "Jasa pendampingan SLHS", note: "mulai Rp 900 rb — sesuai jenis & skala usaha" },
+      { item: "Biaya Dinkes/retribusi", note: "sesuai perda setempat — kami hitung di awal" },
+      { item: "Pemeriksaan kesehatan pekerja", note: "per pekerja — tarif lab transparan" },
+      { item: "Perbaikan lokasi", note: "bila audit menemukan — biasanya kecil; kami urutkan prioritasnya" },
+    ],
+    legalBasis: [
+      "UU No. 17 Tahun 2023 (Kesehatan)",
+      "PP No. 66 Tahun 2014 (Kesehatan Lingkungan)",
+      "Permenkes No. 2 Tahun 2023 (higiene & sanitasi jasaboga — SLHS)",
+    ],
+  },
+  "merek-internasional": {
+    whoFor: [
+      "Brand yang mulai ekspor atau dijual di marketplace internasional",
+      "Bisnis yang produknya mulai ditiru/didaftarkan orang lain di luar negeri",
+      "Perusahaan dengan mitra produksi/distribusi di negara lain",
+      "Franchisor yang membangun jaringan lintas negara",
+    ],
+    deliverables: [
+      "Strategi negara & kelas Nice tertulis sesuai rencana bisnis Anda",
+      "Aplikasi Madrid diajukan via DJKI ke WIPO (negara-negara terpilih)",
+      "Pemantauan status per negara + tanggapan pengaduan bila muncul",
+      "Kalender perlindungan & perpanjangan 10 tahunan terkelola",
+    ],
+    costs: [
+      { item: "Jasa strategi & pengajuan Madrid", note: "mulai Rp 12 jt — termasuk pemetaan negara/kelas" },
+      { item: "Biaya resmi WIPO per negara", note: "tarif resmi per negara — dipetakan transparan sebelum tanda tangan" },
+      { item: "Pendaftaran dasar DJKI", note: "bila merek belum terdaftar di Indonesia — diurus dulu bersamaan" },
+      { item: "Pembelaan di negara tujuan", note: "bila ada pengaduan — dikoordinasikan dengan partner setempat" },
+    ],
+    legalBasis: [
+      "UU No. 20 Tahun 2016 jo. UU No. 6 Tahun 2023 (Merek & Indikasi Geografis)",
+      "Protokol Madrid (Indonesia anggota — berlaku sejak 2 Januari 2018)",
+      "Tata cara aplikasi internasional melalui DJKI & WIPO (Peraturan Bersama Madrid)",
+    ],
+  },
 };

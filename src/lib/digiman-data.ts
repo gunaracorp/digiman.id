@@ -300,6 +300,77 @@ export const DEFAULT_SERVICES: ServiceItem[] = [
     price: "Mulai Rp 1,5 jt",
     items: ["Logo & identitas visual", "Foto produk profesional", "Desain katalog & banner", "Template konten sosmed"],
   },
+
+  // ── Ekspansi: perizinan ──
+  {
+    slug: "izin-lingkungan", title: "Persetujuan Lingkungan & AMDAL", featured: false, icon: "Leaf", category: "perizinan",
+    desc: "UKL-UPL atau AMDAL sesuai skala risiko usaha — pintu wajib sebelum izin sektor terbit.",
+    price: "Mulai Rp 2,5 jt",
+    items: ["Saringan risiko & jenis dokumen", "UKL-UPL / AMDAL lengkap", "Panduan persetujuan DPMPTSP", "Sosialisasi & partisipasi publik"],
+  },
+  {
+    slug: "pbg-slf", title: "PBG & Sertifikat Laik Fungsi", featured: false, icon: "Building", category: "perizinan",
+    desc: "Persetujuan Bangunan Gedung pengganti IMB dan SLF — gedung Anda sah dibangun, sah dipakai.",
+    price: "Mulai Rp 1,5 jt",
+    items: ["PBG baru & perubahan", "SLF gedung eksisting", "Cek gambar teknis & lokasi", "Konsultasi tarif retribusi"],
+  },
+  {
+    slug: "sbu-konstruksi", title: "SBU Konstruksi & Sertifikat Kompetensi", featured: false, icon: "HardHat", category: "perizinan",
+    desc: "Sertifikat Badan Usaha jasa konstruksi via LPJK — kualifikasi & subkualifikasi sesuai bidang Anda.",
+    price: "Mulai Rp 2 jt",
+    items: ["Registrasi SBU LPJK", "Sertifikat teknis & ahli", "Kualifikasi Madya & Utama", "Perpanjangan & peningkatan"],
+  },
+  {
+    slug: "api-bea-cukai", title: "API-U/API-P & Registrasi Bea Cukai", featured: false, icon: "Ship", category: "perizinan",
+    desc: "Angka Pengenal Impor dan nomor registrasi bea cukai — pintu legal impor-ekspor untuk bisnis Anda.",
+    price: "Mulai Rp 1,5 jt",
+    items: ["API-U / API-P di OSS", "Nomor registrasi bea cukai", "Konfigurasi KBLI impor", "Panduan HS Code & lartas"],
+  },
+  {
+    slug: "izin-distribusi", title: "Izin Distribusi & Fasilitas Pemasaran", featured: false, icon: "Truck", category: "perizinan",
+    desc: "Izin usaha distribusi, penjualan langsung, sampai fasilitas pemasaran (Warsek) — barang beredar legal.",
+    price: "Mulai Rp 1,5 jt",
+    items: ["Izin distribusi (IDT)", "Fasilitas pemasaran & gudang", "Surat jalan & wajib lapor", "Untuk produsen & distributor"],
+  },
+  // ── Ekspansi: ki & sertifikasi ──
+  {
+    slug: "merek-internasional", title: "Merek Internasional (Protokol Madrid)", featured: false, icon: "Flag", category: "ki",
+    desc: "Satu pengajuan, banyak negara — daftarkan merek Anda ke 100+ negara lewat Protokol Madrid via DJKI.",
+    price: "Mulai Rp 12 jt",
+    items: ["Aplikasi Madrid via DJKI", "Seleksi negara tujuan", "Riset kelas Nice & risk check", "Monitoring pendaftaran"],
+  },
+  {
+    slug: "higiene-sanitasi", title: "Sertifikat Laik Higiene & Sanitasi", featured: false, icon: "UtensilsCrossed", category: "sertifikasi",
+    desc: "Restoran, katering, pabrik pangan sah operasional — SLHS dari Dinkes agar inspeksi tidak menghentikan usaha.",
+    price: "Mulai Rp 900 rb",
+    items: ["Audit pra-inspeksi Dinkes", "Checklist higiene & sanitasi", "Pengujian lab & swab pekerja", "Sertifikat & pemutakhiran"],
+  },
+  // ── Ekspansi: ketenagakerjaan ──
+  {
+    slug: "kitas-investor", title: "KITAS Investor & Direksi PMA", featured: false, icon: "UserCheck", category: "ketenagakerjaan",
+    desc: "Tinggal & mengurus bisnis di Indonesia tanpa RPTKA — jalur indeks D2 untuk investor & direksi PMA.",
+    price: "Mulai Rp 7 jt",
+    items: ["E-Visa indeks D2", "KITAS investor 1–2 tahun", "Tanpa DPKK & RPTKA", "MERP & multiple exit"],
+  },
+  {
+    slug: "smk3", title: "SMK3 & Ahli K3 Kemnaker", featured: false, icon: "ShieldPlus", category: "ketenagakerjaan",
+    desc: "Sertifikasi Sistem Manajemen K3 wajib untuk perusahaan berisiko tinggi/100+ pekerja — dari audit sampai terbit.",
+    price: "Mulai Rp 3 jt",
+    items: ["Gap audit & perencanaan", "Dokumen SMK3 (5 kriteria)", "Audit eksternal Kemnaker", "Ahli K3 umum & khusus"],
+  },
+  {
+    slug: "bnsp", title: "Sertifikasi Kompetensi BNSP", featured: false, icon: "GraduationCap", category: "ketenagakerjaan",
+    desc: "Sertifikat kompetensi personel & pekerja — syarat seleksi kerja, tender, dan perizinan sektor.",
+    price: "Mulai Rp 750 rb",
+    items: ["Skema sesuai jabatan", "Pendampingan uji kompetensi", "TUK terdekat & fleksibel", "Sertifikat resmi BNSP"],
+  },
+  // ── Ekspansi: korporasi ──
+  {
+    slug: "lkpm", title: "LKPM & Kepatuhan OSS", featured: false, icon: "ClipboardCheck", category: "korporasi",
+    desc: "Laporan Kegiatan Penanaman Modal tepat waktu — hindari sanksi, penahanan perizinan, sampai pencabutan NIB.",
+    price: "Mulai Rp 400 rb/lapor",
+    items: ["LKPM bulanan/triwulan", "Susunan laporan & data", "Validasi di OSS-RBA", "Audit kepatuhan OSS penuh"],
+  },
 ];
 
 export const DEFAULT_TESTIMONIALS: TestimonialItem[] = [

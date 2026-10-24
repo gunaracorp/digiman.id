@@ -9,6 +9,9 @@ import {
   digitalContent,
 } from "./lainnya";
 import { digitalGrowthContent } from "./digital-growth";
+import { perizinanEkspansiContent } from "./perizinan-ekspansi";
+import { sdmEkspansiContent } from "./sdm-ekspansi";
+import { lainnyaEkspansiContent } from "./lainnya-ekspansi";
 import { SERVICE_ENRICHMENT } from "./enrichment";
 
 export type { ServiceContent };
@@ -24,6 +27,9 @@ export const SERVICE_CONTENTS: ServiceContent[] = [
   ...korporasiContent,
   ...digitalContent,
   ...digitalGrowthContent,
+  ...perizinanEkspansiContent,
+  ...sdmEkspansiContent,
+  ...lainnyaEkspansiContent,
 ];
 
 const CONTENT_MAP = new Map(SERVICE_CONTENTS.map((c) => [c.slug, c]));

@@ -1,11 +1,11 @@
 {
  "meta": {
   "version": 1,
-  "exportedAt": "2026-10-24T14:20:44.432Z",
+  "exportedAt": "2026-10-24T15:46:46.510Z",
   "app": "digiman.id",
   "note": "Backup seluruh tabel. Pemulihan: bun run db:restore",
   "counts": {
-   "service": 33,
+   "service": 44,
    "testimonial": 10,
    "faq": 6,
    "office": 4,
@@ -38,7 +38,7 @@
     "visible": true,
     "order": 10,
     "createdAt": "2026-10-24T13:33:56.085Z",
-    "updatedAt": "2026-10-24T14:20:44.217Z"
+    "updatedAt": "2026-10-24T15:46:36.566Z"
    },
    {
     "id": "cmvmfwnhz0001v9msqz9wrmh3",
@@ -53,7 +53,7 @@
     "visible": true,
     "order": 20,
     "createdAt": "2026-10-24T13:33:56.087Z",
-    "updatedAt": "2026-10-24T14:20:44.218Z"
+    "updatedAt": "2026-10-24T15:46:36.576Z"
    },
    {
     "id": "cmvmfwni00002v9msx3sh4kku",
@@ -68,7 +68,7 @@
     "visible": true,
     "order": 30,
     "createdAt": "2026-10-24T13:33:56.088Z",
-    "updatedAt": "2026-10-24T14:20:44.219Z"
+    "updatedAt": "2026-10-24T15:46:36.580Z"
    },
    {
     "id": "cmvmfwni00003v9msv74hq9ds",
@@ -83,7 +83,7 @@
     "visible": true,
     "order": 40,
     "createdAt": "2026-10-24T13:33:56.089Z",
-    "updatedAt": "2026-10-24T14:20:44.223Z"
+    "updatedAt": "2026-10-24T15:46:36.581Z"
    },
    {
     "id": "cmvmfwni10004v9ms9wspqxo3",
@@ -98,7 +98,7 @@
     "visible": true,
     "order": 50,
     "createdAt": "2026-10-24T13:33:56.090Z",
-    "updatedAt": "2026-10-24T14:20:44.223Z"
+    "updatedAt": "2026-10-24T15:46:36.581Z"
    },
    {
     "id": "cmvmfwni20005v9ms9icps7x4",
@@ -113,7 +113,7 @@
     "visible": true,
     "order": 60,
     "createdAt": "2026-10-24T13:33:56.091Z",
-    "updatedAt": "2026-10-24T14:20:44.224Z"
+    "updatedAt": "2026-10-24T15:46:36.581Z"
    },
    {
     "id": "cmvmfwni30006v9msmmugu6a6",
@@ -128,7 +128,7 @@
     "visible": true,
     "order": 70,
     "createdAt": "2026-10-24T13:33:56.092Z",
-    "updatedAt": "2026-10-24T14:20:44.224Z"
+    "updatedAt": "2026-10-24T15:46:36.582Z"
    },
    {
     "id": "cmvmfwni40007v9ms9k5y9a3l",
@@ -143,7 +143,7 @@
     "visible": true,
     "order": 80,
     "createdAt": "2026-10-24T13:33:56.093Z",
-    "updatedAt": "2026-10-24T14:20:44.225Z"
+    "updatedAt": "2026-10-24T15:46:36.582Z"
    },
    {
     "id": "cmvmfwni50008v9ms8jbltwup",
@@ -158,7 +158,7 @@
     "visible": true,
     "order": 90,
     "createdAt": "2026-10-24T13:33:56.094Z",
-    "updatedAt": "2026-10-24T14:20:44.226Z"
+    "updatedAt": "2026-10-24T15:46:36.582Z"
    },
    {
     "id": "cmvmfwni60009v9msfj452iyz",
@@ -173,7 +173,7 @@
     "visible": true,
     "order": 100,
     "createdAt": "2026-10-24T13:33:56.094Z",
-    "updatedAt": "2026-10-24T14:20:44.226Z"
+    "updatedAt": "2026-10-24T15:46:36.583Z"
    },
    {
     "id": "cmvmfwni6000av9msbllthatw",
@@ -188,7 +188,7 @@
     "visible": true,
     "order": 110,
     "createdAt": "2026-10-24T13:33:56.095Z",
-    "updatedAt": "2026-10-24T14:20:44.227Z"
+    "updatedAt": "2026-10-24T15:46:36.583Z"
    },
    {
     "id": "cmvmfwni7000bv9msffhbm7cz",
@@ -203,7 +203,7 @@
     "visible": true,
     "order": 120,
     "createdAt": "2026-10-24T13:33:56.096Z",
-    "updatedAt": "2026-10-24T14:20:44.228Z"
+    "updatedAt": "2026-10-24T15:46:36.584Z"
    },
    {
     "id": "cmvmfwni8000cv9msrr9hfb7m",
@@ -216,9 +216,9 @@
     "category": "ki",
     "featured": false,
     "visible": true,
-    "order": 130,
+    "order": 180,
     "createdAt": "2026-10-24T13:33:56.096Z",
-    "updatedAt": "2026-10-24T14:20:44.228Z"
+    "updatedAt": "2026-10-24T15:46:36.586Z"
    },
    {
     "id": "cmvmfwni9000dv9msqvzz26s4",
@@ -231,9 +231,9 @@
     "category": "ki",
     "featured": false,
     "visible": true,
-    "order": 140,
+    "order": 190,
     "createdAt": "2026-10-24T13:33:56.097Z",
-    "updatedAt": "2026-10-24T14:20:44.229Z"
+    "updatedAt": "2026-10-24T15:46:36.586Z"
    },
    {
     "id": "cmvmfwnia000ev9mseinmqazk",
@@ -246,9 +246,9 @@
     "category": "ki",
     "featured": false,
     "visible": true,
-    "order": 150,
+    "order": 210,
     "createdAt": "2026-10-24T13:33:56.098Z",
-    "updatedAt": "2026-10-24T14:20:44.229Z"
+    "updatedAt": "2026-10-24T15:46:36.587Z"
    },
    {
     "id": "cmvmfwnib000fv9mss51cc7zh",
@@ -261,9 +261,9 @@
     "category": "sertifikasi",
     "featured": false,
     "visible": true,
-    "order": 160,
+    "order": 220,
     "createdAt": "2026-10-24T13:33:56.099Z",
-    "updatedAt": "2026-10-24T14:20:44.230Z"
+    "updatedAt": "2026-10-24T15:46:36.587Z"
    },
    {
     "id": "cmvmfwnib000gv9msyp1m70qj",
@@ -276,9 +276,9 @@
     "category": "sertifikasi",
     "featured": false,
     "visible": true,
-    "order": 170,
+    "order": 230,
     "createdAt": "2026-10-24T13:33:56.100Z",
-    "updatedAt": "2026-10-24T14:20:44.231Z"
+    "updatedAt": "2026-10-24T15:46:36.588Z"
    },
    {
     "id": "cmvmfwnie000hv9ms80je5221",
@@ -291,9 +291,9 @@
     "category": "sertifikasi",
     "featured": false,
     "visible": true,
-    "order": 180,
+    "order": 240,
     "createdAt": "2026-10-24T13:33:56.102Z",
-    "updatedAt": "2026-10-24T14:20:44.232Z"
+    "updatedAt": "2026-10-24T15:46:36.588Z"
    },
    {
     "id": "cmvmfwnie000iv9msihhh9faw",
@@ -306,9 +306,9 @@
     "category": "sertifikasi",
     "featured": false,
     "visible": true,
-    "order": 190,
+    "order": 250,
     "createdAt": "2026-10-24T13:33:56.103Z",
-    "updatedAt": "2026-10-24T14:20:44.233Z"
+    "updatedAt": "2026-10-24T15:46:36.588Z"
    },
    {
     "id": "cmvmfwnif000jv9msqedlochq",
@@ -321,9 +321,9 @@
     "category": "pajak",
     "featured": false,
     "visible": true,
-    "order": 200,
+    "order": 270,
     "createdAt": "2026-10-24T13:33:56.104Z",
-    "updatedAt": "2026-10-24T14:20:44.233Z"
+    "updatedAt": "2026-10-24T15:46:36.589Z"
    },
    {
     "id": "cmvmfwnig000kv9mspfiygvao",
@@ -336,9 +336,9 @@
     "category": "pajak",
     "featured": false,
     "visible": true,
-    "order": 210,
+    "order": 280,
     "createdAt": "2026-10-24T13:33:56.105Z",
-    "updatedAt": "2026-10-24T14:20:44.234Z"
+    "updatedAt": "2026-10-24T15:46:36.589Z"
    },
    {
     "id": "cmvmfwnih000lv9ms4nznjm12",
@@ -351,9 +351,9 @@
     "category": "ketenagakerjaan",
     "featured": false,
     "visible": true,
-    "order": 220,
+    "order": 290,
     "createdAt": "2026-10-24T13:33:56.106Z",
-    "updatedAt": "2026-10-24T14:20:44.235Z"
+    "updatedAt": "2026-10-24T15:46:36.590Z"
    },
    {
     "id": "cmvmfwnii000mv9mseai5y910",
@@ -366,9 +366,9 @@
     "category": "ketenagakerjaan",
     "featured": false,
     "visible": true,
-    "order": 230,
+    "order": 300,
     "createdAt": "2026-10-24T13:33:56.107Z",
-    "updatedAt": "2026-10-24T14:20:44.235Z"
+    "updatedAt": "2026-10-24T15:46:36.590Z"
    },
    {
     "id": "cmvmfwnij000nv9msb7zywk0f",
@@ -381,9 +381,9 @@
     "category": "korporasi",
     "featured": false,
     "visible": true,
-    "order": 240,
+    "order": 340,
     "createdAt": "2026-10-24T13:33:56.107Z",
-    "updatedAt": "2026-10-24T14:20:44.236Z"
+    "updatedAt": "2026-10-24T15:46:36.591Z"
    },
    {
     "id": "cmvmfwnij000ov9msn39jy330",
@@ -396,9 +396,9 @@
     "category": "korporasi",
     "featured": false,
     "visible": true,
-    "order": 250,
+    "order": 350,
     "createdAt": "2026-10-24T13:33:56.108Z",
-    "updatedAt": "2026-10-24T14:20:44.237Z"
+    "updatedAt": "2026-10-24T15:46:36.592Z"
    },
    {
     "id": "cmvmfwnik000pv9ms8fe0lw79",
@@ -411,9 +411,9 @@
     "category": "digital",
     "featured": false,
     "visible": true,
-    "order": 270,
+    "order": 380,
     "createdAt": "2026-10-24T13:33:56.108Z",
-    "updatedAt": "2026-10-24T14:20:44.238Z"
+    "updatedAt": "2026-10-24T15:46:36.594Z"
    },
    {
     "id": "cmvmfwnik000qv9msx3gm2iky",
@@ -426,9 +426,9 @@
     "category": "digital",
     "featured": false,
     "visible": true,
-    "order": 290,
+    "order": 400,
     "createdAt": "2026-10-24T13:33:56.109Z",
-    "updatedAt": "2026-10-24T14:20:44.239Z"
+    "updatedAt": "2026-10-24T15:46:36.595Z"
    },
    {
     "id": "cmvmhkbwh0000v9a33dfc0f5o",
@@ -441,9 +441,9 @@
     "category": "korporasi",
     "featured": false,
     "visible": true,
-    "order": 260,
+    "order": 360,
     "createdAt": "2026-10-24T14:20:20.418Z",
-    "updatedAt": "2026-10-24T14:20:44.237Z"
+    "updatedAt": "2026-10-24T15:46:36.592Z"
    },
    {
     "id": "cmvmhkbwn0001v9a3edqm0p0x",
@@ -456,9 +456,9 @@
     "category": "digital",
     "featured": false,
     "visible": true,
-    "order": 280,
+    "order": 390,
     "createdAt": "2026-10-24T14:20:20.424Z",
-    "updatedAt": "2026-10-24T14:20:44.239Z"
+    "updatedAt": "2026-10-24T15:46:36.594Z"
    },
    {
     "id": "cmvmhkbwr0002v9a38mjba9ew",
@@ -471,9 +471,9 @@
     "category": "digital",
     "featured": false,
     "visible": true,
-    "order": 300,
+    "order": 410,
     "createdAt": "2026-10-24T14:20:20.428Z",
-    "updatedAt": "2026-10-24T14:20:44.242Z"
+    "updatedAt": "2026-10-24T15:46:36.595Z"
    },
    {
     "id": "cmvmhkbwt0003v9a3ubelipis",
@@ -486,9 +486,9 @@
     "category": "digital",
     "featured": false,
     "visible": true,
-    "order": 310,
+    "order": 420,
     "createdAt": "2026-10-24T14:20:20.430Z",
-    "updatedAt": "2026-10-24T14:20:44.243Z"
+    "updatedAt": "2026-10-24T15:46:36.596Z"
    },
    {
     "id": "cmvmhkbwv0004v9a3y5nrb1vo",
@@ -501,9 +501,9 @@
     "category": "digital",
     "featured": false,
     "visible": true,
-    "order": 320,
+    "order": 430,
     "createdAt": "2026-10-24T14:20:20.431Z",
-    "updatedAt": "2026-10-24T14:20:44.244Z"
+    "updatedAt": "2026-10-24T15:46:36.597Z"
    },
    {
     "id": "cmvmhkbww0005v9a3l62n7kt8",
@@ -516,9 +516,174 @@
     "category": "digital",
     "featured": false,
     "visible": true,
-    "order": 330,
+    "order": 440,
     "createdAt": "2026-10-24T14:20:20.433Z",
-    "updatedAt": "2026-10-24T14:20:44.244Z"
+    "updatedAt": "2026-10-24T15:46:36.597Z"
+   },
+   {
+    "id": "cmvmkn6df0000v95b0ye3zf2s",
+    "slug": "izin-lingkungan",
+    "title": "Persetujuan Lingkungan & AMDAL",
+    "desc": "UKL-UPL atau AMDAL sesuai skala risiko usaha — pintu wajib sebelum izin sektor terbit.",
+    "price": "Mulai Rp 2,5 jt",
+    "features": "[\"Saringan risiko & jenis dokumen\",\"UKL-UPL / AMDAL lengkap\",\"Panduan persetujuan DPMPTSP\",\"Sosialisasi & partisipasi publik\"]",
+    "icon": "Leaf",
+    "category": "perizinan",
+    "featured": false,
+    "visible": true,
+    "order": 130,
+    "createdAt": "2026-10-24T15:46:32.068Z",
+    "updatedAt": "2026-10-24T15:46:36.584Z"
+   },
+   {
+    "id": "cmvmkn6dh0001v95bs0twxpr7",
+    "slug": "pbg-slf",
+    "title": "PBG & Sertifikat Laik Fungsi",
+    "desc": "Persetujuan Bangunan Gedung pengganti IMB dan SLF — gedung Anda sah dibangun, sah dipakai.",
+    "price": "Mulai Rp 1,5 jt",
+    "features": "[\"PBG baru & perubahan\",\"SLF gedung eksisting\",\"Cek gambar teknis & lokasi\",\"Konsultasi tarif retribusi\"]",
+    "icon": "Building",
+    "category": "perizinan",
+    "featured": false,
+    "visible": true,
+    "order": 140,
+    "createdAt": "2026-10-24T15:46:32.069Z",
+    "updatedAt": "2026-10-24T15:46:36.584Z"
+   },
+   {
+    "id": "cmvmkn6dh0002v95b1b8bo6cl",
+    "slug": "sbu-konstruksi",
+    "title": "SBU Konstruksi & Sertifikat Kompetensi",
+    "desc": "Sertifikat Badan Usaha jasa konstruksi via LPJK — kualifikasi & subkualifikasi sesuai bidang Anda.",
+    "price": "Mulai Rp 2 jt",
+    "features": "[\"Registrasi SBU LPJK\",\"Sertifikat teknis & ahli\",\"Kualifikasi Madya & Utama\",\"Perpanjangan & peningkatan\"]",
+    "icon": "HardHat",
+    "category": "perizinan",
+    "featured": false,
+    "visible": true,
+    "order": 150,
+    "createdAt": "2026-10-24T15:46:32.070Z",
+    "updatedAt": "2026-10-24T15:46:36.585Z"
+   },
+   {
+    "id": "cmvmkn6dj0003v95bhzpkqpz7",
+    "slug": "api-bea-cukai",
+    "title": "API-U/API-P & Registrasi Bea Cukai",
+    "desc": "Angka Pengenal Impor dan nomor registrasi bea cukai — pintu legal impor-ekspor untuk bisnis Anda.",
+    "price": "Mulai Rp 1,5 jt",
+    "features": "[\"API-U / API-P di OSS\",\"Nomor registrasi bea cukai\",\"Konfigurasi KBLI impor\",\"Panduan HS Code & lartas\"]",
+    "icon": "Ship",
+    "category": "perizinan",
+    "featured": false,
+    "visible": true,
+    "order": 160,
+    "createdAt": "2026-10-24T15:46:32.071Z",
+    "updatedAt": "2026-10-24T15:46:36.585Z"
+   },
+   {
+    "id": "cmvmkn6dk0004v95bvm7i7uzd",
+    "slug": "izin-distribusi",
+    "title": "Izin Distribusi & Fasilitas Pemasaran",
+    "desc": "Izin usaha distribusi, penjualan langsung, sampai fasilitas pemasaran (Warsek) — barang beredar legal.",
+    "price": "Mulai Rp 1,5 jt",
+    "features": "[\"Izin distribusi (IDT)\",\"Fasilitas pemasaran & gudang\",\"Surat jalan & wajib lapor\",\"Untuk produsen & distributor\"]",
+    "icon": "Truck",
+    "category": "perizinan",
+    "featured": false,
+    "visible": true,
+    "order": 170,
+    "createdAt": "2026-10-24T15:46:32.072Z",
+    "updatedAt": "2026-10-24T15:46:36.585Z"
+   },
+   {
+    "id": "cmvmkn6dn0005v95bh3zmv1an",
+    "slug": "merek-internasional",
+    "title": "Merek Internasional (Protokol Madrid)",
+    "desc": "Satu pengajuan, banyak negara — daftarkan merek Anda ke 100+ negara lewat Protokol Madrid via DJKI.",
+    "price": "Mulai Rp 12 jt",
+    "features": "[\"Aplikasi Madrid via DJKI\",\"Seleksi negara tujuan\",\"Riset kelas Nice & risk check\",\"Monitoring pendaftaran\"]",
+    "icon": "Flag",
+    "category": "ki",
+    "featured": false,
+    "visible": true,
+    "order": 200,
+    "createdAt": "2026-10-24T15:46:32.076Z",
+    "updatedAt": "2026-10-24T15:46:36.586Z"
+   },
+   {
+    "id": "cmvmkn6dx0006v95brdnlo79i",
+    "slug": "higiene-sanitasi",
+    "title": "Sertifikat Laik Higiene & Sanitasi",
+    "desc": "Restoran, katering, pabrik pangan sah operasional — SLHS dari Dinkes agar inspeksi tidak menghentikan usaha.",
+    "price": "Mulai Rp 900 rb",
+    "features": "[\"Audit pra-inspeksi Dinkes\",\"Checklist higiene & sanitasi\",\"Pengujian lab & swab OK\",\"Sertifikat & pemutakhiran\"]",
+    "icon": "UtensilsCrossed",
+    "category": "sertifikasi",
+    "featured": false,
+    "visible": true,
+    "order": 260,
+    "createdAt": "2026-10-24T15:46:32.085Z",
+    "updatedAt": "2026-10-24T15:46:36.589Z"
+   },
+   {
+    "id": "cmvmkn6e20007v95b1olch4ku",
+    "slug": "kitas-investor",
+    "title": "KITAS Investor & Direksi PMA",
+    "desc": "Tinggal & mengurus bisnis di Indonesia tanpa RPTKA — jalur indeks D2 untuk investor & direksi PMA.",
+    "price": "Mulai Rp 7 jt",
+    "features": "[\"E-Visa indeks D2\",\"KITAS investor 1–2 tahun\",\"Tanpa DPKK & RPTKA\",\"MERP & multiple exit\"]",
+    "icon": "UserCheck",
+    "category": "ketenagakerjaan",
+    "featured": false,
+    "visible": true,
+    "order": 310,
+    "createdAt": "2026-10-24T15:46:32.090Z",
+    "updatedAt": "2026-10-24T15:46:36.590Z"
+   },
+   {
+    "id": "cmvmkn6e30008v95bwz4iukhs",
+    "slug": "smk3",
+    "title": "SMK3 & Ahli K3 Kemnaker",
+    "desc": "Sertifikasi Sistem Manajemen K3 wajib untuk perusahaan berisiko tinggi/100+ pekerja — dari audit sampai terbit.",
+    "price": "Mulai Rp 3 jt",
+    "features": "[\"Gap audit & perencanaan\",\"Dokumen SMK3 (5 kriteria)\",\"Audit eksternal Kemnaker\",\"Ahli K3 umum & khusus\"]",
+    "icon": "ShieldPlus",
+    "category": "ketenagakerjaan",
+    "featured": false,
+    "visible": true,
+    "order": 320,
+    "createdAt": "2026-10-24T15:46:32.091Z",
+    "updatedAt": "2026-10-24T15:46:36.591Z"
+   },
+   {
+    "id": "cmvmkn6e40009v95btcnintyl",
+    "slug": "bnsp",
+    "title": "Sertifikasi Kompetensi BNSP",
+    "desc": "Sertifikat kompetensi personel & pekerja — syarat seleksi kerja, tender, dan perizinan sektor.",
+    "price": "Mulai Rp 750 rb",
+    "features": "[\"Skema sesuai jabatan\",\"Pendampingan uji kompetensi\",\"TUK terdekat & fleksibel\",\"Sertifikat resmi BNSP\"]",
+    "icon": "GraduationCap",
+    "category": "ketenagakerjaan",
+    "featured": false,
+    "visible": true,
+    "order": 330,
+    "createdAt": "2026-10-24T15:46:32.092Z",
+    "updatedAt": "2026-10-24T15:46:36.591Z"
+   },
+   {
+    "id": "cmvmkn6ea000av95btcsryhul",
+    "slug": "lkpm",
+    "title": "LKPM & Kepatuhan OSS",
+    "desc": "Laporan Kegiatan Penanaman Modal tepat waktu — hindari sanksi, penahanan perizinan, sampai pencabutan NIB.",
+    "price": "Mulai Rp 400 rb/lapor",
+    "features": "[\"LKPM bulanan/triwulan\",\"Susunan laporan & data\",\"Validasi di OSS-RBA\",\"Audit kepatuhan OSS penuh\"]",
+    "icon": "ClipboardCheck",
+    "category": "korporasi",
+    "featured": false,
+    "visible": true,
+    "order": 370,
+    "createdAt": "2026-10-24T15:46:32.099Z",
+    "updatedAt": "2026-10-24T15:46:36.593Z"
    }
   ],
   "testimonial": [

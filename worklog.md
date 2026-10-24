@@ -605,3 +605,23 @@ Stage Summary:
 - /katalog-whatsapp = jembatan langsung ke Katalog WhatsApp Business user: salin 5 bidang per layanan (165 tombol) atau unduh CSV; gambar 1024×1024 tersedia di /layanan/[slug]/card-image sesuai standar WA (persegi ≥1024px).
 - Satu sumber kebenaran katalog: seed-v2 CATALOG → DB → fallback → konten editorial → katalog WA → CSV → sitemap; perubahan harga/layanan di Panel Admin otomatis mengalir ke seluruh permukaan.
 - Catatan lanjut (utang bawaan repo, di luar scope): admin dashboard legacy (src/app/admin/(dashboard)) & api/admin masih memakai pola lama — admin aktif tetap #/admin (hash panel).
+
+---
+Task ID: 21
+Agent: main (orchestrator) — Ekspansi Layanan Session
+Task: "tambahkan layanan lain" — tambah 11 layanan baru (33 → 44) lengkap dengan landing page editorial penuh, siap Katalog WhatsApp Business
+
+Work Log:
+- Riset gap layanan: 11 permintaan pasar bernilai tinggi yang belum ada — perizinan×5 (izin-lingkungan, pbg-slf, sbu-konstruksi, api-bea-cukai, izin-distribusi), ketenagakerjaan×3 (kitas-investor, smk3, bnsp), korporasi×1 (lkpm), sertifikasi×1 (higiene-sanitasi), ki×1 (merek-internasional).
+- scripts/seed-v2.ts: 11 entri CATALOG baru disisipkan DI DALAM section kategorinya masing-masing (urutan logis dipertahankan), icon lucide baru (Leaf, Building, HardHat, Ship, Truck, ShieldPlus, GraduationCap, UserCheck, ClipboardCheck, UtensilsCrossed, Flag — semua diverifikasi ada di lucide-react).
+- KONTEN EDITORIAL 3 file baru di src/lib/services/: perizinan-ekspansi.ts (5), sdm-ekspansi.ts (3), lainnya-ekspansi.ts (3) — masing-masing layanan lengkap: tagline puitis, heroSub, timeline, intro 3 paragraf mendalam, 5 benefit, 4 proses, requirements, 3 FAQ substantif, related.
+- enrichment.ts: +11 entri pengayaan (whoFor/deliverables/costs/legalBasis) — dasar hukum riil: UU 32/2009+PP 22/2021 (lingkungan), UU 28/2002+PP 16/2021 (PBG/SLF), UU 2/2017+PP 22/2020 (konstruksi), Permendag 36/2021 (API), PP 29/2021 (distribusi), UU 1/1970+PP 50/2012 (SMK3), Perpres 23/2004 (BNSP), UU 25/2007+BKPM 5/2021 (LKPM), Permenkes 2/2023 (SLHS), UU 20/2016+Protokol Madrid (merek internasional).
+- index.ts: 3 array baru dirakit ke SERVICE_CONTENTS; digiman-data.ts DEFAULT_SERVICES disinkronkan ke 44 (fallback konsisten).
+- services.tsx ICON_MAP: +11 ikon baru.
+- Migrasi: bun run scripts/migrate-services-v3.ts (idempoten) → DB 44 layanan, urutan dirapikan; db:backup dijalankan ulang (db/backup.json = 44 service).
+- Verifikasi: tsc 0 error di semua file baru/ubah (error tersisa = utang legacy terdokumentasi); lint exit 0; 11 rute /layanan/[slug] = 200; sitemap 115 → 126 URL (+11); CSV katalog WA 45 baris (header+44); card-image PNG 200; hub /layanan H1 "44 layanan"; /katalog-whatsapp 220 tombol salin (44×5); agent-browser E2E: title/H1/tagline/8 section enrichment/3 tombol WA/FAQPage JSON-LD render, mobile 390px 0 overflow, katalog & hub tampil; screenshot /tmp/task21-*.png. "1 Issue" = overlay Next.js dev-tools (dev only).
+
+Stage Summary:
+- Layanan DIGIMAN.ID kini 44: seluruhnya punya landing page editorial penuh (bukan fallback generik) + gambar katalog persegi + entri katalog WhatsApp + sitemap.
+- Kategori yang kini tertutup total: lingkungan (AMDAL), bangunan gedung (PBG/SLF), konstruksi (SBU), impor-ekspor (API/bea cukai), distribusi, SDM (SMK3/BNSP/KITAS investor), kepatuhan OSS (LKPM), pangan (SLHS), merek internasional (Madrid).
+- Satu sumber kebenaran tetap terjaga: CATALOG (seed-v2) → migrasi v3 → DB → fallback → konten editorial → katalog WA → CSV → sitemap; perubahan harga via Panel Admin tetap mengalir otomatis ke seluruh permukaan.
