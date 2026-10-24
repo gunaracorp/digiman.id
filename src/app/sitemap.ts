@@ -106,5 +106,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // fallback: DB kosong — artikel diindeks on-demand
   }
 
-  return entries;
+  // Hindari URL duplikat ketika registri halaman dan hub programmatic
+  // sama-sama mendaftarkan jalur yang identik.
+  return Array.from(new Map(entries.map((entry) => [entry.url, entry])).values());
 }

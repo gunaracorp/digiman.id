@@ -227,13 +227,11 @@ const ENTITY_JSON_LD = {
 const JSON_LD_HTML = JSON.stringify(ENTITY_JSON_LD).replace(/</g, "\\u003c");
 
 export const metadata: Metadata = {
-  title:
-    "DIGIMAN.ID — Naikkan Bisnis Anda ke 7 Lapis Langit Legalitas & Digitalisasi | by Gugun Gunara",
+  title: "DIGIMAN.ID | Legalitas & Digitalisasi Bisnis Indonesia",
   description:
-    "PT Digital Bisnis Manajemen (DIGIMAN.ID) — Jasa akta pendirian perusahaan (PT, CV, PT PMA) & seluruh legalitas usaha Indonesia: NIB, OSS, Merek, Halal, hingga Gunara OS (standarisasi 165 dokumen super organisasi). Didirikan Gugun Gunara, sistem dibangun Muhammad Lutfi Azmi (prabudanling) — didukung Santri Angon & PT Top Konsultan Internasional (topkonsultan.web.id).",
-  // SEO GOD MODE — 250 kata kunci teratas dari korpus 1.000 (lihat seo-keywords.ts).
-  // Korpus penuh 1.000 + 1.000 tagar dirender sebagai direktori terlihat di SeoHub.
-  keywords: topKeywords(250),
+    "Jasa pendirian PT, CV, NIB, OSS, merek, halal, dan digitalisasi bisnis di Indonesia. Konsultasi profesional dari DIGIMAN.ID, PT Digital Bisnis Manajemen.",
+  keywords: topKeywords(80),
+  applicationName: "DIGIMAN.ID",
   authors: [
     { name: "Gugun Gunara", url: "https://digiman.id" },
     {
@@ -247,6 +245,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://digiman.id"),
   alternates: {
     canonical: "/",
+    languages: { "id-ID": "/" },
     // RSS autodiscovery — pembaca & agregator menemukan feed tanpa ekspor
     types: {
       "application/rss+xml": [{
@@ -307,8 +306,10 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: "#050d0a",
+  colorScheme: "dark",
   width: "device-width",
   initialScale: 1,
+  userScalable: true,
 };
 
 export default function RootLayout({
