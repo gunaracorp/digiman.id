@@ -835,3 +835,20 @@ Stage Summary:
 - Kode aplikasi tidak diubah (terbukti benar); tidak ada regresi SEO/SSR.
 - next.config.ts: +allowedDevOrigins, +devIndicators:false (dokumentasi alasan inline).
 - Pola penting utk sesi berikutnya: spawn proses persisten via double-fork; jangan jalankan browser headless bersamaan dengan kompilasi cold dev server (OOM 4GB).
+
+---
+Task ID: wa-number-1
+Agent: main (orchestrator)
+Task: Ganti seluruh nomor telepon & WhatsApp ke +62 813-1651-6524 (6281316516524)
+
+Work Log:
+- Inventarisasi: 15 file source + DB memuat nomor lama 6281333397223 (varian: +62 813-3339-7223, +62-813-3339-7223, 0813-3339-7223). Temuan arsitektur: landing (digiman-data.ts getSiteData) memakai DEFAULT_SETTINGS (tidak baca DB); halaman publik lain (site-data.ts) baca SiteSetting KV dari DB dengan fallback default — keduanya harus diganti.
+- src/: 15 file diganti via scripts/replace-wa-number.sh (sed, 4 pola varian). Grep src/ → BERSIH.
+- DB db/custom.db: SiteSetting upsert waNumber=6281316516524, waDisplay="+62 813-1651-6524" via scripts/update-wa-number-db.py (sapu semua tabel/kolom teks utk sisa nomor lama → 0 baris tersisa; verifikasi Python-side robust).
+- scripts/update-wa-office.ts (Task 13, schema lama siteSetting id:1 → bakal crash + duplikasi insert kantor SCBD jika dijalankan) ditulis ulang: upsert KV idempotent sesuai schema sekarang.
+- Verifikasi live: landing 178× nomor baru / 0 lama; /kontak, /layanan/pendirian-pt, /katalog-whatsapp, /paket-harga, /tentang-kami, /faq, /legalitas, 404 → semua hanya nomor baru. Server HTTP 200.
+- Placeholder form "0812 3456 7890" (contact-form, proposal-studio) SENGAJA tidak diganti — contoh format nomor milik pengunjung, bukan kontak perusahaan. worklog.md historis tidak diubah.
+
+Stage Summary:
+- Nomor resmi DIGIMAN.ID kini +62 813-1651-6524 di seluruh source, JSON-LD SEO, wa.me CTA, fallback API, DB (SiteSetting), dan semua halaman live termasuk katalog-whatsapp (siap dipakai ulang utk koneksi WhatsApp Business).
+- Tool reusabel: scripts/replace-wa-number.sh (kode) + scripts/update-wa-number-db.py (DB) — ganti konstanta di dalamnya bila nomor berubah lagi.

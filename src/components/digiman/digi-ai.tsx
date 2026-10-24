@@ -10,7 +10,7 @@ const GREETING =
   "Halo! 👋 Saya Digi AI, asisten DIGIMAN.ID. Tanya apa saja soal pendirian PT/CV, NIB & OSS, merek, sertifikasi halal, sampai website & AI. Bisa juga coba pertanyaan cepat di bawah!";
 
 const FALLBACK_REPLY =
-  "Maaf, koneksi bermasalah. Coba lagi atau chat WhatsApp kami di +62 813-3339-7223 ya!";
+  "Maaf, koneksi bermasalah. Coba lagi atau chat WhatsApp kami di +62 813-1651-6524 ya!";
 
 const QUICK_QUESTIONS = [
   "Berapa biaya pendirian PT?",

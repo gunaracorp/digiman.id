@@ -11,7 +11,7 @@ import {
 import type { FaqItem } from "@/lib/digiman-data";
 import { useI18n } from "@/lib/i18n";
 
-const WA_NUMBER = "6281333397223";
+const WA_NUMBER = "6281316516524";
 
 export default function Faq({ faqs }: { faqs: FaqItem[] }) {
   const { t } = useI18n();

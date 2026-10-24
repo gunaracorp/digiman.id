@@ -129,11 +129,11 @@ export default function PengaturanPage() {
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
                   <FieldLabel hint="Tampil di website, bebas format">Nomor WA (tampilan)</FieldLabel>
-                  <Input value={s.waDisplay} onChange={(e) => set("waDisplay", e.target.value)} placeholder="+62 813-3339-7223" className={inputCls} />
+                  <Input value={s.waDisplay} onChange={(e) => set("waDisplay", e.target.value)} placeholder="+62 813-1651-6524" className={inputCls} />
                 </div>
                 <div>
                   <FieldLabel hint="Angka saja, awali 62 tanpa +">Nomor WA (link wa.me)</FieldLabel>
-                  <Input value={s.waNumber} onChange={(e) => set("waNumber", e.target.value)} placeholder="6281333397223" className={inputCls} />
+                  <Input value={s.waNumber} onChange={(e) => set("waNumber", e.target.value)} placeholder="6281316516524" className={inputCls} />
                 </div>
               </div>
               <div>

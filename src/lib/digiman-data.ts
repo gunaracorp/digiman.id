@@ -89,8 +89,8 @@ export const SERVICE_CATEGORIES = [
 
 export const DEFAULT_SETTINGS: SiteSettings = {
   companyName: "PT Digital Bisnis Manajemen",
-  waNumber: "6281333397223",
-  waDisplay: "+62 813-3339-7223",
+  waNumber: "6281316516524",
+  waDisplay: "+62 813-1651-6524",
   email: "halo@digiman.id",
   addressShort: "Andalusia Garden Granada No.11, Tasikmalaya",
   hours: "Senin–Jumat 09.00–17.00 WIB",

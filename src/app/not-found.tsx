@@ -46,7 +46,7 @@ export default function NotFound() {
             Kembali ke Beranda
           </Link>
           <a
-            href={`https://wa.me/6281333397223?text=${encodeURIComponent(
+            href={`https://wa.me/6281316516524?text=${encodeURIComponent(
               "Halo DIGIMAN.ID, saya kesulitan menemukan informasi di situs Anda."
             )}`}
             target="_blank"

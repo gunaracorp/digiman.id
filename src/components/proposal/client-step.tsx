@@ -119,7 +119,7 @@ export default function ClientStep({
           </p>
         ) : (
           <p id="prop-wa-hint" className="mt-1.5 text-xs text-emerald-50/40">
-            Gunakan awalan +62 / 62 / 08 — contoh: 6281333397223
+            Gunakan awalan +62 / 62 / 08 — contoh: 6281316516524
           </p>
         )}
       </div>

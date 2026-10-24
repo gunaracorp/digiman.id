@@ -214,7 +214,7 @@ export default function ProposalDocument({ model }: { model: PreviewModel }) {
 
       {/* ─── Footer micro ─── */}
       <footer className="mt-8 border-t border-emerald-900/20 pt-3 text-center text-[10px] tracking-wide text-emerald-900/60">
-        TOP Manajemen • powered by digiman.id • halo@digiman.id • WA 0813-3339-7223
+        TOP Manajemen • powered by digiman.id • halo@digiman.id • WA 0813-1651-6524
       </footer>
     </article>
   );

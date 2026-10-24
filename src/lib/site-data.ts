@@ -134,8 +134,8 @@ export async function getSectionConfig(): Promise<SectionRow[]> {
 // ---------- Data default (fallback) ----------
 const DEFAULT_SETTINGS: SiteSettingsData = {
   companyName: "PT Digital Bisnis Manajemen",
-  waNumber: "6281333397223",
-  waDisplay: "+62 813-3339-7223",
+  waNumber: "6281316516524",
+  waDisplay: "+62 813-1651-6524",
   email: "halo@digiman.id",
   addressShort: "Andalusia Garden Granada No.11, Tasikmalaya",
   addressFull:

@@ -76,8 +76,8 @@ export async function POST(req: NextRequest) {
       const s = d.settings;
       const safe = {
         companyName: cleanStr(s.companyName, 120) || "PT Digital Bisnis Manajemen",
-        waNumber: (cleanStr(s.waNumber, 20).replace(/[^0-9]/g, "") || "6281333397223"),
-        waDisplay: cleanStr(s.waDisplay, 30) || "+62 813-3339-7223",
+        waNumber: (cleanStr(s.waNumber, 20).replace(/[^0-9]/g, "") || "6281316516524"),
+        waDisplay: cleanStr(s.waDisplay, 30) || "+62 813-1651-6524",
         email: cleanStr(s.email, 120) || "halo@digiman.id",
         addressShort: cleanStr(s.addressShort, 160),
         addressFull: cleanStr(s.addressFull, 300),

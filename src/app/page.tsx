@@ -143,7 +143,7 @@ export default async function Page() {
         name: `${office.label} — DIGIMAN.ID`,
         parentOrganization: { "@id": "https://digiman.id/#organisasi" },
         image: { "@id": "https://digiman.id/#logo" },
-        telephone: "+62-813-3339-7223",
+        telephone: "+62-813-1651-6524",
         email: "halo@digiman.id",
         priceRange: "Rp 350.000 - Rp 165.000.000",
         address: {

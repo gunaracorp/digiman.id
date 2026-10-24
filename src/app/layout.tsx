@@ -43,7 +43,7 @@ const ENTITY_JSON_LD = {
       },
       image: { "@id": "https://digiman.id/#logo" },
       email: "halo@digiman.id",
-      telephone: "+62-813-3339-7223",
+      telephone: "+62-813-1651-6524",
       foundingDate: "2022-12-26",
       foundingLocation: {
         "@type": "Place",
@@ -217,7 +217,7 @@ const ENTITY_JSON_LD = {
         postalCode: "46181",
         addressCountry: "ID",
       },
-      telephone: "+62-813-3339-7223",
+      telephone: "+62-813-1651-6524",
       email: "halo@digiman.id",
       founder: { "@id": "https://digiman.id/#gugun-gunara" },
     },

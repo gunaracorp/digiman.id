@@ -410,7 +410,7 @@ export default function Services({ services }: { services: ServiceItem[] }) {
           <AnimatePresence mode="popLayout">
             {filtered.map((s, i) => {
               const Icon = ICON_MAP[s.icon] ?? FALLBACK_ICON;
-              const waLink = `https://wa.me/6281333397223?text=${encodeURIComponent(
+              const waLink = `https://wa.me/6281316516524?text=${encodeURIComponent(
                 t("services.waPesan", { title: s.title }),
               )}`;
               return (

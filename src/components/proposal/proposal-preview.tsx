@@ -340,7 +340,7 @@ export default function ProposalPreview({
           {/* Legal footer */}
           <footer className="mt-10 border-t border-slate-300 pt-3 text-center text-[10px] leading-relaxed text-slate-500">
             TOP Manajemen — SK AHU-059566.AH.01.30 Tahun 2022 · NIB 2612220035584 ·
-            halo@digiman.id · +62 813-3339-7223
+            halo@digiman.id · +62 813-1651-6524
           </footer>
         </article>
       </div>

@@ -50,7 +50,7 @@ import {
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
-const WA_LINK = `https://wa.me/6281333397223?text=${encodeURIComponent(
+const WA_LINK = `https://wa.me/6281316516524?text=${encodeURIComponent(
   "Halo, saya tertarik dengan Gunara OS — arsitektur 165 dokumen super organisasi DIGIMAN.ID. Mohon info lebih lanjut.",
 )}`;
 

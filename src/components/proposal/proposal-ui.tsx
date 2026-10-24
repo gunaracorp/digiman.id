@@ -8,7 +8,7 @@
 export const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 /** Nomor WhatsApp resmi DIGIMAN.ID (format internasional tanpa +). */
-export const WA_NUMBER = "6281333397223";
+export const WA_NUMBER = "6281316516524";
 
 export function waLinkFor(message: string): string {
   return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
