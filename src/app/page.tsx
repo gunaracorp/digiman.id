@@ -1,8 +1,8 @@
 /**
  * DIGIMAN.ID — Halaman utama (server component).
  * Seluruh konten dibaca dari database (getSiteData + blog + Gunara OS),
- * lalu dirender via AppRouter: landing multi-seksi + view hash (#/os, #/blog,
- * #/blog/{slug}, #/proposal, #/admin) dalam satu route "/".
+ * lalu dirender via AppRouter: landing multi-seksi + view route (/gunara-os,
+ * /blog, /blog/{slug}, /proposal, /admin).
  */
 import { getSiteData } from "@/lib/digiman-site-data";
 import { db } from "@/lib/db";

@@ -143,7 +143,7 @@ export default function OsTeaser({
           className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
         >
           <a
-            href="#route-os"
+            href="/gunara-os"
             className="shimmer-btn inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-yellow-300 to-amber-400 px-8 py-4 text-sm font-bold text-emerald-950 transition-transform hover:scale-[1.03] sm:w-auto"
           >
             Jelajahi {docCount} Dokumen

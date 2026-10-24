@@ -145,7 +145,7 @@ export function CommandPalette({
         <CommandGroup heading={t("dash.palette.links")}>
           <CommandItem
             value="gunara os explorer dokumen"
-            onSelect={() => run(() => (window.location.hash = "#route-os"))}
+            onSelect={() => run(() => (window.location.href = "/gunara-os"))}
             className="gap-3"
           >
             <Boxes className="text-gold" aria-hidden="true" />

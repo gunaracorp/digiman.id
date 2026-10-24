@@ -90,9 +90,11 @@ export async function GET() {
     });
   } catch (error) {
     console.error("[/api/gunara] Gagal memuat data:", error);
-    return NextResponse.json(
-      { error: "Gagal memuat data Gunara OS." },
-      { status: 500 },
+    // Keep the public SEO route renderable when the optional SQLite database is unavailable.
+    // The explorer can show its structure and recover automatically once the database returns.
+    return NextResponse.json<GunaraApiResponse>(
+      { packages: [], domains: [], docs: [] },
+      { status: 200, headers: { "Cache-Control": "no-store" } },
     );
   }
 }
