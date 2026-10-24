@@ -15,8 +15,18 @@ export interface ServiceEnrichment {
   costs?: { item: string; note?: string }[];
   legalBasis?: string[];
 }
+import { esgEnrichment } from "./esg-keberlanjutan";
+import { pendanaanEnrichment } from "./pendanaan-investasi";
+import { strukturEnrichment } from "./struktur-korporasi";
+import { globalEnrichment } from "./global-ekspansi";
+import { kepatuhanDigitalEnrichment } from "./kepatuhan-digital";
+import { kreatifEnrichment } from "./kreatif-media";
+import { panganKesehatanEnrichment } from "./pangan-kesehatan";
+import { propertiEnrichment } from "./properti-infrastruktur";
+import { sdmOrganisasiEnrichment } from "./sdm-organisasi";
+import { resiliensiEnrichment } from "./resiliensi-bisnis";
 
-export const SERVICE_ENRICHMENT: Record<string, ServiceEnrichment> = {
+const CORE_ENRICHMENT: Record<string, ServiceEnrichment> = {
   /* ══════════════ PENDIRIAN BADAN USAHA ══════════════ */
 
   "pendirian-pt": {
@@ -1163,4 +1173,19 @@ export const SERVICE_ENRICHMENT: Record<string, ServiceEnrichment> = {
       "Tata cara aplikasi internasional melalui DJKI & WIPO (Peraturan Bersama Madrid)",
     ],
   },
+};
+
+/** Gabungan pengayaan inti (44 layanan) + 10 kategori ekspansi (100 layanan) */
+export const SERVICE_ENRICHMENT: Record<string, ServiceEnrichment> = {
+  ...CORE_ENRICHMENT,
+  ...esgEnrichment,
+  ...pendanaanEnrichment,
+  ...strukturEnrichment,
+  ...globalEnrichment,
+  ...kepatuhanDigitalEnrichment,
+  ...kreatifEnrichment,
+  ...panganKesehatanEnrichment,
+  ...propertiEnrichment,
+  ...sdmOrganisasiEnrichment,
+  ...resiliensiEnrichment,
 };

@@ -189,7 +189,7 @@
   },
   "services": {
     "kicker": "Catálogo Completo",
-    "headingA": "29 Serviços",
+    "headingA": "144 Serviços",
     "headingB": "Uma Porta Única",
     "sub": "Da constituição de empresas, licenciamentos, tributação, certificação até a digitalização — nada mais precisa buscar em outro lugar.",
     "all": "Todos",
@@ -201,7 +201,17 @@
       "pajak": "Tributação",
       "ketenagakerjaan": "Relações Trabalhistas",
       "korporasi": "Corporate & Legal",
-      "digital": "Digitalização"
+      "digital": "Digitalização",
+      "esg": "ESG e Sustentabilidade",
+      "pendanaan": "Financiamento e Investimento",
+      "struktur": "Estrutura de Grupo e Transações",
+      "global": "Expansão Global",
+      "kepatuhan-digital": "Conformidade Digital e de Dados",
+      "kreatif": "Indústria Criativa e Mídia",
+      "pangan-kesehatan": "Alimentos, Saúde e Farmácia",
+      "properti": "Imóveis e Infraestrutura",
+      "sdm-organisasi": "RH e Organização",
+      "resiliensi": "Resiliência e Proteção"
     },
     "consult": "Consultoria sobre Este Serviço",
     "featured": "Mais Popular"

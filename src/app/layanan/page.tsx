@@ -36,6 +36,16 @@ const CATEGORY_ORDER = [
   "ketenagakerjaan",
   "korporasi",
   "digital",
+  "esg",
+  "pendanaan",
+  "struktur",
+  "global",
+  "kepatuhan-digital",
+  "kreatif",
+  "pangan-kesehatan",
+  "properti",
+  "sdm-organisasi",
+  "resiliensi",
 ];
 
 export default async function LayananPage({

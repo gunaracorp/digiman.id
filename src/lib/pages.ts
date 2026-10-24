@@ -36,6 +36,16 @@ export const CATEGORY_LABEL: Record<string, string> = {
   ketenagakerjaan: "Ketenagakerjaan & Imigrasi",
   korporasi: "Korporasi & Legal",
   digital: "Digitalisasi & Teknologi",
+  esg: "ESG & Keberlanjutan",
+  pendanaan: "Pendanaan & Investasi",
+  struktur: "Struktur Grup & Transaksi",
+  global: "Ekspansi Global",
+  "kepatuhan-digital": "Kepatuhan Digital & Data",
+  kreatif: "Industri Kreatif & Media",
+  "pangan-kesehatan": "Pangan, Kesehatan & Farma",
+  properti: "Properti & Infrastruktur",
+  "sdm-organisasi": "SDM & Organisasi",
+  resiliensi: "Resiliensi & Perlindungan",
 };
 
 export const CATEGORY_DESC: Record<string, string> = {
@@ -54,4 +64,24 @@ export const CATEGORY_DESC: Record<string, string> = {
     "Perusahaan hidup dan berubah: perubahan akta, struktur saham, pembubaran-likuidasi, hingga legal drafting & due diligence.",
   digital:
     "Website, e-commerce, aplikasi internal, otomasi AI, dan digital marketing — langit ke-7 ekosistem Digiman.",
+  esg:
+    "Laporan keberlanjutan, jejak & kredit karbon, gedung hijau, EPR kemasan, hingga kepatuhan EUDR — bisnis yang bertanggung jawab sekaligus bernilai lebih.",
+  pendanaan:
+    "Pitch deck, valuasi, data room, crowdfunding OJK, KUR, ESOP, hingga IP sebagai jaminan kredit — pintu modal terbuka dengan struktur yang benar.",
+  struktur:
+    "Holding, joint venture, merger-akuisisi, piagam keluarga bisnis, suksesi, hingga perjanjian pemegang saham — arsitektur korporasi yang kokoh.",
+  global:
+    "Kantor perwakilan, entitas luar negeri, sertifikat asal, kawasan berikat, transfer pricing, hingga antidumping — dunia menjadi pasar Anda.",
+  "kepatuhan-digital":
+    "UU PDP, DPO as-a-service, PSE Komdigi, audit siber, tata kelola AI, hingga kepatuhan fintech OJK — data dan sistem Anda aman hukumnya.",
+  kreatif:
+    "LSF, izin konser, reklame, lisensi musik LMK, ISBN, rating game IGRS, Dewan Pers, hingga kontrak kreator — ekonomi kreatif tertata legalnya.",
+  "pangan-kesehatan":
+    "CPOTB, AKL alat kesehatan, label gizi, apotek & PBF, HACCP, organik, klinik, hingga P2K3 — produk sehat dengan legalitas lengkap.",
+  properti:
+    "Due diligence properti, pengalihan & HGU-HGB, perumahan, konsesi PPP, menara telekomunikasi, IUP tambang, hingga energi terbarukan.",
+  "sdm-organisasi":
+    "Job grading, audit payroll, PKWT, magang terkelola, outsourcing, PHK terkelola, ISO 37001, hingga kebijakan hybrid — SDM tertata dari akar.",
+  resiliensi:
+    "Asuransi bisnis, forensik digital, protokol krisis, BCP, pencegahan fraud, ERM, mediasi, piutang macet, hingga reputasi daring — bisnis yang tak mudah runtuh.",
 };

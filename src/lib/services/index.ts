@@ -12,6 +12,16 @@ import { digitalGrowthContent } from "./digital-growth";
 import { perizinanEkspansiContent } from "./perizinan-ekspansi";
 import { sdmEkspansiContent } from "./sdm-ekspansi";
 import { lainnyaEkspansiContent } from "./lainnya-ekspansi";
+import { esgContent } from "./esg-keberlanjutan";
+import { pendanaanContent } from "./pendanaan-investasi";
+import { strukturContent } from "./struktur-korporasi";
+import { globalContent } from "./global-ekspansi";
+import { kepatuhanDigitalContent } from "./kepatuhan-digital";
+import { kreatifContent } from "./kreatif-media";
+import { panganKesehatanContent } from "./pangan-kesehatan";
+import { propertiContent } from "./properti-infrastruktur";
+import { sdmOrganisasiContent } from "./sdm-organisasi";
+import { resiliensiContent } from "./resiliensi-bisnis";
 import { SERVICE_ENRICHMENT } from "./enrichment";
 
 export type { ServiceContent };
@@ -30,6 +40,16 @@ export const SERVICE_CONTENTS: ServiceContent[] = [
   ...perizinanEkspansiContent,
   ...sdmEkspansiContent,
   ...lainnyaEkspansiContent,
+  ...esgContent,
+  ...pendanaanContent,
+  ...strukturContent,
+  ...globalContent,
+  ...kepatuhanDigitalContent,
+  ...kreatifContent,
+  ...panganKesehatanContent,
+  ...propertiContent,
+  ...sdmOrganisasiContent,
+  ...resiliensiContent,
 ];
 
 const CONTENT_MAP = new Map(SERVICE_CONTENTS.map((c) => [c.slug, c]));

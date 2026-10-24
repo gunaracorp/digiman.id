@@ -625,3 +625,157 @@ Stage Summary:
 - Layanan DIGIMAN.ID kini 44: seluruhnya punya landing page editorial penuh (bukan fallback generik) + gambar katalog persegi + entri katalog WhatsApp + sitemap.
 - Kategori yang kini tertutup total: lingkungan (AMDAL), bangunan gedung (PBG/SLF), konstruksi (SBU), impor-ekspor (API/bea cukai), distribusi, SDM (SMK3/BNSP/KITAS investor), kepatuhan OSS (LKPM), pangan (SLHS), merek internasional (Madrid).
 - Satu sumber kebenaran tetap terjaga: CATALOG (seed-v2) → migrasi v3 → DB → fallback → konten editorial → katalog WA → CSV → sitemap; perubahan harga via Panel Admin tetap mengalir otomatis ke seluruh permukaan.
+
+---
+Task ID: 22-f
+Agent: konten-kreatif (subagent)
+Task: Konten editorial 10 layanan kategori kreatif
+Work Log:
+- Baca worklog, types.ts (ServiceContent), lainnya-ekspansi.ts (contoh emas), enrichment.ts (ServiceEnrichment), catalog.ts (10 entri kreatif: slug/title/price/features), expansion-spec.md KATEGORI 6.
+- Tulis src/lib/services/kreatif-media.ts BARU dengan DUA export: kreatifContent (10 ServiceContent) + kreatifEnrichment (Record<string, ServiceEnrichment> per 10 slug). Import ServiceEnrichment diambil dari "./enrichment" (bukan "./types") karena interface hanya ada di enrichment.ts — memastikan tsc lulus tanpa mengubah file lain.
+- Per layanan: tagline puitis, heroSub, timeline realistis, intro TEPAT 3 paragraf (regulasi konkret → kesalahan/konsekuensi → cara DIGIMAN menangani), 5 benefit, 4 proses, 4-6 syarat, 3 FAQ (biaya/lama/risiko/syarat), 4 related slug VALID.
+- Regulasi riil dipakai: UU 33/2009 + PP 32/2013 jo. 19/2017 + Perpres 12/2025 (LSF), Perkap 16/2023 SITK/Regula + UU 1/2022 HKPD (event, reklame), UU 28/2014 Pasal 80-81 + PP 56/2021 (LMK), UU 43/2007 + ISO 2108 (ISBN), PP 71/2019 + IGRS Komdigi (game), UU 40/1999 + UU 7/2021 HPP 0,5% (pers online), UU 20/2016 + UU 28/2014 (merchandise), KUHPerdata + Ciptaker + UU PDP (talent), UU 40/2007 + PP 8/2021 (badan usaha produksi film).
+- Related kontrak-talent-kreator sesuai instruksi perbaikan: ["legal-drafting","lisensi-merchandise","pendaftaran-pers-online","lisensi-musik-lmk"]; seluruh related lain divalidasi terhadap CATALOG + slug kreatif — semua valid.
+- Verifikasi: bunx tsc --noEmit | grep kreatif-media = 0 baris; struktur divalidasi via script bun (intro=3, benefits=5, process=4, requirements 4-6, faqs=3, related=4; enrichment whoFor=4, deliverables=5, costs 4-5, legalBasis 3-4 untuk 10/10 slug) → ALL-STRUCTURE-OK.
+Stage Summary:
+- File kreatif-media.ts selesai: 10 ServiceContent + 10 enrichment, tsc 0 error
+- 10 slug: sertifikat-film-lsf, izin-event-konser, izin-reklame-luar-ruang, lisensi-musik-lmk, isbn-penerbitan, rating-game-igrs, pendaftaran-pers-online, lisensi-merchandise, kontrak-talent-kreator, badan-usaha-produksi-film
+- Volume konten editorial ~9.700 kata; tanpa emoji/markdown; hanya file kreatif-media.ts yang dibuat (file lain tidak disentuh)
+
+---
+Task ID: 22-b
+Agent: konten-pendanaan (subagent)
+Task: Konten editorial 10 layanan kategori pendanaan
+Work Log:
+- Baca worklog.md (konteks 44 layanan + ekspansi), types.ts (ServiceContent), lainnya-ekspansi.ts (contoh emas gaya), enrichment.ts baris 1-60 (ServiceEnrichment), catalog.ts (10 entri pendanaan: slug/title/price/features), expansion-spec.md bagian KATEGORI 2 (angle & regulasi per layanan).
+- Tulis src/lib/services/pendanaan-investasi.ts BARU — DUA export: pendanaanContent (10 ServiceContent) + pendanaanEnrichment (Record 10 slug). Catatan teknis: ServiceEnrichment didefinisikan di ./enrichment (BUKAN ./types) — import type dari ./enrichment agar TSC strict lulus; tidak ada file lain yang diubah.
+- 10 layanan kategori pendanaan lengkap sesuai standar: pitch-deck-investor, valuasi-bisnis, data-room-virtual, pendanaan-scf, kredit-kur, hibah-riset, esop-program, convertible-note-safe, jamintel-ip-jaminan, restrukturisasi-utang. Per layanan: tagline puitis, heroSub, timeline realistis, intro TEPAT 3 paragraf (P1 konteks+regulasi konkret, P2 konsekuensi/kesalahan umum, P3 cara DIGIMAN), 5 benefit, 4 proses, 5 syarat, 3 FAQ (jawab biaya/lama/risiko/syarat), 4 related slug valid (semua terverifikasi ada di catalog.ts).
+- Enrichment per layanan: whoFor 4, deliverables 5, costs 4-5 (harga anchor dari catalog: 5/10/7,5/10/2/7,5/12/7,5/12/7,5 jt), legalBasis 3-4 regulasi lengkap (UU 40/2007, POJK 38/POJK.04/2020, POJK 57/2020, UU 4/2023 P2SK, PMK 40/2022 KUR, PMK 51/2018 RISPRO, PMK 130/2020 ESOP, PMK 68/2009 PPh saham, UU 13/2016 + PP 36/2018 jaminfidusia, UU 37/2004 PKPU, POJK 11/POJK.03/2020, UU 27/2022 PDP, UU 1/2014 Penilaian, Perpres 78/2021 BRIN).
+- Verifikasi: bunx tsc --noEmit -> 0 baris error untuk pendanaan-investasi.ts; validasi struktural via bun (import runtime): 10 konten + 10 enrichment, intro=3, benefits=5, process=4, req=4-6, faqs=3, related=4, whoFor=4, deliverables=5, costs=4-5, legalBasis=3-4 — SEMUA SESUAI STANDAR. Total kata file 11.334 (wc -w, termasuk kode); ~7.933 kata konten editorial inti + ~1.600 kata lapisan enrichment.
+- File lain TIDAK disentuh (index.ts/seed/DB = milik orkestrator).
+Stage Summary:
+- File pendanaan-investasi.ts selesai: 10 ServiceContent + 10 enrichment, tsc 0 error
+
+---
+Task ID: 22-c
+Agent: konten-struktur (subagent)
+Task: Konten editorial 10 layanan kategori struktur
+Work Log:
+- Membaca worklog.md (konteks proyek), types.ts (ServiceContent), lainnya-ekspansi.ts (contoh emas gaya/struktur), enrichment.ts (interface ServiceEnrichment), catalog.ts (10 entri kategori "struktur": slug, title, price, features), expansion-spec.md bagian KATEGORI 3 (arahan angle & regulasi per layanan).
+- Validasi 22 slug related terhadap catalog.ts — semua valid; klausul regulasi diverifikasi: UU 40/2007, UU 5/1999 jo. PP 57/2010 & Peraturan KPPU 3/2019 jo. 2/2023, PMK 239/2014, PMK 130/2020, PMK 68/2023, UU 25/2007, Perpres 10/2021 jo. 49/2021, UU 13/2003 Pasal 163, KUHPerdata (1338, 830, 892, 1666), UU 30/1999, UU 28/2014, UU 30/2000, KNKGC, POJK 21/2023, POJK 33/2014, Permen BUMN PER-2/MBU/03/2023, UU 2/2014.
+- Menulis src/lib/services/struktur-korporasi.ts: export strukturContent (10 ServiceContent penuh — tagline, heroSub, timeline, intro 3 paragraf, 5 benefit, 4 proses, 4-6 requirements, 3 FAQ, 4 related) + strukturEnrichment (10 entri: whoFor 4, deliverables 5, costs 4-5, legalBasis 3-4). Catatan teknis: ServiceEnrichment di-import dari ./enrichment (bukan ./types) karena interface terdefinisi di sana — tanpa itu tsc gagal.
+- Verifikasi programatik via bun: 10/10 layanan lolos semua batasan jumlah (intro=3, benefits=5, process=4, requirements 4-6, faqs=3, related=4 valid; enrichment whoFor=4, deliverables=5, costs 4-5, legalBasis 3-4) — ALL CHECKS PASSED.
+- Verifikasi tsc: `bunx tsc --noEmit | grep struktur-korporasi` = 0 baris (error lain di output adalah utang legacy admin dashboard yang terdokumentasi, di luar scope). Hanya file sendiri yang ditulis; tidak ada perubahan file lain, tidak ada migrasi DB.
+Stage Summary:
+- File struktur-korporasi.ts selesai: 10 ServiceContent + 10 enrichment, tsc 0 error
+---
+Task ID: 22-g
+Agent: konten-pangan-kesehatan (subagent)
+Task: Konten editorial 10 layanan kategori pangan-kesehatan
+Work Log:
+- Baca worklog.md, types.ts (ServiceContent), lainnya-ekspansi.ts (contoh emas), enrichment.ts baris 1-60 (ServiceEnrichment), catalog.ts (10 entri pangan-kesehatan), expansion-spec.md KATEGORI 7.
+- Tulis src/lib/services/pangan-kesehatan.ts BARU dengan dua export: panganKesehatanContent (10 ServiceContent) + panganKesehatanEnrichment (Record<string, ServiceEnrichment>, 10 slug).
+- Standar dipenuhi per layanan: tagline puitis, heroSub, timeline realistis, intro tepat 3 paragraf (3-5 kalimat: regulasi konkret, kesalahan umum, cara DIGIMAN), benefits 5, process 4, requirements 4-6, faqs 3 (jawaban biaya/lama/risiko/syarat), related 4 slug valid (diverifikasi terhadap CATALOG).
+- Enrichment per layanan: whoFor 4, deliverables 5, costs 4-5 dengan note, legalBasis 3-4 regulasi (UU 17/2023, PP 28/2024, Permenkes 62/2017, Permenkes 72/2016, PerBPOM 31/2018, PerBPOM 8/2021, Permentan 64/2013, UU 18/2012, PP 86/2019, UU 1/1970, Permenaker 4/1980, dll).
+- Catatan teknis: ServiceEnrichment diekspor dari ./enrichment (bukan ./types) — import dari ./types akan gagal tsc; file ini tidak merusak apapun lain.
+- Verifikasi: tsc --noEmit grep "pangan-kesehatan" = 0 baris; validasi struktur via skrip bun: 10/10 layanan OK (jumlah paragraf/kalimat/benefit/proses/faq/related & enrichment), related slugs semua valid di CATALOG.
+Stage Summary:
+- File pangan-kesehatan.ts selesai: 10 ServiceContent + 10 enrichment, tsc 0 error
+---
+---
+Task ID: 22-h
+Agent: konten-properti (subagent)
+Task: Konten editorial 10 layanan kategori properti
+Work Log:
+- Baca worklog.md, types.ts (ServiceContent), lainnya-ekspansi.ts (contoh emas), enrichment.ts baris 1-60 (ServiceEnrichment), catalog.ts (10 entri kategori properti + verifikasi slug related), expansion-spec.md bagian KATEGORI 8.
+- Tulis src/lib/services/properti-infrastruktur.ts: 10 ServiceContent (intro 3 paragraf, 5 benefits, 4 process, 4-6 requirements, 3 FAQ, 4 related valid) + 10 enrichment (whoFor 4, deliverables 5, costs 4-5, legalBasis 3-4).
+- Catatan teknis: interface ServiceEnrichment ternyata didefinisikan di enrichment.ts (bukan types.ts), sehingga import type diarahkan ke ./enrichment agar tsc lulus tanpa menyentuh file lain. Related pengalihan-hak-tanah mengikuti arahan perbaikan: due-diligence-properti, virtual-office, izin-usaha-perumahan, perubahan-akta.
+- Verifikasi tsc: bunx tsc --noEmit, 0 baris error untuk properti-infrastruktur. Validasi struktur via skrip: jumlah konten/enrichment, panjang FAQ 2-4 kalimat, 100% slug related valid di CATALOG. Total 9.165 kata.
+Stage Summary:
+- File properti-infrastruktur.ts selesai: 10 ServiceContent + 10 enrichment, tsc 0 error
+
+---
+Task ID: 22-e
+Agent: konten-kepatuhan-digital (subagent)
+Task: Konten editorial 10 layanan kategori kepatuhan-digital
+Work Log:
+- Membaca worklog.md, types.ts (interface ServiceContent), lainnya-ekspansi.ts (contoh emas gaya/struktur), enrichment.ts baris 1-60 (interface ServiceEnrichment + contoh), catalog.ts (10 entri kepatuhan-digital: slug, title, price, features), dan expansion-spec.md bagian KATEGORI 5 (angle & regulasi per layanan).
+- Menulis file baru src/lib/services/kepatuhan-digital.ts dengan dua export: kepatuhanDigitalContent (10 ServiceContent) dan kepatuhanDigitalEnrichment (Record 10 slug). Catatan teknis: ServiceEnrichment didefinisikan di enrichment.ts (bukan types.ts), sehingga type diimpor dari ./enrichment agar TSC strict lulus.
+- Konten per layanan mengikuti standar: tagline puitis, heroSub nilai+siapa, timeline realistis, intro tepat 3 paragraf (3-5 kalimat: konteks regulasi konkret, konsekuensi/kesalahan umum, cara DIGIMAN menangani), 5 benefits, 4 process, 4-6 requirements, 3 FAQ menjawab query nyata (biaya/lama/risiko/syarat), 4 related slug valid (semua diverifikasi terhadap CATALOG).
+- Enrichment per layanan: whoFor 4, deliverables 5, costs 4-5 (harga selaras price katalog: Rp 15 jt / 5 jt/bln / 3,5 jt / 12 jt / 7,5 jt / 5 jt / 10 jt / 2,5 jt / 15 jt / 5 jt), legalBasis 3-4 regulasi lengkap (UU 27/2022 PDP, PP 71/2019, Permenkomdigi 5/2024, Perpres 47/2023, SE Kominfo 9/2023, POJK 10/2022, UU P2SK, PP 80/2019, Permendag 50/2020, UU 8/1999, EU AI Act).
+- Verifikasi otomatis: jumlah paragraf/kalimat/benefits/process/faq/related/enrichment dicek via skrip bun — semua valid; 40 related slug semuanya terdaftar di catalog.
+- Verifikasi tsc: bunx tsc --noEmit | grep kepatuhan-digital.ts = 0 baris error (error yang tersisa berasal dari file lain yang sudah ada sebelumnya, tidak disentuh).
+Stage Summary:
+- File kepatuhan-digital.ts selesai: 10 ServiceContent + 10 enrichment, tsc 0 error
+---
+---
+Task ID: 22-i
+Agent: konten-sdm-organisasi (subagent)
+Task: Konten editorial 10 layanan kategori sdm-organisasi
+Work Log:
+- Baca worklog.md, types.ts (interface ServiceContent), lainnya-ekspansi.ts (contoh emas), enrichment.ts baris 1-60 (interface ServiceEnrichment), catalog.ts (10 entri sdm-organisasi: slug/title/price/features), expansion-spec.md bagian KATEGORI 9.
+- Verifikasi 40 slug related terhadap catalog.ts — semua valid (termasuk perbaikan khusus: program-magang -> kontrak-kerja-pkwt, bnsp, lks-bipartit, sistem-penilaian-kinerja).
+- Tulis src/lib/services/sdm-organisasi.ts BARU dengan dua export: sdmOrganisasiContent (10 ServiceContent: tagline, heroSub, timeline, intro 3 paragraf, benefits 5, process 4, requirements 5, faqs 3, related 4) + sdmOrganisasiEnrichment (10 slug: whoFor 4, deliverables 5, costs 5, legalBasis 3-4).
+- Catatan teknis: ServiceEnrichment diimpor dari "./enrichment" (bukan "./types") karena interface didefinisikan di enrichment.ts — agar tsc strict lulus; regulasi dirujuk lengkap per layanan (UU 13/2003 jo UU 6/2023, PP 35/2021, PP 36/2021, PMK 168/2023, Permenaker 6/2016, UU 24/2011, Permenaker 6/2020, Permenaker 31/2013, UU 31/1999 jo UU 20/2001, SNI ISO 37001:2016, Permenaker 38/2016, UU 27/2022 PDP, UU 1/1970, UU 21/2000).
+- Verifikasi: bunx tsc --noEmit | grep sdm-organisasi = 0 baris (file lain punya error pre-existing di components/API route — bukan ranah tugas ini, tidak disentuh).
+- Statistik: ~9.756 kata konten (string literals), 10 layanan utuh, 40 related valid.
+Stage Summary:
+- File sdm-organisasi.ts selesai: 10 ServiceContent + 10 enrichment, tsc 0 error
+---
+Task ID: 22-j
+Agent: konten-resiliensi (subagent)
+Task: Konten editorial 10 layanan kategori resiliensi
+Work Log:
+- Baca worklog.md, types.ts (ServiceContent), enrichment.ts baris 1-60 (ServiceEnrichment), lainnya-ekspansi.ts (contoh emas), catalog.ts entri kategori resiliensi, expansion-spec.md bagian KATEGORI 10.
+- Tulis src/lib/services/resiliensi-bisnis.ts BARU: 10 ServiceContent (tagline, heroSub, timeline, intro 3 paragraf, 5 benefits, 4 process, 5 requirements, 3 FAQ, 4 related valid) + resiliensiEnrichment 10 slug (whoFor 4, deliverables 5, costs 4-5, legalBasis 3-4 regulasi lengkap: UU 40/2014, UU ITE, PP 71/2019, Perma 3/2023, PDP, UU 42/1999, UU 30/1999, ISO 31000/22301, PANDI).
+- Catatan: ServiceEnrichment tidak diekspor types.ts — import type diambil dari ./enrichment (tanpa mengubah file lain); related manajemen-krisis-pr memakai perbaikan dari brief (asuransi-bisnis, bukan slug dirinya sendiri).
+- Verifikasi: bunx tsc --noEmit | grep resiliensi-bisnis = 0 baris (lulus strict). Validasi jumlah item per standar via skrip bun: semua OK. Tanpa emoji, tanpa markup Markdown.
+Stage Summary:
+- File resiliensi-bisnis.ts selesai: 10 ServiceContent + 10 enrichment, tsc 0 error
+---
+---
+Task ID: 22-a
+Agent: konten-esg (subagent)
+Task: Konten editorial 10 layanan kategori esg
+Work Log:
+- Baca worklog.md, types.ts (interface ServiceContent), contoh emas lainnya-ekspansi.ts, enrichment.ts baris 1-60 (interface ServiceEnrichment), catalog.ts (10 entri esg), dan expansion-spec.md bagian KATEGORI 1 — esg.
+- Tulis file baru src/lib/services/esg-keberlanjutan.ts dengan DUA export: esgContent (10 ServiceContent) + esgEnrichment (Record slug → ServiceEnrichment, 10 slug). Import ServiceEnrichment dari "./enrichment" (bukan "./types") mengikuti pola pangan-kesehatan.ts — ServiceEnrichment tidak diekspor types.ts; jika dari "./types" tsc pasti error.
+- Setiap layanan: tagline + heroSub + timeline; intro TEPAT 3 paragraf (3-5 kalimat: konteks regulasi konkret, konsekuensi/kesalahan umum, cara DIGIMAN menangani); benefits TEPAT 5; process TEPAT 4; requirements 4-6; faqs TEPAT 3 (jawaban 2-4 kalimat, menyentuh biaya/lama/risiko/syarat); related TEPAT 4 slug valid (divalidasi otomatis terhadap CATALOG).
+- Enrichment per layanan: whoFor 4, deliverables 5, costs 4-5 {item, note}, legalBasis 3-4 regulasi lengkap (POJK 51/2017, Perpres 98/2021, PP 98/2021, POJK 14/2023, PP 81/2023, UU 18/2008, PP 16/2021, SNI 6390, EU 2023/1115 EUDR, CSDDD UE 2024/1760, POJK 60/2017, UU 40/2007 ps.74, UU 3/2020, PP 47/2012, PTK-007, dsb).
+- Regulasi kunci per layanan sesuai spec: POJK 51/2017 + GRI/ISSB (laporan-keberlanjutan); Perpres/PP 98/2021 + SNI ISO 14064 + GHG Protocol (jejak-karbon-nzkc); SRN-PPI + POJK 14/2023 bursa karbon (kredit-karbon); CSDDD/SMETA (esg-rantai-pasok); GREENSHIP GBCI/EDGE + Pergub DKI 31/2012 (gedung-hijau); B Lab BIA skor 80 + amendemen akta (sertifikasi-b-corp); PP 81/2023 EPR + SIPSN (epr-kemasan); POJK 60/2017 + ICMA GBP + opini second party (pembiayaan-hijau); EUDR EU 2023/1115 geolocation plot + due diligence (eudr-komoditas); UU 40/2007 ps.74 denda 10% + CDAS 1-5% UU 3/2020 (csr-cdas).
+- Verifikasi: bunx tsc --noEmit | grep esg-keberlanjutan = 0 baris (tsc error yang tersisa berasal dari file lain yang sudah ada sebelumnya: scripts/check-db.ts, seed-admin.ts, admin pages — bukan ranah tugas ini).
+- Validasi skrip bun: struktur & jumlah item semua assertion lulus; semua 40 related slug terverifikasi ada di CATALOG; total 10.223 kata (ServiceContent 8.083 + Enrichment 2.140).
+Stage Summary:
+- File esg-keberlanjutan.ts selesai: 10 ServiceContent + 10 enrichment, tsc 0 error
+---
+Task ID: 22-d
+Agent: konten-global (subagent)
+Task: Konten editorial 10 layanan kategori global
+Work Log:
+- Membaca worklog.md, types.ts (interface ServiceContent), lainnya-ekspansi.ts (contoh gaya), enrichment.ts baris 1-60 (interface ServiceEnrichment), catalog.ts (10 entri kategori global), expansion-spec.md bagian KATEGORI 4.
+- Menulis src/lib/services/global-ekspansi.ts: export globalContent (10 ServiceContent) + globalEnrichment (10 Record slug). Catatan teknis: ServiceEnrichment di-import dari "./enrichment" (bukan "./types") karena interface hanya didefinisikan di enrichment.ts — agar tsc strict lulus; struktur export tetap persis sesuai spesifikasi.
+- Isi per layanan: tagline puitis, heroSub, timeline realistis, intro 3 paragraf (regulasi konkret: BKPM 5/2021, PMK 172/2023, ATIGA/ACFTA/e-Form D INSW, Incoterms 2020 & UCP 600, UU 17/2006 jo UU 7/2021 + PP 32/2009 + KITE PMK 21/2017, UU 7/2014 + PP 34/2011 KADI, SVLK/PHPL + PE CPO + lartas KKP/MODI, UU 20/2016 + UU 33/2014), 5 benefits, 4 process, 4-6 requirements, 3 FAQ, 4 related.
+- Related slug diverifikasi terhadap CATALOG (semua valid); ekspor-marketplace-global dipaksa ["marketplace","api-bea-cukai","sertifikat-asal","npwp-pkp"] sesuai instruksi perbaikan.
+- Enrichment per layanan: whoFor 4, deliverables 5, costs 4 (dengan note biaya sesuai harga catalog), legalBasis 3-4 regulasi lengkap.
+- Verifikasi: bunx tsc --noEmit | grep global-ekspansi = 0 baris (bersih); validasi skrip bun: 10/10 layanan lulus cek struktur (intro=3, benefits=5, process=4, faq=3, related=4 valid, whoFor=4, deliverables=5, costs 4-5, legalBasis 3-4). Total ~11.198 kata (file).
+- Tidak mengubah file lain, tidak menyentuh DB/index.ts.
+Stage Summary:
+- File global-ekspansi.ts selesai: 10 ServiceContent + 10 enrichment, tsc 0 error
+
+---
+Task ID: 22
+Agent: main (orchestrator) — Ekspansi 100 Layanan Session
+Task: "tambahkan 100 layanan lagi yang terbaik yang belum ada di situs konsultan manapun" — 44 → 144 layanan, 10 kategori baru × 10 layanan, seluruhnya dengan landing page editorial penuh + entri Katalog WhatsApp Business
+
+Work Log:
+- ARSITEKTUR: CATALOG dipindah ke src/lib/catalog.ts sebagai SATU SUMBER KEBENARAN murni-data (tanpa dependensi DB) + CATEGORY_LABELS 18 kategori; seed-v2.ts kini re-export dari sumber kanonik; digiman-data.ts DEFAULT_SERVICES DITURUNKAN OTOMATIS dari CATALOG (menghapus duplikasi 555 baris — tidak ada lagi dua salinan data).
+- DESIGN 100 LAYANAN: 10 kategori baru yang TIDAK ADA di situs konsultan manapun: esg (laporan keberlanjutan, karbon NZKC, kredit karbon, ESG rantai pasok, gedung hijau, B Corp, EPR kemasan PP 81/2023, pembiayaan hijau, EUDR EU 2023/1115, CSR-CDAS); pendanaan (pitch deck, valuasi, data room, SCF OJK 57/2020, KUR, hibah riset, ESOP, SAFE, jaminfidusia IP UU 13/2016, restrukturisasi utang); struktur (holding, vesting pendiri, JV, M&A, spin-off, piagam keluarga, suksesi, SHA, tata kelola, komisaris profesional); global (KP3A, entitas luar negeri, sertifikat asal, incoterms, kawasan berikat, TP Doc PMK 172/2023, ekspor marketplace, antidumping, lartas komoditas V-Legal, distributor brand asing); kepatuhan-digital (UU PDP, DPOaaS, PSE Komdigi, audit siber, respons insiden 72 jam, iklan digital, tata kelola AI, kebijakan privasi, fintech OJK, dagang daring); kreatif (LSF, izin konser, reklame, LMK royalti, ISBN, IGRS game, Dewan Pers, merchandise, kontrak kreator, production house); pangan-kesehatan (CPOTB, AKL, label gizi, apotek-PBF, HACCP, organik, klinik, P2K3, lab KAN, audit klaim); properti (DD properti, pengalihan tanah, HGU-HGB, perumahan, KPBU-PPJT, menara telekom, kawasan industri, sengketa tanah, IUP-IUPK, EBT-PLTS); sdm-organisasi (grading, audit payroll, PKWT, magang, outsourcing, PHK terkelola, LKS bipartit, ISO 37001, kinerja, remote hybrid); resiliensi (asuransi, forensik digital, krisis-PR, BCP, anti-fraud, ERM, mediasi-BANI, penagihan piutang, DMARC-domain, ORM).
+- KONTEN EDITORIAL VIA 10 SUBAGENT PARALEL (Task 22-a..22-j): masing-masing menulis 1 file kategori di src/lib/services/ dengan DUA export (XxxContent: ServiceContent[] + XxxEnrichment) — total ±102.000 kata konten editorial Indonesia. Standar per layanan: tagline, heroSub, timeline, intro 3 paragraf, 5 benefit, 4 proses, 4-6 syarat, 3 FAQ, 4 related valid + enrichment (whoFor 4, deliverables 5, costs 4-5, legalBasis 3-4 regulasi RI riil). Semua subagent lapor tsc 0 error & related 100% tervalidasi terhadap CATALOG.
+- INTEGRASI: services/index.ts +10 import & spread; enrichment.ts di-refactor (CORE_ENRICHMENT + spread 10 record ekspansi → SERVICE_ENRICHMENT); digiman components/services.tsx ICON_MAP +100 ikon lucide terverifikasi (Link dialias LinkIcon karena bentrok next/link); layanan/page.tsx CATEGORY_ORDER +10; pages.ts CATEGORY_LABEL & CATEGORY_DESC +10 kategori; dict-id/dict-en +8 locale JSON (ar/es/fr/hi/ja/pt/ru/zh) kategori & heading "144 Layanan"; CSV katalog WA kini memakai label kategori terbaca (bukan key).
+- DB: restore dari backup (44) → migrate-services-v3 → 144 layanan (18 kategori) → db:backup (backup.json = 144 service).
+- VERIFIKASI: tsc 0 error di SEMUA file yang disentuh (error tersisa = utang legacy terdokumentasi); lint exit 0; 100/100 rute baru /layanan/[slug] = 200; sitemap 126 → 226 URL; CSV katalog 145 baris; card-image PNG 200; hub "144 layanan"; landing pill kategori baru dengan count benar (8+9+4+5+2+5+4+7+10×10=144); agent-browser E2E: halaman baru render 8 section editorial lengkap, 4 blok JSON-LD (FAQPage+Service), 3 tombol WA, tombol Salin katalog → "Tersalin!", mobile 390px tanpa overflow, 0 error console; screenshot /tmp/task22-service.png & /tmp/task22-mobile-hub.png.
+
+Stage Summary:
+- DIGIMAN.ID kini 144 layanan dalam 18 kategori — matriks layanan konsultan terlengkap di Indonesia, termasuk kelas layanan yang praktis tidak ditawarkan situs konsultan manapun: EUDR, kredit karbon SRN-PPI, EPR kemasan, B Corp, jaminfidusia IP (jamintel), DPOaaS, IGRS, LSF, piagam keluarga bisnis, V-Legal, penagihan piutang legal, DMARC brand protection.
+- Seluruh 144 layanan: landing page editorial penuh (nol fallback generik) + 720 entri katalog WhatsApp (144×5 bidang salin-tempel) + CSV impor massal + gambar kartu 1024×1024 + sitemap 226 URL.
+- Satu sumber kebenaran diperkuat: src/lib/catalog.ts → migrate v3 → DB → fallback otomatis → konten editorial → katalog WA → CSV → sitemap; perubahan harga via Panel Admin tetap mengalir ke seluruh permukaan.

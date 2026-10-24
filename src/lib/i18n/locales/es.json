@@ -189,7 +189,7 @@
   },
   "services": {
     "kicker": "Catálogo Completo",
-    "headingA": "29 Servicios",
+    "headingA": "144 Servicios",
     "headingB": "Una Puerta",
     "sub": "Desde el establecimiento de empresas, permisos, impuestos, certificaciones hasta la digitalización — no necesita buscar en otro lugar.",
     "all": "Todos",
@@ -201,7 +201,17 @@
       "pajak": "Tributación",
       "ketenagakerjaan": "Relaciones Laborales",
       "korporasi": "Corporativo y Legal",
-      "digital": "Digitalización"
+      "digital": "Digitalización",
+      "esg": "ESG y Sostenibilidad",
+      "pendanaan": "Financiamiento e Inversión",
+      "struktur": "Estructura Grupal y Transacciones",
+      "global": "Expansión Global",
+      "kepatuhan-digital": "Cumplimiento Digital y de Datos",
+      "kreatif": "Industria Creativa y Medios",
+      "pangan-kesehatan": "Alimentos, Salud y Farmacia",
+      "properti": "Propiedades e Infraestructura",
+      "sdm-organisasi": "RR. HH. y Organización",
+      "resiliensi": "Resiliencia y Protección"
     },
     "consult": "Consultar este Servicio",
     "featured": "Más Popular"

@@ -189,7 +189,7 @@
   },
   "services": {
     "kicker": "カタログ一覧",
-    "headingA": "29のサービス",
+    "headingA": "144のサービス",
     "headingB": "ワンストップソリューション",
     "sub": "会社設立、許認可、税務、認証、デジタル化まで—他に探す必要はありません。",
     "all": "すべて",
@@ -201,7 +201,17 @@
       "pajak": "税務",
       "ketenagakerjaan": "労働・人事",
       "korporasi": "コーポレート・法務",
-      "digital": "デジタル化"
+      "digital": "デジタル化",
+      "esg": "ESG・サステナビリティ",
+      "pendanaan": "資金調達・投資",
+      "struktur": "グループ構造・取引",
+      "global": "グローバル展開",
+      "kepatuhan-digital": "デジタル・データコンプライアンス",
+      "kreatif": "クリエイティブ産業・メディア",
+      "pangan-kesehatan": "食品・健康・製薬",
+      "properti": "不動産・インフラ",
+      "sdm-organisasi": "人事・組織",
+      "resiliensi": "レジリエンス・保護"
     },
     "consult": "このサービスに関する相談",
     "featured": "人気"

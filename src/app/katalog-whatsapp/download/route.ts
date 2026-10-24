@@ -1,6 +1,7 @@
 import { getSiteData } from "@/lib/site-data";
 import { getServiceContent } from "@/lib/services";
 import { buildCatalogEntry, catalogCsv } from "@/lib/wa-catalog";
+import { CATEGORY_LABEL } from "@/lib/pages";
 
 /**
  * /katalog-whatsapp/download — CSV seluruh layanan siap impor katalog.
@@ -20,7 +21,7 @@ export async function GET() {
         desc: s.desc,
         price: s.price,
         features: s.items,
-        category: s.category,
+        category: CATEGORY_LABEL[s.category] ?? s.category,
         content: s.slug ? getServiceContent(s.slug) : undefined,
         waNumber: data.settings.waNumber,
       })

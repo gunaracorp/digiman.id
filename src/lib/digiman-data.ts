@@ -3,6 +3,7 @@
  * Membaca konten dari database (Prisma) dengan fallback aman ke data default,
  * sehingga website tetap tampil sempurna walau DB kosong / bermasalah.
  */
+import { CATALOG } from "@/lib/catalog";
 // ─────────────────────────── Types ───────────────────────────
 
 export interface SiteSettings {
@@ -72,6 +73,16 @@ export const SERVICE_CATEGORIES = [
   { key: "ketenagakerjaan", label: "Ketenagakerjaan" },
   { key: "korporasi", label: "Korporasi" },
   { key: "digital", label: "Digitalisasi" },
+  { key: "esg", label: "ESG & Keberlanjutan" },
+  { key: "pendanaan", label: "Pendanaan & Investasi" },
+  { key: "struktur", label: "Struktur Grup & Transaksi" },
+  { key: "global", label: "Ekspansi Global" },
+  { key: "kepatuhan-digital", label: "Kepatuhan Digital & Data" },
+  { key: "kreatif", label: "Industri Kreatif & Media" },
+  { key: "pangan-kesehatan", label: "Pangan, Kesehatan & Farma" },
+  { key: "properti", label: "Properti & Infrastruktur" },
+  { key: "sdm-organisasi", label: "SDM & Organisasi" },
+  { key: "resiliensi", label: "Resiliensi & Perlindungan" },
 ] as const;
 
 // ─────────────────────── Data default ───────────────────────
@@ -105,271 +116,20 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   established: "26 Desember 2022",
 };
 
-export const DEFAULT_SERVICES: ServiceItem[] = [
-  {
-    slug: "pendirian-pt", title: "Pendirian PT", featured: true, icon: "Building2", category: "pendirian",
-    desc: "Akta notaris, SK Kemenkumham, NPWP, NIB — paket lengkap PT resmi berdiri dalam hitungan hari.",
-    price: "Mulai Rp 3,5 jt",
-    items: ["Akta Notaris + SK Kemenkumham", "NPWP & NIB otomatis", "Domisili usaha", "Gratis konsultasi KBLI"],
-  },
-  {
-    slug: "pt-perorangan", title: "PT Perorangan (UUCK)", featured: false, icon: "FileBadge", category: "pendirian",
-    desc: "Badan usaha resmi untuk usaha individu via OSS — tanpa notaris, NIB terbit langsung.",
-    price: "Mulai Rp 850 rb",
-    items: ["NIB sebagai legalitas pasti", "Tanpa akta notaris", "Kewajiban pajak ringan", "Cocok UMKM & freelancer"],
-  },
-  {
-    slug: "pendirian-cv", title: "Pendirian CV", featured: false, icon: "Users", category: "pendirian",
-    desc: "Pilihan ideal usaha keluarga & kemitraan. Cepat, murah, dan sah di mata hukum.",
-    price: "Mulai Rp 1,8 jt",
-    items: ["Akta notaris CV", "Pengesahan kehakiman", "NPWP & NIB", "Konsultasi struktur modal"],
-  },
-  {
-    slug: "pt-pma", title: "PT PMA (Investasi Asing)", featured: false, icon: "Globe2", category: "pendirian",
-    desc: "Berinvestasi di Indonesia? Kami pegang seluruh regulasi BKPM & OSS untuk Anda.",
-    price: "Mulai Rp 15 jt",
-    items: ["Struktur saham asing", "Laporan BKPM/OSS", "Izin investasi", "Pendampingan DGT & Bank"],
-  },
-  {
-    slug: "firma-ud", title: "Firma, UD & Persekutuan", featured: false, icon: "Store", category: "pendirian",
-    desc: "Bentuk badan usaha klasik untuk usaha dagang & kemitraan — berdiri cepat, biaya efisien.",
-    price: "Mulai Rp 1,2 jt",
-    items: ["Akta pendirian", "Pengesahan legalitas", "NPWP & NIB", "Konsultasi tanggung jawab"],
-  },
-  {
-    slug: "pendirian-koperasi", title: "Pendirian Koperasi", featured: false, icon: "Handshake", category: "pendirian",
-    desc: "Koperasi konsumen, produsen, atau jasa — dari AD/ART hingga legalitas resmi Kemenkop.",
-    price: "Mulai Rp 2,5 jt",
-    items: ["Rapat pendirian & AD/ART", "Pengesahan Kemenkop UKM", "NPWP & NIB koperasi", "Panduan SHU & RAT"],
-  },
-  {
-    slug: "pendirian-yayasan", title: "Yayasan & Lembaga Nirlaba", featured: false, icon: "HeartHandshake", category: "pendirian",
-    desc: "Berdiri untuk kebaikan sosial, pendidikan, atau keagamaan — legal penuh dengan struktur organ yang benar.",
-    price: "Mulai Rp 3 jt",
-    items: ["Akta yayasan + SK Kemenkumham", "Struktur pembina-pengurus-pengawas", "NPWP & NIB", "Konsultasi pajak nirlaba"],
-  },
-  {
-    slug: "perkumpulan-asosiasi", title: "Perkumpulan & Asosiasi", featured: false, icon: "Network", category: "pendirian",
-    desc: "Asosiasi profesi atau industri dengan badan hukum — angkatan besar, kredibilitas tinggi.",
-    price: "Mulai Rp 2,5 jt",
-    items: ["AD/ART perkumpulan", "SK Kemenkumham", "NPWP & NIB", "Panduan keanggotaan & iuran"],
-  },
-  {
-    slug: "nib-oss", title: "NIB, OSS-RBA & Pemetaan KBLI", featured: true, icon: "Stamp", category: "perizinan",
-    desc: "Nomor Induk Berusaha sebagai identitas utama bisnis Anda di sistem OSS-RBA — KBLI dipetakan presisi.",
-    price: "Mulai Rp 750 rb",
-    items: ["Registrasi OSS-RBA", "Analisis KBLI optimal", "NIB sama dengan izin dasar", "Revisi & penyesuaian data"],
-  },
-  {
-    slug: "izin-sektor-ss", title: "Izin Usaha Sektor & Sertifikat Standar", featured: false, icon: "FileCheck2", category: "perizinan",
-    desc: "Perizinan spesifik sektor: kesehatan, makanan, logistik, konstruksi, pariwisata — sampai terbit.",
-    price: "Mulai Rp 1 jt",
-    items: ["Sertifikat Standar (SS)", "PKKPR & lingkungan", "Izin edar, SIUP, SLO", "Pendampingan audit lapangan"],
-  },
-  {
-    slug: "virtual-office", title: "Domisili Usaha & Virtual Office", featured: false, icon: "MapPin", category: "perizinan",
-    desc: "Alamat bisnis bergengsi tanpa biaya kantor fisik — SKDU, terima surat, siap untuk PT & PMA.",
-    price: "Mulai Rp 500 rb",
-    items: ["SKDU / SKPPK", "Virtual office premium", "Layanan terima surat", "Cocok untuk PT & PMA"],
-  },
-  {
-    slug: "legalisasi-apostille", title: "Legalisisasi, Apostille & Terjemahan", featured: false, icon: "FileSignature", category: "perizinan",
-    desc: "Dokumen sah untuk dipakai luar negeri: apostille Kemenkumham, legalisasi KBRI, terjemahan tersumpah.",
-    price: "Mulai Rp 350 rb/dok",
-    items: ["Apostille dokumen resmi", "Legalisasi kedutaan", "Terjemahan tersumpah", "Notaris & e-KTA"],
-  },
-  {
-    slug: "pendaftaran-merek", title: "Pendaftaran Merek", featured: true, icon: "Lightbulb", category: "ki",
-    desc: "Amankan brand Anda sebelum orang lain. Cek ketersediaan + pengajuan ke DJKI.",
-    price: "Mulai Rp 1,5 jt",
-    items: ["Pencarian & analisis merek", "Pengajuan kelas Nice", "Monitoring status", "Balasan argumen DJKI"],
-  },
-  {
-    slug: "hak-cipta-paten", title: "Hak Cipta, Paten & Desain Industri", featured: false, icon: "Copyright", category: "ki",
-    desc: "Karya, inovasi, dan desain adalah aset — daftarkan agar sah, bernilai, dan bisa dipertaruhkan.",
-    price: "Mulai Rp 900 rb",
-    items: ["Hak cipta karya & aplikasi", "Paten & paten sederhana", "Desain industri", "Sertifikat resmi DJKI"],
-  },
-  {
-    slug: "franchise", title: "Lisensi Franchise (STPW)", featured: false, icon: "ScrollText", category: "ki",
-    desc: "Siap ekspansi waralaba? STPW sah dari Kemenperin supaya franchise Anda legal & terlindungi.",
-    price: "Mulai Rp 2 jt",
-    items: ["Pengajuan STPW", "Penyusunan perjanjian", "Prospektus & manual", "Wajib lapor terpenuhi"],
-  },
-  {
-    slug: "sertifikasi-halal", title: "Sertifikasi Halal", featured: false, icon: "BadgeCheck", category: "sertifikasi",
-    desc: "Proses penuh di SIHALAL: dari SJPH, penyelia halal, hingga audit & keputusan fatwa — garansi halal.",
-    price: "Mulai Rp 1,5 jt",
-    items: ["Pengajuan SIHALAL", "Pendampingan SJPH", "Penyelia halal terlatih", "Audit & sertifikat BPJPH"],
-  },
-  {
-    slug: "bpom", title: "Izin Edar & Notifikasi BPOM", featured: false, icon: "ShieldCheck", category: "sertifikasi",
-    desc: "MD, ML, dan notifikasi kosmetika — produk Anda legal beredar di seluruh Indonesia.",
-    price: "Mulai Rp 2 jt",
-    items: ["Izin edar MD/ML", "Notifikasi kosmetika", "Cek kemasan & label", "Pendampingan lab test"],
-  },
-  {
-    slug: "sni", title: "Sertifikat SNI", featured: false, icon: "Award", category: "sertifikasi",
-    desc: "Standar nasional Indonesia untuk produk Anda — jaminan mutu yang diwajibkan pasar & tender.",
-    price: "Mulai Rp 2,5 jt",
-    items: ["Audit pabrik LSPro", "Pengujian lab terakreditasi", "Sertifikat & logo SNI", "Pemantauan berkala"],
-  },
-  {
-    slug: "iso", title: "Sertifikasi ISO", featured: false, icon: "Medal", category: "sertifikasi",
-    desc: "ISO 9001, 14001, 22000, 27001 — standar internasional yang membuka pintu korporasi & ekspor.",
-    price: "Mulai Rp 5 jt",
-    items: ["Gap analysis", "Dokumentasi sistem mutu", "Audit sertifikasi", "Sertifikat berlaku internasional"],
-  },
-  {
-    slug: "npwp-pkp", title: "NPWP Badan & Pengukuhan PKP", featured: false, icon: "Receipt", category: "pajak",
-    desc: "NPWP badan, pengukuhan PKP, hingga fasilitas pajak — kewajiban pajak Anda rapi sejak hari pertama.",
-    price: "Mulai Rp 400 rb",
-    items: ["NPWP badan", "Pengukuhan PKP", "Fasilitas PP 23/2018", "Konsultasi tarif optimal"],
-  },
-  {
-    slug: "pelaporan-pajak", title: "SPT, e-Faktur & Pelaporan Pajak", featured: false, icon: "Calculator", category: "pajak",
-    desc: "SPT Tahunan & Masa, e-Faktur, buku besar — konsultan pajak bersertifikat menangani semuanya.",
-    price: "Mulai Rp 500 rb/bln",
-    items: ["SPT Tahunan badan/pribadi", "SPT Masa PPN/PPh", "e-Faktur & e-Bupot", "Restitusi & kompensasi"],
-  },
-  {
-    slug: "bpjs", title: "BPJS Kesehatan & Ketenagakerjaan", featured: false, icon: "HeartPulse", category: "ketenagakerjaan",
-    desc: "Registrasi & administrasi BPJS untuk karyawan — patuh UU Ketenagakerjaan tanpa pusing.",
-    price: "Mulai Rp 300 rb",
-    items: ["Registrasi perusahaan", "Pendaftaran karyawan", "Mutasi & tagihan bulanan", "Klaim & dewan pengurus"],
-  },
-  {
-    slug: "kitas-rptka", title: "KITAS/KITAP & RPTKA", featured: false, icon: "Plane", category: "ketenagakerjaan",
-    desc: "Pekerja asing & investor legal bekerja/tinggal: RPTKA, notification, VITAS-KITAS sampai KITAP.",
-    price: "Mulai Rp 5 jt",
-    items: ["RPTKA Kemenaker", "Notifikasi & telex VITAS", "KITAS investor & pekerja", "KITAP & MERP"],
-  },
-  {
-    slug: "perubahan-akta", title: "Perubahan Akta & Struktur", featured: false, icon: "FileText", category: "korporasi",
-    desc: "Ganti nama, tambah modal, pindah alamat, masuk pemegang saham baru — akta & persetujuan beres rapi.",
-    price: "Mulai Rp 1,5 jt",
-    items: ["Perubahan AD/arta", "RUPS & akta perubahan", "Pengesahan Kemenkumham", "Update NIB & OSS"],
-  },
-  {
-    slug: "pembubaran", title: "Pembubaran & Likuidasi", featured: false, icon: "Archive", category: "korporasi",
-    desc: "Tutup badan usaha dengan benar: RUPS pembubaran, pelunasan kewajiban, hingga penghapusan NIB.",
-    price: "Mulai Rp 2,5 jt",
-    items: ["RUPS & akta pembubaran", "Pemberitahuan kreditor", "Pelaporan pajak akhir", "Penghapusan NIB & NPWP"],
-  },
-  {
-    slug: "legal-drafting", title: "Legal Drafting & Due Diligence", featured: false, icon: "Scale", category: "korporasi",
-    desc: "Perjanjian bisnis yang menutup celah hukum, dan pemeriksaan legalitas mitra sebelum Anda menandatangani.",
-    price: "Mulai Rp 750 rb",
-    items: ["Perjanjian kerja sama", "Perjanjian kerja & kerahasiaan", "Legal due diligence mitra", "Review kontrak oleh pakar"],
-  },
-  {
-    slug: "website-ecommerce", title: "Website & E-Commerce", featured: true, icon: "Rocket", category: "digital",
-    desc: "Website company profile sampai toko online — cepat, SEO-ready, dan meyakinkan pelanggan.",
-    price: "Mulai Rp 3 jt",
-    items: ["Company profile premium", "Toko online & payment gateway", "SEO & Google Business", "Domain, hosting, email bisnis"],
-  },
-  {
-    slug: "otomasi-ai", title: "Otomasi AI & Digital Marketing", featured: false, icon: "Sparkles", category: "digital",
-    desc: "Chatbot WhatsApp AI, iklan berperforma, dan konten yang bekerja 24 jam untuk penjualan Anda.",
-    price: "Mulai Rp 2,5 jt/bln",
-    items: ["Chatbot & AI assistant", "Ads Meta/Google/TikTok", "Konten & social media", "Laporan performa bulanan"],
-  },
-  {
-    slug: "wa-business", title: "WhatsApp Business API & Katalog", featured: false, icon: "MessageCircle", category: "digital",
-    desc: "WA Business API resmi, katalog produk digital, chatbot pemesanan — jualan langsung dari chat pelanggan.",
-    price: "Mulai Rp 1,5 jt",
-    items: ["Pendaftaran WABA resmi Meta", "Katalog produk & keranjang", "Chatbot pemesanan 24 jam", "Integrasi CRM & notifikasi"],
-  },
-  {
-    slug: "google-bisnisku", title: "Google Business Profile & Local SEO", featured: false, icon: "SearchCheck", category: "digital",
-    desc: "Tampil pertama saat warga cari usaha Anda di Google Maps & pencarian lokal — profil dioptimalkan penuh.",
-    price: "Mulai Rp 750 rb",
-    items: ["Profil Google diverifikasi", "Optimasi kategori & jasa", "Foto, produk & promo", "Review strategy & laporan"],
-  },
-  {
-    slug: "marketplace", title: "Marketplace & TikTok Shop", featured: false, icon: "ShoppingBag", category: "digital",
-    desc: "Toko resmi di Shopee, Tokopedia, Lazada & TikTok Shop — setup lengkap sampai pesanan pertama masuk.",
-    price: "Mulai Rp 1,25 jt",
-    items: ["Toko resmi & verifikasi", "Listing produk SEO marketplace", "Flash sale & promo setup", "Live selling & affiliate setup"],
-  },
-  {
-    slug: "branding-katalog", title: "Branding & Konten Katalog", featured: false, icon: "Palette", category: "digital",
-    desc: "Logo, foto produk, desain katalog & konten sosial media — penampilan premium yang membangun kepercayaan.",
-    price: "Mulai Rp 1,5 jt",
-    items: ["Logo & identitas visual", "Foto produk profesional", "Desain katalog & banner", "Template konten sosmed"],
-  },
-
-  // ── Ekspansi: perizinan ──
-  {
-    slug: "izin-lingkungan", title: "Persetujuan Lingkungan & AMDAL", featured: false, icon: "Leaf", category: "perizinan",
-    desc: "UKL-UPL atau AMDAL sesuai skala risiko usaha — pintu wajib sebelum izin sektor terbit.",
-    price: "Mulai Rp 2,5 jt",
-    items: ["Saringan risiko & jenis dokumen", "UKL-UPL / AMDAL lengkap", "Panduan persetujuan DPMPTSP", "Sosialisasi & partisipasi publik"],
-  },
-  {
-    slug: "pbg-slf", title: "PBG & Sertifikat Laik Fungsi", featured: false, icon: "Building", category: "perizinan",
-    desc: "Persetujuan Bangunan Gedung pengganti IMB dan SLF — gedung Anda sah dibangun, sah dipakai.",
-    price: "Mulai Rp 1,5 jt",
-    items: ["PBG baru & perubahan", "SLF gedung eksisting", "Cek gambar teknis & lokasi", "Konsultasi tarif retribusi"],
-  },
-  {
-    slug: "sbu-konstruksi", title: "SBU Konstruksi & Sertifikat Kompetensi", featured: false, icon: "HardHat", category: "perizinan",
-    desc: "Sertifikat Badan Usaha jasa konstruksi via LPJK — kualifikasi & subkualifikasi sesuai bidang Anda.",
-    price: "Mulai Rp 2 jt",
-    items: ["Registrasi SBU LPJK", "Sertifikat teknis & ahli", "Kualifikasi Madya & Utama", "Perpanjangan & peningkatan"],
-  },
-  {
-    slug: "api-bea-cukai", title: "API-U/API-P & Registrasi Bea Cukai", featured: false, icon: "Ship", category: "perizinan",
-    desc: "Angka Pengenal Impor dan nomor registrasi bea cukai — pintu legal impor-ekspor untuk bisnis Anda.",
-    price: "Mulai Rp 1,5 jt",
-    items: ["API-U / API-P di OSS", "Nomor registrasi bea cukai", "Konfigurasi KBLI impor", "Panduan HS Code & lartas"],
-  },
-  {
-    slug: "izin-distribusi", title: "Izin Distribusi & Fasilitas Pemasaran", featured: false, icon: "Truck", category: "perizinan",
-    desc: "Izin usaha distribusi, penjualan langsung, sampai fasilitas pemasaran (Warsek) — barang beredar legal.",
-    price: "Mulai Rp 1,5 jt",
-    items: ["Izin distribusi (IDT)", "Fasilitas pemasaran & gudang", "Surat jalan & wajib lapor", "Untuk produsen & distributor"],
-  },
-  // ── Ekspansi: ki & sertifikasi ──
-  {
-    slug: "merek-internasional", title: "Merek Internasional (Protokol Madrid)", featured: false, icon: "Flag", category: "ki",
-    desc: "Satu pengajuan, banyak negara — daftarkan merek Anda ke 100+ negara lewat Protokol Madrid via DJKI.",
-    price: "Mulai Rp 12 jt",
-    items: ["Aplikasi Madrid via DJKI", "Seleksi negara tujuan", "Riset kelas Nice & risk check", "Monitoring pendaftaran"],
-  },
-  {
-    slug: "higiene-sanitasi", title: "Sertifikat Laik Higiene & Sanitasi", featured: false, icon: "UtensilsCrossed", category: "sertifikasi",
-    desc: "Restoran, katering, pabrik pangan sah operasional — SLHS dari Dinkes agar inspeksi tidak menghentikan usaha.",
-    price: "Mulai Rp 900 rb",
-    items: ["Audit pra-inspeksi Dinkes", "Checklist higiene & sanitasi", "Pengujian lab & swab pekerja", "Sertifikat & pemutakhiran"],
-  },
-  // ── Ekspansi: ketenagakerjaan ──
-  {
-    slug: "kitas-investor", title: "KITAS Investor & Direksi PMA", featured: false, icon: "UserCheck", category: "ketenagakerjaan",
-    desc: "Tinggal & mengurus bisnis di Indonesia tanpa RPTKA — jalur indeks D2 untuk investor & direksi PMA.",
-    price: "Mulai Rp 7 jt",
-    items: ["E-Visa indeks D2", "KITAS investor 1–2 tahun", "Tanpa DPKK & RPTKA", "MERP & multiple exit"],
-  },
-  {
-    slug: "smk3", title: "SMK3 & Ahli K3 Kemnaker", featured: false, icon: "ShieldPlus", category: "ketenagakerjaan",
-    desc: "Sertifikasi Sistem Manajemen K3 wajib untuk perusahaan berisiko tinggi/100+ pekerja — dari audit sampai terbit.",
-    price: "Mulai Rp 3 jt",
-    items: ["Gap audit & perencanaan", "Dokumen SMK3 (5 kriteria)", "Audit eksternal Kemnaker", "Ahli K3 umum & khusus"],
-  },
-  {
-    slug: "bnsp", title: "Sertifikasi Kompetensi BNSP", featured: false, icon: "GraduationCap", category: "ketenagakerjaan",
-    desc: "Sertifikat kompetensi personel & pekerja — syarat seleksi kerja, tender, dan perizinan sektor.",
-    price: "Mulai Rp 750 rb",
-    items: ["Skema sesuai jabatan", "Pendampingan uji kompetensi", "TUK terdekat & fleksibel", "Sertifikat resmi BNSP"],
-  },
-  // ── Ekspansi: korporasi ──
-  {
-    slug: "lkpm", title: "LKPM & Kepatuhan OSS", featured: false, icon: "ClipboardCheck", category: "korporasi",
-    desc: "Laporan Kegiatan Penanaman Modal tepat waktu — hindari sanksi, penahanan perizinan, sampai pencabutan NIB.",
-    price: "Mulai Rp 400 rb/lapor",
-    items: ["LKPM bulanan/triwulan", "Susunan laporan & data", "Validasi di OSS-RBA", "Audit kepatuhan OSS penuh"],
-  },
-];
+/**
+ * DEFAULT_SERVICES diturunkan otomatis dari katalog kanonik (src/lib/catalog.ts)
+ * — tidak ada lagi dua salinan data. Fallback tampil bila DB kosong.
+ */
+export const DEFAULT_SERVICES: ServiceItem[] = CATALOG.map((s) => ({
+  slug: s.slug,
+  title: s.title,
+  desc: s.desc,
+  price: s.price,
+  items: s.features,
+  icon: s.icon,
+  category: s.category,
+  featured: Boolean(s.featured),
+}));
 
 export const DEFAULT_TESTIMONIALS: TestimonialItem[] = [
   { slug: "testimoni-1", name: "Rendra Wijaya", role: "Founder, Kopi Nusantara Rasa", text: "Dari NIB sampai sertifikasi halal, semua beres dalam 9 hari. Tim Digiman bahkan membantu saya memilih KBLI yang bikin saya dapat cuti pajak UMKM. Luar biasa detail.", rating: 5 },

@@ -189,7 +189,7 @@
   },
   "services": {
     "kicker": "Catalogue Complet",
-    "headingA": "29 Services",
+    "headingA": "144 Services",
     "headingB": "Un Seul Point d'Entrée",
     "sub": "De la création d'entreprise, aux licences, fiscalité, certifications et transformation numérique — vous n'avez besoin de chercher nulle part ailleurs.",
     "all": "Tous",
@@ -201,7 +201,17 @@
       "pajak": "Fiscalité",
       "ketenagakerjaan": "Ressources Humaines",
       "korporasi": "Corporate & Juridique",
-      "digital": "Transformation Numérique"
+      "digital": "Transformation Numérique",
+      "esg": "ESG et Durabilité",
+      "pendanaan": "Financement et Investissement",
+      "struktur": "Structure de Groupe et Transactions",
+      "global": "Expansion Mondiale",
+      "kepatuhan-digital": "Conformité Numérique et Données",
+      "kreatif": "Industrie Créative et Médias",
+      "pangan-kesehatan": "Alimentation, Santé et Pharmacie",
+      "properti": "Immobilier et Infrastructure",
+      "sdm-organisasi": "RH et Organisation",
+      "resiliensi": "Résilience et Protection"
     },
     "consult": "Consulter Ces Services",
     "featured": "Plus Populaire"

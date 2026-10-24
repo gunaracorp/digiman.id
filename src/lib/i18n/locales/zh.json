@@ -189,7 +189,7 @@
   },
   "services": {
     "kicker": "完整目录",
-    "headingA": "29项服务",
+    "headingA": "144项服务",
     "headingB": "一站式服务",
     "sub": "从公司成立、许可、税务、认证到数字化转型—您无需在其他地方寻找任何服务。",
     "all": "全部",
@@ -201,7 +201,17 @@
       "pajak": "税务",
       "ketenagakerjaan": "人力资源",
       "korporasi": "公司法务",
-      "digital": "数字化转型"
+      "digital": "数字化转型",
+      "esg": "ESG与可持续发展",
+      "pendanaan": "融资与投资",
+      "struktur": "集团架构与交易",
+      "global": "全球拓展",
+      "kepatuhan-digital": "数字与数据合规",
+      "kreatif": "创意产业与媒体",
+      "pangan-kesehatan": "食品、健康与制药",
+      "properti": "房地产与基础设施",
+      "sdm-organisasi": "人力资源与组织",
+      "resiliensi": "韧性与保护"
     },
     "consult": "咨询此服务",
     "featured": "最受欢迎"
