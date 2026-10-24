@@ -65,7 +65,7 @@ const mdComponents: Components = {
 type Status = "loading" | "ok" | "notfound" | "error";
 
 /**
- * Pembaca artikel penuh — dirender saat hash #/blog/{slug}.
+ * Pembaca artikel penuh — dirender saat hash #route-blog/{slug}.
  * Fetch GET /api/blog?slug=... ; scroll ke atas saat mount;
  * state dibersihkan (abort + reset) saat slug berubah / keluar artikel.
  */
@@ -107,7 +107,7 @@ export default function BlogReader({ slug }: { slug: string }) {
 
   useEffect(() => {
     setShareUrl(
-      `${window.location.origin}${window.location.pathname}#/blog/${slug}`,
+      `${window.location.origin}${window.location.pathname}#route-blog/${slug}`,
     );
   }, [slug]);
 
@@ -158,7 +158,7 @@ export default function BlogReader({ slug }: { slug: string }) {
             atau alamatnya salah.
           </p>
           <a
-            href="#/blog"
+            href="#route-blog"
             className="glass mt-8 inline-flex h-11 items-center gap-2 rounded-full px-6 text-sm font-semibold text-emerald-50 transition hover:border-gold/40 hover:text-gold"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
@@ -183,7 +183,7 @@ export default function BlogReader({ slug }: { slug: string }) {
             mencoba lagi.
           </p>
           <a
-            href={`#/blog/${slug}`}
+            href={`#route-blog/${slug}`}
             className="glass mt-8 inline-flex h-11 items-center gap-2 rounded-full px-6 text-sm font-semibold text-emerald-50 transition hover:border-gold/40 hover:text-gold"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
@@ -226,7 +226,7 @@ export default function BlogReader({ slug }: { slug: string }) {
       name: `${BRAND.legalName} (${BRAND.siteName})`,
       logo: { "@type": "ImageObject", url: `${BRAND.siteUrl}/logo-digiman.png` },
     },
-    mainEntityOfPage: `${BRAND.siteUrl}/#/blog/${post.slug}`,
+    mainEntityOfPage: `${BRAND.siteUrl}/#route-blog/${post.slug}`,
     image: `${BRAND.siteUrl}${BRAND.ogImage}`,
     interactionStatistic: {
       "@type": "InteractionCounter",
@@ -236,7 +236,7 @@ export default function BlogReader({ slug }: { slug: string }) {
   };
   const ARTICLE_LD_HTML = JSON.stringify(articleLd).replace(/</g, "\\u003c");
   const waShareHref = `https://wa.me/?text=${encodeURIComponent(
-    `${post.title} — ${shareUrl || `#/blog/${post.slug}`}`,
+    `${post.title} — ${shareUrl || `#route-blog/${post.slug}`}`,
   )}`;
 
   return (
@@ -271,7 +271,7 @@ export default function BlogReader({ slug }: { slug: string }) {
             Beranda
           </a>
           <ChevronRight className="h-3 w-3" aria-hidden="true" />
-          <a href="#/blog" className="transition hover:text-gold">
+          <a href="#route-blog" className="transition hover:text-gold">
             Blog
           </a>
           <ChevronRight className="h-3 w-3" aria-hidden="true" />
@@ -359,7 +359,7 @@ export default function BlogReader({ slug }: { slug: string }) {
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </a>
             <a
-              href="#/blog"
+              href="#route-blog"
               className="glass inline-flex h-11 items-center gap-2 rounded-full px-6 text-sm font-semibold text-emerald-50 transition hover:border-gold/40 hover:text-gold"
             >
               <ArrowLeft className="h-4 w-4" aria-hidden="true" />
