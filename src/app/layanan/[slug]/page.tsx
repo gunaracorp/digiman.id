@@ -101,7 +101,7 @@ export default async function LayananDetailPage({
 
   const related = content.related
     .map((r) => allServices.find((x) => x.slug === r))
-    .filter((r): r is NonNullable<typeof r> => r !== null)
+    .filter((r): r is NonNullable<typeof r> => r != null)
     .slice(0, 3);
 
   // ── PREMIUM: peta navigasi halaman (chips "Di halaman ini") ──
