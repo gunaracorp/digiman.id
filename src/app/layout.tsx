@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { BRAND, SOCIAL_HREFS, CREDIT_LINE } from "@/lib/brand";
 import { topKeywords } from "@/lib/seo-keywords";
+import { Analytics } from "@vercel/analytics/next";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -342,6 +343,7 @@ export default function RootLayout({
         />
         {children}
         <Toaster />
+        <Analytics />
       </body>
     </html>
   );
