@@ -3,6 +3,7 @@
  * Artikel tersedia sejak build; admin dapat menambah artikel dari Panel
  * Admin > Post (DB) yang akan otomatis tergabung di halaman blog.
  */
+import { BLOG_POSTS_2026 } from "./blog-posts-2026";
 
 export interface BlogPost {
   slug: string;
@@ -788,6 +789,7 @@ export const BLOG_POSTS: BlogPost[] = [
       },
     ],
   },
+  ...BLOG_POSTS_2026,
 ];
 
 /** Mekanisme "artikel baru tiap minggu": artikel bertanggal masa depan otomatis

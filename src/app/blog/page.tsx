@@ -5,6 +5,7 @@ import { buildMetadata, JsonLd, breadcrumbLd, SITE } from "@/lib/seo";
 import PublicNav from "@/components/public/public-nav";
 import PublicFooter from "@/components/public/public-footer";
 import Breadcrumbs from "@/components/public/breadcrumbs";
+import { TrustBand } from "@/components/public/premium-blocks";
 
 // Ritme "artikel baru tiap minggu": daftar dihitung ulang tiap 5 menit (ISR),
 // sehingga artikel terjadwal muncul sendiri tepat saat tanggal terbitnya tiba.
@@ -28,6 +29,9 @@ function formatDate(iso: string) {
 
 export default async function BlogIndexPage() {
   const posts = await getAllVisiblePosts();
+
+  // Artikel terbaru menjadi unggulan; sisanya grid.
+  const [featured, ...rest] = posts;
 
   return (
     <div className="min-h-screen bg-[#050d0a] text-white">
@@ -76,16 +80,52 @@ export default async function BlogIndexPage() {
           agar tidak ketinggalan.
         </p>
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {posts.map((p) => (
+        <TrustBand services={165} categories={20} pages={240} />
+
+        {/* ── ARTIKEL UNGGULAN: kartu besar dengan border emas ── */}
+        {featured && (
+          <Link
+            href={`/blog/${featured.slug}`}
+            className="group mt-14 block rounded-3xl border border-[var(--gold)]/30 bg-gradient-to-br from-[var(--gold)]/[0.08] via-white/[0.03] to-transparent p-8 transition-all hover:border-[var(--gold)]/60 sm:p-12"
+          >
+            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[var(--gold)]">
+              Artikel unggulan minggu ini
+            </p>
+            <h2 className="mt-4 max-w-3xl font-[family-name:var(--font-grotesk)] text-2xl font-bold leading-[1.2] tracking-tight text-white group-hover:text-[var(--gold)] sm:text-4xl">
+              {featured.title}
+            </h2>
+            <p className="mt-4 max-w-2xl text-sm leading-[1.85] text-white/60 sm:text-base">
+              {featured.excerpt}
+            </p>
+            <p className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-white/40">
+              <span>{formatDate(featured.date)}</span>
+              <span aria-hidden="true">·</span>
+              <span>{featured.readMinutes} menit baca</span>
+              <span aria-hidden="true">·</span>
+              <span>{featured.author}</span>
+            </p>
+            <span className="mt-7 inline-flex items-center gap-2 rounded-full bg-[var(--gold)] px-5 py-2.5 text-xs font-bold text-[#04120c] transition-transform group-hover:scale-[1.03]">
+              Baca panduan lengkap →
+            </span>
+          </Link>
+        )}
+
+        {/* ── GRID ARTIKEL ── */}
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {rest.map((p, i) => (
             <Link
               key={p.slug}
               href={`/blog/${p.slug}`}
               className="group flex flex-col rounded-2xl border border-white/8 bg-white/[0.03] p-7 transition-all hover:-translate-y-1 hover:border-[var(--gold)]/40 hover:bg-white/[0.05]"
             >
-              <p className="text-xs text-white/40">
-                {formatDate(p.date)} · {p.readMinutes} menit baca
-              </p>
+              <div className="flex items-center justify-between">
+                <p className="text-xs text-white/40">
+                  {formatDate(p.date)} · {p.readMinutes} menit baca
+                </p>
+                <span aria-hidden="true" className="font-[family-name:var(--font-grotesk)] text-xs font-bold text-white/15">
+                  {String(i + 2).padStart(2, "0")}
+                </span>
+              </div>
               <h2 className="mt-3 text-base font-bold leading-snug text-white group-hover:text-[var(--gold)]">
                 {p.title}
               </h2>

@@ -3,6 +3,7 @@ import { db } from "@/lib/db";
 import { PAGES } from "@/lib/pages";
 import { CITY_SLUGS } from "@/lib/cities";
 import { SITE } from "@/lib/seo";
+import { BLOG_POSTS, isPostLive } from "@/lib/blog-posts";
 
 /**
  * SITEMAP GOD MODE — /sitemap.xml
@@ -87,7 +88,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // fallback: DB kosong — halaman layanan diindeks on-demand
   }
 
-  // ── 5. Artikel blog terbit ──
+  // ── 5a. Artikel blog STATIS (pillar guides) yang sudah tayang ──
+  // Artikel masa depan otomatis masuk sitemap pada revalidate berikutnya
+  // begitu tanggal terbitnya tiba (isPostLive).
+  for (const p of BLOG_POSTS.filter((x) => isPostLive(x, now))) {
+    entries.push({
+      url: `${SITE.url}/blog/${p.slug}`,
+      lastModified: new Date(`${p.date}T09:00:00+07:00`),
+      changeFrequency: "monthly",
+      priority: 0.75,
+    });
+  }
+
+  // ── 5b. Artikel blog dari Panel Admin (DB) ──
   try {
     const posts = await db.blogPost.findMany({
       where: { published: true },

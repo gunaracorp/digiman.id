@@ -852,3 +852,28 @@ Work Log:
 Stage Summary:
 - Nomor resmi DIGIMAN.ID kini +62 813-1651-6524 di seluruh source, JSON-LD SEO, wa.me CTA, fallback API, DB (SiteSetting), dan semua halaman live termasuk katalog-whatsapp (siap dipakai ulang utk koneksi WhatsApp Business).
 - Tool reusabel: scripts/replace-wa-number.sh (kode) + scripts/update-wa-number-db.py (DB) — ganti konstanta di dalamnya bila nomor berubah lagi.
+
+---
+Task ID: premium-all-1
+Agent: main (orchestrator)
+Task: Upgrade SEMUA halaman ke level premium + konten brilliant penarik pengunjung (digiman.id)
+
+Work Log:
+- DESAIN LEVERAGE: satu template = ratusan halaman naik kelas bersamaan. Fokus pada template detail layanan (×165), template artikel blog (×17), index blog, dan konten pillar baru.
+- KOMPONEN BARU src/components/public/premium-blocks.tsx (server-only, nol JS): SectionHead (eyebrow emas), TrustBand (statistik faktual: 165 layanan/20 kategori/240+ halaman panduan/balasan <1×24 jam), GuaranteeCard (jaminan 3 lapis), ComparisonTable (urusan sendiri vs DIGIMAN.ID), TestimonialSpot (deterministik hash per slug — SSR-safe, bukan random).
+- KOMPONEN BARU src/components/public/article-blocks.tsx: ReadingProgress (CSS scroll-driven animation, TANPA JavaScript — progressive enhancement), Toc (anchor asli), AuthorCard (E-E-A-T), ShareRow (WA/X/FB/Telegram, tanpa tracker).
+- LIB BARU src/lib/cross-links.ts: mesin internal linking dua arah — POSTS_BY_CATEGORY (kategori layanan → artikel panduan) + SERVICES_BY_POST (artikel → layanan konversi). Tiap halaman layanan kini menautkan 3 panduan blog; tiap artikel menautkan 3-4 layanan.
+- seo.tsx: serviceLd +param rating (aggregateRating opsional dari testimoni nyata).
+- globals.css: keyframes dm-reading-progress + animation-timeline: scroll(root) + reduced-motion safe + html smooth-scroll utk anchor.
+- TEMPLATE /layanan/[slug] (×165 halaman sekaligus): chips "Di halaman ini" (8 anchor), TrustBand, SectionHead di 5 seksi, TestimonialSpot, ComparisonTable sebelum biaya, seksi "Panduan gratis untuk topik ini" (3 artikel), CTA grid = WaCta + GuaranteeCard berdampingan, strip "Layanan lain di kategori" (10 chips + link filter kategori) → ±1.600 kata visible, internal link per halaman naik drastis.
+- TEMPLATE /blog/[slug] (×17): layout 2 kolom (TOC sticky desktop + mobile), heading bernomor 01., drop-cap paragraf pertama (first-letter emas), meta kalimat (tanggal·baca·kata·penulis), excerpt jadi callout border-emas, AuthorCard, ShareRow, jembatan konversi "Kami bisa mengerjakannya untuk Anda" (layanan terkait), ReadingProgress di top.
+- INDEX /blog: kartu unggulan besar border emas (artikel terbaru) + grid bernomor + TrustBand.
+- 5 ARTIKEL PILLAR 2026 BARU (src/lib/blog-posts-2026.ts, digabung ke BLOG_POSTS via spread): biaya-pendirian-pt-2026-rincian-lengkap, izin-edar-bpom-panduan-lengkap, merek-vs-hak-cipta-vs-paten, pajak-umkm-2026-panduan-lengkap, legalitas-umkm-online-2026 — total ±11.000 kata, masing-masing 5 seksi + tabel data + kesalahan umum + roadmap praktis. Semua tanggal ≤ hari ini (tayang langsung, isPostLive).
+- SITEMAP FIX: sitemap.ts sebelumnya hanya memuat artikel DB — kini +5a artikel statis (BLOG_POSTS live, lastModified dari tanggal artikel) → 247 → 260 URL. RSS feed otomatis ikut (getAllVisiblePosts).
+- VERIFIKASI: tsc 0 error di semua file yang disentuh (sisa error = utang legacy admin + scripts, terdokumentasi sebelumnya); eslint exit 0; curl 200 di /, /layanan/pendirian-pt, /blog, 3 artikel baru; marker premium terverifikasi di HTML (chips/trustband/comparison/panduan/guarantee/progress/TOC/share); wa.me/6281316516524 terkonfirmasi; agent-browser E2E: 0 page error di home+layanan+artikel, TOC 10 anchor, 5 seksi bernomor, 4 tombol share, mobile 390px tanpa overflow, screenshot /tmp/premium-mobile.png; browser ditutup segera (disiplin OOM 4GB).
+
+Stage Summary:
+- Seluruh 165 halaman layanan + 17 artikel + index blog kini bertampil premium (Stripe-style): peta halaman, pita kepercayaan, testimoni nyata, tabel perbandingan jujur, jaminan 3 lapis, CTA ganda — tanpa satu baris JS klien baru di jalur layanan (tetap server-only, Core Web Vitals aman).
+- Mesin internal linking dua arah service↔blog aktif: ±500 tautan kontekstual baru merata di seluruh situs — sinyal on-page terkuat untuk crawling & ranking.
+- Konten pillar baru menambah 5 halaman penangkap query bervolume tinggi 2026 (BPOM, pajak UMKM, IP, seller online, biaya PT) → total artikel statis 17, sitemap 260 URL.
+- Pola utk sesi berikutnya: menambah artikel cukup tulis di blog-posts-2026.ts (atau file baru + spread); pemetaan cross-link di cross-links.ts.

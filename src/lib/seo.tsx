@@ -136,6 +136,8 @@ export function serviceLd(input: {
   image?: string;
   /** tanggal modifikasi terakhir dari DB (updatedAt) */
   dateModified?: string;
+  /** rating agregat nyata dari testimoni DB — memperkuat E-E-A-T di SERP */
+  rating?: { value: number; count: number };
 }) {
   return {
     "@context": "https://schema.org",
@@ -161,6 +163,17 @@ export function serviceLd(input: {
     ],
     ...(input.image ? { image: [`${SITE.url}${input.image}`] } : {}),
     ...(input.dateModified ? { dateModified: input.dateModified } : {}),
+    ...(input.rating
+      ? {
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: input.rating.value.toFixed(1),
+            reviewCount: input.rating.count,
+            bestRating: 5,
+            worstRating: 1,
+          },
+        }
+      : {}),
     ...(input.price
       ? {
           offers: {

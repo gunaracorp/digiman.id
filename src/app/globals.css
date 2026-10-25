@@ -421,6 +421,38 @@ body {
 }
 
 /* ============================================================
+   READING PROGRESS — garis progres membaca (scroll-driven CSS,
+   tanpa JavaScript). Browser yang belum mendukung scroll-driven
+   animation hanya tidak menampilkan garis — degradasi mulus.
+   ============================================================ */
+@keyframes dm-reading-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.dm-reading-progress {
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  animation: dm-reading-progress linear both;
+  animation-timeline: scroll(root block);
+}
+/* Aksesibilitas: progres membaca adalah dekorasi — nonaktif untuk
+   pengguna reduced-motion (aturan global di bawah memangkas durasi,
+   sedangkan timeline scroll tidak membutuhkan durasi sama sekali). */
+@media (prefers-reduced-motion: reduce) {
+  .dm-reading-progress {
+    animation: none !important;
+    transform: scaleX(0) !important;
+  }
+}
+/* Smooth scroll untuk anchor Daftar Isi */
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* ============================================================
    AKSESIBILITAS — hormati prefers-reduced-motion
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
