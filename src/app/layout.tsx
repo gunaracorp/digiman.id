@@ -243,6 +243,20 @@ export const metadata: Metadata = {
   publisher:
     "PT Digital Bisnis Manajemen (digiman.id) × PT Top Konsultan Internasional",
   metadataBase: new URL("https://digiman.id"),
+  // VERIFIKASI MESIN PENCARI — kode verifikasi diambil dari environment
+  // variable, sehingga pemilik cukup mengisi env tanpa menyentuh kode:
+  //   GOOGLE_SITE_VERIFICATION = kode dari Google Search Console
+  //   YANDEX_VERIFICATION      = kode dari Yandex Webmaster
+  //   BING_VERIFICATION        = kode dari Bing Webmaster Tools
+  // Meta <meta name="google-site-verification" ...> otomatis muncul di
+  // <head> bila env terisi, dan tetap tidak dirender bila kosong.
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION || undefined,
+    yandex: process.env.YANDEX_VERIFICATION || undefined,
+    other: process.env.BING_VERIFICATION
+      ? { "msvalidate.01": process.env.BING_VERIFICATION }
+      : undefined,
+  },
   alternates: {
     canonical: "/",
     languages: { "id-ID": "/" },

@@ -4,6 +4,9 @@
  * Admin > Post (DB) yang akan otomatis tergabung di halaman blog.
  */
 import { BLOG_POSTS_2026 } from "./blog-posts-2026";
+import { BLOG_POSTS_PILLAR_A } from "./blog-posts-pillar-a";
+import { BLOG_POSTS_PILLAR_B } from "./blog-posts-pillar-b";
+import { BLOG_POSTS_PILLAR_C } from "./blog-posts-pillar-c";
 
 export interface BlogPost {
   slug: string;
@@ -790,6 +793,9 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
   },
   ...BLOG_POSTS_2026,
+  ...BLOG_POSTS_PILLAR_A,
+  ...BLOG_POSTS_PILLAR_B,
+  ...BLOG_POSTS_PILLAR_C,
 ];
 
 /** Mekanisme "artikel baru tiap minggu": artikel bertanggal masa depan otomatis

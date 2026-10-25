@@ -877,3 +877,21 @@ Stage Summary:
 - Mesin internal linking dua arah service↔blog aktif: ±500 tautan kontekstual baru merata di seluruh situs — sinyal on-page terkuat untuk crawling & ranking.
 - Konten pillar baru menambah 5 halaman penangkap query bervolume tinggi 2026 (BPOM, pajak UMKM, IP, seller online, biaya PT) → total artikel statis 17, sitemap 260 URL.
 - Pola utk sesi berikutnya: menambah artikel cukup tulis di blog-posts-2026.ts (atau file baru + spread); pemetaan cross-link di cross-links.ts.
+
+---
+Task ID: pillar-gsc-1
+Agent: main (orchestrator)
+Task: "kirim sitemap ke Google Search Console, lalu minta saya buat artikel pillar tambahan per kategori — makin banyak panduan, makin lebar pintu pengunjung"
+
+Work Log:
+- AUDIT AWAL: sitemap God Mode (260 URL), robots.txt → sitemap, key file IndexNow (dcf041395f6308fa6b8bd29e395d051c.txt) ada di public/, dev server hidup. Peta coverage: dari 20 kategori layanan hanya ~7 yang punya artikel pillar dedikasi (sisanya pinjam artikel generik via DEFAULT/fallback).
+- 14 ARTIKEL PILLAR KATEGORI BARU (file src/lib/blog-posts-pillar-a/b/c.ts, spread ke BLOG_POSTS): ketenagakerjaan (BPJS-T kewajiban+tarif+sanksi), kepatuhan-digital (UU PDP + roadmap 30-60-90), digital (digital marketing UMKM berjenjang), kreatif (LSF/LMK/ISBN/event), properti (PBG-SLF era PP 16/2021), sdm-organisasi (struktur+grading), resiliensi (BCP ISO 22301 + BIA), pendanaan (sumber dana per tahap), struktur (holding + syarat insentif dividen), esg (POJK 51/2017 + GRI/ISSB), agri-maritim (ISPO/plasma/SIKPI/peternakan), global (ekspor: API-U/PEB-NLE/sertifikat asal per perjanjian), signature (7 produk Gunara berbrand, author Gugun Gunara), korporasi (RUPS kuorum + kalender tahunan). Total ±13.500 kata, tanggal semua ≤ 2026-10-25 (tayang langsung via isPostLive).
+- INTEGRASI: blog-posts.ts +3 import & spread; cross-links.ts — POSTS_BY_CATEGORY kini tiap kategori (20/20) punya artikel dedikasi di posisi pertama; SERVICES_BY_POST +14 entri (3-4 slug layanan valid per artikel, divalidasi terhadap daftar slug CATALOG).
+- GSC PREP: layout.tsx metadata.verification baru — GOOGLE_SITE_VERIFICATION / YANDEX_VERIFICATION / BING_VERIFICATION via env (meta google-site-verification muncul otomatis bila env diisi; tidak merender bila kosong). Google sitemaps ping endpoint sudah deprecated sejak 2023 — jalur resmi hanya GSC UI/API milik pemilik domain, sehingga persiapan teknis dilengkapi + langkah submit diberikan ke pemilik.
+- FIX TYPO: tracsi→traksi (2x), dudue dilihat→diperiksa, menbereskannya→membereskannya, rintangan→video produk & media digital.
+- VERIFIKASI: tsc 0 error pada semua file yang disentuh (sisa error = utang legacy terdokumentasi); eslint exit 0; 14/14 rute /blog/[slug] baru = 200; sitemap 260→274 URL; RSS 20 item; marker premium di artikel (TOC/ShareRow/wa.me 6281316516524/produk signature/cross-link layanan); halaman /layanan/bpjs kini menautkan artikel BPJS dedikasi (mesin cross-link dua arah aktif); dev.log bersih. Dev server sempat direap harness → di-restart via double-fork Python (pola terdokumentasi).
+
+Stage Summary:
+- Setiap kategori layanan kini punya artikel pillar dedikasi: 31 artikel statis total (17 lama + 14 baru), sitemap 274 URL, ±500 tautan internal kontekstual baru service↔blog — pintu masuk query pencarian per kategori terbuka lebar.
+- Persiapan GSC tuntas di sisi kode: verifikasi via env, sitemap+robots valid, IndexNow siap — submit final membutuhkan login Google pemilik digiman.id (tidak dapat dilakukan dari sandbox).
+- Pola sesi berikutnya: artikel baru cukup tambah di file pillar (A/B/C) + 2 entri cross-links; sitemap & RSS & halaman blog otomatis mengikutinya.
