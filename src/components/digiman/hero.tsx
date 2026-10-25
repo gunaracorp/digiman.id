@@ -83,7 +83,7 @@ export default function Hero({ settings }: { settings: SiteSettings }) {
           >
             {t("hero.titleEm")}{" "}
             <span className="gradient-text-gold">
-              {t("hero.title2")} {t("hero.title1")}.
+              {t("hero.title2")} {" "}{t("hero.title1")}.
             </span>
           </motion.h1>
 
