@@ -129,9 +129,9 @@ export default function TeamStructure({ members }: { members: TeamMemberItem[] }
             {/* Anggota lainnya */}
             {rest.length > 0 && (
               <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {rest.map((m, i) => (
+                {rest.map((member, i) => (
                   <m.div
-                    key={m.id}
+                    key={member.id}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-40px" }}
@@ -139,13 +139,13 @@ export default function TeamStructure({ members }: { members: TeamMemberItem[] }
                     className="card-glow glass group rounded-3xl p-7 text-center"
                   >
                     <div className="mx-auto w-fit transition-transform duration-500 group-hover:scale-105">
-                      <Avatar member={m} size={104} />
+                      <Avatar member={member} size={104} />
                     </div>
-                    <h3 className="mt-4 text-lg font-bold text-white">{m.name}</h3>
+                    <h3 className="mt-4 text-lg font-bold text-white">{member.name}</h3>
                     <span className="mt-1.5 inline-block rounded-full border border-emerald-400/25 bg-emerald-400/5 px-3.5 py-1 text-xs font-semibold text-emerald-200/85">
-                      {m.role}
+                      {member.role}
                     </span>
-                    {m.division && <p className="mt-1.5 text-xs text-emerald-50/45">{m.division}</p>}
+                    {member.division && <p className="mt-1.5 text-xs text-emerald-50/45">{member.division}</p>}
                   </m.div>
                 ))}
               </div>

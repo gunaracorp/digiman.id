@@ -7,7 +7,7 @@ import {
   LayoutDashboard, Settings, Network, Briefcase, MessageSquareQuote, CircleHelp,
   UserRound, ExternalLink, LogOut, Menu, X, ShieldCheck, Type, MapPin,
   ImageIcon, Inbox, LayoutTemplate, Search, Users, History, DatabaseBackup,
-  Command, ChevronRight, Newspaper,
+  Command, ChevronRight, Newspaper, FileSpreadsheet,
 } from "lucide-react";
 
 /** Definisi nav bergrup — tampil sesuai peran */
@@ -41,6 +41,7 @@ const NAV_GROUPS: { group: string; items: NavItem[] }[] = [
     items: [
       { href: "/admin/media", label: "Pusat Media", icon: ImageIcon, roles: ["SUPERADMIN", "EDITOR"] },
       { href: "/admin/pesan", label: "Kotak Masuk", icon: Inbox, roles: ["SUPERADMIN", "EDITOR"], badge: "unread" },
+      { href: "/admin/penawaran", label: "Penawaran", icon: FileSpreadsheet, roles: ["SUPERADMIN", "EDITOR"] },
     ],
   },
   {
@@ -337,7 +338,7 @@ function CommandPalette({
   const actions = useMemo(
     () => [
       { label: "Lihat Website (tab baru)", href: "/", external: true, group: "Aksi" },
-      { label: "Keluar dari panel admin", action: "logout", group: "Aksi" },
+      { label: "Keluar dari panel admin", href: "", action: "logout", group: "Aksi" },
     ],
     []
   );

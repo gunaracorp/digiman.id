@@ -4,6 +4,7 @@
  */
 import { PrismaClient } from "@prisma/client";
 import { readFileSync } from "fs";
+import path from "path";
 
 const prisma = new PrismaClient();
 
@@ -24,7 +25,7 @@ type ParsedDomain = {
 };
 
 const parsed = JSON.parse(
-  readFileSync("/home/z/my-project/scripts/pga-parsed.json", "utf-8")
+  readFileSync(path.join(__dirname, "pga-parsed.json"), "utf-8")
 ) as { meta: unknown; domains: ParsedDomain[]; docs: ParsedDoc[] };
 
 // ─── 5 Paket Gunara OS (standarisasi: harga = jumlah dokumen × Rp 1 jt) ───

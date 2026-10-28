@@ -1,16 +1,60 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { requireAdmin } from "@/lib/admin-auth";
+import { requireAdmin } from "@/lib/admin-guard";
 
 export const dynamic = "force-dynamic";
 
-/** GET ?handled=true|false (opsional) — list pesan kontak terbaru, maks 200. */
+/**
+ * GET /api/admin/messages
+ * - ?filter=all|new|starred|archived  → { messages, counts } (panel admin baru)
+ * - ?handled=true|false               → array pesan (kompatibilitas panel lama)
+ * - tanpa parameter                   → array pesan terbaru (maks 200)
+ */
 export async function GET(req: NextRequest) {
-  const denied = await requireAdmin();
-  if (denied) return denied;
+  const session = await requireAdmin(req);
+  if (!session) return NextResponse.json({ error: "Tidak terautentikasi." }, { status: 401 });
 
   try {
-    const handled = new URL(req.url).searchParams.get("handled");
+    const sp = new URL(req.url).searchParams;
+    const filter = sp.get("filter");
+
+    if (filter !== undefined && filter !== null) {
+      const f = filter || "all";
+      const where =
+        f === "new"
+          ? { status: "NEW" }
+          : f === "starred"
+            ? { starred: true }
+            : f === "archived"
+              ? { status: "ARCHIVED" }
+              : {};
+
+      const [rows, countNew, countStarred, countArchived] = await Promise.all([
+        db.contactMessage.findMany({
+          where: f === "all" ? { status: { not: "ARCHIVED" } } : where,
+          orderBy: [{ starred: "desc" }, { createdAt: "desc" }],
+          take: 200,
+        }),
+        db.contactMessage.count({ where: { status: "NEW" } }),
+        db.contactMessage.count({ where: { starred: true } }),
+        db.contactMessage.count({ where: { status: "ARCHIVED" } }),
+      ]);
+      const total = await db.contactMessage.count();
+
+      return NextResponse.json({
+        messages: rows,
+        counts: {
+          new: countNew,
+          starred: countStarred,
+          archived: countArchived,
+          inbox: total - countArchived,
+          total,
+        },
+      });
+    }
+
+    // Format legacy (?handled=true|false atau tanpa parameter)
+    const handled = sp.get("handled");
     const where =
       handled === "true" || handled === "false"
         ? { handled: handled === "true" }
@@ -31,10 +75,10 @@ export async function GET(req: NextRequest) {
   }
 }
 
-/** PATCH ?id= {handled:boolean} */
+/** PATCH ?id= {handled:boolean} — format legacy panel lama. */
 export async function PATCH(req: NextRequest) {
-  const denied = await requireAdmin();
-  if (denied) return denied;
+  const session = await requireAdmin(req);
+  if (!session) return NextResponse.json({ error: "Tidak terautentikasi." }, { status: 401 });
 
   try {
     const id = new URL(req.url).searchParams.get("id");
@@ -48,7 +92,7 @@ export async function PATCH(req: NextRequest) {
     const handled = Boolean(body.handled);
 
     const updated = await db.contactMessage
-      .update({ where: { id }, data: { handled } })
+      .update({ where: { id }, data: { handled, status: handled ? "READ" : "NEW" } })
       .catch(() => null);
     if (!updated)
       return NextResponse.json(
@@ -65,8 +109,8 @@ export async function PATCH(req: NextRequest) {
 
 /** DELETE ?id= */
 export async function DELETE(req: NextRequest) {
-  const denied = await requireAdmin();
-  if (denied) return denied;
+  const session = await requireAdmin(req);
+  if (!session) return NextResponse.json({ error: "Tidak terautentikasi." }, { status: 401 });
 
   try {
     const id = new URL(req.url).searchParams.get("id");

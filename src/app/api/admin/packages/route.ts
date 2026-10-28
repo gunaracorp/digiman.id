@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import type { Prisma } from "@prisma/client";
 import { db } from "@/lib/db";
-import { requireAdmin } from "@/lib/admin-auth";
+import { requireAdminOrDenied } from "@/lib/admin-guard";
 
 export const dynamic = "force-dynamic";
 
@@ -20,8 +20,8 @@ function parseArr(s: string): string[] {
  * GET — 5 paket Gunara OS urut `order` asc.
  * features & documentCodes di-parse jadi array.
  */
-export async function GET() {
-  const denied = await requireAdmin();
+export async function GET(req: NextRequest) {
+  const denied = await requireAdminOrDenied(req);
   if (denied) return denied;
 
   try {
@@ -51,7 +51,7 @@ export async function GET() {
  * documentCodes TIDAK boleh diubah (dikelola seed Gunara OS) — diabaikan.
  */
 export async function PUT(req: NextRequest) {
-  const denied = await requireAdmin();
+  const denied = await requireAdminOrDenied(req);
   if (denied) return denied;
 
   try {

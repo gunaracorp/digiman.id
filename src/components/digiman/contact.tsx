@@ -48,7 +48,6 @@ const EMPTY_FORM: FormData = {
   pesan: "",
   company: "",
 };
-
 type Errors = Partial<Record<keyof FormData, string>>;
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -72,10 +71,13 @@ export default function Contact({
   offices,
   settings,
   services,
+  showOfficeList = true,
 }: {
   offices: OfficeItem[];
   settings: SiteSettings;
   services: ServiceItem[];
+  /** Sembunyikan daftar kantor bila section Offices sudah dirender terpisah. */
+  showOfficeList?: boolean;
 }) {
   const { t } = useI18n();
   const [form, setForm] = useState<FormData>(EMPTY_FORM);
@@ -297,7 +299,7 @@ export default function Contact({
             </div>
 
             {/* (c) offices */}
-            {offices.length > 0 && (
+            {showOfficeList && offices.length > 0 && (
               <div>
                 <h3 className="font-display text-sm font-bold uppercase tracking-widest text-emerald-50/70">
                   {t("contact.kantor")}

@@ -8,8 +8,20 @@ export const SESSION_COOKIE = "digiman_admin";
 const SESSION_TTL = "7d";
 
 function secretKey(): Uint8Array {
-  const secret =
-    process.env.AUTH_SECRET ?? "digiman-admin-secret-2025-pt-digital-bisnis-manajemen";
+  const secret = process.env.AUTH_SECRET;
+  if (!secret) {
+    // Produksi TANPA AUTH_SECRET = token admin dapat dipalsukan siapa pun
+    // yang tahu fallback lama. Fail-closed: login & sesi admin ditolak,
+    // website publik tetap berjalan normal.
+    if (process.env.NODE_ENV === "production") {
+      throw new Error(
+        "AUTH_SECRET belum diset — wajib diisi di environment produksi (min. 32 karakter acak)."
+      );
+    }
+    return new TextEncoder().encode(
+      "digiman-dev-secret-jangan-dipakai-produksi"
+    );
+  }
   return new TextEncoder().encode(secret);
 }
 

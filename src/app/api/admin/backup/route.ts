@@ -1,17 +1,29 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { requireAdmin, requireWrite, cleanStr, isValidDataUrl } from "@/lib/admin-guard";
+import { requireWrite, cleanStr, isValidDataUrl, logActivity } from "@/lib/admin-guard";
 
 /**
  * Backup & Restore ala WordPress Tools > Export/Import — tapi satu file JSON
- * berisi SELURUH konten situs (pengaturan, struktur, layanan, testimoni, faq,
- * kantor, section, media). Tidak menyertakan akun admin & log keamanan.
+ * berisi SELURUH konten situs (pengaturan key/value, struktur, layanan,
+ * testimoni, faq, kantor, section, media). Tidak menyertakan akun admin &
+ * log keamanan. Format: _format "digiman-backup" _version 3 (settings KV).
  */
 
 const TABLES = [
   "siteSetting", "teamMember", "service", "testimonial", "faq",
   "office", "sectionConfig", "mediaAsset",
 ] as const;
+
+/** Key settings yang boleh dipulihkan (adminPassword sengaja dikecualikan
+ * agar berkas backup tidak bisa mengganti kredensial). */
+const RESTORABLE_SETTING_KEYS = new Set([
+  "companyName", "waNumber", "waDisplay", "email", "addressShort", "addressFull",
+  "logoUrl", "statClients", "statExperts", "statLayers", "statSuccess",
+  "heroHeadline", "heroSub", "heroWords", "metaTitle", "metaDescription",
+  "metaKeywords", "ogImage", "googleSiteVerification", "headScripts",
+  "contactFormEnabled", "hours", "instagram", "linkedin", "tiktok",
+  "facebook", "youtube", "gunaraOsHeadline", "gunaraOsSub",
+]);
 
 /** GET /api/admin/backup — unduh berkas backup JSON */
 export async function GET(req: NextRequest) {
@@ -20,7 +32,7 @@ export async function GET(req: NextRequest) {
 
   const [settings, team, services, testimonials, faqs, offices, sections, media] =
     await Promise.all([
-      db.siteSetting.findUnique({ where: { id: 1 } }),
+      db.siteSetting.findMany({ orderBy: { key: "asc" } }),
       db.teamMember.findMany(),
       db.service.findMany(),
       db.testimonial.findMany(),
@@ -32,14 +44,15 @@ export async function GET(req: NextRequest) {
 
   const payload = {
     _format: "digiman-backup",
-    _version: 2,
+    _version: 3,
     _exportedAt: new Date().toISOString(),
-    data: { settings, team, services, testimonials, faqs, offices, sections, media },
+    data: {
+      settings: settings.map((s) => ({ key: s.key, value: s.value })),
+      team, services, testimonials, faqs, offices, sections, media,
+    },
   };
 
-  await db.activityLog.create({
-    data: { username: session.username, action: "EXPORT", detail: "Mengunduh berkas backup konten situs" },
-  }).catch(() => {});
+  await logActivity(session.username, "EXPORT", "Mengunduh berkas backup konten situs");
 
   const stamp = new Date().toISOString().slice(0, 10);
   return new NextResponse(JSON.stringify(payload, null, 2), {
@@ -71,40 +84,26 @@ export async function POST(req: NextRequest) {
     const d = data.data ?? {};
     let restored = 0;
 
-    // 1) Pengaturan (baris tunggal)
-    if (d.settings && typeof d.settings === "object") {
-      const s = d.settings;
-      const safe = {
-        companyName: cleanStr(s.companyName, 120) || "PT Digital Bisnis Manajemen",
-        waNumber: (cleanStr(s.waNumber, 20).replace(/[^0-9]/g, "") || "6281316516524"),
-        waDisplay: cleanStr(s.waDisplay, 30) || "+62 813-1651-6524",
-        email: cleanStr(s.email, 120) || "halo@digiman.id",
-        addressShort: cleanStr(s.addressShort, 160),
-        addressFull: cleanStr(s.addressFull, 300),
-        logoUrl: isValidDataUrl(s.logoUrl, 2_600_000) ? s.logoUrl : null,
-        statClients: Number(s.statClients) || 2500,
-        statExperts: Number(s.statExperts) || 46,
-        statLayers: Number(s.statLayers) || 7,
-        statSuccess: Number(s.statSuccess) || 98,
-        heroHeadline: cleanStr(s.heroHeadline, 300),
-        heroSub: cleanStr(s.heroSub, 800),
-        heroWords: cleanStr(s.heroWords, 1200) || '["Pendirian PT"]',
-        metaTitle: cleanStr(s.metaTitle, 200),
-        metaDescription: cleanStr(s.metaDescription, 400),
-        metaKeywords: cleanStr(s.metaKeywords, 300),
-        ogImage: isValidDataUrl(s.ogImage, 2_600_000) ? s.ogImage : null,
-        googleSiteVerification: cleanStr(s.googleSiteVerification, 200),
-        headScripts: typeof s.headScripts === "string" ? s.headScripts.slice(0, 8000) : "",
-        contactFormEnabled: s.contactFormEnabled !== false,
-        hours: cleanStr(s.hours, 120),
-        instagram: cleanStr(s.instagram, 300),
-        linkedin: cleanStr(s.linkedin, 300),
-        tiktok: cleanStr(s.tiktok, 300),
-        facebook: cleanStr(s.facebook, 300),
-        youtube: cleanStr(s.youtube, 300),
-      };
-      await db.siteSetting.upsert({ where: { id: 1 }, update: safe, create: { id: 1, ...safe } });
-      restored += 1;
+    // 1) Pengaturan (key/value) — hanya key yang dikenal, adminPassword tidak bisa ditimpa via backup
+    if (Array.isArray(d.settings)) {
+      for (const row of d.settings) {
+        const key = typeof row?.key === "string" ? row.key.trim() : "";
+        const value = typeof row?.value === "string" ? row.value : "";
+        if (!key || !RESTORABLE_SETTING_KEYS.has(key)) continue;
+        let safe = value;
+        // Sanitasi khusus per key
+        if (key === "waNumber") safe = value.replace(/[^0-9]/g, "").slice(0, 20) || "6281316516524";
+        if (key === "logoUrl" || key === "ogImage") {
+          if (!isValidDataUrl(value, 2_600_000)) continue;
+        }
+        if (key.startsWith("stat")) {
+          const n = Number(value);
+          if (!Number.isFinite(n) || n < 0) continue;
+        }
+        if (key === "headScripts") safe = value.slice(0, 8000);
+        await db.siteSetting.upsert({ where: { key }, update: { value: safe }, create: { key, value: safe } });
+        restored += 1;
+      }
     }
 
     // 2) Tabel konten: kosongkan lalu isi ulang by id (urutan & relasi tetap utuh)
@@ -126,10 +125,10 @@ export async function POST(req: NextRequest) {
       };
       await client.deleteMany();
       if (rows.length > 0) {
-        // buang field relasional yang tidak ada di SQLite & id boleh dipertahankan
+        // buang field relasional & konversi tanggal; id boleh dipertahankan
         const clean = rows.map((r) => {
           const row = { ...(r as Record<string, unknown>) };
-          for (const k of ["updatedAt", "createdAt"]) {
+          for (const k of ["updatedAt", "createdAt", "date", "publishedAt"]) {
             if (typeof row[k] === "string") {
               const t = new Date(row[k] as string);
               row[k] = Number.isNaN(t.getTime()) ? new Date() : t;
@@ -154,9 +153,7 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    await db.activityLog.create({
-      data: { username: session.username, action: "IMPORT", detail: `Memulihkan backup — ${restored} baris dipulihkan` },
-    }).catch(() => {});
+    await logActivity(session.username, "IMPORT", `Memulihkan backup — ${restored} baris dipulihkan`);
 
     return NextResponse.json({ ok: true, restored });
   } catch (e) {

@@ -1,11 +1,11 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { requireAdmin } from "@/lib/admin-auth";
+import { requireAdminOrDenied } from "@/lib/admin-guard";
 
 export const dynamic = "force-dynamic";
 
-export async function GET() {
-  const denied = await requireAdmin();
+export async function GET(req: NextRequest) {
+  const denied = await requireAdminOrDenied(req);
   if (denied) return denied;
 
   try {

@@ -12,7 +12,7 @@
  */
 import { NextResponse, type NextRequest } from "next/server";
 import { db } from "@/lib/db";
-import { requireAdmin } from "@/lib/admin-auth";
+import { requireAdminOrDenied } from "@/lib/admin-guard";
 import {
   parseProposal,
   PROPOSAL_STATUSES,
@@ -38,7 +38,7 @@ function isStatus(value: unknown): value is ProposalStatus {
 // ───────────────────────────────── GET ───────────────────────────────────
 
 export async function GET(req: NextRequest) {
-  const denied = await requireAdmin();
+  const denied = await requireAdminOrDenied(req);
   if (denied) return denied;
   try {
     const params = req.nextUrl.searchParams;
@@ -75,7 +75,7 @@ export async function GET(req: NextRequest) {
 // ───────────────────────────────── PATCH ─────────────────────────────────
 
 export async function PATCH(req: NextRequest) {
-  const denied = await requireAdmin();
+  const denied = await requireAdminOrDenied(req);
   if (denied) return denied;
   try {
     const id = req.nextUrl.searchParams.get("id")?.trim() ?? "";
@@ -110,7 +110,7 @@ export async function PATCH(req: NextRequest) {
 // ───────────────────────────────── DELETE ────────────────────────────────
 
 export async function DELETE(req: NextRequest) {
-  const denied = await requireAdmin();
+  const denied = await requireAdminOrDenied(req);
   if (denied) return denied;
   try {
     const id = req.nextUrl.searchParams.get("id")?.trim() ?? "";

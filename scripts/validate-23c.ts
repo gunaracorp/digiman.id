@@ -152,20 +152,25 @@ for (const slug of contentSlugs) {
   const tag = `[${slug}]`;
   if (!e) { fail(`${tag} tidak ada enrichment`); continue; }
 
-  e.whoFor.forEach(collect);
-  e.deliverables.forEach(collect);
-  e.costs.forEach((c) => { collect(c.item); if (c.note) collect(c.note); });
-  e.legalBasis.forEach(collect);
+  const whoFor = e.whoFor ?? [];
+  const deliverables = e.deliverables ?? [];
+  const costs = e.costs ?? [];
+  const legalBasis = e.legalBasis ?? [];
 
-  if (e.whoFor.length !== 4) fail(`${tag} whoFor = ${e.whoFor.length}, harus 4`);
-  if (e.deliverables.length !== 5) fail(`${tag} deliverables = ${e.deliverables.length}, harus 5`);
-  if (e.costs.length < 4 || e.costs.length > 5) {
-    fail(`${tag} costs = ${e.costs.length}, harus 4-5`);
+  whoFor.forEach(collect);
+  deliverables.forEach(collect);
+  costs.forEach((c) => { collect(c.item); if (c.note) collect(c.note); });
+  legalBasis.forEach(collect);
+
+  if (whoFor.length !== 4) fail(`${tag} whoFor = ${whoFor.length}, harus 4`);
+  if (deliverables.length !== 5) fail(`${tag} deliverables = ${deliverables.length}, harus 5`);
+  if (costs.length < 4 || costs.length > 5) {
+    fail(`${tag} costs = ${costs.length}, harus 4-5`);
   }
-  const hasPrice = e.costs.some((c) => (c.note ?? "").includes("mulai Rp"));
+  const hasPrice = costs.some((c) => (c.note ?? "").includes("mulai Rp"));
   if (!hasPrice) fail(`${tag} tidak ada cost note dengan harga "mulai Rp" dari spek`);
-  if (e.legalBasis.length < 3 || e.legalBasis.length > 4) {
-    fail(`${tag} legalBasis = ${e.legalBasis.length}, harus 3-4`);
+  if (legalBasis.length < 3 || legalBasis.length > 4) {
+    fail(`${tag} legalBasis = ${legalBasis.length}, harus 3-4`);
   }
 }
 

@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { requireAdmin, requireWrite } from "@/lib/admin-guard";
 
-/** Definisi section beranda yang bisa dikelola (urutan default dari atas ke bawah) */
+/** Definisi section beranda yang bisa dikelola (urutan default dari atas ke bawah).
+ * Harus sinkron dengan DEFAULT_SECTIONS (site-data) & FALLBACK_SECTIONS (app-router). */
 export const SECTION_DEFS: { key: string; label: string; desc: string }[] = [
   { key: "hero", label: "Hero / Beranda", desc: "Judul utama, subjudul, kata berputar" },
   { key: "marquee", label: "Marquee Layanan", desc: "Pita berjalan nama layanan" },
@@ -10,13 +11,18 @@ export const SECTION_DEFS: { key: string; label: string; desc: string }[] = [
   { key: "seven-heavens", label: "7 Lapis Langit", desc: "Perjalanan layanan unggulan" },
   { key: "services", label: "Layanan", desc: "Katalog 29 layanan + tab kategori" },
   { key: "paket", label: "Paket & Harga", desc: "Paket berjenjang, add-on & kalkulator legalitas" },
+  { key: "os-teaser", label: "Gunara OS (Teaser)", desc: "Pengantar 165 dokumen super organisasi" },
   { key: "why-us", label: "Mengapa Kami", desc: "Keunggulan dibanding kompetitor" },
   { key: "team", label: "Struktur Perusahaan", desc: "Direksi & komisaris" },
-  { key: "offices", label: "Kantor & Cabang", desc: "5 lokasi kantor (termasuk SCBD Jakarta)" },
+  { key: "legacy", label: "Warisan & Rekam Jejak", desc: "Kredensial dan jejak pendiri" },
+  { key: "holding", label: "Ekosistem Holding", desc: "DIGIMAN × TopKonsultan × Santri Angon" },
   { key: "process", label: "Proses Kerja", desc: "Timeline langkah kerja" },
   { key: "testimonials", label: "Testimoni", desc: "Marquee 2 baris ulasan klien" },
+  { key: "artikel", label: "Artikel Terbaru (Blog)", desc: "3 artikel terbaru dari blog" },
   { key: "faq", label: "FAQ", desc: "Pertanyaan yang sering diajukan" },
+  { key: "seo-hub", label: "Direktori Kata Kunci & Tagar", desc: "Direktori SEO yang terlihat pengunjung" },
   { key: "cta", label: "Ajakan Konsultasi", desc: "CTA besar + tombol WA" },
+  { key: "offices", label: "Kantor & Cabang", desc: "Kartu lokasi kantor (HEAD/BRANCH)" },
   { key: "contact-form", label: "Formulir Konsultasi", desc: "Form leads masuk ke kotak pesan admin" },
 ];
 

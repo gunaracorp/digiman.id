@@ -56,6 +56,7 @@ export interface TestimonialItem {
   name: string;
   role: string;
   text: string;
+  rating: number;
 }
 
 export interface FaqItem {
@@ -97,7 +98,7 @@ export interface SectionRow {
   order: number;
 }
 
-/** Urutan & label default section beranda (harus sinkron dengan API admin sections) */
+/** Urutan & label default section beranda (harus sinkron dengan API admin sections + FALLBACK_SECTIONS app-router) */
 export const DEFAULT_SECTIONS: SectionRow[] = [
   { key: "hero", label: "Hero / Beranda", enabled: true, order: 0 },
   { key: "marquee", label: "Marquee Layanan", enabled: true, order: 1 },
@@ -105,15 +106,19 @@ export const DEFAULT_SECTIONS: SectionRow[] = [
   { key: "seven-heavens", label: "7 Lapis Langit", enabled: true, order: 3 },
   { key: "services", label: "Layanan", enabled: true, order: 4 },
   { key: "paket", label: "Paket & Harga", enabled: true, order: 5 },
-  { key: "why-us", label: "Mengapa Kami", enabled: true, order: 6 },
-  { key: "team", label: "Struktur Perusahaan", enabled: true, order: 7 },
-  { key: "offices", label: "Kantor & Cabang", enabled: true, order: 8 },
-  { key: "process", label: "Proses Kerja", enabled: true, order: 9 },
-  { key: "testimonials", label: "Testimoni", enabled: true, order: 10 },
-  { key: "faq", label: "FAQ", enabled: true, order: 11 },
-  { key: "artikel", label: "Artikel Terbaru (Blog)", enabled: true, order: 12 },
-  { key: "cta", label: "Ajakan Konsultasi", enabled: true, order: 13 },
-  { key: "contact-form", label: "Formulir Konsultasi", enabled: true, order: 14 },
+  { key: "os-teaser", label: "Gunara OS (Teaser)", enabled: true, order: 6 },
+  { key: "why-us", label: "Mengapa Kami", enabled: true, order: 7 },
+  { key: "team", label: "Struktur Perusahaan", enabled: true, order: 8 },
+  { key: "legacy", label: "Warisan & Rekam Jejak", enabled: true, order: 9 },
+  { key: "holding", label: "Ekosistem Holding", enabled: true, order: 10 },
+  { key: "process", label: "Proses Kerja", enabled: true, order: 11 },
+  { key: "testimonials", label: "Testimoni", enabled: true, order: 12 },
+  { key: "artikel", label: "Artikel Terbaru (Blog)", enabled: true, order: 13 },
+  { key: "faq", label: "FAQ", enabled: true, order: 14 },
+  { key: "seo-hub", label: "Direktori Kata Kunci & Tagar", enabled: true, order: 15 },
+  { key: "cta", label: "Ajakan Konsultasi", enabled: true, order: 16 },
+  { key: "offices", label: "Kantor & Cabang", enabled: true, order: 17 },
+  { key: "contact-form", label: "Formulir Konsultasi", enabled: true, order: 18 },
 ];
 
 /** Baca konfigurasi urutan/visibilitas section (fallback: urutan default bila DB kosong) */
@@ -222,16 +227,16 @@ const DEFAULT_SERVICES: ServiceItem[] = [
 ];
 
 const DEFAULT_TESTIMONIALS: TestimonialItem[] = [
-  { slug: "testimoni-1", name: "Rendra Wijaya", role: "Founder, Kopi Nusantara Rasa", text: "Dari NIB sampai sertifikasi halal, semua beres dalam 9 hari. Tim Digiman bahkan membantu saya memilih KBLI yang bikin saya dapat cuti pajak UMKM. Luar biasa detail." },
-  { slug: "testimoni-2", name: "Sandra Halim", role: "Owner, CV Sinar Teknik", text: "Pendiriannya cuma 4 hari dan saya tidak pernah keluar kantor. Portal monitoring-nya bikin saya tenang karena selalu tahu dokumen saya sedang di mana." },
-  { slug: "testimoni-3", name: "Michael Tanaka", role: "Director, Sakura Digital PMA", text: "Sebagai investor asing, regulasi Indonesia terasa rumit. Digiman memegang semuanya — BKPM, OSS, sampai laporan berkala. Highly recommended." },
-  { slug: "testimoni-4", name: "dr. Amelinda Putri", role: "Founder, Klinik Sehat Bersama", text: "Izin operasional klinik itu rumit. Dewan pakar mereka paham banget alur Dinkes dan BPOM. Pendampingannya sampai klinik kami benar-benar beroperasi." },
-  { slug: "testimoni-5", name: "Bagas Prakoso", role: "CEO, LogistikPro PT", text: "Garansi terbitnya bukan gimmick. Ada revisi dokumen dari notaris, mereka ulangi proses tanpa biaya tambahan dan tetap tepat waktu." },
-  { slug: "testimoni-6", name: "Lestari Ningsih", role: "Owner, Batik Larasati", text: "Merek saya sempat hampir dibajak kompetitor. Untung pendaftaran DJKI lewat Digiman sudah jalan duluan. Sekarang brand saya aman total." },
-  { slug: "testimoni-7", name: "Yusuf Ramadhan", role: "Founder, EduSkill Academy", text: "Langit ke-7 mereka nyata: website + sistem manajemen siswa + otomasi marketing. Sekarang pendaftaran murid jalan sendiri 24 jam." },
-  { slug: "testimoni-8", name: "Clara Suryani", role: "Managing Partner, CS Consulting", text: "Saya langganan urus SPT klien-klien saya di sini. Konsultan pajaknya benar-benar bersertifikat dan fast response. 5 tahun tidak pernah telat lapor." },
-  { slug: "testimoni-9", name: "Hendra Gunawan", role: "Owner, Gudang Makan Sehat", text: "Sertifikasi halal + SNI selesai tanpa saya pusing. Harganya transparan dari awal, tidak ada biaya siluman seperti pengalaman saya di tempat lain." },
-  { slug: "testimoni-10", name: "Nadia Kusuma", role: "Co-Founder, Glowlab Skincare", text: "BPOM, merek, sampai website e-commerce semua ditangani satu tim. Koordinasinya gampang karena satu penanggung jawab akun." },
+  { slug: "testimoni-1", name: "Rendra Wijaya", role: "Founder, Kopi Nusantara Rasa", text: "Dari NIB sampai sertifikasi halal, semua beres dalam 9 hari. Tim Digiman bahkan membantu saya memilih KBLI yang bikin saya dapat cuti pajak UMKM. Luar biasa detail.", rating: 5 },
+  { slug: "testimoni-2", name: "Sandra Halim", role: "Owner, CV Sinar Teknik", text: "Pendiriannya cuma 4 hari dan saya tidak pernah keluar kantor. Portal monitoring-nya bikin saya tenang karena selalu tahu dokumen saya sedang di mana.", rating: 5 },
+  { slug: "testimoni-3", name: "Michael Tanaka", role: "Director, Sakura Digital PMA", text: "Sebagai investor asing, regulasi Indonesia terasa rumit. Digiman memegang semuanya — BKPM, OSS, sampai laporan berkala. Highly recommended.", rating: 5 },
+  { slug: "testimoni-4", name: "dr. Amelinda Putri", role: "Founder, Klinik Sehat Bersama", text: "Izin operasional klinik itu rumit. Dewan pakar mereka paham banget alur Dinkes dan BPOM. Pendampingannya sampai klinik kami benar-benar beroperasi.", rating: 5 },
+  { slug: "testimoni-5", name: "Bagas Prakoso", role: "CEO, LogistikPro PT", text: "Garansi terbitnya bukan gimmick. Ada revisi dokumen dari notaris, mereka ulangi proses tanpa biaya tambahan dan tetap tepat waktu.", rating: 5 },
+  { slug: "testimoni-6", name: "Lestari Ningsih", role: "Owner, Batik Larasati", text: "Merek saya sempat hampir dibajak kompetitor. Untung pendaftaran DJKI lewat Digiman sudah jalan duluan. Sekarang brand saya aman total.", rating: 5 },
+  { slug: "testimoni-7", name: "Yusuf Ramadhan", role: "Founder, EduSkill Academy", text: "Langit ke-7 mereka nyata: website + sistem manajemen siswa + otomasi marketing. Sekarang pendaftaran murid jalan sendiri 24 jam.", rating: 5 },
+  { slug: "testimoni-8", name: "Clara Suryani", role: "Managing Partner, CS Consulting", text: "Saya langganan urus SPT klien-klien saya di sini. Konsultan pajaknya benar-benar bersertifikat dan fast response. 5 tahun tidak pernah telat lapor.", rating: 5 },
+  { slug: "testimoni-9", name: "Hendra Gunawan", role: "Owner, Gudang Makan Sehat", text: "Sertifikasi halal + SNI selesai tanpa saya pusing. Harganya transparan dari awal, tidak ada biaya siluman seperti pengalaman saya di tempat lain.", rating: 5 },
+  { slug: "testimoni-10", name: "Nadia Kusuma", role: "Co-Founder, Glowlab Skincare", text: "BPOM, merek, sampai website e-commerce semua ditangani satu tim. Koordinasinya gampang karena satu penanggung jawab akun.", rating: 5 },
 ];
 
 const DEFAULT_FAQS: FaqItem[] = [
@@ -370,7 +375,7 @@ export async function getSiteData(): Promise<SiteData> {
       services: services.length > 0 ? services : DEFAULT_SERVICES,
       testimonials:
         testimonialRows.length > 0
-          ? testimonialRows.map((t) => ({ slug: t.slug, name: t.name, role: t.role, text: t.text }))
+          ? testimonialRows.map((t) => ({ slug: t.slug, name: t.name, role: t.role, text: t.text, rating: t.rating }))
           : DEFAULT_TESTIMONIALS,
       faqs: faqRows.length > 0
         ? faqRows.map((f) => ({ slug: f.slug, q: f.question, a: f.answer }))

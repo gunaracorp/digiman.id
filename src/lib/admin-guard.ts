@@ -20,6 +20,16 @@ export async function requireAdmin(req: NextRequest): Promise<SessionPayload | n
   }
 }
 
+/** Kompatibilitas gaya panel lama: balik NextResponse 401 jika belum login,
+ * null jika OK — sehingga route lama cukup `if (denied) return denied;`. */
+export async function requireAdminOrDenied(req: NextRequest): Promise<NextResponse | null> {
+  const session = await requireAdmin(req);
+  if (!session) {
+    return NextResponse.json({ error: "Tidak terautentikasi." }, { status: 401 });
+  }
+  return null;
+}
+
 /** Catat aktivitas admin ke audit trail (ala WordPress action log). Gagal logging tidak boleh menggagalkan request. */
 export async function logActivity(username: string, action: string, detail: string): Promise<void> {
   try {
@@ -82,11 +92,12 @@ export function canWrite(session: SessionPayload | null, capability: string): bo
   return caps.includes("*") || caps.includes(capability);
 }
 
-/** Guard untuk route yang menulis data: balik null jika diizinkan, atau NextResponse 401/403. */
+/** Guard untuk route yang menulis data: balik SessionPayload jika diizinkan,
+ * atau NextResponse 401/403 bila ditolak. Tidak pernah mengembalikan null. */
 export async function requireWrite(
   req: NextRequest,
   capability: string
-): Promise<SessionPayload | null | NextResponse> {
+): Promise<SessionPayload | NextResponse> {
   const session = await requireAdmin(req);
   if (!session) {
     return NextResponse.json({ error: "Tidak terautentikasi." }, { status: 401 });

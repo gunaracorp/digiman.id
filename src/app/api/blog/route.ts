@@ -47,10 +47,6 @@ export async function GET(req: NextRequest) {
     // ── Daftar artikel published ──
     const where: Prisma.BlogPostWhereInput = { published: true };
     if (category) where.category = category;
-    if (q) {
-      // LIKE pada SQLite bersifat case-insensitive untuk karakter ASCII
-      where.OR = [{ title: { contains: q } }, { excerpt: { contains: q } }];
-    }
 
     let take: number | undefined;
     if (limitRaw !== null) {
@@ -58,11 +54,23 @@ export async function GET(req: NextRequest) {
       if (Number.isFinite(n)) take = Math.min(Math.max(n, 1), 50);
     }
 
-    const rows = await db.blogPost.findMany({
+    // Pencarian selalu dilakukan di memori agar case-insensitive di SEMUA
+    // provider database (SQLite LIKE hanya case-insensitive untuk ASCII,
+    // sedangkan Postgres LIKE case-sensitive).
+    let rows = await db.blogPost.findMany({
       where,
       orderBy: [{ publishedAt: "desc" }, { createdAt: "desc" }],
-      ...(take !== undefined ? { take } : {}),
+      ...(q || take === undefined ? {} : { take }),
     });
+    if (q) {
+      const needle = q.toLowerCase();
+      rows = rows.filter(
+        (r) =>
+          r.title.toLowerCase().includes(needle) ||
+          r.excerpt.toLowerCase().includes(needle)
+      );
+    }
+    if (take !== undefined) rows = rows.slice(0, take);
 
     return NextResponse.json({ posts: rows.map(parseBlogCard) });
   } catch (e) {

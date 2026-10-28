@@ -66,7 +66,13 @@ model ContactMessage {
   service   String?
   message   String
   handled   Boolean  @default(false)
+  /// Status kotak masuk panel admin: NEW | READ | ARCHIVED
+  status    String   @default("NEW")
+  /// Ditandai bintang oleh admin
+  starred   Boolean  @default(false)
   createdAt DateTime @default(now())
+
+  @@index([status, createdAt])
 }
 
 model ChatLog {

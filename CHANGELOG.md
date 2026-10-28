@@ -7,6 +7,75 @@ versioning [Semantic Versioning](https://semver.org/lang/id/).
 
 ## [Unreleased]
 
+### [0.19.0] — 2026: Pre-Launch Audit — Perbaikan Menyeluruh (Zero-Bug Pass)
+
+Audit lengkap menjelang peluncuran: type-check, lint, build produksi,
+pengujian runtime seluruh halaman & API, serta uji end-to-end panel admin.
+
+### Fixed (kritis)
+
+- **Dua sistem auth admin digabung jadi satu.** Panel admin lama
+  (hash-view `#route-admin`, cookie `gunara_admin` + password tunggal
+  di `SiteSetting`) bertabrakan dengan panel baru (JWT `digiman_admin`,
+  tabel `AdminUser`, RBAC SUPERADMIN/EDITOR/VIEWER). Akibatnya endpoint
+  yang dijaga guard lama selalu 401 setelah login baru. Seluruh route
+  `/api/admin/*` kini memakai guard kanonik (`requireAdmin`/`requireWrite`
+  + audit log). Route panel lama yang mati dihapus
+  (`/api/admin/auth`, `/api/admin/blog`, komponen SPA lama).
+- **Panel admin tunggal.** `/admin` kini langsung ke dashboard modern
+  (`/admin/beranda`). Halaman baru **/admin/penawaran** mengelola proposal
+  (sebelumnya hanya ada di panel lama). Nav sidebar + command palette
+  diperbarui.
+- **Schema drift Prisma.** Kode admin menulis `SiteSetting` flat
+  (`id: 1`, kolom `heroHeadline`…) sementara schema/DB memakai key/value →
+  route hero & backup pasti error saat runtime. Keduanya ditulis ulang ke
+  format key/value (backup format v3, `adminPassword` tak bisa ditimpa
+  lewat berkas restore).
+- **404 artikel blog.** Teaser beranda & sitemap mendaftar artikel model
+  `BlogPost`, sedangkan `/blog/[slug]` hanya mencari `Post`+statis →
+  6 artikel terseed 404. `blog-data.ts` kini menggabungkan tiga sumber
+  (statis + `Post` + `BlogPost`) dengan konversi markdown→sections,
+  tanpa duplikat slug.
+- **Halaman `/proposal` & `/dashboard` 404.** Link di halaman Gunara OS
+  menuju `/proposal` tidak punya halaman sungguhan. Kini ada halaman
+  nyata (server shell bersama `home-shell.tsx`), tautan hash dari
+  view-route ikut dinavigasikan sebagai path, dan `/proposal` masuk
+  registri PAGES (footer + sitemap).
+- **Struktur Perusahaan tak pernah tampil.** Komponen `TeamStructure`
+  tidak pernah dirender + bug shadowing variabel `m` (framer-motion)
+  menimpa parameter `.map()` → crash saat dirender. Diperbaiki; section
+  `team` & `offices` kini bagian landing.
+- **Landing mengabaikan Panel Admin.** Landing memakai `DEFAULT_SETTINGS`
+  statis & mengabaikan urutan/visibilitas section. `getSiteData` berbasis
+  DB kini menjadi sumber tunggal; landing menghormati konfigurasi
+  Tata Letak Section (19 section key yang sinkron di API + site-data +
+  fallback router).
+- **Kotak Masuk rusak.** UI menuntut `status`/`starred` + filter
+  `all|new|starred|archived` + payload `{messages,counts}`; API/schema
+  hanya punya `handled`. Schema `ContactMessage` ditambah kolom
+  `status` (default NEW) & `starred`; GET mendukung kedua format
+  (filter baru + `?handled=` legacy). Badge unread sidebar kini berfungsi.
+- **`AUTH_SECRET` fallback hardcoded** (token admin bisa dipalsukan di
+  produksi) → fail-closed: produksi tanpa `AUTH_SECRET` menolak login
+  admin; `.env.example` diperbarui.
+- **80 error TypeScript** (memblokir `tsc --noEmit`): duplikat key di
+  `ICON_MAP` services.tsx, tipe `requireWrite` (null yang tak mungkin),
+  `NextRequest` stats, kontrak `OfficeItem`, dan skrip dev. Kini **0
+  error** (tsc + eslint).
+
+### Fixed (lainnya)
+
+- Pencarian `/api/blog` kini case-insensitive di semua provider DB.
+- Seed `seed-gunara.ts` memakai path relatif (bukan path absolut mesin
+  lama) sehingga jalan di Vercel/server mana pun.
+- `next.config.ts`: tekanan keamanan dipertahankan; komentari rencana CSP.
+
+### Migration note
+
+- Setelah deploy, jalankan `bunx prisma db push` pada database produksi
+  untuk menambah kolom `ContactMessage.status` & `ContactMessage.starred`,
+  lalu set env `AUTH_SECRET` (≥32 karakter acak) di environment produksi.
+
 ### Stage Genesis 2 (direncanakan)
 
 - Data model holding: entity `Business`/`Venture`/`Brand` + Admin CRUD

@@ -1,14 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { requireAdmin } from "@/lib/admin-auth";
+import { requireAdminOrDenied } from "@/lib/admin-guard";
 
 export const dynamic = "force-dynamic";
 
 const MASK = "••••••";
 
 /** GET — list SiteSetting; value adminPassword disamarkan. */
-export async function GET() {
-  const denied = await requireAdmin();
+export async function GET(req: NextRequest) {
+  const denied = await requireAdminOrDenied(req);
   if (denied) return denied;
 
   try {
@@ -36,7 +36,7 @@ export async function GET() {
  * Untuk adminPassword: hanya diterima bila value bukan mask dan panjang ≥ 6.
  */
 export async function PUT(req: NextRequest) {
-  const denied = await requireAdmin();
+  const denied = await requireAdminOrDenied(req);
   if (denied) return denied;
 
   try {

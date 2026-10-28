@@ -2,20 +2,52 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { requireAdmin, requireWrite, cleanStr, logActivity } from "@/lib/admin-guard";
 
-/** Editor Hero (beranda) — endpoint terpisah agar update parsial tidak mengganggu pengaturan lain. */
+/**
+ * Editor Hero (beranda) — endpoint terpisah agar update parsial tidak
+ * mengganggu pengaturan lain.
+ * Penyimpanan memakai kontrak SiteSetting key/value (sama dengan schema.prisma
+ * dan seluruh panel admin): key `heroHeadline`, `heroSub`, `heroWords` (JSON).
+ */
 
 const MAX_WORDS = 12;
+const KEY_HEADLINE = "heroHeadline";
+const KEY_SUB = "heroSub";
+const KEY_WORDS = "heroWords";
+
+const DEFAULT_HEADLINE = "Naikkan Bisnis Anda ke 7 Lapis Langit Legalitas.";
+const DEFAULT_SUB =
+  "Satu pintu untuk seluruh legalitas perusahaan di Indonesia — dari akta pendirian, perizinan OSS, kekayaan intelektual, hingga transformasi digital. Didampingi 46 dewan pakar lintas bidang, proses transparan, garansi di tangan.";
+const DEFAULT_WORDS: string[] = [
+  "Pendirian PT",
+  "Pendirian CV",
+  "PT PMA",
+  "NIB & OSS",
+  "Pendaftaran Merek",
+  "Sertifikasi Halal",
+  "Digitalisasi Bisnis",
+];
+
+/** Upsert satu key setting dengan nilai aman. */
+async function putSetting(key: string, value: string): Promise<void> {
+  await db.siteSetting.upsert({
+    where: { key },
+    update: { value },
+    create: { key, value },
+  });
+}
 
 export async function GET(req: NextRequest) {
   const session = await requireAdmin(req);
   if (!session) return NextResponse.json({ error: "Tidak terautentikasi." }, { status: 401 });
 
-  let settings = await db.siteSetting.findUnique({ where: { id: 1 } });
-  if (!settings) settings = await db.siteSetting.create({ data: { id: 1 } });
+  const rows = await db.siteSetting.findMany({
+    where: { key: { in: [KEY_HEADLINE, KEY_SUB, KEY_WORDS] } },
+  });
+  const kv = new Map(rows.map((r) => [r.key, r.value]));
 
   let words: string[] = [];
   try {
-    const parsed = JSON.parse(settings.heroWords);
+    const parsed = JSON.parse(kv.get(KEY_WORDS) ?? "[]");
     if (Array.isArray(parsed)) words = parsed.map((w) => String(w)).slice(0, MAX_WORDS);
   } catch {
     words = [];
@@ -23,9 +55,9 @@ export async function GET(req: NextRequest) {
 
   return NextResponse.json({
     hero: {
-      heroHeadline: settings.heroHeadline,
-      heroSub: settings.heroSub,
-      words,
+      heroHeadline: kv.get(KEY_HEADLINE) || DEFAULT_HEADLINE,
+      heroSub: kv.get(KEY_SUB) || DEFAULT_SUB,
+      words: words.length >= 2 ? words : DEFAULT_WORDS,
     },
   });
 }
@@ -56,11 +88,9 @@ export async function PUT(req: NextRequest) {
       );
     }
 
-    await db.siteSetting.upsert({
-      where: { id: 1 },
-      update: { heroHeadline: headline, heroSub: sub, heroWords: JSON.stringify(words) },
-      create: { id: 1, heroHeadline: headline, heroSub: sub, heroWords: JSON.stringify(words) },
-    });
+    await putSetting(KEY_HEADLINE, headline);
+    await putSetting(KEY_SUB, sub);
+    await putSetting(KEY_WORDS, JSON.stringify(words));
 
     await logActivity(session.username, "UPDATE", "Memperbarui tampilan Beranda (judul hero & kata berputar)");
     return NextResponse.json({ ok: true });

@@ -122,10 +122,21 @@ const FAQS = [
 async function main() {
   console.log("=== Seed Admin Panel DIGIMAN.ID ===");
 
-  // 1. Pengaturan situs
+  // 1. Pengaturan situs (key/value) — hanya bila tabel masih kosong
   const settings = await db.siteSetting.count();
   if (settings === 0) {
-    await db.siteSetting.create({ data: { id: 1 } });
+    const defaults: [string, string][] = [
+      ["companyName", "PT Digital Bisnis Manajemen"],
+      ["waNumber", "6281316516524"],
+      ["waDisplay", "+62 813-1651-6524"],
+      ["email", "halo@digiman.id"],
+      ["addressShort", "Andalusia Garden Granada No.11, Tasikmalaya"],
+      ["hours", "Senin–Jumat 09.00–17.00 WIB"],
+      ["heroHeadline", "Naikkan Bisnis Anda ke 7 Lapis Langit Legalitas."],
+    ];
+    for (const [key, value] of defaults) {
+      await db.siteSetting.create({ data: { key, value } });
+    }
     console.log("✓ SiteSetting dibuat (kontak resmi + statistik default)");
   } else {
     console.log("• SiteSetting sudah ada, lewati");
@@ -135,7 +146,14 @@ async function main() {
   const svcCount = await db.service.count();
   if (svcCount === 0) {
     for (const s of SERVICES) {
-      await db.service.create({ data: { ...s, features: JSON.stringify(s.features) } });
+      const { features, ...rest } = s;
+      await db.service.create({
+        data: {
+          ...rest,
+          category: (s as { category?: string }).category ?? "pendirian",
+          features: JSON.stringify(features),
+        },
+      });
     }
     console.log(`✓ ${SERVICES.length} layanan di-seed`);
   } else {

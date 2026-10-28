@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import type { Prisma } from "@prisma/client";
 import { db } from "@/lib/db";
-import { requireAdmin } from "@/lib/admin-auth";
+import { requireAdminOrDenied } from "@/lib/admin-guard";
 
 export const dynamic = "force-dynamic";
 
@@ -14,8 +14,8 @@ function clampRating(v: unknown): number {
 }
 
 /** GET — semua testimoni urut `order` asc. */
-export async function GET() {
-  const denied = await requireAdmin();
+export async function GET(req: NextRequest) {
+  const denied = await requireAdminOrDenied(req);
   if (denied) return denied;
 
   try {
@@ -34,7 +34,7 @@ export async function GET() {
 
 /** POST — create {name, role, text, rating, visible, order}. */
 export async function POST(req: NextRequest) {
-  const denied = await requireAdmin();
+  const denied = await requireAdminOrDenied(req);
   if (denied) return denied;
 
   try {
@@ -71,7 +71,7 @@ export async function POST(req: NextRequest) {
 
 /** PUT ?id= — update parsial. */
 export async function PUT(req: NextRequest) {
-  const denied = await requireAdmin();
+  const denied = await requireAdminOrDenied(req);
   if (denied) return denied;
 
   try {
@@ -115,7 +115,7 @@ export async function PUT(req: NextRequest) {
 
 /** DELETE ?id= */
 export async function DELETE(req: NextRequest) {
-  const denied = await requireAdmin();
+  const denied = await requireAdminOrDenied(req);
   if (denied) return denied;
 
   try {
