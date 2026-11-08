@@ -7,6 +7,31 @@ versioning [Semantic Versioning](https://semver.org/lang/id/).
 
 ## [Unreleased]
 
+### [0.20.0] — 2026-11-08: Dokumen Legal Lengkap (Kebijakan Privasi & S&K)
+
+Perluasan menyeluruh kedua dokumen legal menjadi naskah berpasal penuh yang
+selaras dengan hukum Indonesia, tanpa mengubah skema/pola halaman (`SECTIONS`).
+
+### Added
+
+- **Kebijakan Privasi & Proteksi Data Pribadi v1.0** — 18 pasal selaras UU PDP
+  No. 27/2022: inventaris kategori data, dasar & tujuan pemrosesan (Pasal 20
+  UU PDP), cookie, pengungkapan pihak ketiga, jadwal retensi, keamanan (acuan
+  ISO/IEC 27001 & 27701), hak subjek data (Pasal 5–13 UU PDP), data pribadi
+  anak (Pasal 25), transfer internasional (Pasal 55–56), notifikasi kegagalan
+  perlindungan 3×24 jam (Pasal 46), dan pejabat pelaksana (Pasal 35).
+- **Syarat dan Ketentuan Layanan v1.0** — 21 pasal: dasar mengikat (KUHPerdata,
+  UU 8/1999, UU ITE, PP PSTE), kerangka **7 Lapis Langit Legalitas**, kewajiban
+  klien, komposisi biaya (jasa / Biaya Resmi Negara / mitra), Garansi Terbit,
+  pengembalian dana proporsional, kekayaan intelektual (UU 28/2014), kerahasiaan,
+  batasan tanggung jawab berimbang dengan pengecualian wajib hukum, force
+  majeure, pengakhiran, serta musyawarah → mediasi → BANI (UU 30/1999) tanpa
+  menghapus hak konsumen (BPSK/pengadilan).
+- **Arsip salinan resmi** `docs/legal/` — docx & pdf kedua dokumen
+  (placeholder identitas internal tinggal diisi sebelum penandatanganan).
+- Halaman legal kini saling bertaut dan ke halaman Kontak; daftar isi dokumen
+  dalam Bahasa Indonesia yang manusiawi dipertahankan di tiap halaman.
+
 ### [0.19.0] — 2026: Pre-Launch Audit — Perbaikan Menyeluruh (Zero-Bug Pass)
 
 Audit lengkap menjelang peluncuran: type-check, lint, build produksi,
