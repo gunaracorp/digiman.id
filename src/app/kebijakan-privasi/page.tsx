@@ -238,10 +238,10 @@ const SECTIONS = [
   {
     h: "Pasal 16 — Pejabat Pelaksana Pengamanan Data dan Cara Menghubungi Kami",
     p: [
-      "16.1 Sesuai Pasal 35 UU PDP, Perusahaan menunjuk seorang Pejabat Pelaksana Pengamanan Data Pribadi yang bertugas memastikan kepatuhan internal, menjadi titik kontak Subjek Data, dan mengawasi pelaksanaan Kebijakan ini. Permintaan dan pertanyaan disampaikan melalui kanal kontak berikut:",
-      `Surel perlindungan data (kanal utama) — ${SITE.email}.`,
-      "Kanal resmi lainnya — halaman Kontak pada situs digiman.id, tempat telepon, WhatsApp, dan alamat kantor resmi Perusahaan tercantum.",
-      "16.2 Permintaan hak Subjek Data, pertanyaan tentang Kebijakan ini, atau laporan kekhawatiran sebaiknya disampaikan melalui surel perlindungan data dengan subjek yang jelas agar dapat diproses cepat dan terdokumentasi baik.",
+      "16.1 Sesuai Pasal 35 UU PDP, Perusahaan menunjuk Muhammad Lutfi Azmi sebagai Pejabat Pelaksana Pengamanan Data Pribadi yang bertugas memastikan kepatuhan internal, menjadi titik kontak Subjek Data, dan mengawasi pelaksanaan Kebijakan ini. Permintaan dan pertanyaan disampaikan melalui kanal kontak berikut:",
+      `Surel resmi (kanal utama) — ${SITE.email}; Telepon/WhatsApp resmi — +62 813-1651-6524.`,
+      `Alamat kantor terdaftar — Kampung Gunung Guntur RT 022/RW 006 No. 50, Dusun Bojong, Kelurahan Padasuka, Kecamatan Sukarame, Kabupaten Tasikmalaya, Provinsi Jawa Barat 46464, Indonesia.`,
+      "16.2 Permintaan hak Subjek Data, pertanyaan tentang Kebijakan ini, atau laporan kekhawatiran sebaiknya disampaikan melalui surel resmi dengan subjek yang jelas agar dapat diproses cepat dan terdokumentasi baik.",
     ],
   },
   {

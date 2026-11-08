@@ -27,8 +27,13 @@ selaras dengan hukum Indonesia, tanpa mengubah skema/pola halaman (`SECTIONS`).
   batasan tanggung jawab berimbang dengan pengecualian wajib hukum, force
   majeure, pengakhiran, serta musyawarah → mediasi → BANI (UU 30/1999) tanpa
   menghapus hak konsumen (BPSK/pengadilan).
-- **Arsip salinan resmi** `docs/legal/` — docx & pdf kedua dokumen
-  (placeholder identitas internal tinggal diisi sebelum penandatanganan).
+- **Arsip salinan resmi** `docs/legal/` — docx, pdf, dan markdown
+  (`PRIVACY_POLICY.md` / `TERMS_AND_CONDITIONS.md`) kedua dokumen. Identitas
+  resmi terisi lengkap: alamat kantor terdaftar (Kampung Gunung Guntur
+  RT 022/RW 006 No. 50, Dusun Bojong, Kelurahan Padasuka, Kecamatan Sukarame,
+  Kabupaten Tasikmalaya, Provinsi Jawa Barat 46464), surel halo@digiman.id,
+  WhatsApp +62 813-1651-6524, nomor dokumen DBM-LGL-PRIV-001 & DBM-LGL-SNK-001,
+  serta penandatangan (Gugun Gunara — Direktur Utama; Muhammad Lutfi Azmi).
 - Halaman legal kini saling bertaut dan ke halaman Kontak; daftar isi dokumen
   dalam Bahasa Indonesia yang manusiawi dipertahankan di tiap halaman.
 

@@ -30,7 +30,7 @@ const SECTIONS = [
     h: "Pasal 2 — Definisi",
     p: [
       "2.1 Dalam Ketentuan ini, istilah berikut dimaknai sebagai berikut:",
-      "(a) \"Perusahaan\" adalah PT Digital Bisnis Manajemen, dengan merek layanan DIGIMAN.ID, badan hukum Indonesia yang berkedudukan di wilayah Republik Indonesia.",
+      "(a) \"Perusahaan\" adalah PT Digital Bisnis Manajemen, dengan merek layanan DIGIMAN.ID, berkedudukan di Kampung Gunung Guntur RT 022/RW 006 No. 50, Dusun Bojong, Kelurahan Padasuka, Kecamatan Sukarame, Kabupaten Tasikmalaya, Provinsi Jawa Barat 46464, Indonesia.",
       "(b) \"Situs\" adalah situs web dengan domain digiman.id beserta seluruh halaman dan subdomainnya yang dioperasikan Perusahaan.",
       "(c) \"Layanan\" adalah seluruh jasa yang ditawarkan Perusahaan sebagaimana diuraikan dalam Pasal 4.",
       "(d) \"Klien\" adalah orang pribadi atau badan usaha yang telah menyetujui Penawaran dan/atau menandatangani Perjanjian Layanan dengan Perusahaan.",
@@ -45,7 +45,7 @@ const SECTIONS = [
   {
     h: "Pasal 3 — Identitas dan Legalitas Penyedia Layanan",
     p: [
-      `3.1 Layanan disediakan oleh PT Digital Bisnis Manajemen, perseroan terbatas yang didirikan pada tanggal 26 Desember 2022 dan disahkan berdasarkan Surat Keputusan Menteri Hukum dan HAM Republik Indonesia Nomor AHU-059566.AH.01.30.Tahun 2022. Alamat kantor, telepon, dan surel resmi Perusahaan tercantum pada halaman Kontak situs digiman.id; Anda juga dapat menghubungi kami melalui surel ${SITE.email}.`,
+      `3.1 Layanan disediakan oleh PT Digital Bisnis Manajemen, perseroan terbatas yang didirikan pada tanggal 26 Desember 2022 dan disahkan berdasarkan Surat Keputusan Menteri Hukum dan HAM Republik Indonesia Nomor AHU-059566.AH.01.30.Tahun 2022, dengan alamat kantor terdaftar di Kampung Gunung Guntur RT 022/RW 006 No. 50, Dusun Bojong, Kelurahan Padasuka, Kecamatan Sukarame, Kabupaten Tasikmalaya, Provinsi Jawa Barat 46464, Indonesia; dapat dihubungi melalui surel ${SITE.email} dan telepon/WhatsApp +62 813-1651-6524.`,
       "3.2 Layanan Perusahaan bersifat pendampingan administratif, perizinan, dan digitalisasi usaha. Layanan tersebut bukan penggantian nasihat hukum formal dalam sengketa, perwakilan di pengadilan, atau pendapat hukum (legal opinion) — untuk hal-hal tersebut, Anda dianjurkan menggunakan jasa advokat atau notaris secara langsung.",
       "3.3 Perusahaan bekerja bersama notaris, pakar pajak, dan pakar kepatuhan yang berpraktik secara pribadi menurut kewajiban profesinya; status profesi dan tanggung jawab profesinya tetap berada pada pihak yang bersangkutan.",
     ],
@@ -233,7 +233,7 @@ const SECTIONS = [
       "21.3 Ketidakmenegakan suatu hak oleh salah satu pihak bukan berarti pengesampingan hak tersebut; pengesampingan hanya berlaku bila disampaikan secara tertulis.",
       "21.4 Perusahaan dapat memperbarui Ketentuan ini dengan memberitahukannya pada Situs; pembaruan berlaku sejak tanggal yang tercantum pada versi terbaru. Perjanjian Layanan yang telah berjalan mengikuti versi pada saat pembentukannya, kecuali disepakati lain.",
       "21.5 Ketentuan ini merupakan keseluruhan kesepakatan mengenai penggunaan Situs dan ketentuan umum Layanan, dan tidak mengurangi ketentuan Perjanjian Layanan yang lebih rinci.",
-      `21.6 Pemberitahuan resmi kepada Perusahaan disampaikan melalui surel ${SITE.email} atau kanal kontak resmi pada halaman Kontak situs digiman.id.`,
+      `21.6 Pemberitahuan resmi kepada Perusahaan disampaikan ke alamat kantor terdaftar sebagaimana diatur dalam Pasal 3.1 atau surel ${SITE.email}.`,
       "21.7 Dokumen ini disusun dengan niat memberikan perlindungan yang seimbang bagi kedua pihak dan ditinjau secara berkala agar tetap bijaksana di tengah perkembangan hukum. Untuk kondisi transaksi yang bersifat khusus, Anda dianjurkan memperoleh nasihat hukum yang independen.",
     ],
   },
