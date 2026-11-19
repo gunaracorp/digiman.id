@@ -2,11 +2,11 @@
  * Seed GUNARA OS — 20 domain, 165 dokumen PGA, 5 paket standar, blog, settings.
  * Idempotent: upsert berdasarkan code/slug/key.
  */
-import { PrismaClient } from "@prisma/client";
+import { createPrismaClient } from "./db";
 import { readFileSync } from "fs";
 import path from "path";
 
-const prisma = new PrismaClient();
+const prisma = createPrismaClient();
 
 type ParsedDoc = {
   code: string;

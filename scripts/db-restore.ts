@@ -8,9 +8,9 @@
  */
 import { readFileSync } from "fs";
 import { join } from "path";
-import { PrismaClient } from "@prisma/client";
+import { createPrismaClient } from "./db";
 
-const prisma = new PrismaClient();
+const prisma = createPrismaClient();
 
 // Urutan FK-aman untuk DELETE: child dulu; CREATE: parent dulu.
 const DELETE_ORDER = [

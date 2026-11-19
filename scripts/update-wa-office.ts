@@ -10,12 +10,12 @@
  * Pemakaian: DATABASE_URL=file:./db/custom.db bun run scripts/update-wa-office.ts
  * (Alternatif menyeluruh: scripts/update-wa-number-db.py — menyapu seluruh tabel.)
  */
-import { PrismaClient } from "@prisma/client";
+import { createPrismaClient } from "./db";
 
 const WA_NUMBER = "6281316516524";
 const WA_DISPLAY = "+62 813-1651-6524";
 
-const p = new PrismaClient();
+const p = createPrismaClient();
 
 async function main() {
   await p.siteSetting.upsert({

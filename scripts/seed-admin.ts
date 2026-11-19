@@ -3,10 +3,10 @@
  * Idempoten: hanya mengisi tabel yang masih kosong.
  * Jalankan: bun run scripts/seed-admin.ts
  */
-import { PrismaClient } from "@prisma/client";
+import { createPrismaClient } from "./db";
 import { randomBytes, scryptSync } from "node:crypto";
 
-const db = new PrismaClient();
+const db = createPrismaClient();
 
 function hashPassword(password: string): string {
   const salt = randomBytes(16).toString("hex");

@@ -9,9 +9,9 @@
  */
 import { writeFileSync, mkdirSync } from "fs";
 import { join } from "path";
-import { PrismaClient } from "@prisma/client";
+import { createPrismaClient } from "./db";
 
-const prisma = new PrismaClient();
+const prisma = createPrismaClient();
 
 // Urutan FK-aman: parent dulu (PgaDomain → PgaDocument, ClientProject → turunannya)
 const MODELS = [

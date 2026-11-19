@@ -6,9 +6,9 @@
  * invoice, aktivitas, meeting, dan extras (legalitas, digitalisasi, goals,
  * team, files, achievements, notifications, messages).
  */
-import { PrismaClient } from "@prisma/client";
+import { createPrismaClient } from "./db";
 
-const prisma = new PrismaClient();
+const prisma = createPrismaClient();
 
 const DAY = 24 * 60 * 60 * 1000;
 const now = Date.now();
