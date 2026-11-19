@@ -9,6 +9,11 @@ import { db } from "@/lib/db";
 import { parseBlogCard } from "@/lib/blog-types";
 import type { BlogCardData } from "@/lib/blog-types";
 import type { GunaraPackageData } from "@/lib/gunara";
+import {
+  DEFAULT_DOC_COUNT,
+  DEFAULT_DOMAIN_COUNT,
+  DEFAULT_GUNARA_PACKAGES,
+} from "@/lib/gunara";
 import AppRouter from "@/components/digiman/app-router";
 import { LocaleProvider } from "@/lib/i18n";
 
@@ -63,7 +68,12 @@ export default async function HomeShell() {
     domainCount = dc;
     docCount = tc;
   } catch {
-    // fallback: teaser disembunyikan, situs tetap hidup
+    // fallback: paket & hitungan identitas brand agar teaser landing dan
+    // halaman /gunara-os tetap berharga diri saat database tidak terjangkau
+    blogPosts = [];
+    packages = DEFAULT_GUNARA_PACKAGES;
+    domainCount = DEFAULT_DOMAIN_COUNT;
+    docCount = DEFAULT_DOC_COUNT;
   }
 
   // ── SEO GOD MODE: JSON-LD level halaman ──────────────────────────────

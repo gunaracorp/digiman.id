@@ -19,8 +19,9 @@ export default function FloatingWidgets({ waNumber }: { waNumber: string }) {
   )}`;
 
   return (
-    <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3">
-      {/* Back to top */}
+    <>
+      {/* Back to top — slot paling atas pada rail kanan (di atas FAB Digi AI),
+          posisi tetap agar tidak pernah menabrak widget lain. */}
       <AnimatePresence>
         {showTop && (
           <motion.button
@@ -32,15 +33,15 @@ export default function FloatingWidgets({ waNumber }: { waNumber: string }) {
             transition={{ duration: 0.2, ease: "easeOut" }}
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             aria-label="Kembali ke atas"
-            className="glass-strong flex h-11 w-11 items-center justify-center rounded-full text-emerald-50/80 transition-colors hover:text-gold"
+            className="glass-strong fixed bottom-[176px] right-5 z-50 flex h-11 w-11 items-center justify-center rounded-full text-emerald-50/80 transition-colors hover:text-gold"
           >
             <ArrowUp className="h-5 w-5" aria-hidden="true" />
           </motion.button>
         )}
       </AnimatePresence>
 
-      {/* WhatsApp float */}
-      <div className="flex items-center gap-3">
+      {/* WhatsApp float — dasar rail kanan */}
+      <div className="fixed bottom-5 right-5 z-50 flex items-center gap-3">
         <span className="glass-strong hidden rounded-full px-3 py-1.5 text-xs font-medium text-emerald-50/85 sm:block">
           Chat WhatsApp
         </span>
@@ -58,6 +59,6 @@ export default function FloatingWidgets({ waNumber }: { waNumber: string }) {
           <MessageCircle className="relative h-6 w-6" aria-hidden="true" />
         </a>
       </div>
-    </div>
+    </>
   );
 }

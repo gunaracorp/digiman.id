@@ -159,3 +159,117 @@ export function readDocCodes(): string[] {
     return [];
   }
 }
+
+// ─── Nilai bawaan brand (fallback tanpa database) ───
+// Angka & isi di bawah = identitas Gunara OS yang statis (dipublikasikan di
+// seluruh halaman marketing): 165 dokumen, 20 domain, 4 tier, 5 paket.
+// Isi paket disalin persis dari scripts/seed-gunara.ts agar fallback tidak
+// pernah menampilkan versi berbeda dari data asli.
+
+export const DEFAULT_DOC_COUNT = 165;
+export const DEFAULT_DOMAIN_COUNT = 20;
+
+export const DEFAULT_GUNARA_PACKAGES: GunaraPackageData[] = [
+  {
+    code: "PGA-39",
+    name: "Gunara OS Core",
+    tagline: "Fondasi kendali perusahaan",
+    description:
+      "39 dokumen navigasi inti untuk melindungi identitas, arah, tata kelola, dan kendali operasional perusahaan. Titik mulai wajib setiap organisasi serius — satu sumber kebenaran untuk seluruh tim.",
+    docCount: 39,
+    price: 39_000_000,
+    durationWeeks: "6–8",
+    features: [
+      "39 dokumen P0 Navigasi terpilih",
+      "Kickoff workshop 1 hari + wawancara founder",
+      "Drafting oleh dewan pakar + 2x revisi",
+      "Workshop serah terima & adopsi tim",
+      "Akses Gunara OS digital 12 bulan",
+    ],
+    // Kode dokumen final dihitung dari relasi DB saat seeding —
+    // fallback tanpa DB sengaja kosong.
+    documentCodes: [],
+    highlight: false,
+    order: 1,
+  },
+  {
+    code: "PGA-45",
+    name: "Gunara OS Bisnis",
+    tagline: "Fondasi + mesin pertumbuhan awal",
+    description:
+      "Semua dokumen Core ditambah 6 dokumen pertumbuhan paling vital: charter nilai, whitepaper, peta pasar, playbook penjualan, sistem kinerja, dan kode budaya. Perusahaan mulai berjalan dan tumbuh dengan sistem.",
+    docCount: 45,
+    price: 45_000_000,
+    durationWeeks: "7–9",
+    features: [
+      "Semua isi paket Core (39 dokumen)",
+      "6 dokumen P1 Pertumbuhan esensial",
+      "Sesi strategi go-to-market 1x",
+      "Peta KPI awal untuk tim inti",
+      "Akses Gunara OS digital 18 bulan",
+    ],
+    documentCodes: [],
+    highlight: false,
+    order: 2,
+  },
+  {
+    code: "PGA-72",
+    name: "Gunara OS Pro",
+    tagline: "Sistem operasi lengkap skala menengah",
+    description:
+      "Seluruh lapisan navigasi ditambah 32 dokumen pertumbuhan: strategi, layanan, operasional, keuangan, talenta, merek, dan data. Standar firma konsultan korporat — kini milik bisnis Anda.",
+    docCount: 72,
+    price: 72_000_000,
+    durationWeeks: "10–14",
+    features: [
+      "40 dokumen P0 + 32 dokumen P1 terpilih",
+      "Semua benefit paket Bisnis",
+      "Peta kompetisi & unit economics",
+      "SOP delivery + risk register",
+      "Akses Gunara OS digital 24 bulan",
+    ],
+    documentCodes: [],
+    highlight: true,
+    order: 3,
+  },
+  {
+    code: "PGA-120",
+    name: "Gunara OS Skala",
+    tagline: "Ekspansi multi-unit & kemitraan",
+    description:
+      "72 dokumen Pro diperluas ke arah perluasan: kemitraan global, ekonomi syariah, dampak sosial, teknologi masa depan, dan ketahanan krisis. Untuk grup usaha yang menyiapkan gelombang ekspansi berikutnya.",
+    docCount: 120,
+    price: 120_000_000,
+    durationWeeks: "16–22",
+    features: [
+      "P0 (40) + P1 (40) + 40 dokumen P2 terpilih",
+      "Semua benefit paket Pro",
+      "Dokumen ekspansi & kemitraan global",
+      "Framework teknologi & kedaulatan digital",
+      "Akses Gunara OS digital 36 bulan",
+    ],
+    documentCodes: [],
+    highlight: false,
+    order: 4,
+  },
+  {
+    code: "PGA-165",
+    name: "Gunara OS Super Organisasi",
+    tagline: "Arsitektur penuh 165 dokumen + warisan seabad",
+    description:
+      "Seluruh 165 dokumen lintas 20 domain — dari jiwa perusahaan hingga benteng hukum final. Paket warisan untuk membangun institusi yang bertahan seabad: lengkap, terukur, dan siap diaudit siapa pun.",
+    docCount: 165,
+    price: 165_000_000,
+    durationWeeks: "20–28",
+    features: [
+      "Seluruh 165 dokumen lintas 20 domain",
+      "Semua benefit paket Skala",
+      "Dokumen warisan & covenant seabad",
+      "Review berkala arsitektur dokumen 1x/tahun",
+      "Akses Gunara OS digital seumur paket + prioritas dewan pakar",
+    ],
+    documentCodes: [],
+    highlight: false,
+    order: 5,
+  },
+];

@@ -90,11 +90,13 @@ export async function GET() {
     });
   } catch (error) {
     console.error("[/api/gunara] Gagal memuat data:", error);
-    // Keep the public SEO route renderable when the optional SQLite database is unavailable.
-    // The explorer can show its structure and recover automatically once the database returns.
-    return NextResponse.json<GunaraApiResponse>(
-      { packages: [], domains: [], docs: [] },
-      { status: 200, headers: { "Cache-Control": "no-store" } },
+    // Gagal DB harus terlihat gagal (503) — bukan 200 dengan array kosong.
+    // OsExplorer membedakan "belum ada data" dari "gagal memuat": dengan 503
+    // ia menampilkan paket bawaan + kartu error ber-tombol retry, bukan
+    // pesan menyesatkan "Tidak ada dokumen ditemukan".
+    return NextResponse.json(
+      { error: "Layanan data Gunara OS tidak tersedia — coba lagi nanti." },
+      { status: 503, headers: { "Cache-Control": "no-store" } },
     );
   }
 }

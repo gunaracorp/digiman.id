@@ -100,7 +100,7 @@ export default function DigiAi() {
         onClick={() => (open ? setOpen(false) : handleOpen())}
         aria-label="Tanya Digi AI"
         aria-expanded={open}
-        className="glass-strong fixed bottom-5 right-20 z-50 flex h-14 w-14 items-center justify-center rounded-full text-gold shadow-lg shadow-emerald-500/10 ring-1 ring-gold/40 transition hover:scale-105 hover:ring-gold/70 sm:right-24"
+        className="glass-strong fixed bottom-[104px] right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full text-gold shadow-lg shadow-emerald-500/10 ring-1 ring-gold/40 transition hover:scale-105 hover:ring-gold/70"
       >
         <Sparkles className="h-6 w-6" aria-hidden="true" />
         <span
@@ -120,7 +120,7 @@ export default function DigiAi() {
             transition={{ duration: 0.25, ease: "easeOut" }}
             role="dialog"
             aria-label="Chat Digi AI — asisten legalitas DIGIMAN.ID"
-            className="glass-strong fixed bottom-24 right-5 z-50 flex h-[560px] max-h-[70vh] w-[min(92vw,400px)] flex-col overflow-hidden rounded-3xl shadow-2xl"
+            className="glass-strong fixed bottom-[168px] right-5 z-50 flex h-[560px] max-h-[70vh] w-[min(92vw,400px)] flex-col overflow-hidden rounded-3xl shadow-2xl"
           >
             {/* Header */}
             <div className="flex items-center gap-3 border-b border-emerald-400/15 bg-gradient-to-r from-emerald-500/25 via-emerald-400/10 to-transparent px-4 py-3.5">

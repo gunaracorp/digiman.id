@@ -85,7 +85,7 @@ export default function Navbar({ waNumber }: NavbarProps) {
     >
       <nav
         aria-label="Navigasi utama"
-        className="section-padding mx-auto flex h-16 w-full max-w-7xl items-center justify-between gap-4 md:h-20"
+        className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between gap-4 px-5 md:h-20 md:px-8"
       >
         {/* Logo */}
         <a
@@ -111,8 +111,9 @@ export default function Navbar({ waNumber }: NavbarProps) {
           </span>
         </a>
 
-        {/* Link desktop */}
-        <ul className="hidden items-center gap-5 xl:flex">
+        {/* Link desktop — hanya saat lebar benar-benar cukup (≥1536px) agar
+            8 link + logo + aksi tidak pernah terpotong di tepi viewport. */}
+        <ul className="hidden items-center gap-5 2xl:flex">
           {NAV_LINKS.map((link) => (
             <li key={link.href}>
               <a
@@ -154,8 +155,10 @@ export default function Navbar({ waNumber }: NavbarProps) {
           </a>
         </div>
 
-        {/* Hamburger mobile */}
-        <div className="lg:hidden">
+        {/* Hamburger — tampil di SEMUA lebar di bawah 2xl. Sebelumnya
+            lg:hidden sehingga di 1024–1279px link desktop tersembunyi TAPI
+            hamburger juga hilang: pengguna tanpa navigasi sama sekali. */}
+        <div className="2xl:hidden">
           <Sheet>
             <SheetTrigger asChild>
               <button

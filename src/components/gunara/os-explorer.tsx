@@ -38,6 +38,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { toast } from "@/hooks/use-toast";
 import {
   addDocCode,
+  DEFAULT_GUNARA_PACKAGES,
   fmtJt,
   readDocCodes,
   savePackagePreset,
@@ -320,7 +321,9 @@ export default function OsExplorer() {
 
   const domains = data?.domains ?? [];
   const docs = data?.docs ?? [];
-  const packages = data?.packages ?? [];
+  // Paket standar adalah identitas statis brand — saat API gagal/ kosong,
+  // tampilkan 5 paket bawaan alih-alih grid kosong.
+  const packages = data?.packages?.length ? data.packages : DEFAULT_GUNARA_PACKAGES;
 
   const domainNameById = useMemo(() => {
     const map = new Map<number, string>();
