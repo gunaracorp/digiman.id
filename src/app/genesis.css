@@ -1,0 +1,137 @@
+/* ============================================================
+   GENESIS HOLDING LAYER — additive design tokens & utilities
+   ============================================================
+   Layer CSS ADITIF untuk modul Holding Genesis (route /genesis).
+   Tidak menimpa satu pun aturan globals.css — file ini hanya
+   MENAMBAH token dan utility yang belum ada:
+
+   .shell         container rapat (max-w-6xl) untuk layout editorial
+   .eyebrow       label mono emas di atas judul section
+   .paper-section kontras tonal terang (interlude manifesto)
+   .paper-muted   teks sekunder di atas kertas
+   .bg-grid       grid ambient dengan radial mask
+   .glow-gold     cahaya emas ambient
+   .grain         tekstur film halus
+   .marquee-mask  fade tepi kiri-kanan untuk marquee
+   .animate-drift gerakan melayang lambat (ambient)
+
+   Token warna tambahan: ink / paper / gold-strong.
+   Warna emas tetap mengikuti palet resmi repo (var(--gold)).
+   ============================================================ */
+
+@theme {
+  --color-ink: #171410;
+  --color-paper: #f1eee7;
+  --color-gold-strong: #e0be74;
+}
+
+/* ---------- Layout primitives ---------- */
+.shell {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 72rem;
+  padding-inline: 1.25rem;
+}
+@media (min-width: 640px) {
+  .shell {
+    padding-inline: 2rem;
+  }
+}
+
+.eyebrow {
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--gold);
+}
+
+/* ---------- Paper interlude ---------- */
+.paper-section {
+  background: var(--paper, #f1eee7);
+  color: var(--ink, #171410);
+}
+.paper-muted {
+  color: #57534e;
+}
+
+/* ---------- Ambient surfaces ---------- */
+.bg-grid {
+  background-image: linear-gradient(
+      to right,
+      rgba(233, 246, 240, 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(233, 246, 240, 0.05) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(
+    ellipse 90% 65% at 50% 0%,
+    black 25%,
+    transparent 78%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 90% 65% at 50% 0%,
+    black 25%,
+    transparent 78%
+  );
+}
+
+.glow-gold {
+  background: radial-gradient(
+    closest-side,
+    rgba(242, 193, 78, 0.15),
+    transparent
+  );
+}
+
+.grain {
+  position: relative;
+}
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.marquee-mask {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 12%,
+    black 88%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 12%,
+    black 88%,
+    transparent
+  );
+}
+
+.animate-drift {
+  animation: genesis-drift 16s ease-in-out infinite;
+}
+@keyframes genesis-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -20px, 0);
+  }
+}
+
+/* ---------- Aksesibilitas: reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .animate-drift {
+    animation: none;
+  }
+}
