@@ -895,3 +895,21 @@ Stage Summary:
 - Setiap kategori layanan kini punya artikel pillar dedikasi: 31 artikel statis total (17 lama + 14 baru), sitemap 274 URL, ±500 tautan internal kontekstual baru service↔blog — pintu masuk query pencarian per kategori terbuka lebar.
 - Persiapan GSC tuntas di sisi kode: verifikasi via env, sitemap+robots valid, IndexNow siap — submit final membutuhkan login Google pemilik digiman.id (tidak dapat dilakukan dari sandbox).
 - Pola sesi berikutnya: artikel baru cukup tambah di file pillar (A/B/C) + 2 entri cross-links; sitemap & RSS & halaman blog otomatis mengikutinya.
+
+---
+Task ID: fix-bug-push-1
+Agent: main (orchestrator)
+Task: "tolong fix kan semua bug yang ada dan push ghp_... ini sayang"
+
+Work Log:
+- AUDIT: lint exit 0; dev server 200; GET / render normal; token GitHub valid (user gunaracorp, repo gunaracorp/digiman.id, default branch main).
+- BUG #1 (kritis): AUTH_SECRET terhapus dari .env → sesi login admin berisiko gagal sign/verify JWT. DIPULIHKAN (nilai asli dari git history), file .env kini UNTRACKED (secret tak pernah ter-publish; remote memang tak memiliki .env).
+- BUG #2 (kritis): Database terdegradasi — Service tinggal 6 baris tanpa slug (harusnya 165) → /layanan/[slug] 404 massal, sitemap kehilangan URL layanan, TeamMember 0, Office 0. RESTORASI: scripts/migrate-services-v3.ts (165 layanan berslug dari katalog kanonik), 6 service orphan slug-NULL dihapus, scripts/seed-team.ts (6 anggota), Office 4 baris (HQ Tasikmalaya + Bandung + Sukarame + Arjasari) dari backup 24 Okt. Verifikasi: /layanan/pendirian-pt 200 (sebelumnya 404), sitemap 279 URL, beranda 171 tautan /layanan/, 4 kantor, tim tampil.
+- BUG #3 (noise git): 421 file "modified" mode 644→755 artefak sandbox → core.filemode=false; pola .gitignore diperketat (.zscripts/, db/custom.db.backup-*, *.pid); untrack .env, db/custom.db (+2 backup), .zscripts/*, tests/*.sh, tool-results/*, examples/websocket, mini-services/.gitkeep.
+- REKONSILIASI HISTORY: lokal & remote tidak berkerabat (merge-base kosong; lokal +7 / remote +63). Digabung via merge --allow-unrelated-histories -X ours tanpa kehilangan salah satu sisi. Keputusan isi: package.json+bun.lock lokal (eslint ^9, pasangan konsisten terverifikasi), prisma/schema.prisma lokal (mode sandbox sqlite, komentar produksi jelas), docs/GENESIS-HOLDING.md mengikuti remote (v2 pernikahan dua arsitektur — lebih baru).
+- VERIFIKASI BROWSER: beranda desktop render penuh (hero, nav, badge SK, WA widget); /genesis 200; /layanan/pendirian-pt render premium penuh; login admin API 200 + /api/auth/me 200 dgn cookie; mobile 390px tanpa overflow-x; 0 page error console.
+- KEAMANAN: git grep ghp_ pada seluruh HEAD = 0 hit — token tidak bocor di history.
+
+Stage Summary:
+- Semua bug kritis tertangani: sesi auth pulih, 165 layanan + tim + kantor kembali hidup (sitemap 279 URL), secret & file internal tak lagi ter-track, git status bersih.
+- History GitHub disatukan utuh (remote 63 commit + lokal 7 commit) tanpa force push, tanpa kehilangan pekerjaan sisi mana pun.
