@@ -1,74 +1,56 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { rateLimit } from "@/lib/rate-limit";
-import { contactSchema } from "@/lib/validation";
 
-export const runtime = "nodejs";
+interface ContactPayload {
+  nama?: string;
+  email?: string;
+  wa?: string;
+  layanan?: string;
+  pesan?: string;
+  company?: string;
+}
 
-/**
- * POST /api/contact
- * Validates (zod), rate-limits (5/min/IP), and persists the inquiry.
- */
-export async function POST(request: Request) {
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+export async function POST(req: NextRequest) {
   try {
-    const ip =
-      request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
-      "unknown";
-    const { ok, retryAfter } = rateLimit(`contact:${ip}`);
-    if (!ok) {
-      return NextResponse.json(
-        {
-          ok: false,
-          error: "Terlalu banyak permintaan. Silakan coba lagi dalam sekejap.",
-        },
-        {
-          status: 429,
-          headers: retryAfter ? { "Retry-After": String(retryAfter) } : undefined,
-        }
-      );
+    const body = (await req.json()) as ContactPayload;
+
+    // Honeypot — bot terdeteksi: balas sukses tanpa simpan
+    if (typeof body.company === "string" && body.company.trim() !== "") {
+      return NextResponse.json({ ok: true });
     }
 
-    let body: unknown;
-    try {
-      body = await request.json();
-    } catch {
-      return NextResponse.json(
-        { ok: false, error: "Format permintaan tidak valid." },
-        { status: 400 }
-      );
+    const nama = (body.nama ?? "").trim();
+    const email = (body.email ?? "").trim();
+    const wa = (body.wa ?? "").trim();
+    const layanan = (body.layanan ?? "").trim();
+    const pesan = (body.pesan ?? "").trim();
+
+    const errors: Record<string, string> = {};
+    if (nama.length < 3) errors.nama = "Nama lengkap minimal 3 karakter.";
+    if (!EMAIL_RE.test(email)) errors.email = "Email tidak valid.";
+    const digits = wa.replace(/\D/g, "");
+    if (digits.length < 9 || digits.length > 15) errors.wa = "Nomor WhatsApp tidak valid.";
+    if (pesan.length < 10) errors.pesan = "Pesan minimal 10 karakter.";
+
+    if (Object.keys(errors).length > 0 || !nama || !email || !wa || !pesan) {
+      return NextResponse.json({ ok: false, errors }, { status: 400 });
     }
 
-    const parsed = contactSchema.safeParse(body);
-    if (!parsed.success) {
-      return NextResponse.json(
-        {
-          ok: false,
-          error: "Data yang dikirim tidak valid.",
-          issues: parsed.error.flatten().fieldErrors,
-        },
-        { status: 400 }
-      );
-    }
-
-    const { name, email, company, phone, topic, budget, message } = parsed.data;
-    await db.contactInquiry.create({
+    await db.contactMessage.create({
       data: {
-        name,
+        name: nama,
         email,
-        company: company ? company : null,
-        phone: phone ? phone : null,
-        topic,
-        budget: budget ? budget : null,
-        message,
+        phone: digits,
+        service: layanan || null,
+        message: pesan,
       },
     });
 
     return NextResponse.json({ ok: true });
-  } catch (error) {
-    console.error("[api/contact]", error);
-    return NextResponse.json(
-      { ok: false, error: "Terjadi kesalahan pada server. Coba lagi nanti." },
-      { status: 500 }
-    );
+  } catch (e) {
+    console.error("[api/contact]", e);
+    return NextResponse.json({ ok: false, error: "Terjadi kesalahan server." }, { status: 500 });
   }
 }

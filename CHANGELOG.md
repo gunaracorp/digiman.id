@@ -1,35 +1,174 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+Semua perubahan penting pada DIGIMAN.ID didokumentasikan di file ini.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+Format mengikuti [Keep a Changelog](https://keepachangelog.com/id/1.1.0/);
+versioning [Semantic Versioning](https://semver.org/lang/id/).
 
-## [0.2.0] — 2026-09-07
+## [Unreleased]
 
-"Bisnis Real" release: the holding is repositioned from an abstract architecture story into a real, service-driven business — exactly per founder direction: unit Kaji gerbang masuk, unit bisnis nyata, sistem manajemen, dan katalog jasa dengan harga terang.
+### [0.20.0] — 2026-11-08: Dokumen Legal Lengkap (Kebijakan Privasi & S&K)
 
-### Changed
-
-- **Five real business units** (replacing Digital/Intelligence/Capital/Academy): DIGIMAN Kaji (riset & intelijen, gerbang masuk), DIGIMAN Digital (teknologi & produk), DIGIMAN Bisnis (pengembangan bisnis & venture building), DIGIMAN Manajemen (SOP, dashboard/ERP, virtual C-level), DIGIMAN Akademi (talenta & literasi). Legacy `intelligence`/`capital`/`academy` rows are deactivated by the seed.
-- **Layanan & Harga (`#layanan`) rebuilt as a priced catalog** — 16 services across 5 unit tabs; every service lists deliverables, duration, and indicative IDR pricing; "Paling Diminati" highlights; transparency note (final scope set after Kaji).
-- **Hero rewritten around the company jargon**: "Masuk bersama kami, Anda selamat. Tidak berdigital, Anda tertinggal." Metrics updated (5 unit · 16 jasa · 46 dewan · 100 tahun).
-- **Metode (`#metode`, new)** — 5-step working method: Kaji → Rancang → Bangun → Kelola → Skala (replaces the Ventures thesis section; `ventures.tsx` removed).
-- **Visi 2125 (`#visi`, new)** — 100-year milestone timeline 2025 → 2125 with closing statement.
-- **46 Dewan Pakar (`#dewan`, new)** — 46-discipline expert council chip map (hulu ke hilir).
-- Manifesto, careers, contact, footer, nav, insights, marquee and JSON-LD copy rewritten for the real-business positioning; layout metadata retitled "Holding Digital Indonesia | Kaji Dulu, Baru Bangun".
+Perluasan menyeluruh kedua dokumen legal menjadi naskah berpasal penuh yang
+selaras dengan hukum Indonesia, tanpa mengubah skema/pola halaman (`SECTIONS`).
 
 ### Added
 
-- Contact form now captures **WhatsApp number** and **budget range** (optional, validated); `ContactInquiry` gains `phone` and `budget` columns (additive migration via `db push`).
+- **Kebijakan Privasi & Proteksi Data Pribadi v1.0** — 18 pasal selaras UU PDP
+  No. 27/2022: inventaris kategori data, dasar & tujuan pemrosesan (Pasal 20
+  UU PDP), cookie, pengungkapan pihak ketiga, jadwal retensi, keamanan (acuan
+  ISO/IEC 27001 & 27701), hak subjek data (Pasal 5–13 UU PDP), data pribadi
+  anak (Pasal 25), transfer internasional (Pasal 55–56), notifikasi kegagalan
+  perlindungan 3×24 jam (Pasal 46), dan pejabat pelaksana (Pasal 35).
+- **Syarat dan Ketentuan Layanan v1.0** — 21 pasal: dasar mengikat (KUHPerdata,
+  UU 8/1999, UU ITE, PP PSTE), kerangka **7 Lapis Langit Legalitas**, kewajiban
+  klien, komposisi biaya (jasa / Biaya Resmi Negara / mitra), Garansi Terbit,
+  pengembalian dana proporsional, kekayaan intelektual (UU 28/2014), kerahasiaan,
+  batasan tanggung jawab berimbang dengan pengecualian wajib hukum, force
+  majeure, pengakhiran, serta musyawarah → mediasi → BANI (UU 30/1999) tanpa
+  menghapus hak konsumen (BPSK/pengadilan).
+- **Arsip salinan resmi** `docs/legal/` — docx, pdf, dan markdown
+  (`PRIVACY_POLICY.md` / `TERMS_AND_CONDITIONS.md`) kedua dokumen. Identitas
+  resmi terisi lengkap: alamat kantor terdaftar (Kampung Gunung Guntur
+  RT 022/RW 006 No. 50, Dusun Bojong, Kelurahan Padasuka, Kecamatan Sukarame,
+  Kabupaten Tasikmalaya, Provinsi Jawa Barat 46464), surel halo@digiman.id,
+  WhatsApp +62 813-1651-6524, nomor dokumen DBM-LGL-PRIV-001 & DBM-LGL-SNK-001,
+  serta penandatangan (Gugun Gunara — Direktur Utama; Muhammad Lutfi Azmi).
+- Halaman legal kini saling bertaut dan ke halaman Kontak; daftar isi dokumen
+  dalam Bahasa Indonesia yang manusiawi dipertahankan di tiap halaman.
 
-## [0.1.0] — 2026-09-07
+### [0.19.0] — 2026: Pre-Launch Audit — Perbaikan Menyeluruh (Zero-Bug Pass)
 
-Genesis release: the initial premium digital holding website for DIGIMAN.ID, delivered as a section-anchored one-page experience (single `/` route per sandbox constraint).
+Audit lengkap menjelang peluncuran: type-check, lint, build produksi,
+pengujian runtime seluruh halaman & API, serta uji end-to-end panel admin.
+
+### Fixed (kritis)
+
+- **Dua sistem auth admin digabung jadi satu.** Panel admin lama
+  (hash-view `#route-admin`, cookie `gunara_admin` + password tunggal
+  di `SiteSetting`) bertabrakan dengan panel baru (JWT `digiman_admin`,
+  tabel `AdminUser`, RBAC SUPERADMIN/EDITOR/VIEWER). Akibatnya endpoint
+  yang dijaga guard lama selalu 401 setelah login baru. Seluruh route
+  `/api/admin/*` kini memakai guard kanonik (`requireAdmin`/`requireWrite`
+  + audit log). Route panel lama yang mati dihapus
+  (`/api/admin/auth`, `/api/admin/blog`, komponen SPA lama).
+- **Panel admin tunggal.** `/admin` kini langsung ke dashboard modern
+  (`/admin/beranda`). Halaman baru **/admin/penawaran** mengelola proposal
+  (sebelumnya hanya ada di panel lama). Nav sidebar + command palette
+  diperbarui.
+- **Schema drift Prisma.** Kode admin menulis `SiteSetting` flat
+  (`id: 1`, kolom `heroHeadline`…) sementara schema/DB memakai key/value →
+  route hero & backup pasti error saat runtime. Keduanya ditulis ulang ke
+  format key/value (backup format v3, `adminPassword` tak bisa ditimpa
+  lewat berkas restore).
+- **404 artikel blog.** Teaser beranda & sitemap mendaftar artikel model
+  `BlogPost`, sedangkan `/blog/[slug]` hanya mencari `Post`+statis →
+  6 artikel terseed 404. `blog-data.ts` kini menggabungkan tiga sumber
+  (statis + `Post` + `BlogPost`) dengan konversi markdown→sections,
+  tanpa duplikat slug.
+- **Halaman `/proposal` & `/dashboard` 404.** Link di halaman Gunara OS
+  menuju `/proposal` tidak punya halaman sungguhan. Kini ada halaman
+  nyata (server shell bersama `home-shell.tsx`), tautan hash dari
+  view-route ikut dinavigasikan sebagai path, dan `/proposal` masuk
+  registri PAGES (footer + sitemap).
+- **Struktur Perusahaan tak pernah tampil.** Komponen `TeamStructure`
+  tidak pernah dirender + bug shadowing variabel `m` (framer-motion)
+  menimpa parameter `.map()` → crash saat dirender. Diperbaiki; section
+  `team` & `offices` kini bagian landing.
+- **Landing mengabaikan Panel Admin.** Landing memakai `DEFAULT_SETTINGS`
+  statis & mengabaikan urutan/visibilitas section. `getSiteData` berbasis
+  DB kini menjadi sumber tunggal; landing menghormati konfigurasi
+  Tata Letak Section (19 section key yang sinkron di API + site-data +
+  fallback router).
+- **Kotak Masuk rusak.** UI menuntut `status`/`starred` + filter
+  `all|new|starred|archived` + payload `{messages,counts}`; API/schema
+  hanya punya `handled`. Schema `ContactMessage` ditambah kolom
+  `status` (default NEW) & `starred`; GET mendukung kedua format
+  (filter baru + `?handled=` legacy). Badge unread sidebar kini berfungsi.
+- **`AUTH_SECRET` fallback hardcoded** (token admin bisa dipalsukan di
+  produksi) → fail-closed: produksi tanpa `AUTH_SECRET` menolak login
+  admin; `.env.example` diperbarui.
+- **80 error TypeScript** (memblokir `tsc --noEmit`): duplikat key di
+  `ICON_MAP` services.tsx, tipe `requireWrite` (null yang tak mungkin),
+  `NextRequest` stats, kontrak `OfficeItem`, dan skrip dev. Kini **0
+  error** (tsc + eslint).
+
+### Fixed (lainnya)
+
+- Pencarian `/api/blog` kini case-insensitive di semua provider DB.
+- Seed `seed-gunara.ts` memakai path relatif (bukan path absolut mesin
+  lama) sehingga jalan di Vercel/server mana pun.
+- `next.config.ts`: tekanan keamanan dipertahankan; komentari rencana CSP.
+
+### Migration note
+
+- Setelah deploy, jalankan `bunx prisma db push` pada database produksi
+  untuk menambah kolom `ContactMessage.status` & `ContactMessage.starred`,
+  lalu set env `AUTH_SECRET` (≥32 karakter acak) di environment produksi.
+
+### Stage Genesis 2 (direncanakan)
+
+- Data model holding: entity `Business`/`Venture`/`Brand` + Admin CRUD
+- Angkat hash-router → App Router nyata (about, businesses, insights, careers)
+
+## [0.18.0] — 2026: Genesis Stage 1 — Holding Mode
 
 ### Added
 
-- **Initial holding website** — one-page experience with anchored sections: hero, marquee, manifesto (`#tentang`), holding tree (`#ekosistem`), business portfolio (`#bisnis`), venture (`#ventura`), services (`#layanan`), 7-layer technology stack (`#teknologi`), governance (`#tata-kelola`), insights (`#insights`), careers (`#karier`), and contact (`#kontak`) with sticky footer.
-- **Design system** — dark warm ink theme (`#0A0908` / `#F2EFE9`) with capital-gold accent (`#C9A45C`), light "paper" interlude for the manifesto, Instrument Serif + Geist typography, `Reveal`/`Counter` motion primitives, and reduced-motion support (`MotionConfig reducedMotion="user"`, CSS marquee off switch).
-- **Data layer** — Prisma 6 + SQLite (`db/custom.db`) with `BusinessUnit`, `Insight` and `ContactInquiry` models; typed content source of truth (`src/content/holding.ts`) seeding the database; static content fallback on DB read failure.
-- **Contact API** — `POST /api/contact` with zod validation, in-memory rate limiting (5 req/min/IP) and Prisma persistence.
-- **SEO infrastructure** — full metadata with canonical URLs and Open Graph/Twitter cards, server-rendered JSON-LD (`Organization` + `WebSite`), semantic HTML, and generated `sitemap.xml` / `robots.txt` via `sitemap.ts` / `robots.ts`.
+- **Section "Arsitektur Holding"** (`#holding`) di landing: kartu induk
+  PT Digital Bisnis Manajemen + 4 pilar ekosistem (PT Top Konsultan
+  Internasional, Gunara OS, Santri Angon, Platform digiman.id) + strip
+  tata kelola & kepemimpinan — dwibahasa ID/EN, tautan footer baru.
+- Lapisan tata kelola repositori: `ARCHITECTURE.md` (master architecture,
+  sitemap, design system, roadmap), `SECURITY.md`, `CONTRIBUTING.md`,
+  `LICENSE` (proprietary), `CHANGELOG.md`.
+- GitHub Actions CI (`lint` + `typecheck` + `build`), template Pull Request,
+  template issue (bug/feature), Dependabot.
+- Security headers pada seluruh rute via `next.config.ts`
+  (nosniff, SAMEORIGIN, referrer-policy, permissions-policy).
+
+## [0.17.0] — Legacy 17 Tahun
+
+- Timeline pengalaman `#perjalanan`: McKinsey & Company 2009 → praktik
+  independen 2013 → PT 2022 → era digiman.id & Gunara OS.
+- Konstanta `LEGACY` di `brand.ts` sebagai sumber tunggal narasi tahun;
+  badge hero, stat 17+ tahun, JSON-LD foundingDate + bio pendiri.
+- DigiAI memahami pertanyaan sejarah perusahaan.
+
+## [0.16.0] — Sistem Backup/Restore Database
+
+- `db:backup` / `db:restore` (`scripts/`), snapshot `db/backup.json`
+  ikut di-commit → pemulihan bencana anti-reset lingkungan.
+
+## [0.15.0] — Dashboard Era
+
+- **Portal Klien** `#/dashboard`: 30 fitur premium — command palette ⌘K,
+  jam WIB live, progress ring 165 dokumen, health score, milestone timeline,
+  invoice + grafik pembayaran (recharts), chat tim, achievements, OKR,
+  print/PDF, dark/light, ID/EN.
+- **Admin Analytics "Mission Control"**: KPI pendapatan, 3 grafik, feed aktivitas.
+- Model baru: `ClientProject`, `Invoice`, `ActivityEvent`, `Meeting` + seed + API.
+
+## [0.13.0 – 0.14.0] — Hygiene siap-GitHub
+
+- Untrack `.env`/biner database, `.gitignore` diperkuat, `.env.example`,
+  seed idempotent (`db:seed`), dokumen master PGA-165 → `docs/`.
+
+## [0.9.0 – 0.12.0] — Premium Polish & SEO
+
+- Fix hydration (zona waktu WIB) + PDF A4 sempurna (print CSS overhaul).
+- Branding & entity SEO: JSON-LD graph 7 entitas, kredit footer, 6 profil
+  sosial, sitemap, manifest, robots, OG image dinamis.
+- Marquee tempo premium (120s/150s) + aksesibilitas `prefers-reduced-motion`.
+- **SEO God Mode**: korpus 1.000 kata kunci + 1.000 tagar, SEO Hub, README mahakarya.
+
+## [0.1.0 – 0.8.0] — Fondasi
+
+- Next.js 16 + Prisma + seed; landing premium "7 Lapis Langit" dari database.
+- i18n ID/EN + persistensi preferensi.
+- **Gunara OS**: 20 domain × 165 dokumen × 4 tier + 5 paket PGA.
+- Blog dinamis dwibahasa; Proposal Studio (wizard + kalkulator + PDF).
+- Panel Admin penuh; DigiAI Assistant + integrasi WhatsApp.
+
+[Unreleased]: https://github.com/prabudanling/digiman.id/compare/v0.18.0...HEAD
+[0.18.0]: https://github.com/prabudanling/digiman.id/releases/tag/v0.18.0

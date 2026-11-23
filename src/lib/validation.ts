@@ -15,18 +15,19 @@ export const contactSchema = z.object({
     .min(2, "Nama minimal 2 karakter.")
     .max(80, "Nama maksimal 80 karakter."),
   email: z.email("Format email tidak valid.").max(160, "Email terlalu panjang."),
+  // Catatan kompatibilitas @hookform/resolvers v6 (repo): field tanpa
+  // `.default()` agar input type == output type — resolver dan
+  // useForm<ContactInput> cocok tanpa transformasi.
   company: z
     .string()
     .trim()
     .max(120, "Nama perusahaan terlalu panjang.")
-    .optional()
-    .default(""),
+    .optional(),
   phone: z
     .string()
     .trim()
     .max(32, "Nomor WhatsApp terlalu panjang.")
-    .optional()
-    .default(""),
+    .optional(),
   topic: z
     .string()
     .min(1, "Pilih topik.")
@@ -35,9 +36,8 @@ export const contactSchema = z.object({
     .string()
     .trim()
     .optional()
-    .default("")
     .refine(
-      (v) => v === "" || BUDGET_VALUES.includes(v),
+      (v) => v === "" || v === undefined || BUDGET_VALUES.includes(v),
       "Pilihan anggaran tidak valid."
     ),
   message: z

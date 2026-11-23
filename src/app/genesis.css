@@ -1,0 +1,209 @@
+/* ============================================================
+   GENESIS THEME — palet & tipografi ASLI "konsep pertama"
+   ============================================================
+   Pernikahan dua arsitektur: halaman /genesis menampilkan konsep
+   utama pertama DIGIMAN.ID (warm institutional ink + capital gold,
+   display Instrument Serif, sans Geist) TANPA menyentuh globals.css
+   milik situs repo (emerald + gold, Jakarta + Grotesk).
+
+   Caranya: semua design token asli dideklarasikan ulang di bawah
+   kelas .genesis-theme — CSS variable cascade membuat SELURUH
+   utility shadcn/Tailwind di dalam wrapper otomatis memakai palet
+   asli (bg-background, text-muted-foreground, bg-gold, ring-ring,
+   data-[state=active]:bg-gold, dst.), sementara di luar wrapper
+   situs repo tetap utuh 100%.
+
+   Pulihkan dari histori git commit ef7e9b5 (globals.css asli).
+   ============================================================ */
+
+@theme inline {
+  /* Token tambahan konsep Genesis yang belum ada di repo —
+     dipetakan ke variabel wrapper agar ikut cascade. */
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-gold-strong: var(--gold-strong);
+}
+
+.genesis-theme {
+  /* ── Design tokens ASLI konsep Genesis ── */
+  --radius: 0.75rem;
+  --background: #0a0908;
+  --foreground: #f2efe9;
+  --card: #131110;
+  --card-foreground: #f2efe9;
+  --popover: #161412;
+  --popover-foreground: #f2efe9;
+  --primary: #c9a45c;
+  --primary-foreground: #17130a;
+  --secondary: #1c1915;
+  --secondary-foreground: #f2efe9;
+  --muted: #1a1815;
+  --muted-foreground: #a8a096;
+  --accent: #221e18;
+  --accent-foreground: #f2efe9;
+  --destructive: oklch(0.63 0.19 25);
+  --border: rgb(242 239 233 / 0.1);
+  --input: rgb(242 239 233 / 0.14);
+  --ring: #c9a45c;
+  --gold: #c9a45c;
+  --gold-strong: #e0be74;
+  --paper: #f1eee7;
+  --ink: #171410;
+  --chart-1: #c9a45c;
+  --chart-2: #8f8577;
+  --chart-3: #6b6459;
+  --chart-4: #e0be74;
+  --chart-5: #4a453d;
+  --sidebar: #131110;
+  --sidebar-foreground: #f2efe9;
+  --sidebar-primary: #c9a45c;
+  --sidebar-primary-foreground: #17130a;
+  --sidebar-accent: #221e18;
+  --sidebar-accent-foreground: #f2efe9;
+  --sidebar-border: rgb(242 239 233 / 0.1);
+  --sidebar-ring: #c9a45c;
+
+  /* ── Tipografi ASLI: Geist + Instrument Serif ──
+     (font dimuat via next/font di src/app/genesis/page.tsx) */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-display: var(--font-instrument-serif), Georgia, serif;
+
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Display serif asli menimpa .font-display milik repo (Space Grotesk) */
+.genesis-theme .font-display {
+  font-family: var(--font-instrument-serif), Georgia, serif;
+}
+
+.genesis-theme ::selection {
+  background: var(--gold);
+  color: var(--primary-foreground);
+}
+
+/* ---------- Layout primitives (asli) ---------- */
+.genesis-theme .shell {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 72rem;
+  padding-inline: 1.25rem;
+}
+@media (min-width: 640px) {
+  .genesis-theme .shell {
+    padding-inline: 2rem;
+  }
+}
+
+.genesis-theme .eyebrow {
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--gold);
+}
+
+/* ---------- Paper interlude (asli) ---------- */
+.genesis-theme .paper-section {
+  background: var(--paper);
+  color: var(--ink);
+}
+.genesis-theme .paper-muted {
+  color: #57534e;
+}
+
+/* ---------- Ambient surfaces (asli) ---------- */
+.genesis-theme .bg-grid {
+  background-image: linear-gradient(
+      to right,
+      rgb(242 239 233 / 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgb(242 239 233 / 0.05) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(
+    ellipse 90% 65% at 50% 0%,
+    black 25%,
+    transparent 78%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 90% 65% at 50% 0%,
+    black 25%,
+    transparent 78%
+  );
+}
+
+.genesis-theme .glow-gold {
+  background: radial-gradient(
+    closest-side,
+    rgb(201 164 92 / 0.17),
+    transparent
+  );
+}
+
+.genesis-theme .grain {
+  position: relative;
+}
+.genesis-theme .grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.genesis-theme .marquee-mask {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 12%,
+    black 88%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 12%,
+    black 88%,
+    transparent
+  );
+}
+
+/* ---------- Motion (tempo ASLI konsep pertama: 46s) ----------
+   Repo memakai .animate-marquee 120s global; di dalam wrapper Genesis
+   tempo asli 46s menang lewat specificity dua kelas. Track digandakan
+   (aria-hidden) sehingga translateX(-50%) mengulang mulus. */
+.genesis-theme .animate-marquee {
+  animation: genesis-marquee 46s linear infinite;
+}
+@keyframes genesis-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.genesis-theme .animate-drift {
+  animation: genesis-drift 16s ease-in-out infinite;
+}
+@keyframes genesis-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -20px, 0);
+  }
+}
+
+/* ---------- Aksesibilitas: reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .genesis-theme .animate-marquee,
+  .genesis-theme .animate-drift {
+    animation: none;
+  }
+}

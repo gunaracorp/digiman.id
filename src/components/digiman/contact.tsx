@@ -1,13 +1,19 @@
 "use client";
 
-import { Controller, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Send } from "lucide-react";
-import { toast } from "sonner";
-
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import {
+  BadgeCheck,
+  Clock,
+  Loader2,
+  Mail,
+  MapPin,
+  MessageCircle,
+  Send,
+  ShieldCheck,
+} from "lucide-react";
+import { toast } from "@/hooks/use-toast";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
@@ -16,259 +22,522 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { SectionHeading } from "@/components/digiman/section-heading";
-import { Reveal } from "@/components/digiman/motion/reveal";
-import { CONTACT } from "@/content/holding";
-import { contactSchema, type ContactInput } from "@/lib/validation";
+import type {
+  OfficeItem,
+  ServiceItem,
+  SiteSettings,
+} from "@/lib/digiman-data";
+import { useI18n } from "@/lib/i18n";
 
-const EMPTY: ContactInput = {
-  name: "",
-  email: "",
-  company: "",
-  phone: "",
-  topic: "",
-  budget: "",
-  message: "",
+/* ────────────────────────── helpers ────────────────────────── */
+
+type FormData = {
+  nama: string;
+  email: string;
+  wa: string;
+  layanan: string;
+  pesan: string;
+  company: string; // honeypot — harus tetap kosong
 };
 
-function FieldError({ message }: { message?: string }) {
-  if (!message) return null;
-  return (
-    <p role="alert" className="mt-1.5 text-xs text-destructive">
-      {message}
-    </p>
-  );
+const EMPTY_FORM: FormData = {
+  nama: "",
+  email: "",
+  wa: "",
+  layanan: "",
+  pesan: "",
+  company: "",
+};
+type Errors = Partial<Record<keyof FormData, string>>;
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+/** Signature t() dari useI18n — dipakai validate() agar pesan error ikut locale. */
+type Translate = (key: string, vars?: Record<string, string | number>) => string;
+
+function validate(form: FormData, t: Translate): Errors {
+  const errs: Errors = {};
+  if (form.nama.trim().length < 3) errs.nama = t("contact.errNama");
+  if (!EMAIL_RE.test(form.email.trim())) errs.email = t("contact.errEmail");
+  const digits = form.wa.replace(/\D/g, "");
+  if (digits.length < 9 || digits.length > 15) errs.wa = t("contact.errWa");
+  if (form.pesan.trim().length < 10) errs.pesan = t("contact.errPesan");
+  return errs;
 }
 
-/**
- * Contact section: form posts to /api/contact (mutation via API route).
- * Client validation mirrors the server schema (shared zod definition).
- */
-export function Contact() {
-  const {
-    register,
-    control,
-    handleSubmit,
-    reset,
-    formState: { errors, isSubmitting },
-  } = useForm<ContactInput>({
-    resolver: zodResolver(contactSchema),
-    defaultValues: EMPTY,
-  });
+/* ────────────────────────── component ────────────────────────── */
 
-  const onSubmit = async (data: ContactInput) => {
+export default function Contact({
+  offices,
+  settings,
+  services,
+  showOfficeList = true,
+}: {
+  offices: OfficeItem[];
+  settings: SiteSettings;
+  services: ServiceItem[];
+  /** Sembunyikan daftar kantor bila section Offices sudah dirender terpisah. */
+  showOfficeList?: boolean;
+}) {
+  const { t } = useI18n();
+  const [form, setForm] = useState<FormData>(EMPTY_FORM);
+  const [errors, setErrors] = useState<Errors>({});
+  const [loading, setLoading] = useState(false);
+
+  const waLink = `https://wa.me/${settings.waNumber}?text=${encodeURIComponent(
+    t("contact.waPesan"),
+  )}`;
+
+  const set = (key: keyof FormData) => (value: string) => {
+    setForm((f) => ({ ...f, [key]: value }));
+    setErrors((e) => (e[key] ? { ...e, [key]: undefined } : e));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (loading) return;
+
+    // Honeypot terisi → bot. Sukses diam-diam tanpa POST.
+    if (form.company.trim() !== "") {
+      setForm(EMPTY_FORM);
+      toast({
+        title: t("contact.suksesJudul"),
+        description: t("contact.suksesDescBot"),
+      });
+      return;
+    }
+
+    const errs = validate(form, t);
+    setErrors(errs);
+    if (Object.values(errs).some(Boolean)) return;
+
+    setLoading(true);
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify(form),
       });
-      const json = (await res.json().catch(() => null)) as
-        | { ok?: boolean; error?: string }
-        | null;
+      const data: { ok?: boolean } | null = await res
+        .json()
+        .catch(() => null);
+      if (!res.ok || data?.ok === false) throw new Error("gagal");
 
-      if (res.ok && json?.ok) {
-        toast.success("Pesan terkirim.", {
-          description: "Terima kasih — tim kami akan merespons dalam 1–2 hari kerja.",
-        });
-        reset();
-      } else {
-        toast.error(json?.error ?? "Gagal mengirim pesan. Coba lagi.");
-      }
+      setForm(EMPTY_FORM);
+      setErrors({});
+      toast({
+        title: t("contact.suksesJudul"),
+        description: t("contact.suksesDesc"),
+      });
     } catch {
-      toast.error("Koneksi bermasalah. Periksa jaringan Anda dan coba lagi.");
+      toast({
+        title: t("contact.errJudul"),
+        description: t("contact.errDesc"),
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
     }
   };
 
+  const contactRows = [
+    {
+      icon: MessageCircle,
+      label: t("contact.labelWa"),
+      href: waLink,
+      value: settings.waDisplay,
+      online: true,
+    },
+    {
+      icon: Mail,
+      label: t("contact.labelEmail"),
+      href: `mailto:${settings.email}`,
+      value: settings.email,
+      online: false,
+    },
+    {
+      icon: Clock,
+      label: t("contact.labelJam"),
+      value: settings.hours,
+      online: false,
+    },
+    {
+      icon: MapPin,
+      label: t("contact.labelAlamat"),
+      value: settings.addressShort,
+      online: false,
+    },
+  ];
+
+  const legalRows = [
+    { label: t("contact.legalSk"), value: settings.skNumber },
+    { label: t("contact.legalNib"), value: settings.nibNumber },
+    { label: t("contact.legalNpwp"), value: settings.npwpNumber },
+  ];
+
+  const errCls = (has: boolean) =>
+    has
+      ? "border-red-400/60 focus-visible:border-red-400 focus-visible:ring-red-400/20"
+      : "border-emerald-400/20 focus-visible:border-gold/50 focus-visible:ring-gold/20";
+
   return (
-    <section
-      id="kontak"
-      aria-labelledby="kontak-title"
-      className="py-24 sm:py-32"
-    >
-      <div className="shell grid gap-14 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
-        <div>
-          <SectionHeading
-            id="kontak-title"
-            eyebrow={CONTACT.eyebrow}
-            title={CONTACT.title}
-            description={CONTACT.description}
-          />
-          <Reveal delay={0.15}>
-            <dl className="mt-10">
-              {CONTACT.info.map((info) => (
-                <div
-                  key={info.label}
-                  className="flex items-baseline justify-between gap-6 border-t border-border py-4 last:border-b"
-                >
-                  <dt className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-                    {info.label}
-                  </dt>
-                  <dd className="text-sm">
-                    {info.value}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-            <p className="mt-6 text-xs leading-relaxed text-muted-foreground">
-              Data yang Anda kirim hanya digunakan untuk merespons pesan ini.
-              Tidak ada langganan otomatis, tidak ada pembagian ke pihak
-              ketiga.
-            </p>
-          </Reveal>
-        </div>
+    <section id="kontak" className="section-padding relative overflow-hidden py-24">
+      <div
+        aria-hidden="true"
+        className="grid-lines pointer-events-none absolute inset-0"
+      />
 
-        <Reveal delay={0.1}>
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            noValidate
-            className="rounded-3xl border border-border bg-card p-6 sm:p-8"
-            aria-label="Formulir kontak"
+      <div className="relative mx-auto max-w-7xl">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="mx-auto max-w-2xl text-center"
+        >
+          <span className="inline-flex items-center rounded-full border border-gold/30 bg-gold/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-gold">
+            {t("contact.kicker")}
+          </span>
+          <h2 className="font-display mt-5 text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
+            {t("contact.judulA")}{" "}
+            <span className="gradient-text-gold">{t("contact.judulB")}</span>{" "}
+            {t("contact.judulPost")}
+          </h2>
+          <p className="mt-4 text-sm leading-relaxed text-emerald-50/60 sm:text-base">
+            {t("contact.sub")}
+          </p>
+        </motion.div>
+
+        <div className="mt-14 grid gap-10 lg:grid-cols-[1fr_1.1fr]">
+          {/* ─────────── LEFT: info ─────────── */}
+          <motion.div
+            initial={{ opacity: 0, x: -24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6 }}
+            className="space-y-6"
           >
-            <div className="grid gap-5 sm:grid-cols-2">
-              <div>
-                <Label htmlFor="contact-name">Nama</Label>
-                <Input
-                  id="contact-name"
-                  className="mt-2 h-11"
-                  placeholder="Nama lengkap"
-                  autoComplete="name"
-                  aria-invalid={!!errors.name}
-                  {...register("name")}
-                />
-                <FieldError message={errors.name?.message} />
-              </div>
-
-              <div>
-                <Label htmlFor="contact-email">Email</Label>
-                <Input
-                  id="contact-email"
-                  type="email"
-                  className="mt-2 h-11"
-                  placeholder="nama@perusahaan.com"
-                  autoComplete="email"
-                  aria-invalid={!!errors.email}
-                  {...register("email")}
-                />
-                <FieldError message={errors.email?.message} />
-              </div>
-
-              <div>
-                <Label htmlFor="contact-company">
-                  Perusahaan <span className="text-muted-foreground">(opsional)</span>
-                </Label>
-                <Input
-                  id="contact-company"
-                  className="mt-2 h-11"
-                  placeholder="Nama perusahaan"
-                  autoComplete="organization"
-                  aria-invalid={!!errors.company}
-                  {...register("company")}
-                />
-                <FieldError message={errors.company?.message} />
-              </div>
-
-              <div>
-                <Label htmlFor="contact-phone">
-                  WhatsApp <span className="text-muted-foreground">(opsional)</span>
-                </Label>
-                <Input
-                  id="contact-phone"
-                  type="tel"
-                  className="mt-2 h-11"
-                  placeholder="+62 8xx xxxx xxxx"
-                  autoComplete="tel"
-                  aria-invalid={!!errors.phone}
-                  {...register("phone")}
-                />
-                <FieldError message={errors.phone?.message} />
-              </div>
-
-              <div>
-                <Label htmlFor="contact-topic">Topik</Label>
-                <Controller
-                  control={control}
-                  name="topic"
-                  render={({ field }) => (
-                    <Select value={field.value} onValueChange={field.onChange}>
-                      <SelectTrigger
-                        id="contact-topic"
-                        className="mt-2 h-11 w-full"
-                        aria-invalid={!!errors.topic}
+            {/* (a) contact info */}
+            <ul className="space-y-4">
+              {contactRows.map((row) => {
+                const Icon = row.icon;
+                const inner = (
+                  <>
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-emerald-400/10 text-emerald-bright ring-1 ring-emerald-400/25">
+                      <Icon className="h-5 w-5" aria-hidden="true" />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block text-xs font-semibold uppercase tracking-widest text-emerald-50/50">
+                        {row.label}
+                      </span>
+                      <span className="mt-0.5 block break-words font-medium text-white">
+                        {row.value}
+                      </span>
+                      {row.online && (
+                        <span className="mt-1 inline-flex items-center gap-1.5 text-xs font-medium text-emerald-300">
+                          <span className="relative flex h-2.5 w-2.5">
+                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
+                            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400" />
+                          </span>
+                          {t("contact.online")}
+                        </span>
+                      )}
+                    </span>
+                  </>
+                );
+                return (
+                  <li key={row.label}>
+                    {row.href ? (
+                      <a
+                        href={row.href}
+                        target={row.href.startsWith("http") ? "_blank" : undefined}
+                        rel="noopener noreferrer"
+                        className="flex items-start gap-4 rounded-xl p-1 transition hover:bg-white/[0.03]"
                       >
-                        <SelectValue placeholder="Pilih topik" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {CONTACT.topics.map((topic) => (
-                          <SelectItem key={topic} value={topic}>
-                            {topic}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  )}
-                />
-                <FieldError message={errors.topic?.message} />
-              </div>
+                        {inner}
+                      </a>
+                    ) : (
+                      <div className="flex items-start gap-4 p-1">{inner}</div>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
 
-              <div>
-                <Label htmlFor="contact-budget">
-                  Perkiraan anggaran <span className="text-muted-foreground">(opsional)</span>
-                </Label>
-                <Controller
-                  control={control}
-                  name="budget"
-                  render={({ field }) => (
-                    <Select value={field.value} onValueChange={field.onChange}>
-                      <SelectTrigger
-                        id="contact-budget"
-                        className="mt-2 h-11 w-full"
-                        aria-invalid={!!errors.budget}
-                      >
-                        <SelectValue placeholder="Pilih rentang anggaran" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {CONTACT.budgets.map((budget) => (
-                          <SelectItem key={budget} value={budget}>
-                            {budget}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  )}
-                />
-                <FieldError message={errors.budget?.message} />
+            {/* (b) legal identity */}
+            <div className="glass-strong rounded-2xl p-6">
+              <div className="flex items-center gap-2.5">
+                <ShieldCheck className="h-5 w-5 text-gold" aria-hidden="true" />
+                <h3 className="font-display text-base font-bold text-white">
+                  {t("contact.legalJudul")}
+                </h3>
               </div>
-
-              <div className="sm:col-span-2">
-                <Label htmlFor="contact-message">Pesan</Label>
-                <Textarea
-                  id="contact-message"
-                  className="mt-2 min-h-32"
-                  placeholder="Ceritakan kebutuhan Anda — konteks, tujuan, dan linimasa."
-                  aria-invalid={!!errors.message}
-                  {...register("message")}
-                />
-                <FieldError message={errors.message?.message} />
-              </div>
+              <ul className="mt-4 space-y-3">
+                {legalRows.map((row) => (
+                  <li key={row.label} className="flex items-start gap-2.5">
+                    <BadgeCheck
+                      className="mt-0.5 h-4 w-4 shrink-0 text-gold"
+                      aria-hidden="true"
+                    />
+                    <span className="min-w-0">
+                      <span className="block text-[11px] font-semibold uppercase tracking-widest text-emerald-50/45">
+                        {row.label}
+                      </span>
+                      <span className="block break-all text-sm font-medium text-emerald-50/90">
+                        {row.value}
+                      </span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-4 border-t border-emerald-400/10 pt-3 text-xs leading-relaxed text-emerald-50/50">
+                {t("contact.berdiri", {
+                  date: settings.established,
+                  company: settings.companyName,
+                })}
+              </p>
             </div>
 
-            <Button
-              type="submit"
-              disabled={isSubmitting}
-              className="mt-7 h-12 w-full rounded-full text-[15px] font-medium"
+            {/* (c) offices */}
+            {showOfficeList && offices.length > 0 && (
+              <div>
+                <h3 className="font-display text-sm font-bold uppercase tracking-widest text-emerald-50/70">
+                  {t("contact.kantor")}
+                </h3>
+                <ul className="mt-4 space-y-4">
+                  {offices.map((office, i) => {
+                    const isHq = (office.type || "").toUpperCase() === "HEAD";
+                    return (
+                      <li key={i} className="flex items-start gap-3">
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gold/10 text-gold ring-1 ring-gold/25">
+                          <MapPin className="h-4 w-4" aria-hidden="true" />
+                        </span>
+                        <div className="min-w-0">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <p className="text-sm font-semibold text-white">
+                              {office.label}
+                            </p>
+                            {isHq ? (
+                              <span className="rounded-full bg-gold/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-gold ring-1 ring-gold/40">
+                                HQ
+                              </span>
+                            ) : (
+                              <span className="rounded-full border border-emerald-400/30 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-emerald-50/60">
+                                {t("contact.cabang")}
+                              </span>
+                            )}
+                          </div>
+                          <p className="mt-0.5 text-sm leading-relaxed text-emerald-50/60">
+                            {office.address}
+                          </p>
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            )}
+          </motion.div>
+
+          {/* ─────────── RIGHT: form ─────────── */}
+          <motion.div
+            initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6 }}
+          >
+            <form
+              onSubmit={handleSubmit}
+              noValidate
+              className="glass rounded-3xl p-7"
+              aria-label={t("contact.formAria")}
             >
-              {isSubmitting ? (
-                "Mengirim…"
-              ) : (
-                <>
-                  Kirim Pesan
-                  <Send className="size-4" aria-hidden="true" />
-                </>
-              )}
-            </Button>
-          </form>
-        </Reveal>
+              <h3 className="font-display text-xl font-bold text-white">
+                {t("contact.formJudul")}
+              </h3>
+              <p className="mt-1 text-sm text-emerald-50/55">
+                {t("contact.formSub")}
+              </p>
+
+              <div className="mt-6 grid gap-5 sm:grid-cols-2">
+                {/* Nama */}
+                <div className="sm:col-span-1">
+                  <label
+                    htmlFor="kontak-nama"
+                    className="mb-2 block text-xs font-semibold uppercase tracking-wider text-emerald-50/60"
+                  >
+                    {t("contact.nama")} <span className="text-gold">*</span>
+                  </label>
+                  <Input
+                    id="kontak-nama"
+                    name="nama"
+                    value={form.nama}
+                    onChange={(e) => set("nama")(e.target.value)}
+                    placeholder={t("contact.phNama")}
+                    autoComplete="name"
+                    aria-invalid={!!errors.nama}
+                    aria-describedby={errors.nama ? "kontak-nama-error" : undefined}
+                    className={`h-11 rounded-xl bg-white/[0.03] text-white placeholder:text-emerald-50/30 ${errCls(!!errors.nama)}`}
+                  />
+                  {errors.nama && (
+                    <p id="kontak-nama-error" className="mt-1.5 text-xs text-red-400">
+                      {errors.nama}
+                    </p>
+                  )}
+                </div>
+
+                {/* Email */}
+                <div className="sm:col-span-1">
+                  <label
+                    htmlFor="kontak-email"
+                    className="mb-2 block text-xs font-semibold uppercase tracking-wider text-emerald-50/60"
+                  >
+                    {t("contact.email")} <span className="text-gold">*</span>
+                  </label>
+                  <Input
+                    id="kontak-email"
+                    name="email"
+                    type="email"
+                    value={form.email}
+                    onChange={(e) => set("email")(e.target.value)}
+                    placeholder={t("contact.phEmail")}
+                    autoComplete="email"
+                    aria-invalid={!!errors.email}
+                    aria-describedby={errors.email ? "kontak-email-error" : undefined}
+                    className={`h-11 rounded-xl bg-white/[0.03] text-white placeholder:text-emerald-50/30 ${errCls(!!errors.email)}`}
+                  />
+                  {errors.email && (
+                    <p id="kontak-email-error" className="mt-1.5 text-xs text-red-400">
+                      {errors.email}
+                    </p>
+                  )}
+                </div>
+
+                {/* WhatsApp */}
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="kontak-wa"
+                    className="mb-2 block text-xs font-semibold uppercase tracking-wider text-emerald-50/60"
+                  >
+                    {t("contact.wa")} <span className="text-gold">*</span>
+                  </label>
+                  <Input
+                    id="kontak-wa"
+                    name="wa"
+                    type="tel"
+                    inputMode="tel"
+                    value={form.wa}
+                    onChange={(e) => set("wa")(e.target.value)}
+                    placeholder={t("contact.phWa")}
+                    autoComplete="tel"
+                    aria-invalid={!!errors.wa}
+                    aria-describedby={errors.wa ? "kontak-wa-error" : undefined}
+                    className={`h-11 rounded-xl bg-white/[0.03] text-white placeholder:text-emerald-50/30 ${errCls(!!errors.wa)}`}
+                  />
+                  {errors.wa && (
+                    <p id="kontak-wa-error" className="mt-1.5 text-xs text-red-400">
+                      {errors.wa}
+                    </p>
+                  )}
+                </div>
+
+                {/* Layanan */}
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="kontak-layanan"
+                    className="mb-2 block text-xs font-semibold uppercase tracking-wider text-emerald-50/60"
+                  >
+                    {t("contact.layanan")}
+                  </label>
+                  <Select
+                    value={form.layanan || undefined}
+                    onValueChange={(v) => set("layanan")(v)}
+                  >
+                    <SelectTrigger
+                      id="kontak-layanan"
+                      aria-label={t("contact.layananAria")}
+                      className={`h-11 w-full rounded-xl bg-white/[0.03] text-left text-white ${errCls(false)}`}
+                    >
+                      <SelectValue placeholder={t("contact.phLayanan")} />
+                    </SelectTrigger>
+                    <SelectContent className="glass-strong max-h-72 rounded-xl border-emerald-400/20 text-emerald-50">
+                      <SelectItem value={t("contact.layananUmum")}>
+                        {t("contact.layananUmum")}
+                      </SelectItem>
+                      {services.map((s) => (
+                        <SelectItem key={s.slug ?? s.title} value={s.title}>
+                          {s.title}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* Pesan */}
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="kontak-pesan"
+                    className="mb-2 block text-xs font-semibold uppercase tracking-wider text-emerald-50/60"
+                  >
+                    {t("contact.pesan")} <span className="text-gold">*</span>
+                  </label>
+                  <Textarea
+                    id="kontak-pesan"
+                    name="pesan"
+                    rows={5}
+                    value={form.pesan}
+                    onChange={(e) => set("pesan")(e.target.value)}
+                    placeholder={t("contact.phPesan")}
+                    aria-invalid={!!errors.pesan}
+                    aria-describedby={errors.pesan ? "kontak-pesan-error" : undefined}
+                    className={`min-h-[120px] rounded-xl bg-white/[0.03] text-white placeholder:text-emerald-50/30 ${errCls(!!errors.pesan)}`}
+                  />
+                  {errors.pesan && (
+                    <p id="kontak-pesan-error" className="mt-1.5 text-xs text-red-400">
+                      {errors.pesan}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              {/* Honeypot anti-bot — disembunyikan total */}
+              <div className="hidden" aria-hidden="true">
+                <label htmlFor="kontak-company">Company</label>
+                <input
+                  id="kontak-company"
+                  name="company"
+                  value={form.company}
+                  onChange={(e) => set("company")(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  className="hidden"
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="shimmer-btn mt-6 inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-gold-light via-gold to-amber-500 text-sm font-bold text-emerald-950 shadow-lg shadow-gold/25 transition hover:brightness-110 disabled:pointer-events-none disabled:opacity-60"
+              >
+                {loading ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                    {t("contact.mengirim")}
+                  </>
+                ) : (
+                  <>
+                    <Send className="h-4 w-4" aria-hidden="true" />
+                    {t("contact.kirim")}
+                  </>
+                )}
+              </button>
+
+              <p className="mt-4 text-center text-xs text-emerald-50/40">
+                {t("contact.privasi")}
+              </p>
+            </form>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
