@@ -70,8 +70,10 @@ server.log
 /tests/
 
 # Local runtime and database
-.zscripts/dev.pid
+.zscripts/
 db/custom.db
+db/custom.db.backup-*
+*.pid
 
 # Private legal and identity documents
 **/AKTA PENDIRIAN  PERTAMA  PT DIGITAL BISNIS MANAJEMEN.pdf
