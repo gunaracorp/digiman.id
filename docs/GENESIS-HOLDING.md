@@ -1,91 +1,75 @@
-# GENESIS HOLDING LAYER — Dokumentasi Merger
+# GENESIS HOLDING LAYER — Dokumentasi (v2 — Pernikahan Dua Arsitektur)
 
-> **Tanggal merger:** 2026-10 (lihat git log untuk timestamp resmi)
-> **Prinsip merger:** ADDITIVE-ONLY. Tidak satu pun file lama diubah, ditimpa, atau dihapus.
+> **v1:** merger aditif lapisan "Bisnis Real" (2026-10).
+> **v2:** konsep utama pertama dipulihkan **setia** (palet ink + capital gold,
+> tipografi Geist + Instrument Serif, jargon hero) dan dinikahkan dengan situs
+> repo — keduanya hidup berdampingan dalam satu kode, tanpa saling menimpa.
 
 ---
 
-## 1. Apa ini?
+## 1. Arsitektur pernikahan
 
-Lapisan **"Bisnis Real"** dari DIGIMAN.ID — hasil merger pekerjaan *Genesis Holding Platform* ke dalam situs resmi `digiman.id`, tanpa menghilangkan satu pun bagian yang sudah ada.
+| Lapisan | Rumah | Identitas |
+|---|---|---|
+| Situs repo (beranda, /layanan, /blog, /admin, Gunara OS, dll.) | `/` dan seluruh rute lama | Emerald + gold, Jakarta + Space Grotesk |
+| **Konsep utama Genesis** (jargon, 5 unit bisnis, 16 jasa terharga, visi 2125, 46 dewan) | **`/genesis`** | **Ink + capital gold, Geist + Instrument Serif (asli, dipulihkan)** |
 
-**Jargon perang perusahaan (tidak boleh dilunakkan):**
+Kunci teknisnya: halaman `/genesis` membungkus seluruh konten dalam
+`.genesis-theme` yang **mendeklarasikan ulang design token asli** — CSS
+variable cascade membuat semua utility shadcn/Tailwind di dalam wrapper
+otomatis memakai palet asli, sementara di luar wrapper situs repo tetap
+utuh 100%.
+
+## 2. Jargon (tidak boleh dilunakkan)
 
 > **"Yang masuk ke kita bakal selamat, yang tidak masuk digital akan tertinggal."**
 
-Lapisan ini menerjemahkan tiga prinsip inti:
+## 3. Struktur file Genesis
 
-| Prinsip | Wujudnya di kode |
-|---|---|
-| *Bisnis berarti ada bisnisnya* | `BUSINESS_UNITS` — lima unit bisnis nyata dengan mandat, sektor, dan tahap (Operating / Building / Genesis) |
-| *Manajemen berarti ada sistemnya* | `TECHNOLOGY` (7-Layer Digital Architecture), `GOVERNANCE` (siklus entitas + pilar), `METODE` (Kaji → Rancang → Bangun → Kelola → Skala) |
-| *Jasa diurus detail — ada berapa harganya* | `SERVICE_CATALOG` — 16 jasa terharga dalam 5 unit, keterangan deliverables + durasi + harga indikatif |
-
----
-
-## 2. Cara melihat hasilnya
-
-Buka route baru: **`/genesis`**
-
-Route ini mengomposisi seluruh lapisan Genesis (hero + jargon, marquee, manifesto, ekosistem, portofolio bisnis, katalog jasa berharga, metode, 46 dewan pakar, 7-lapis teknologi, visi 2125, tata kelola, insights, karier, gerbang kontak). Halaman lama (`/`, `/layanan`, `/paket-harga`, `/kontak`, dst.) **tetap utuh** — section kontak di `/genesis` mengarahkan pengunjung ke rute resmi tersebut.
-
----
-
-## 3. Daftar penambahan
-
-### Data & logika
 | File | Isi |
 |---|---|
-| `src/content/holding.ts` | Single source of truth: ORG, jargon, NAV, HERO, 5 unit bisnis, 16 jasa berharga, metode, visi 2125, 46 dewan, teknologi, tata kelola, karier, kontak, insights, footer |
-| `src/lib/validation.ts` | Skema Zod kontak (dipakai form + API — satu sumber kebenaran) |
-| `src/lib/rate-limit.ts` | Rate limiter sederhana untuk endpoint publik |
+| `src/content/holding.ts` | Single source of truth konsep: ORG, HERO (jargon), 5 unit bisnis, `SERVICE_CATALOG` 16 jasa berharga, metode 5 langkah, visi 2125, 46 dewan, teknologi 7 lapis, tata kelola, karier, kontak, insights |
+| `src/app/genesis/page.tsx` | Komposisi asli konsep + metadata + JSON-LD + font asli via next/font |
+| `src/app/genesis.css` | Tema asli ter-scope di `.genesis-theme` (ink/gold/paper/ink tokens, shell, eyebrow, paper interlude, bg-grid, glow, grain, marquee 46s, drift, reduced-motion) |
+| `src/components/genesis/hero.tsx` | Hero asli (framer-motion, staggered variants, Counter metrik) |
+| `src/components/genesis/services.tsx` | Katalog 16 jasa berharga asli (Tabs per unit, harga + deliverables + durasi) |
+| `src/components/genesis/contact.tsx` | Form kontak asli (react-hook-form + zod bersama) |
+| `src/app/api/genesis-contact/route.ts` | Endpoint form Genesis → **disimpan ke tabel `ContactMessage` milik repo** → masuk kotak masuk panel admin (`/admin/pesan`) |
+| `src/components/digiman/{manifesto,visi-2125,metode,dewan,ecosystem,business-portfolio,governance,technology,insights,careers,site-header,site-footer,trust-marquee,section-heading}.tsx` + `motion/*` | Section komponen konsep (shared oleh /genesis) |
+| `src/lib/validation.ts` | Skema zod kontak bersama (kompatibel @hookform/resolvers v6 — tanpa `.default()`) |
+| `src/lib/db.ts` + `scripts/db.ts` + `prisma.config.ts` | **Dual-mode adapter**: `POSTGRES_URL` → PrismaPg (Vercel, perilaku produksi tidak berubah); tanpa POSTGRES_URL → PrismaLibSql + `DATABASE_URL` file: (jalur SQLite resmi di .env.example) |
+| `src/lib/rate-limit.ts` | Rate limiter 5/menit/IP untuk endpoint publik |
+| `docs/DATA-MODEL.md` | Blueprint migrasi model Genesis (BusinessUnit, PricedService, Insight) ke Prisma |
 
-### Komponen (`src/components/digiman/`)
-| File | Peran |
-|---|---|
-| `section-heading.tsx` | Heading section bersama (eyebrow mono + judul display) |
-| `site-header.tsx` / `site-footer.tsx` | Navigasi & footer modul Genesis (anchor ke section Genesis) |
-| `trust-marquee.tsx` | Marquee CSS murni, track ganda, hormat reduced-motion |
-| `manifesto.tsx` | Interlude kertas terang — prinsip kerja |
-| `ecosystem.tsx` / `business-portfolio.tsx` | Pohon holding + kartu detail unit bisnis |
-| `genesis-services.tsx` | **Katalog jasa berharga** (baru, khusus merger) |
-| `metode.tsx` / `dewan.tsx` / `technology.tsx` / `visi-2125.tsx` / `governance.tsx` / `insights.tsx` / `careers.tsx` | Section-section editorial |
-| `motion/providers.tsx` / `motion/reveal.tsx` / `motion/counter.tsx` | Motion primitives (framer-motion + MotionConfig reducedMotion="user") |
+## 4. Keputusan penting
 
-### Route & gaya
-| File | Isi |
-|---|---|
-| `src/app/genesis/page.tsx` | Komposisi halaman Genesis + metadata SEO |
-| `src/app/genesis.css` | **Aditif saja**: `.shell`, `.eyebrow`, `.paper-section`, `.paper-muted`, `.bg-grid`, `.glow-gold`, `.grain`, `.marquee-mask`, `.animate-drift`, token `ink`/`paper`/`gold-strong` |
+1. **File repo lama tidak dilunakkan.** `page.tsx`, `hero.tsx`, `services.tsx`,
+   `contact.tsx`, `globals.css`, `layout.tsx`, schema (postgresql), dsb.
+   tetap milik repo; konsep Genesis hidup di namespace `genesis/` dan rute
+   `/genesis`.
+2. **Form Genesis menulis ke model repo** (`ContactMessage`) — satu kotak
+   masuk admin untuk semua lead, dari mana pun formnya berasal.
+3. **Dual-mode database** mengikuti dokumentasi `.env.example` repo sendiri:
+   produksi tetap postgres, hosting file-based (cPanel/VPS) bisa sqlite tanpa
+   mengubah kode.
+4. **`@prisma/adapter-libsql` + `@libsql/client`** ditambahkan sebagai
+   dependensi adapter SQLite (tidak dipakai saat POSTGRES_URL terpasang).
 
-### Dokumen & aset
-| File | Isi |
-|---|---|
-| `docs/DATA-MODEL.md` | Model data Genesis (blueprint integrasi Prisma berikutnya) |
-| `public/digiman-mark.svg` | Mark logo versi vector |
+## 5. Kualitas & kejujuran data
 
----
+- Harga pada `SERVICE_CATALOG` bersifat **INDIKATIF** — dinyatakan terbuka
+  di UI; lingkup final ditetapkan dalam proposal tertulis.
+- **BELUM TERVERIFIKASI:** email (`hello@digiman.id`, `careers@digiman.id`),
+  tahun pendirian, dan daftar 46 disiplin perlu konfirmasi pemilik sebelum
+  dipakai di materi hukum/promosi.
+- Aksesibilitas: heading semantik + ARIA, `prefers-reduced-motion` dihormati
+  (marquee & drift mati, MotionConfig `reducedMotion="user"`).
 
-## 4. Keputusan merger yang penting
+## 6. Langkah lanjutan
 
-1. **File bentrok → versi repo menang.** `page.tsx`, `hero.tsx`, `services.tsx`, `contact.tsx`, `globals.css`, `layout.tsx`, `package.json`, prisma schema, dsb. tidak disentuh sama sekali.
-2. **Genesis mengadaptasi palet repo.** Komponen Genesis memakai token repo (`--gold`, `--font-display` Space Grotesk, kelas utilitas globals.css repo) sehingga menyatu dengan identitas emerald + gold yang sudah ada.
-3. **Tidak ada dependensi baru.** Semua import (`framer-motion`, `lucide-react`, `zod`, dll.) sudah ada di `package.json` — `bun.lock` tidak berubah.
-4. **Yang sengaja tidak digabung** (akan merusak build repo): `scripts/seed.ts` (butuh model Prisma `BusinessUnit` yang belum ada), `examples/websocket` (butuh `socket.io`), dan skrip infra sandbox. `DATA-MODEL.md` mendokumentasikan blueprint-nya.
-
----
-
-## 5. Kualitas & kejujuran data (quality gates)
-
-- **Harga pada `SERVICE_CATALOG` bersifat INDIKATIF** — sudah dinyatakan terbuka di UI (`SERVICES.note`) dan bukan harga final; lingkup final ditetapkan dalam proposal tertulis.
-- **BELUM TERVERIFIKASI:** alamat email (`hello@digiman.id`, `careers@digiman.id`), tahun pendirian, dan daftar 46 disiplin dewan perlu dikonfirmasi pemilik sebelum diklaim resmi di materi hukum/promosi.
-- Aksesibilitas: semua section memakai heading semantik + ARIA label; animasi hormat `prefers-reduced-motion`.
-
----
-
-## 6. Langkah lanjutan yang disarankan
-
-1. Tautkan `/genesis` dari navigasi/footer utama (butuh edit kecil `navbar.tsx`/`footer.tsx` — sengaja tidak dilakukan pada merger ini demi prinsip additive-only).
-2. Integrasikan `holding.ts` ke Prisma (migrasi `BusinessUnit`, `PricedService`) mengikuti `docs/DATA-MODEL.md`.
-3. Ganti harga indikatif dengan harga final yang disetujui manajemen.
-4. Tambahkan `sitemap` entry untuk `/genesis`.
+1. Tautkan `/genesis` dari navigasi/footer utama situs repo.
+2. Migrasi `holding.ts` → Prisma (model `BusinessUnit`, `PricedService`,
+   `Insight`) sesuai `docs/DATA-MODEL.md`, sambil mempertahankan fallback
+   statis.
+3. Finalisasi harga indikatif menjadi harga resmi manajemen.
+4. Tambahkan `/genesis` ke sitemap.

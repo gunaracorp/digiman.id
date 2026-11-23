@@ -1,190 +1,197 @@
-import type { Metadata } from "next";
-import "./genesis.css";
+import type { Metadata, Viewport } from "next";
+import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import "../genesis.css";
 
-import { MotionProvider } from "@/components/digiman/motion/providers";
-import { Counter } from "@/components/digiman/motion/counter";
+import { Toaster } from "@/components/ui/sonner";
 import { SiteHeader } from "@/components/digiman/site-header";
+import { SiteFooter } from "@/components/digiman/site-footer";
+import { Hero } from "@/components/genesis/hero";
+import { Services } from "@/components/genesis/services";
+import { Contact } from "@/components/genesis/contact";
 import { TrustMarquee } from "@/components/digiman/trust-marquee";
 import { Manifesto } from "@/components/digiman/manifesto";
 import { Ecosystem } from "@/components/digiman/ecosystem";
 import { BusinessPortfolio } from "@/components/digiman/business-portfolio";
-import { GenesisServices } from "@/components/digiman/genesis-services";
 import { Metode } from "@/components/digiman/metode";
-import { Dewan } from "@/components/digiman/dewan";
 import { Technology } from "@/components/digiman/technology";
-import { Vision2125 } from "@/components/digiman/visi-2125";
 import { Governance } from "@/components/digiman/governance";
+import { Dewan } from "@/components/digiman/dewan";
+import { Vision2125 } from "@/components/digiman/visi-2125";
 import { Insights, type InsightItem } from "@/components/digiman/insights";
 import { Careers } from "@/components/digiman/careers";
-import { SiteFooter } from "@/components/digiman/site-footer";
 
 import {
   BUSINESS_UNITS,
-  CONTACT,
-  HERO,
-  HERO_METRICS,
   INSIGHTS,
   ORG,
+  type BusinessUnit,
 } from "@/content/holding";
 
+/* ── Tipografi ASLI konsep pertama (dipulihkan dari layout asli) ── */
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  weight: "400",
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "Genesis — Holding Digital DIGIMAN.ID · Kaji Dulu, Baru Bangun",
+  title: "Genesis — Holding Digital Indonesia | Kaji Dulu, Baru Bangun",
   description: ORG.description,
+  keywords: [
+    "DIGIMAN",
+    "digital holding",
+    "holding digital Indonesia",
+    "konsultan transformasi digital",
+    "jasa pembuatan website",
+    "konsultan manajemen & SOP",
+    "riset bisnis & studi kelayakan",
+    "otomasi AI",
+    "venture building",
+  ],
   alternates: { canonical: "/genesis" },
   openGraph: {
-    title: "Genesis — Holding Digital DIGIMAN.ID",
-    description: ORG.description,
+    type: "website",
+    locale: "id_ID",
     url: "/genesis",
     siteName: ORG.name,
-    locale: "id_ID",
-    type: "website",
+    title: "DIGIMAN.ID Genesis — Yang masuk ke kita bakal selamat",
+    description: ORG.description,
   },
+  robots: { index: true, follow: true },
 };
 
-/** Seed insights → render items (daysAgo → publishedAt statis). */
-const insightItems: InsightItem[] = INSIGHTS.map((insight) => ({
-  slug: insight.slug,
-  title: insight.title,
-  excerpt: insight.excerpt,
-  category: insight.category,
-  readMinutes: insight.readMinutes,
-  featured: insight.featured,
-  publishedAt: new Date(Date.now() - insight.daysAgo * 86_400_000),
+export const viewport: Viewport = {
+  themeColor: "#0a0908",
+  width: "device-width",
+  initialScale: 1,
+};
+
+/* Unit bisnis & insights — sumber data konsep pertama (holding.ts).
+   Jalur DB (model BusinessUnit/Insight, lihat docs/DATA-MODEL.md)
+   menyusul saat migrasi skema; fallback statis adalah desain resiliensi
+   asli konsep ini. */
+const units: BusinessUnit[] = BUSINESS_UNITS;
+
+const insightItems: InsightItem[] = INSIGHTS.map((seed) => ({
+  slug: seed.slug,
+  title: seed.title,
+  excerpt: seed.excerpt,
+  category: seed.category,
+  readMinutes: seed.readMinutes,
+  publishedAt: new Date(Date.now() - seed.daysAgo * 86_400_000),
+  featured: seed.featured,
 }));
 
+/** Structured data asli: Organization + WebSite + WebPage. */
+function GenesisJsonLd() {
+  const graph = [
+    {
+      "@type": "Organization",
+      "@id": `${ORG.url}/#organization`,
+      name: ORG.name,
+      url: ORG.url,
+      description: ORG.description,
+      foundingDate: ORG.founded,
+      email: ORG.email,
+      knowsAbout: [
+        "Digital transformation",
+        "Business research",
+        "Management systems",
+        "AI & automation",
+        "Venture building",
+        "Digital governance",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${ORG.url}/#website`,
+      url: ORG.url,
+      name: ORG.name,
+      description: ORG.description,
+      inLanguage: "id-ID",
+      publisher: { "@id": `${ORG.url}/#organization` },
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${ORG.url}/#webpage-genesis`,
+      url: `${ORG.url}/genesis`,
+      name: "DIGIMAN.ID Genesis — Holding Digital Indonesia",
+      isPartOf: { "@id": `${ORG.url}/#website` },
+      about: { "@id": `${ORG.url}/#organization` },
+      inLanguage: "id-ID",
+    },
+  ];
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify({ "@context": "https://schema.org", "@graph": graph }),
+      }}
+    />
+  );
+}
+
 /**
- * GENESIS — lapisan "Bisnis Real" DIGIMAN.ID.
- * Jargon: "Yang masuk ke kita bakal selamat, yang tidak masuk
- * digital akan tertinggal." — tidak boleh dilunakkan.
+ * GENESIS — konsep utama pertama DIGIMAN.ID, dipulihkan utuh dari
+ * histori git dan dinikahkan dengan situs repo:
  *
- * Komposisi aditif: tidak satu pun halaman/komponen lama disentuh.
+ *   "Yang masuk ke kita bakal selamat,
+ *    yang tidak masuk digital akan tertinggal."
+ *
+ * Komposisi asli: Hero (jargon + motion) → Marquee → Manifesto →
+ * Ekosistem → Portofolio Bisnis → Layanan & Harga (16 jasa terharga) →
+ * Metode → Teknologi 7 Lapis → Tata Kelola → 46 Dewan → Visi 2125 →
+ * Insights → Karier → Kontak. Palet ink + capital gold dan tipografi
+ * Geist + Instrument Serif dikembalikan setia via .genesis-theme —
+ * tanpa mengubah satu pun halaman situs repo di sekitarnya.
  */
 export default function GenesisPage() {
   return (
-    <MotionProvider>
+    <div
+      className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} genesis-theme flex min-h-screen flex-col`}
+    >
+      <a
+        href="#konten"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-primary focus:px-5 focus:py-2.5 focus:text-sm focus:font-medium focus:text-primary-foreground"
+      >
+        Langsung ke konten
+      </a>
+
       <SiteHeader />
 
-      <main id="genesis">
-        {/* ---------- HERO ---------- */}
-        <section className="relative overflow-hidden">
-          <div aria-hidden="true" className="absolute inset-0 bg-grid opacity-60" />
-          <div
-            aria-hidden="true"
-            className="animate-drift absolute -left-40 top-24 h-[420px] w-[420px] rounded-full glow-gold blur-3xl"
-          />
-          <div className="shell relative z-10 pb-20 pt-36 sm:pt-44">
-            <p className="eyebrow">{HERO.eyebrow}</p>
-            <h1 className="mt-6 max-w-4xl font-display text-5xl leading-[1.04] tracking-tight text-balance sm:text-7xl">
-              {HERO.line1A} <span className="text-gold">{HERO.line1B}</span>{" "}
-              <span className="mt-2 block">
-                {HERO.line2A}{" "}
-                <span className="text-gold">{HERO.line2B}</span>
-              </span>
-            </h1>
-            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-              {HERO.statement}
-            </p>
-
-            <div className="mt-10 flex flex-wrap gap-4">
-              <a
-                href={HERO.primaryCta.href}
-                className="inline-flex h-12 items-center rounded-full bg-gold px-7 text-sm font-semibold text-[#04110c] transition-colors duration-300 hover:bg-gold-light"
-              >
-                {HERO.primaryCta.label}
-              </a>
-              <a
-                href={HERO.secondaryCta.href}
-                className="inline-flex h-12 items-center rounded-full border border-border px-7 text-sm font-medium transition-colors duration-300 hover:border-gold/50 hover:text-gold"
-              >
-                {HERO.secondaryCta.label}
-              </a>
-            </div>
-
-            <div className="mt-16 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4">
-              {HERO_METRICS.map((metric) => (
-                <div
-                  key={metric.label}
-                  className="border-t border-border pt-5"
-                >
-                  <p
-                    className="font-display text-4xl tracking-tight text-gold"
-                    aria-label={String(metric.value)}
-                  >
-                    <Counter to={metric.value} />
-                  </p>
-                  <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                    {metric.label}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
+      <main id="konten" className="flex-1">
+        <Hero />
         <TrustMarquee />
         <Manifesto />
-        <Ecosystem units={BUSINESS_UNITS} />
-        <BusinessPortfolio units={BUSINESS_UNITS} />
-        <GenesisServices />
+        <Ecosystem units={units} />
+        <BusinessPortfolio units={units} />
+        <Services />
         <Metode />
-        <Dewan />
         <Technology />
-        <Vision2125 />
         <Governance />
+        <Dewan />
+        <Vision2125 />
         <Insights insights={insightItems} />
         <Careers />
-
-        {/* ---------- KONTAK: gerbang ke rute resmi situs ---------- */}
-        <section
-          id="kontak"
-          aria-labelledby="kontak-title"
-          className="relative overflow-hidden border-t border-border"
-        >
-          <div
-            aria-hidden="true"
-            className="animate-drift absolute -right-40 top-16 h-[420px] w-[420px] rounded-full glow-gold blur-3xl"
-          />
-          <div className="shell relative z-10 py-24 text-center sm:py-32">
-            <p className="eyebrow">{CONTACT.eyebrow}</p>
-            <h2
-              id="kontak-title"
-              className="mx-auto mt-4 max-w-3xl font-display text-4xl leading-[1.08] tracking-tight text-balance sm:text-5xl"
-            >
-              {CONTACT.title}
-            </h2>
-            <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              {CONTACT.description}
-            </p>
-
-            <div className="mt-10 flex flex-wrap justify-center gap-4">
-              <a
-                href="/kontak"
-                className="inline-flex h-12 items-center rounded-full bg-gold px-7 text-sm font-semibold text-[#04110c] transition-colors duration-300 hover:bg-gold-light"
-              >
-                Mulai Kaji — Konsultasi Gratis
-              </a>
-              <a
-                href="/layanan"
-                className="inline-flex h-12 items-center rounded-full border border-border px-7 text-sm font-medium transition-colors duration-300 hover:border-gold/50 hover:text-gold"
-              >
-                Katalog Layanan
-              </a>
-              <a
-                href="/paket-harga"
-                className="inline-flex h-12 items-center rounded-full border border-border px-7 text-sm font-medium transition-colors duration-300 hover:border-gold/50 hover:text-gold"
-              >
-                Paket Harga
-              </a>
-            </div>
-
-            <p className="mt-10 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-              {ORG.email} · Respons 1–2 hari kerja · Est. {ORG.founded}
-            </p>
-          </div>
-        </section>
+        <Contact />
       </main>
 
       <SiteFooter />
-    </MotionProvider>
+      <GenesisJsonLd />
+      <Toaster position="bottom-right" />
+    </div>
   );
 }
