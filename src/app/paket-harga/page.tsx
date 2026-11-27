@@ -8,7 +8,7 @@ import Breadcrumbs from "@/components/public/breadcrumbs";
 export const metadata: Metadata = buildMetadata({
   title: "Paket & Harga Legalitas Bisnis — Transparan Sejak Awal | DIGIMAN.ID",
   description:
-    "Empat paket legalitas & digitalisasi: Paket Berdiri (Rp 850rb), Paket Tumbuh (Rp 3,5jt), Paket Terbang (Rp 7,5jt), dan Paket 7 Lapis Langit (PMA & Enterprise). Tanpa biaya tersembunyi.",
+    "Empat paket legalitas & digitalisasi: Paket Berdiri (Rp 850rb), Paket Tumbuh (Rp 7jt), Paket Terbang (Rp 7,5jt), dan Paket 7 Lapis Langit (PMA & Enterprise). Tanpa biaya tersembunyi.",
   path: "/paket-harga",
   keywords: ["paket pendirian pt harga", "biaya pendirian pt", "harga jasa legalitas usaha"],
 });
@@ -29,7 +29,7 @@ const PAKET = [
   },
   {
     name: "Paket Tumbuh",
-    price: "Rp 3,5 jt",
+    price: "Rp 7 jt",
     for: "UMKM & bisnis yang siap naik kelas",
     desc: "PT lengkap berbadan hukum: akta notaris, SK Kemenkumham, NPWP badan, dan NIB — siap kredit & tender.",
     items: [

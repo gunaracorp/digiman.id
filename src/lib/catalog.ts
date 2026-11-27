@@ -50,7 +50,7 @@ export const CATALOG: Svc[] = [
   // ===== 1. PENDIRIAN BADAN USAHA =====
   {
     slug: "pendirian-pt", title: "Pendirian PT", icon: "Building2", category: "pendirian", featured: true,
-    matchTitle: "Pendirian PT", price: "Mulai Rp 3,5 jt",
+    matchTitle: "Pendirian PT", price: "Mulai Rp 7 jt",
     desc: "Akta notaris, SK Kemenkumham, NPWP, NIB — paket lengkap PT resmi berdiri dalam hitungan hari.",
     features: ["Akta Notaris + SK Kemenkumham", "NPWP & NIB otomatis", "Domisili usaha", "Gratis konsultasi KBLI"],
   },
@@ -62,7 +62,7 @@ export const CATALOG: Svc[] = [
   },
   {
     slug: "pendirian-cv", title: "Pendirian CV", icon: "Users", category: "pendirian",
-    matchTitle: "Pendirian CV", price: "Mulai Rp 1,8 jt",
+    matchTitle: "Pendirian CV", price: "Mulai Rp 4 jt",
     desc: "Pilihan ideal usaha keluarga & kemitraan. Cepat, murah, dan sah di mata hukum.",
     features: ["Akta notaris CV", "Pengesahan kehakiman", "NPWP & NIB", "Konsultasi struktur modal"],
   },
@@ -260,7 +260,7 @@ export const CATALOG: Svc[] = [
   // ===== 7. KORPORASI & LEGAL =====
   {
     slug: "perubahan-akta", title: "Perubahan Akta & Struktur", icon: "FileText", category: "korporasi",
-    price: "Mulai Rp 1,5 jt",
+    price: "Mulai Rp 5 jt",
     desc: "Ganti nama, alamat, pengurus, modal, pemegang saham, atau tambah KBLI — semua diurus tuntas.",
     features: ["Akta perubahan notaris", "Pengesahan Kemenkumham", "Update NIB/OSS & NPWP", "Publikasi tambahan bila wajib"],
   },

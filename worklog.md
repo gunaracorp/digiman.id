@@ -949,3 +949,20 @@ Work Log:
 Stage Summary:
 - Seluruh situs terverifikasi hidup end-to-end (32/32), typecheck & lint nol error, portal klien + admin login berfungsi, worklog kini mencatat sesi portal-klien yang sebelumnya terlewat.
 - Pola sesi berikutnya: sebelum push selalu jalankan bunx tsc --noEmit + skrip E2E sweep; pemulihan disaster = zip di download/ + reinit (reset --mixed FETCH_HEAD).
+
+---
+Task ID: update-harga-1
+Agent: main (orchestrator)
+Task: "updates harga: pendirian PT modal dasar <5M = Rp 7jt, >5M = Rp 9,5jt, perubahan alamat PT = Rp 5jt, pendirian CV = Rp 4jt; push ke github"
+
+Work Log:
+- 13 titik harga di 7 file: src/lib/catalog.ts (katalog kanonik 165 layanan — sumber tunggal), src/lib/site-data.ts, src/lib/i18n/dict-id.ts (kartu layanan + Paket Tumbuh), src/lib/digiman-data.ts (Paket Tumbuh), src/app/paket-harga/page.tsx (metadata + kartu paket), src/lib/services/enrichment.ts (costs rinci per layanan), src/lib/services/pendirian.ts (FAQ baru).
+- PENDIRIAN PT: harga kartu "Mulai Rp 3,5 jt" → "Mulai Rp 7 jt"; costs rinci kini dua tingkat — modal dasar < Rp 5 miliar = Rp 7.000.000, modal dasar > Rp 5 miliar = Rp 9.500.000; FAQ baru "Berapa biaya jasa pendampingan pendirian PT?" menjawab kedua tingkat (JSON-LD FAQPage ikut otomatis).
+- PENDIRIAN CV: "Mulai Rp 1,8 jt" → "Mulai Rp 4 jt"; costs note → Rp 4.000.000.
+- PERUBAHAN AKTA & STRUKTUR: "Mulai Rp 1,5 jt" → "Mulai Rp 5 jt"; costs kini memisahkan baris "Perubahan alamat PT (pindah kedudukan) — Rp 5.000.000" dari perubahan lain (mulai Rp 5 jt).
+- DB: scripts/migrate-services-v3.ts dijalankan → Service.price tersinkron, terverifikasi: pendirian-pt "Mulai Rp 7 jt", pendirian-cv "Mulai Rp 4 jt", perubahan-akta "Mulai Rp 5 jt".
+- Harga layanan lain yang kebetulan memakai angka serupa (Incoterms/PSE Komdigi/Izin Reklame/ORM 3,5 jt; Merek & Halal 1,5 jt) SENGAJA tidak disentuh — hanya 3 slug target yang berubah.
+- VERIFIKASI LIVE (dev server): /paket-harga menampilkan "Rp 7 jt" dan "Rp 3,5 jt" hilang; /layanan/pendirian-pt memuat Rp 7.000.000 & Rp 9.500.000 + teks tingkat modal; /layanan/pendirian-cv memuat Rp 4.000.000 (Rp 1,8 jt hilang); /layanan/perubahan-akta memuat Rp 5.000.000 + label "Perubahan alamat PT"; beranda kartu PT harga baru; bunx tsc --noEmit = 0 error.
+
+Stage Summary:
+- Empat harga keputusan pemilik kini hidup di seluruh permukaan situs (katalog, beranda, paket-harga, halaman detail + seksi biaya + FAQ, i18n, katalog WhatsApp via DB) — satu sumber kebenaran tetap src/lib/catalog.ts + sinkron DB terverifikasi.

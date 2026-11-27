@@ -259,7 +259,7 @@ export const PAKET_TIERS: PaketTier[] = [
     cta: "Mulai Berdiri",
   },
   {
-    name: "Tumbuh", entity: "Pendirian PT Lengkap", price: "Rp 3,5 jt", priceNote: "Mulai dari — akta + SK + NPWP + NIB",
+    name: "Tumbuh", entity: "Pendirian PT Lengkap", price: "Rp 7 jt", priceNote: "Mulai dari — akta + SK + NPWP + NIB",
     desc: "Paket paling populer. PT resmi berdiri lengkap dalam 3–7 hari kerja — siap terima investor & pinjaman bank.",
     features: ["Akta Notaris + SK Kemenkumham", "NPWP Badan & NIB otomatis", "Domisili usaha", "Konsultasi KBLI & pajak", "Monitoring portal real-time", "Garansi terbit + kompensasi"],
     cta: "Tumbuh Sekarang",

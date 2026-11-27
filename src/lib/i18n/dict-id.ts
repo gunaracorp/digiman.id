@@ -152,7 +152,7 @@ const id: Dictionary = {
       {
         name: "Paket Tumbuh",
         entity: "Pendirian PT Lengkap",
-        price: "Rp 3,5 jt",
+        price: "Rp 7 jt",
         priceNote: "mulai",
         desc: "PT berdiri resmi lengkap dengan dokumen inti — siap buka rekening, kontrak korporasi, dan ajukan kredit.",
         features: [
@@ -362,9 +362,9 @@ const id: Dictionary = {
   switcher: { label: "Bahasa" },
   content: {
     services: {
-      "pendirian-pt": { title: "Pendirian PT", price: "Mulai Rp 3,5 jt", desc: "Akta notaris, SK Kemenkumham, NPWP, NIB — paket lengkap PT resmi berdiri dalam hitungan hari.", items: ["Akta Notaris + SK Kemenkumham", "NPWP & NIB otomatis", "Domisili usaha", "Gratis konsultasi KBLI"] },
+      "pendirian-pt": { title: "Pendirian PT", price: "Mulai Rp 7 jt", desc: "Akta notaris, SK Kemenkumham, NPWP, NIB — paket lengkap PT resmi berdiri dalam hitungan hari.", items: ["Akta Notaris + SK Kemenkumham", "NPWP & NIB otomatis", "Domisili usaha", "Gratis konsultasi KBLI"] },
       "pt-perorangan": { title: "PT Perorangan (UUCK)", price: "Mulai Rp 850 rb", desc: "Badan usaha resmi untuk usaha individu via OSS — tanpa notaris, NIB terbit langsung, modal kecil maksimal.", items: ["NIB sebagai legalitas pasti", "Tanpa akta notaris", "Kewajiban pajak ringan", "Cocok UMKM & freelancer"] },
-      "pendirian-cv": { title: "Pendirian CV", price: "Mulai Rp 1,8 jt", desc: "Pilihan ideal usaha keluarga & kemitraan. Cepat, murah, dan sah di mata hukum.", items: ["Akta notaris CV", "Pengesahan kehakiman", "NPWP & NIB", "Konsultasi struktur modal"] },
+      "pendirian-cv": { title: "Pendirian CV", price: "Mulai Rp 4 jt", desc: "Pilihan ideal usaha keluarga & kemitraan. Cepat, murah, dan sah di mata hukum.", items: ["Akta notaris CV", "Pengesahan kehakiman", "NPWP & NIB", "Konsultasi struktur modal"] },
       "pt-pma": { title: "PT PMA (Investasi Asing)", price: "Mulai Rp 15 jt", desc: "Berinvestasi di Indonesia? Kami pegang seluruh regulasi BKPM & OSS untuk Anda.", items: ["Struktur saham asing", "Laporan BKPM/OSS", "Izin investasi", "Pendampingan DGT & Bank"] },
       "firma-ud": { title: "Firma, UD & Persekutuan", price: "Mulai Rp 1,2 jt", desc: "Bentuk badan usaha klasik untuk dagang & kemitraan nama bersama — cepat berdiri, biaya efisien.", items: ["Akta Firma/UD notaris", "NPWP & NIB", "Surat Keterangan Domisili", "Konsultasi tanggung jawab utang"] },
       "pendirian-koperasi": { title: "Pendirian Koperasi", price: "Mulai Rp 2,5 jt", desc: "Koperasi konsumen, produsen, atau jasa — dari AD/ART hingga legalitas resmi Kemenkop.", items: ["Rapat pendirian & AD/ART", "Pengesahan Kemenkop UKM", "NPWP & NIB koperasi", "Panduan SHU & RAT"] },
@@ -385,7 +385,7 @@ const id: Dictionary = {
       "pelaporan-pajak": { title: "SPT, e-Faktur & Pelaporan Pajak", price: "Mulai Rp 500 rb/bln", desc: "Tenangkan kepala Anda: seluruh kewajiban pajak bulanan & tahunan dikelola konsultan bersertifikat.", items: ["SPT Masa PPN & PPh", "SPT Tahunan badan", "e-Faktur & pembukuan", "Restitusi & pemeriksaan pajak"] },
       "bpjs": { title: "BPJS Kesehatan & Ketenagakerjaan", price: "Mulai Rp 300 rb", desc: "Patuhi aturan ketenagakerjaan: daftar & kelola BPJS seluruh karyawan tanpa pusing administrasi.", items: ["Registrasi perusahaan BPJS", "Enrollment karyawan", "Integrasi perjanjian kerja", "Mutasi & klaim bulanan"] },
       "kitas-rptka": { title: "KITAS/KITAP & RPTKA", price: "Mulai Rp 5 jt", desc: "Pekerja asing & investor legal bekerja/tinggal: RPTKA, notification, VITAS-KITAS sampai KITAP.", items: ["RPTKA Kemenaker", "Notifikasi & telex VITAS", "KITAS investor & pekerja", "KITAP & MERP"] },
-      "perubahan-akta": { title: "Perubahan Akta & Struktur", price: "Mulai Rp 1,5 jt", desc: "Ganti nama, alamat, pengurus, modal, pemegang saham, atau tambah KBLI — semua diurus tuntas.", items: ["Akta perubahan notaris", "Pengesahan Kemenkumham", "Update NIB/OSS & NPWP", "Publikasi & penyesuaian dokumen"] },
+      "perubahan-akta": { title: "Perubahan Akta & Struktur", price: "Mulai Rp 5 jt", desc: "Ganti nama, alamat, pengurus, modal, pemegang saham, atau tambah KBLI — semua diurus tuntas.", items: ["Akta perubahan notaris", "Pengesahan Kemenkumham", "Update NIB/OSS & NPWP", "Publikasi & penyesuaian dokumen"] },
       "pembubaran": { title: "Pembubaran & Likuidasi", price: "Mulai Rp 2,5 jt", desc: "Tutup badan usaha dengan benar: RUPS pembubaran, pelunasan kewajiban, hingga penghapusan NIB.", items: ["RUPS & akta pembubaran", "Pemberitahuan kreditor", "Pelaporan pajak akhir", "Penghapusan NIB & NPWP"] },
       "legal-drafting": { title: "Legal Drafting & Due Diligence", price: "Mulai Rp 750 rb", desc: "Perjanjian bisnis yang menutup celah hukum, dan pemeriksaan legalitas mitra sebelum Anda menandatangani.", items: ["Perjanjian kerja sama", "Perjanjian kerja & kerahasiaan", "Legal due diligence mitra", "Review kontrak oleh pakar"] },
       "website-ecommerce": { title: "Website & E-Commerce", price: "Mulai Rp 3 jt", desc: "Website company profile sampai toko online — cepat, SEO-ready, dan meyakinkan pelanggan.", items: ["Company profile premium", "Toko online & payment gateway", "SEO & Google Business", "Domain, hosting, email bisnis"] },

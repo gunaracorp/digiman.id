@@ -185,7 +185,7 @@ const DEFAULT_SERVICES: ServiceItem[] = [
   {
     slug: "pendirian-pt", title: "Pendirian PT", featured: true, icon: "Building2", category: "pendirian",
     desc: "Akta notaris, SK Kemenkumham, NPWP, NIB — paket lengkap PT resmi berdiri dalam hitungan hari.",
-    price: "Mulai Rp 3,5 jt",
+    price: "Mulai Rp 7 jt",
     items: ["Akta Notaris + SK Kemenkumham", "NPWP & NIB otomatis", "Domisili usaha", "Gratis konsultasi KBLI"],
   },
   {
@@ -197,7 +197,7 @@ const DEFAULT_SERVICES: ServiceItem[] = [
   {
     slug: "pendirian-cv", title: "Pendirian CV", featured: false, icon: "Users", category: "pendirian",
     desc: "Pilihan ideal usaha keluarga & kemitraan. Cepat, murah, dan sah di mata hukum.",
-    price: "Mulai Rp 1,8 jt",
+    price: "Mulai Rp 4 jt",
     items: ["Akta notaris CV", "Pengesahan kehakiman", "NPWP & NIB", "Konsultasi struktur modal"],
   },
   {

@@ -47,7 +47,8 @@ const CORE_ENRICHMENT: Record<string, ServiceEnrichment> = {
       "Panduan kewajiban pasca-pendirian: pajak, laporan keuangan, dan perizinan lanjutan",
     ],
     costs: [
-      { item: "Jasa pendampingan DIGIMAN.ID", note: "mulai Rp 3,5 jt — tertulis penuh di penawaran" },
+      { item: "Jasa pendampingan DIGIMAN.ID — modal dasar < Rp 5 miliar", note: "Rp 7.000.000 — tertulis penuh di penawaran" },
+      { item: "Jasa pendampingan DIGIMAN.ID — modal dasar > Rp 5 miliar", note: "Rp 9.500.000 — tertulis penuh di penawaran" },
       { item: "Biaya notaris pendiri", note: "menyesuaikan modal dasar & kompleksitas struktur" },
       { item: "Biaya pengesahan Kemenkumham", note: "Rp 300.000 untuk PT mikro & kecil (PP 8/2021)" },
       { item: "NPWP Badan", note: "gratis — dibuat otomatis bersama pengesahan" },
@@ -99,7 +100,7 @@ const CORE_ENRICHMENT: Record<string, ServiceEnrichment> = {
       "Panduan kewajiban pajak (termasuk opsi PPh Final UMKM) & administrasi berjalan",
     ],
     costs: [
-      { item: "Jasa pendampingan DIGIMAN.ID", note: "mulai Rp 1,8 jt" },
+      { item: "Jasa pendampingan DIGIMAN.ID", note: "Rp 4.000.000 — tertulis penuh di penawaran" },
       { item: "Honor notaris akta pendirian", note: "menyesuaikan notaris & kota pendirian" },
       { item: "NIB & akun OSS-RBA", note: "gratis" },
       { item: "NPWP Badan", note: "gratis" },
@@ -646,7 +647,8 @@ const CORE_ENRICHMENT: Record<string, ServiceEnrichment> = {
       "Panduan kewajiban pasca perubahan agar tidak ada dokumen basi",
     ],
     costs: [
-      { item: "Jasa pendampingan DIGIMAN.ID", note: "mulai Rp 1,5 jt" },
+      { item: "Perubahan alamat PT (pindah kedudukan)", note: "Rp 5.000.000 — tertulis penuh di penawaran" },
+      { item: "Perubahan lain (nama, pengurus, modal, KBLI)", note: "mulai Rp 5 jt — menyesuaikan jenis & kompleksitas" },
       { item: "Honor notaris akta perubahan", note: "menyesuaikan jenis & kompleksitas" },
       { item: "Biaya pengesahan AHU", note: "sesuai jenis perubahan & skala usaha" },
       { item: "Pembaruan izin turunan (bila perlu)", note: "estimasi tertulis saat konsultasi" },
