@@ -17,6 +17,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Home,
+  LogOut,
   MessageSquare,
   Moon,
   RefreshCw,
@@ -93,7 +94,15 @@ const DASH_STYLES = `
 }
 `;
 
-export default function ClientDashboard() {
+export default function ClientDashboard({
+  userEmail,
+  onLogout,
+}: {
+  /** Email akun klien yang sedang masuk (dari gerbang portal). */
+  userEmail?: string;
+  /** Callback keluar — dipasang gerbang portal (#/dashboard). */
+  onLogout?: () => void;
+} = {}) {
   // F03 — next-themes di-scope dashboard (attribute data-theme, default dark premium).
   return (
     <ThemeProvider
@@ -103,14 +112,20 @@ export default function ClientDashboard() {
       storageKey="digiman-dash-theme"
       disableTransitionOnChange
     >
-      <DashboardShell />
+      <DashboardShell userEmail={userEmail} onLogout={onLogout} />
     </ThemeProvider>
   );
 }
 
 /* ════════════════════════════ SHELL ════════════════════════════ */
 
-function DashboardShell() {
+function DashboardShell({
+  userEmail,
+  onLogout,
+}: {
+  userEmail?: string;
+  onLogout?: () => void;
+}) {
   const { t, locale, setLocale } = useI18n();
   const { toast } = useToast();
   const { resolvedTheme, setTheme } = useTheme();
@@ -268,6 +283,8 @@ function DashboardShell() {
             now={now}
             isLight={isLight}
             onToggleTheme={toggleTheme}
+            userEmail={userEmail}
+            onLogout={onLogout}
           />
 
           <main id="dash-main" className="mx-auto w-full max-w-6xl flex-1 px-4 pb-28 pt-6 md:px-6 md:pt-8 lg:pb-14">
@@ -499,6 +516,8 @@ function Topbar({
   now,
   isLight,
   onToggleTheme,
+  userEmail,
+  onLogout,
 }: {
   data: DashboardData | null;
   clock: string;
@@ -509,6 +528,8 @@ function Topbar({
   now: number | null;
   isLight: boolean;
   onToggleTheme: () => void;
+  userEmail?: string;
+  onLogout?: () => void;
 }) {
   const { t } = useI18n();
   return (
@@ -583,6 +604,20 @@ function Topbar({
         onMarkAllRead={onMarkAllRead}
         now={now}
       />
+
+      {/* Keluar dari portal — hanya tampil saat sesi klien aktif */}
+      {onLogout && (
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={onLogout}
+          aria-label="Keluar dari portal"
+          title={userEmail ? `Keluar (${userEmail})` : "Keluar"}
+          className="glass h-11 w-11 shrink-0 rounded-full text-foreground hover:text-gold"
+        >
+          <LogOut className="h-4 w-4" aria-hidden="true" />
+        </Button>
+      )}
     </header>
   );
 }

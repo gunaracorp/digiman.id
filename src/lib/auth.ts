@@ -14,6 +14,15 @@ export {
   type SessionPayload,
 } from "./auth-edge";
 
+// Re-export sesi klien Portal Klien
+export {
+  signClientSession,
+  verifyClientSession,
+  clientSessionCookieOptions,
+  CLIENT_SESSION_COOKIE,
+  type ClientSessionPayload,
+} from "./auth-edge";
+
 export function hashPassword(password: string): string {
   const salt = randomBytes(16).toString("hex");
   const hash = scryptSync(password, salt, 64).toString("hex");

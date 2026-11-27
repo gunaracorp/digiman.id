@@ -287,6 +287,19 @@ model AdminUser {
   createdAt    DateTime  @default(now())
 }
 
+/// Akun klien Portal Klien (#/dashboard) — register & login ber-password.
+/// Data dashboard diikat lewat email: ClientProject.email = ClientUser.email.
+model ClientUser {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  passwordHash String
+  name         String    @default("Klien")
+  company      String?
+  phone        String?
+  lastLoginAt  DateTime?
+  createdAt    DateTime  @default(now())
+}
+
 /// Analitik kunjungan halaman publik (API /api/track).
 model PageView {
   id        String   @id @default(cuid())

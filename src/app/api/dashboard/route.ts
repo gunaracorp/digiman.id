@@ -1,15 +1,30 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
+import { verifyClientSession, CLIENT_SESSION_COOKIE } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 
 /**
  * GET /api/dashboard — payload lengkap Client Dashboard.
- * Data demo dari tabel ClientProject + agregat deterministik PgaDocument.
+ * Data dari tabel ClientProject + agregat deterministik PgaDocument.
+ * TERPROTEKSI: wajib sesi klien (register/login Portal Klien) — data hanya
+ * proyek yang emailnya sama dengan akun klien yang sedang masuk.
  */
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
+    const session = await verifyClientSession(
+      req.cookies.get(CLIENT_SESSION_COOKIE)?.value
+    );
+    if (!session) {
+      return NextResponse.json(
+        { error: "Tidak terautentikasi. Silakan masuk ke Portal Klien." },
+        { status: 401 }
+      );
+    }
+
+    // Data diikat ke akun: hanya proyek dengan email = email akun klien.
     const project = await db.clientProject.findFirst({
+      where: { email: { equals: session.email } },
       include: {
         invoices: { orderBy: { order: "asc" } },
         activities: { orderBy: { createdAt: "desc" }, take: 12 },
@@ -19,8 +34,13 @@ export async function GET() {
 
     if (!project) {
       return NextResponse.json(
-        { error: "Belum ada proyek klien. Jalankan seed dashboard." },
-        { status: 404 },
+        {
+          error:
+            "Belum ada proyek aktif yang terikat ke akun ini. Hubungi tim DIGIMAN.ID agar proyek Anda didaftarkan dengan email " +
+            session.email +
+            ".",
+        },
+        { status: 404 }
       );
     }
 

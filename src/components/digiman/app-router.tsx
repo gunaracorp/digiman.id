@@ -59,7 +59,7 @@ import BlogTeaser from "@/components/blog/blog-teaser";
 import BlogIndex from "@/components/blog/blog-index";
 import BlogReader from "@/components/blog/blog-reader";
 import ProposalStudio from "@/components/proposal/proposal-studio";
-import ClientDashboard from "@/components/dashboard/client-dashboard";
+import ClientPortalGate from "@/components/dashboard/client-portal-gate";
 
 export type AppRoute =
   | { view: "landing" }
@@ -167,7 +167,7 @@ export default function AppRouter(props: RouterProps) {
         <LandingView {...props} />
       ) : (
         <div className="min-h-screen bg-night text-foreground">
-          {route.view === "dashboard" && <ClientDashboard />}
+          {route.view === "dashboard" && <ClientPortalGate />}
           {route.view === "os" && <OsExplorer />}
           {route.view === "blog" && <BlogIndex />}
           {route.view === "blog-post" && (
