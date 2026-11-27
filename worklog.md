@@ -913,3 +913,39 @@ Work Log:
 Stage Summary:
 - Semua bug kritis tertangani: sesi auth pulih, 165 layanan + tim + kantor kembali hidup (sitemap 279 URL), secret & file internal tak lagi ter-track, git status bersih.
 - History GitHub disatukan utuh (remote 63 commit + lokal 7 commit) tanpa force push, tanpa kehilangan pekerjaan sisi mana pun.
+
+---
+Task ID: portal-klien-auth-1
+Agent: main (orchestrator)
+Task: "buatkan portal klien dengan register dan login di #/dashboard" (entri retro — sesi ini tercatat terlambat; pekerjaan sudah di-push sebagai commit portal-klien)
+
+Work Log:
+- MODEL: ClientUser baru di prisma/schema.prisma (email unik, name, company, passwordHash scrypt "salt:hash" format identik auth admin) + prisma db push.
+- API: /api/client-auth/{register,login,logout,me} — register upsert-guard 409 bila email terdaftar, login rate limit 8 percobaan/5 menit per ip+email, sesi JWT HS256 (cookie digiman_client, httpOnly, SameSite=Lax, 7 hari) via lib/auth (Node) + lib/auth-edge.ts (verifikasi Edge).
+- GERBANG UI: src/components/dashboard/client-portal-gate.tsx — layar Masuk/Daftar menutup portal sampai ada sesi; hash-route #/dashboard dicek client-side; tombol Keluar ditambahkan di Topbar client-dashboard.
+- MIDDLEWARE: jalur path /dashboard tanpa sesi dialihkan 307 ke /#/dashboard (gerbang ganda UI+server).
+- PROTEKSI DATA: /api/dashboard wajib sesi (401 tanpa sesi); data diikat email akun (hanya ClientProject dengan email = email sesi); akun tanpa proyek → 404 berikut pesan ramah agar tim mendaftarkan proyek ke email tsb.
+- SEED: scripts/seed-client-user.ts (bun run db:seed:client) — akun dari env CLIENT_SEED_EMAIL/CLIENT_SEED_PASSWORD (tanpa kredensial di kode; .env diabaikan Git), mengikat proyek demo PRJ-2026-001 ke email akun agar portal langsung berisi data.
+- FIX BUILD: TypeScript "^7" (tidak eksis, build rusak) → 5.9; Next 16.1.3 → 16.4.6 (bug font dev Turbopack); ikon Github lucide-react v1 tidak ada → SVG inline di footer.
+- DOCS: PANDUAN-PORTAL-KLIEN.md (arsitektur, cara jalan, keamanan, menambah akun) — tanpa plaintext password karena repo publik.
+- KREDENSIAL DIPINDAH: password portal semula hardcode di seed script & panduan → dipindah ke .env (CLIENT_SEED_*); verifikasi seed ulang tetap jalan.
+
+Stage Summary:
+- Portal Klien (#/dashboard) kini punya gerbang register/login/keluar penuh dengan data terikat email akun — klien tidak bisa melihat proyek klien lain.
+
+---
+Task ID: sempurnakan-push-1
+Agent: main (orchestrator)
+Task: "push ke github terus check worklog kita sempurnakan yuk hari ini semua websitenya"
+
+Work Log:
+- RECOVERY: sandbox di-recycle antar pesan → folder digiman.id kosong total (.git & seluruh file hilang). Dipulihkan 100% dari zip download/ (572 file, termasuk db/custom.db ter-seed & .env); repo di-reinit (git init -b main), fetch 8574c31, reset --mixed, commit ulang → status 14 item identik dengan commit hilang c9dfc01.
+- PUSH: token baru (user gunaracorp, push:true terverifikasi via API) → 8574c31..4de3dca di main; SHA lokal = SHA remote terverifikasi.
+- TSC: utang legacy ternyata tinggal 5 error di src/components/ui/resizable.tsx — react-resizable-panels v4.25.1 mengganti API (PanelGroup→Group, PanelResizeHandle→Separator, direction→orientation, atribut data-panel-group-direction→data-orientation). Wrapper ditulis ulang mengikuti v4, kontrak shadcn (ResizablePanelGroup/ResizablePanel/ResizableHandle + prop direction legacy) dipertahankan. HASIL: bunx tsc --noEmit = 0 error SELURUH repo; eslint exit 0.
+- E2E 32/32 PASS (semua bagian situs): 15 halaman publik (/ layanan index+detail, blog index+artikel, genesis, gunara-os, paket-harga, faq, kontak, tentang-kami, legalitas, proposal, katalog-whatsapp, syarat-ketentuan, kebijakan-privasi) semua 200; /admin 307→/admin/login; sitemap.xml/robots.txt/feed.xml/llms.txt/IndexNow key 200; gerbang /dashboard 307→/#/dashboard; alur portal klien register→me(200, email sesi)→dashboard(404 by-design akun tanpa proyek)→logout→me 401→dashboard 401; akun seed login 200→dashboard 200 berisi PRJ-2026-001→logout; admin login 200.
+- ADMIN: DB hasil restore hanya punya AdminUser "gunara" (password tak terdokumentasi) → skrip baru scripts/reset-admin-password.ts (bun run db:admin:reset; env ADMIN_USERNAME/ADMIN_PASSWORD) membuat akun "admin" dengan password terdokumentasi seed-admin.ts; E2E admin login hijau.
+- dev.log bersih (tanpa error/unhandled) selama seluruh sweep.
+
+Stage Summary:
+- Seluruh situs terverifikasi hidup end-to-end (32/32), typecheck & lint nol error, portal klien + admin login berfungsi, worklog kini mencatat sesi portal-klien yang sebelumnya terlewat.
+- Pola sesi berikutnya: sebelum push selalu jalankan bunx tsc --noEmit + skrip E2E sweep; pemulihan disaster = zip di download/ + reinit (reset --mixed FETCH_HEAD).

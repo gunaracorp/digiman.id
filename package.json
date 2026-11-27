@@ -16,6 +16,7 @@
     "db:seed": "bun run scripts/seed-gunara.ts",
     "db:seed:dashboard": "bun run scripts/seed-dashboard.ts",
     "db:seed:client": "bun run scripts/seed-client-user.ts",
+    "db:admin:reset": "bun run scripts/reset-admin-password.ts",
     "db:backup": "bun run scripts/db-backup.ts",
     "db:restore": "bun run scripts/db-restore.ts"
   },
